@@ -1,0 +1,10 @@
+{
+  "site": {
+    "description": "",
+    "domain_without_trailing_slash": "www.alanwsmith.com",
+    "favicon_root": "/favicons",
+    "github_url": "https://github.com/alanwsmith/",
+    "og_image_rel_path": "/images/og-image.jpg",
+    "title": ""
+  }
+}

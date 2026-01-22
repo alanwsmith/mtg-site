@@ -1,0 +1,46 @@
+[!- extends "_vars.html" -!]
+
+[!- block wrapper -!]
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    [! include "styles/_includes/initial-colors.html" !]
+    [! include "styles/_includes/initial-styles.html" !]
+    <script src="/styles/styles.js"></script>
+    <script src="[@ bitty_url @]" type="module"></script>
+    <link rel="stylesheet" href="/styles/main.css" />
+    [! include "_wrappers/includes/metadata.html" !]
+  </head>
+  <body>
+    <[@ bitty_tag @]
+      data-connect="/bits/default.js Main" 
+      class="load-hider">
+      <[@ bitty_tag @] data-connect="/bits/default.js CodeBlockControls">
+        <[@ bitty_tag @] data-connect="/bits/default.js ImageUpdater">
+          <[@ bitty_tag @] data-connect="/bits/default.js DetailsOpener">
+
+      [! include "_wrappers/includes/noscript.html" !]
+
+      [! include "_wrappers/includes/header.html" !]
+
+      <main class="default-wrapper default-flow">
+        [! block main !][! endblock !]
+      </main>
+
+      [! include "_wrappers/includes/footer.html" !]
+          </[@ bitty_tag @]>
+        </[@ bitty_tag @]>
+      </[@ bitty_tag @]>
+    </[@ bitty_tag @]>
+
+    <script>
+      setTimeout(() => { 
+        document.documentElement.style.setProperty("--load-hider", "1");
+      }, 1300);
+    </script>
+  </body>
+</html>
+
+[!- endblock -!]
