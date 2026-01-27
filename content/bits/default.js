@@ -141,7 +141,7 @@ export class CodeBlockControls {
 
   bittyReady() {
     this.api.querySelectorAll(".code-block").forEach((codeBlock, index) => {
-      if (!codeBlock.classList.contains("nobuttons")) {
+      if (!codeBlock.classList.contains("no-buttons")) {
         codeBlock.dataset.receive = "toggleWrap";
         const signals = codeBlock.dataset.receive
           ? [codeBlock.dataset.receive]

@@ -2,19 +2,9 @@
 
 [! block main !]
 
-
-
-
-<noscript>
-This tool requires JavaScript which is 
-currently not working for this page
-in your browser/app.
-</noscript>
-
 <hgroup>
   <h1>Image Tags</h1>
 </hgroup>
-
 
 <bitty-7-0 class="default-flow small-width" data-connect="/image-tags/image-tags.js ImageTags">
   <p>
@@ -33,7 +23,6 @@ in your browser/app.
     <button data-send="clearDeck">Clear Deck</button>
     <button data-send="showExampleDeck">Show Example</button>
   </div>
-
 
   <h3>HTML Output</h3>
   <textarea class="code-output" data-receive="outputHTMLValue showErrors">
@@ -64,6 +53,24 @@ waiting for a deck
               rest of the cards.
             </p>
         </li>
+          <li>
+            <p>__CHAR1__</p>
+            <p>The first character of the card's ID (Necessary 
+            to create the Scryfall URLs).</p>
+          </li>
+          <li>
+            <p>__CHAR2__</p>
+            <p>The second character of the card's ID (Necessary 
+            to create the Scryfall URLs).</p>
+          </li>
+          <li>
+            <p>__ID__</p>
+            <p>The Scryfall card ID.</p>
+          </li>
+          <li>
+            <p>__NAME__</p>
+            <p>The name of the card.</p>
+          </li>
       </ul>
 
       </div>
@@ -80,9 +87,59 @@ waiting for a deck
 <div class="large-top-margin default-top-padding faded-accent-top-border">
   <details>
     <summary>Technical Details</summary>
-    <p>asdf</p>
+    <div class="faded-accent-border default-border-radius default-padding default-flow">
+  <p class="default-bottom-padding">
+  This page is built with <a href="https://www.bitty-js.com">bitty</a>.
+  It's a single file framework baked into a web component.
+  It's designed to make it easier to make
+  interesting things on the web. 
+  For example, here's the code that powers this page:
+  </p>
+  <pre class="code-block no-buttons">
+      [! filter highlight_javascript !]
+    [! include "image-tags/image-tags.js" -!]
+      [! endfilter !]
+  </pre>
+    <p>
+      The code will get shorter with the next version. 
+      This is doing great in the mean time. If
+      you want to check out the project it's at:
+    </p> 
+    <p>
+      <a href="https://www.bitty-js.com">bitty-js.com</a>
+    </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Endnotes</summary>
+    <div class="faded-accent-border default-border-radius default-padding">
+    <ul>
+      <li>
+        <a href="https://company.wizards.com/">Wizards of the Coast</a>
+owns the copyright to the images.
+They're awesome, though. They let folks use their
+          intellectual property for free as long what <em>you're</em>
+          doing is free. It's all part of their
+          <a href="https://company.wizards.com/en/legal/fancontentpolicy">Fan Content Policy</a>.
+      </li>
+      <li>
+          The HTML tags point to images on <a href="https://scryfall.com/">Scryfall</a>.
+The reason I'm using them instead of
+ones hosted by Wizards is because Scryfall has
+          a <a href="https://scryfall.com/docs/api">awesome API</a>.
+The images use their IDs which 
+makes them a lot easier to get to. I don't expect any 
+          real traffic here. 
+          I'll pull the images down and  
+          serve them myself if a bunch starts showing up. 
+      </li>
+    </ul>
+
+      </div>
 
   </details>
+
 </div>
 
 
@@ -113,13 +170,12 @@ label {
 }
 
 .mtg-card img {
-  border: 2px solid var(--faded-reverse-color);
   border-radius: var(--xsmall-border-radius);
   width: 9rem;
 }
 
 .mtg-commander img {
-  border-color: var(--info-color);
+  border: 1px solid var(--accent-color);
 }
 
 textarea {
