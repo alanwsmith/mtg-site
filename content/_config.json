@@ -1,10 +1,10 @@
 {
   "site": {
-    "description": "",
-    "domain_without_trailing_slash": "www.alanwsmith.com",
+    "description": "My Magic - The Gathering Tools",
+    "domain_without_trailing_slash": "mtg.al9000.com",
     "favicon_root": "/favicons",
-    "github_url": "https://github.com/alanwsmith/",
+    "github_url": "https://github.com/alanwsmith/mtg-site",
     "og_image_rel_path": "/images/og-image.jpg",
-    "title": ""
+    "title": "Magic Tools"
   }
 }

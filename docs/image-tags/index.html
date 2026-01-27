@@ -167,6 +167,54 @@ body {
 <link rel="mask-icon" href="&#x2f;favicons/safari-pinned-tab.svg" color="#5bbad5" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg">
+<style>
+.code-output {
+  height: 14rem;
+}
+
+.deck-list {
+  height: 14rem;
+}
+
+.html-controls {
+  display: grid;
+  grid-template-columns: 1fr 8rem;
+}
+
+.image-output-template{
+  height: 10rem;
+}
+
+label {
+  display: block;
+}
+
+.mtg-card img {
+  border: 2px solid var(--faded-reverse-color);
+  border-radius: var(--xsmall-border-radius);
+  width: 9rem;
+}
+
+.mtg-commander img {
+  border-color: var(--info-color);
+}
+
+textarea {
+  display: block;
+  font-size: var(--xsmall-font-size);
+  width: 100%;
+}
+
+.visual-output {
+  border: var(--faded-reverse-border);
+  border-radius: var(--default-border-radius);
+  padding: var(--default-padding);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  width: var(--small-width);
+}
+</style>
   </head>
   <body>
     <bitty-7-0
@@ -185,7 +233,7 @@ body {
 </noscript>
 <header class="default-wrapper xxlarge-bottom-margin xxlarge-bottom-padding">
   <div class="top-nav">
-    Home
+    <a href="/">Home</a>
     <bitty-7-0 
       data-connect="/bits/default.js ThemeSwitcher"
       data-location="top"
@@ -193,13 +241,89 @@ body {
   </div>
 </header>
       <main class="default-wrapper default-flow">
-<hgroup>
-    <h1>Magic Tools</h1>
-  </hgroup>
 
-<bitty-7-0 data-connect="/bits/magic.js Magic">
-  <div data-init="loadData">Loading...</div>
-</bitty-7-0>      </main>
+
+
+
+<noscript>
+This tool requires JavaScript which is 
+currently not working for this page
+in your browser/app.
+</noscript>
+
+<hgroup>
+  <h1>Image Tags</h1>
+</hgroup>
+
+
+<bitty-7-0 class="default-flow small-width" data-connect="/image-tags/image-tags.js ImageTags">
+  <p>
+    This is the tool I'm use to make HTML image 
+    tags for my decks. 
+    It works with <a href="https://archidekt.com">Archidekt's</a>. 
+    Export Deck feature. 
+    Copy your deck from there and paste it here to generate the code.
+    You can copy and see a preview of it below. 
+  </p>
+  <textarea 
+    class="deck-list" 
+    data-receive="showExampleDeck clearDeck"
+    data-send="outputHTML"></textarea>
+  <div class="small-width text-align-right">
+    <button data-send="clearDeck">Clear Deck</button>
+    <button data-send="showExampleDeck">Show Example</button>
+  </div>
+
+
+  <h3>HTML Output</h3>
+  <textarea class="code-output" data-receive="outputHTMLValue showErrors">
+waiting for a deck
+  </textarea>
+
+  <div class="html-controls small-width">
+    <details class="default-flow">
+      <summary>Change Output Template</summary>
+      <div class="faded-accent-border default-border-radius default-padding small-font-size default-flow">
+        <textarea class="image-output-template" data-send="outputHTML">&lt;div class=&quot;mtg-card __CARDCLASS__&quot;&gt;
+&lt;img 
+  src=&quot;https://cards.scryfall.io/border_crop/front/__CHAR1__/__CHAR2__/__ID__.jpg&quot;
+  alt=&quot;The __NAME__ card from Magic: The Gathering&quot; /&gt;
+&lt;/div&gt;</textarea>
+    <p>
+      This is the HTML output template that's used for
+      each card. It works by doing a find and replace
+      on the following:
+      </p>
+
+      <ul>
+        <li>
+            <p>__CARDCLASS__</p>
+            <p>
+              Turns into &quot; mtg-commander&quot; 
+              on the commander card and &quot;mtg-99&quot; on the 
+              rest of the cards.
+            </p>
+        </li>
+      </ul>
+
+      </div>
+    </details>
+
+    <div class="text-align-right">
+      <button data-use="copyHTML">Copy HTML</button>
+    </div>
+  </div>
+  <h3>Example View</h3>
+  <div class="visual-output" data-receive="outputHTMLCode">waiting for deck</div>
+</bitty-7-0>
+
+<div class="large-top-margin default-top-padding faded-accent-top-border">
+  <details>
+    <summary>Technical Details</summary>
+    <p>asdf</p>
+
+  </details>
+</div>      </main>
 
 <footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
   <div class="small-font-size">

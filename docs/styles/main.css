@@ -145,6 +145,15 @@ del {
   text-decoration: line-through;
 }
 
+details > :where(:not(:first-child)) {
+  margin-top: var(--flow-space, var(--default-flow));
+}
+
+details > summary {
+  color: var(--link-color);
+  cursor: pointer;
+}
+
 footer {
   color: var(--default-color);
   font-size: var(--small-font);

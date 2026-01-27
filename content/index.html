@@ -1,15 +1,14 @@
 [!- extends "_wrappers/main.html" -!]
 
+
 [!- block main -!]
   <hgroup>
-    <h1>A New Site</h1>
-    <div class="page-subtitle">
-      With a subtitle
-    </div>
+    <h1>Magic Tools</h1>
   </hgroup>
 
-  <p>Hello, world</p>
-
-  <p>[@ example_global_var_from_vars_file  @]</p>
+<bitty-7-0 data-connect="/bits/magic.js Magic">
+  <div data-init="loadData">Loading...</div>
+</bitty-7-0>
 
 [!- endblock -!]
+

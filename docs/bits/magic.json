@@ -1,0 +1,152 @@
+{
+  "cards": [],
+  "phases": [
+    {
+      "id": "beginningPhase",
+      "name": "Beginning Phase",
+      "subPhases": [
+        {
+          "id": "beginningNoteLife",
+          "instants": false,
+          "name": "NoteLife"
+        },
+        {
+          "id": "beginningUntap",
+          "instants": false,
+          "name": "Untap"
+        },
+        {
+          "id": "beginningUpkeep",
+          "instants": true,
+          "name": "Upkeep"
+        },
+        {
+          "id": "beginningDraw",
+          "instants": true,
+          "name": "Draw"
+        }
+      ]
+    },
+    {
+      "id": "preCombatMainPhase",
+      "name": "Pre-Combat Main Phase",
+      "subPhases": [
+        {
+          "id": "preCombatPlayLandBeforeCombat",
+          "instants": true,
+          "name": "Play Land Before Combat"
+        },
+        {
+          "id": "preCombatCreatureBeforePlaneswalkers",
+          "instants": true,
+          "name": "Pre-Combat Creature Before Planeswalkers"
+        },
+        {
+          "id": "preCombatPlaneswalkersBeforeSpells",
+          "instants": true,
+          "name": "Planeswalker Before Spells"
+        },
+        {
+          "id": "preCombatArtifactsEnchangementsSorceries",
+          "instants": true,
+          "name": "Artifacts, Enchantments, Sorceries"
+        },
+        {
+          "id": "preCombatPlanewalkersAfterSpells",
+          "instants": true,
+          "name": "Planeswalker After Spells"
+        },
+        {
+          "id": "preCombatCreaturesAfterPlaneswalkers",
+          "instants": true,
+          "name": "Pre-Combat Creatures After Planeswalker"
+        },
+        {
+          "id": "preCombatInstants",
+          "instants": true,
+          "name": "Pre-Combat Instants"
+        }
+      ]
+    },
+    {
+      "name": "Combat",
+      "subPhases": [
+        {
+          "id": "beginningOfCombat",
+          "instants": true,
+          "name": "Beginning of Combat"
+        },
+        {
+          "id": "declareAttackers",
+          "instants": true,
+          "name": "Declare Attackers"
+        },
+        {
+          "id": "declareBlockers",
+          "instants": true,
+          "name": "Declare Blockers"
+        },
+        {
+          "id": "firstStrikeDamage",
+          "instants": true,
+          "name": "First/Initial Double Strike Damage"
+        },
+        {
+          "id": "damage",
+          "instants": false,
+          "name": "Damage"
+        },
+        {
+          "id": "endOfCombat",
+          "instants": true,
+          "name": "End of Combat"
+        }
+      ]
+    },
+    {
+      "name": "Post-Combat Main Phase",
+      "subPhases": [
+        {
+          "id": "postCombatLands",
+          "instants": true,
+          "name": "Post-Combat Lands"
+        },
+        {
+          "id": "postCombatCreatures",
+          "instants": true,
+          "name": "Post-Combat Creatures"
+        },
+        {
+          "id": "postCombatPlaneswalkerBeforeSpells",
+          "instants": true,
+          "name": "Post-Combat Planeswalkers Before Spells"
+        },
+        {
+          "id": "postCombatSpells",
+          "instants": true,
+          "name": "Post-Combat Artifacts, Enchantments and Sorceries"
+        },
+        {
+          "id": "postCombatPlaneswalkerAfterSpells",
+          "instants": true,
+          "name": "Post-Combat Planeswalkers After Spells"
+        }
+      ]
+    },
+    {
+      "name": "End Phase",
+      "subPhases": [
+        {
+          "id": "endPhaseEndStep",
+          "instants": true,
+          "name": "End Step"
+        },
+        {
+          "id": "endPhaseCleanup",
+          "instants": true,
+          "name": "Cleanup"
+        }
+      ]
+    }
+  ]
+}
