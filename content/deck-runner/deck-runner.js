@@ -116,9 +116,9 @@ export class DeckRunner {
           "No",
         ],
         [
-          "Total Lands Played is 0 on Turn 1 if No Lands in Opening Hand or Drawn",
+          "Total Lands Played is 0 on Turn 1 if No Lands in Opening Hand",
           () => {
-            return this._landsPlayedOnTurn(1);
+            return this._totalLandsPlayedOnTurn(1);
           },
           0,
         ],
@@ -130,14 +130,14 @@ export class DeckRunner {
           0,
         ],
         [
-          "Behind by 1 Land on Turn 1 if No Lands in Opening Hand or Drawn",
+          "Behind by 1 Land on Turn 1 if No Lands in Opening Hand",
           () => {
             return this._landsBehindOnTurn(1);
           },
           1,
         ],
         [
-          "Behind by 2 Land on Turn 2 if No Lands in Opening Hand or Drawn",
+          "Behind by 2 Land on Turn 2 if No Lands in Opening Hand",
           () => {
             return this._landsBehindOnTurn(2);
           },
@@ -146,21 +146,35 @@ export class DeckRunner {
       ],
     );
 
-    // this.assert(
-    //   () => {
-    //     this.#cards = this.parseDeckList(makeTestDeckList([0]));
-    //     this.updatePage();
-    //   },
-    //   [
-    //     [
-    //       "1 Land in opening hand",
-    //       () => {
-    //         return this._landsInOpeningHand();
-    //       },
-    //       1,
-    //     ],
-    //   ],
-    // );
+    this.assert(
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([0]));
+        this.updatePage();
+      },
+      [
+        [
+          "1 Land in opening hand",
+          () => {
+            return this._landsInOpeningHand();
+          },
+          1,
+        ],
+        [
+          "Played 1 Land on Turn 1 if 1 Land in Opening Hand",
+          () => {
+            return this._landPlayedOnTurn(1);
+          },
+          "Drawn",
+        ],
+        [
+          "Total Lands Played is 1 on Turn 1 if 1 Land in Opening Hand",
+          () => {
+            return this._totalLandsPlayedOnTurn(1);
+          },
+          1,
+        ],
+      ],
+    );
   }
 
   _landsInReserveOnTurn(turn) {
@@ -168,7 +182,11 @@ export class DeckRunner {
   }
 
   _landPlayedOnTurn(turn) {
-    return "No";
+    if (this._landsInOpeningHand() >= turn) {
+      return "Drawn";
+    } else {
+      return "No";
+    }
   }
 
   runSoloTests() {
@@ -266,7 +284,7 @@ export class DeckRunner {
     const subs = [
       ["TURN", turn],
       ["PLAY", this._landPlayedOnTurn(turn)],
-      ["TOTAL", this._landsPlayedOnTurn(turn)],
+      ["TOTAL", this._totalLandsPlayedOnTurn(turn)],
       ["RESERVE", this._landsInReserveOnTurn(turn)],
       ["BEHIND", this._landsBehindOnTurn(turn)],
     ];
@@ -340,7 +358,7 @@ export class DeckRunner {
   }
 
   _landsBehindOnTurn(turn) {
-    return turn - this._landsPlayedOnTurn(turn);
+    return turn - this._totalLandsPlayedOnTurn(turn);
   }
 
   _landsInOpeningHand() {
@@ -354,8 +372,8 @@ export class DeckRunner {
     el.innerHTML = this._landsInOpeningHand();
   }
 
-  _landsPlayedOnTurn(turn) {
-    return 0;
+  _totalLandsPlayedOnTurn(turn) {
+    return this._landsInOpeningHand();
   }
 
   // landsInOpeningHandDisplay() {
