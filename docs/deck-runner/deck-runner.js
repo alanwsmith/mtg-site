@@ -87,7 +87,7 @@ export class DeckRunner {
   #errors;
   #exampleDeck;
   #idMap;
-  #testResults = [];
+  #testResults;
   #tests = [];
 
   assert(given, tests) {
@@ -109,7 +109,6 @@ export class DeckRunner {
           0,
         ],
         [
-          "solo",
           "0 Lands played at turn 1",
           () => {
             return this._landsPlayedAtTurn(1);
@@ -172,8 +171,9 @@ export class DeckRunner {
   // }
 
   runTests() {
+    this.#testResults = [];
+    // Run solo tests
     for (const testPayload of this.#tests) {
-      // Run solo tests
       for (const assertion of testPayload[1]) {
         if (assertion.length === 4 && assertion[0] === "solo") {
           testPayload[0](); // Run function under test
@@ -187,17 +187,33 @@ export class DeckRunner {
           );
         }
       }
+    }
+    // Run all tests if no solo tests were found
+    if (this.#testResults.length === 0) {
+      for (const testPayload of this.#tests) {
+        testPayload[0](); // Run function under test
+        for (const assertion of testPayload[1]) {
+          this.#testResults.push(
+            new TestResult(
+              assertion[0],
+              assertion[1](),
+              assertion[2],
+              testPayload[2],
+            ),
+          );
+        }
 
-      // testPayload[0](); // Run function under test
-      // for (const assertion of testPayload[1]) {
-      //   this.#testResults.push(
-      //     new TestResult(
-      //       assertion[0],
-      //       assertion[1](),
-      //       assertion[2],
-      //       testPayload[2],
-      //     ),
-      //   );
+        // testPayload[0](); // Run function under test
+        // for (const assertion of testPayload[1]) {
+        //   this.#testResults.push(
+        //     new TestResult(
+        //       assertion[0],
+        //       assertion[1](),
+        //       assertion[2],
+        //       testPayload[2],
+        //     ),
+        //   );
+      }
     }
     this.#testResults
       .filter((result) => (result.result() === "PASSED"))
