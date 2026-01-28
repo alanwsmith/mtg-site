@@ -6,14 +6,6 @@ class Card {
     this._count = count;
   }
 
-  status() {
-    if (this.category() === "commander") {
-      return "deck-commander";
-    } else {
-      return "deck-99";
-    }
-  }
-
   category() {
     return this._kind.toLowerCase();
   }
@@ -26,18 +18,26 @@ class Card {
     return this._id.slice(num - 1, num);
   }
 
-  kind() {
-    return this._kind;
-  }
-
   imageURL() {
     return `https://cards.scryfall.io/border_crop/front/${this.idChar(1)}/${
       this.idChar(2)
     }/${this.id()}.jpg`;
   }
 
+  kind() {
+    return this._kind;
+  }
+
   name() {
     return this._name;
+  }
+
+  status() {
+    if (this.category() === "commander") {
+      return "deck-commander";
+    } else {
+      return "deck-99";
+    }
   }
 }
 
@@ -55,6 +55,69 @@ export class DeckRunner {
 
   bittyReady() {
     this.api.trigger("runDeck");
+  }
+
+
+  addCardDetails(card, index) {
+    const subs = [
+      ["DETAILS", this.cardStats(card, index)],
+    ];
+    return this.api.makeHTML(card, subs);
+  }
+
+  baseCard(card) {
+    const subs = [
+      ["NAME", card.name()],
+      ["STATUS", card.status()],
+      ["CATEGORY", card.category()],
+      ["IMAGEURL", card.imageURL()],
+    ];
+    return this.api.makeTXT(this.templates("cardV2"), subs);
+  }
+
+  cardHTML(card) {
+    const subs = [
+      ["NAME", card.name()],
+      ["STATUS", card.status()],
+      ["CATEGORY", card.category()],
+      ["IMAGEURL", card.imageURL()],
+    ];
+    return this.api.makeHTML(this.templates("card"), subs);
+  }
+
+  cardStats(card, index) {
+    const subs = [
+      ["TURN", index + 1],
+    ];
+    return this.api.makeHTML(this.templates("cardStats"), subs);
+  }
+
+  commanderSlot(_, el) {
+    el.replaceChildren(this.cardHTML(this.commanderCard()));
+  }
+
+  commanderCard() {
+    return this.#cards.find((card) => card.kind() === "Commander");
+  }
+
+  deckCards() {
+    return this.#cards.filter((card) => card.kind() !== "Commander");
+  }
+
+  gameTurns(_, el) {
+    el.replaceChildren(
+      ...this
+        .deckCards()
+        .slice(7, 100)
+        .map((card) => this.baseCard(card))
+        .map((card, index) => this.addCardDetails(card, index)),
+    );
+  }
+
+  initialHand(_, el) {
+    el.replaceChildren(
+      ...this.deckCards().slice(0, 7).map((card) => this.cardHTML(card)),
+    );
   }
 
   loadCards() {
@@ -104,49 +167,29 @@ export class DeckRunner {
 
   runDeck(_, el) {
     shuffleArray(this.#cards);
-    this.api.trigger("commanderSlot initialHand gameDraws");
-  }
-
-  commanderSlot(_, el) {
-    el.replaceChildren(this.cardHTML(this.commanderCard()));
-  }
-
-  commanderCard() {
-    return this.#cards.find((card) => card.kind() === "Commander");
-  }
-
-  deckCards() {
-    return this.#cards.filter((card) => card.kind() !== "Commander");
-  }
-
-  gameDraws(_, el) {
-    el.replaceChildren(
-      ...this.deckCards().slice(7, 100).map((card) => this.cardHTML(card)),
-    );
-  }
-
-  initialHand(_, el) {
-    el.replaceChildren(
-      ...this.deckCards().slice(0, 7).map((card) => this.cardHTML(card)),
-    );
-  }
-
-  cardHTML(card) {
-    const subs = [
-      ["NAME", card.name()],
-      ["STATUS", card.status()],
-      ["CATEGORY", card.category()],
-      ["IMAGEURL", card.imageURL()],
-    ];
-    return this.api.makeHTML(this.templates("card"), subs);
+    this.api.trigger("commanderSlot initialHand gameTurns");
   }
 
   templates(kind) {
     switch (kind) {
+      case "cardStats":
+        return `
+<div class="card-details">
+  <div>Turn: TURN</div>
+  <div>Play Land: PLAY</div>
+  <div>Total Played: TOTAL</div>
+  <div>Remaining Lands: REMAINING</div>
+  <div>Land/Turn Delta: DELTA</div>
+</div>
+`;
       case "card":
         return `<div class="card STATUS CATEGORY">
 <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
-<div class="up-down">---</div>
+</div>`;
+      case "cardV2":
+        return `<div class="card STATUS CATEGORY">
+<img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
+DETAILS
 </div>`;
     }
   }
