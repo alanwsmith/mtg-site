@@ -51,7 +51,11 @@ class TestResult {
   }
 
   message() {
-    return `${this.result()}: Given: ${this._given} - Then: ${this._then} [Expected: ${this._expected} - Got: ${this._got}]`;
+    if (this.result() === "PASSED") {
+      return `${this.result()}: Given: ${this._given} - Then: ${this._then}`;
+    } else {
+      return `${this.result()}: Given: ${this._given} - Then: ${this._then}\n[Expected: ${this._expected} - Got: ${this._got}]`;
+    }
   }
 
   result() {
@@ -104,42 +108,42 @@ export class DeckRunner {
       },
       [
         [
-          "Land Count for Opening Hand is 0",
+          "0 Lands reported in Opening Hand",
           () => {
             return this._landsInOpeningHand();
           },
           0,
         ],
         [
-          "Played No Land on Turn 1 if No Lands in Opening Hand",
+          "No Land Played on Turn 1",
           () => {
             return this._landPlayedOnTurn(1);
           },
           "None",
         ],
         [
-          "Total Lands Played is 0 on Turn 1 if No Lands in Opening Hand",
+          "0 Total Lands played on Turn 1",
           () => {
             return this._totalLandsPlayedOnTurn(1);
           },
           0,
         ],
         [
-          "No Reserve Lands on Turn 1 if No Lands in Opening Hand",
+          "0 Reserve Lands on Turn 1",
           () => {
             return this._landsInReserveOnTurn(1);
           },
           0,
         ],
         [
-          "Behind by 1 Land on Turn 1 if No Lands in Opening Hand",
+          "1 Land Behind on Turn 1",
           () => {
             return this._landsBehindOnTurn(1);
           },
           1,
         ],
         [
-          "Behind by 2 Land on Turn 2 if No Lands in Opening Hand",
+          "2 Lands Behind on Turn 2",
           () => {
             return this._landsBehindOnTurn(2);
           },
@@ -156,63 +160,63 @@ export class DeckRunner {
       },
       [
         [
-          "1 Land reported in opening hand",
+          "1 Land reported in Opening Hand",
           () => {
             return this._landsInOpeningHand();
           },
           1,
         ],
         [
-          "Played 1 Land on Turn 1 if 1 Land in Opening Hand",
+          "Reserve Land Played on Turn 1",
           () => {
             return this._landPlayedOnTurn(1);
           },
           "Reserve",
         ],
         [
-          "Played No Lands on Turn 2 if 1 Land in Opening Hand",
+          "No Land Played on Turn 2",
           () => {
             return this._landPlayedOnTurn(2);
           },
           "None",
         ],
         [
-          "Total Lands Played is 1 on Turn 1 if 1 Land in Opening Hand",
+          "1 Total Lands played on Turn 1",
           () => {
             return this._totalLandsPlayedOnTurn(1);
           },
           1,
         ],
         [
-          "Total Lands Played is 1 on Turn 2 if 1 Land in Opening Hand",
+          "1 Total Land played on Turn 2",
           () => {
             return this._totalLandsPlayedOnTurn(2);
           },
           1,
         ],
         [
-          "No Reserve Lands on Turn 1 if 1 Land in Opening Hand",
+          "0 Reserve Lands on Turn 1",
           () => {
             return this._landsInReserveOnTurn(1);
           },
           0,
         ],
         [
-          "No Reserve Lands on Turn 2 if 1 Land in Opening Hand",
+          "0 Reserve Lands on Turn 2",
           () => {
             return this._landsInReserveOnTurn(2);
           },
           0,
         ],
         [
-          "Behind by 0 Lands on Turn 1 if 1 Land in Opening Hand",
+          "0 Lands Behind on Turn 1",
           () => {
             return this._landsBehindOnTurn(1);
           },
           0,
         ],
         [
-          "Behind by 1 Land on Turn 2 if 1 Land in Opening Hand",
+          "1 Land Behind on Turn 2",
           () => {
             return this._landsBehindOnTurn(2);
           },
@@ -229,91 +233,91 @@ export class DeckRunner {
       },
       [
         [
-          "Report 2 Lands in Opening Hand",
+          "2 Lands reported in Opening Hand",
           () => {
             return this._landsInOpeningHand();
           },
           2,
         ],
         [
-          "Played 1 Land from Reserves on Turn 1 if 2 Lands in Opening Hand",
+          "Reserve Land Played on Turn 1",
           () => {
             return this._landPlayedOnTurn(1);
           },
           "Reserve",
         ],
         [
-          "Played 1 Land from Reserves on Turn 2 if 2 Lands in Opening Hand",
+          "Reserve Land Played on Turn 2",
           () => {
             return this._landPlayedOnTurn(2);
           },
           "Reserve",
         ],
         [
-          "Played No Lands on Turn 3 if 2 Lands in Opening Hand",
+          "No Lands Played on Turn 3",
           () => {
             return this._landPlayedOnTurn(3);
           },
           "None",
         ],
         [
-          "Total Lands Played is 1 on Turn 1 if 2 Lands in Opening Hand",
+          "1 Total Lands Played on Turn 1",
           () => {
             return this._totalLandsPlayedOnTurn(1);
           },
           1,
         ],
         [
-          "Total Lands Played is 2 on Turn 2 if 2 Lands in Opening Hand",
+          "2 Total Lands Played on Turn 2",
           () => {
             return this._totalLandsPlayedOnTurn(2);
           },
           2,
         ],
         [
-          "Total Lands Played is 2 on Turn 3 if 2 Lands in Opening Hand",
+          "2 Total Lands Played on Turn 3",
           () => {
             return this._totalLandsPlayedOnTurn(3);
           },
           2,
         ],
         [
-          "1 Reserve Land on Turn 1 if 2 Lands in Opening Hand",
+          "1 Reserve Land on Turn 1",
           () => {
             return this._landsInReserveOnTurn(1);
           },
           1,
         ],
         [
-          "No Reserve Lands on Turn 2 if 2 Lands in Opening Hand",
+          "0 Reserve Lands on Turn 2",
           () => {
             return this._landsInReserveOnTurn(2);
           },
           0,
         ],
         [
-          "No Reserve Lands on Turn 3 if 2 Lands in Opening Hand",
+          "0 Reserve Lands on Turn 3",
           () => {
             return this._landsInReserveOnTurn(3);
           },
           0,
         ],
         [
-          "Behind by 0 Lands on Turn 1 if 2 Lands in Opening Hand",
+          "0 Lands Behind on Turn 1",
           () => {
             return this._landsBehindOnTurn(1);
           },
           0,
         ],
         [
-          "Behind by 0 Lands on Turn 2 if 2 Lands in Opening Hand",
+          "0 Lands Behind on Turn 2",
           () => {
             return this._landsBehindOnTurn(2);
           },
           0,
         ],
         [
-          "Behind by 1 Land on Turn 3 if 2 Lands in Opening Hand",
+          "1 Land Behind on Turn 3",
           () => {
             return this._landsBehindOnTurn(3);
           },
@@ -322,30 +326,31 @@ export class DeckRunner {
       ],
     );
 
-    // this.assert(
-    //   () => {
-    //     this.#cards = this.parseDeckList(makeTestDeckList([8]));
-    //     this.updatePage();
-    //   },
-    //   [
-    //     [
-    //       "0 Lands in the Opening hand and 1 Land is drawn on Turn 2",
-    //       "",
-    //       () => {
-    //         return this._landsInOpeningHand();
-    //       },
-    //       0,
-    //     ],
-    //     [
-    //       "0 Lands in the Opening hand and 1 Land is drawn on Turn 2",
-    //       "",
-    //       () => {
-    //         return this._landPlayedOnTurn(1);
-    //       },
-    //       "None",
-    //     ],
-    //   ],
-    // );
+    this.assert(
+      "No cards in opening hand - 1 on first draw",
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([8]));
+        this.updatePage();
+      },
+      [
+        [
+          "solo",
+          "0 Lands reported in Opening Hand",
+          () => {
+            return this._landsInOpeningHand();
+          },
+          0,
+        ],
+        // [
+        //   "0 Lands in the Opening hand and 1 Land is drawn on Turn 2",
+        //   "",
+        //   () => {
+        //     return this._landPlayedOnTurn(1);
+        //   },
+        //   "None",
+        // ],
+      ],
+    );
 
     //
   }
