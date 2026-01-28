@@ -41,12 +41,183 @@ class Card {
   }
 }
 
+class TestResult {
+  constructor(description, got, expected, assertion) {
+    this._description = description;
+    this._expected = expected;
+    this._assertion = assertion;
+    this._got = got;
+  }
+
+  message() {
+    return `${this.result()}: ${this._description} - Expected: ${this._expected} - Got: ${this._got}`;
+  }
+
+  result() {
+    if (this._assertion === "is") {
+      if (this._expected === this._got) {
+        return "PASSED";
+      } else {
+        return "FAILED";
+      }
+    } else if (this._assertion === "isNot") {
+      if (this._expected !== this._got) {
+        return "PASSED";
+      } else {
+        return "FAILED";
+      }
+    } else if (this._assertion === "true") {
+      if (this._got === true) {
+        return "PASSED";
+      } else {
+        return "FAILED";
+      }
+    } else if (this._assertion === "false") {
+      if (this._got === false) {
+        return "PASSED";
+      } else {
+        return "FAILED";
+      }
+    }
+  }
+}
+
 export class DeckRunner {
   #cards;
   #errors;
   #exampleDeck;
   #idMap;
   #testResults = [];
+  #tests = [];
+
+  assert(given, tests) {
+    this.#tests.push([given, tests, "is"]);
+  }
+
+  addTests() {
+    this.assert(
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([]));
+        this.updatePage();
+      },
+      [
+        [
+          "No lands in opening hand",
+          () => {
+            return this._landsInOpeningHand();
+          },
+          0,
+        ],
+        [
+          "solo",
+          "0 Lands played at turn 1",
+          () => {
+            return this._landsPlayedAtTurn(1);
+          },
+          0,
+        ],
+        [
+          "0 Lands played at turn 2",
+          () => {
+            return this._landsPlayedAtTurn(2);
+          },
+          0,
+        ],
+        [
+          "1 Land behind at turn 1",
+          () => {
+            return this._landsBehindAtTurn(1);
+          },
+          1,
+        ],
+      ],
+    );
+
+    this.assert(
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([0]));
+        this.updatePage();
+      },
+      [
+        [
+          "1 Land in opening hand",
+          () => {
+            return this._landsInOpeningHand();
+          },
+          1,
+        ],
+      ],
+    );
+  }
+
+  // test1(_, el) {
+  //   this.#cards = this.parseDeckList(makeTestDeckList([]));
+  //   this.runTest(
+  //     1,
+  //     this.landsBehindAtIndex(7),
+  //     "landsBehindAtIndex(7) is 1 if no incoming lands",
+  //   );
+  //   this.runTest(
+  //     0,
+  //     this.totalLandsPlayedAtIndex(7),
+  //     "totalLandsPlayedAtIndex === 0 on turn 1 if there are no land in the opening hand",
+  //   );
+  //   this.runTest(
+  //     0,
+  //     this.landsInOpeningHandDisplay(7),
+  //     "landsInOpeningHand === 0 if there are no land in the opening hand",
+  //   );
+  //   el.innerHTML = this.#testResults.join("\n");
+  //   this.updatePage();
+  // }
+
+  runTests() {
+    for (const testPayload of this.#tests) {
+      // Run solo tests
+      for (const assertion of testPayload[1]) {
+        if (assertion.length === 4 && assertion[0] === "solo") {
+          testPayload[0](); // Run function under test
+          this.#testResults.push(
+            new TestResult(
+              assertion[1],
+              assertion[2](),
+              assertion[3],
+              testPayload[2],
+            ),
+          );
+        }
+      }
+
+      // testPayload[0](); // Run function under test
+      // for (const assertion of testPayload[1]) {
+      //   this.#testResults.push(
+      //     new TestResult(
+      //       assertion[0],
+      //       assertion[1](),
+      //       assertion[2],
+      //       testPayload[2],
+      //     ),
+      //   );
+    }
+    this.#testResults
+      .filter((result) => (result.result() === "PASSED"))
+      .forEach((result) => console.log(result.message()));
+    this.#testResults
+      .filter((result) => (result.result() !== "PASSED"))
+      .forEach((result) => console.error(result.message()));
+  }
+
+  // if (assertions[2] === "equal") {
+  //   const result = assertion[1]();
+  //   if (assertion[2] === result) {
+  //     console.log(
+  //       `PASSED: ${assertion[0]} - Expected: ${assertion[2]} - Got: ${
+  //         assertion[1]
+  //       }`,
+  //     );
+  //   } else {
+  //   }
+  // }
 
   async bittyInit() {
     await this.loadExampleDeck();
@@ -55,11 +226,15 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    this.api.trigger("runDeck");
+    //this.api.trigger("runDeck");
+    this.addTests();
+    this.runTests();
     // this.api.trigger("test1");
     // this.api.trigger("test2");
     // this.api.trigger("test3");
     // this.api.trigger("test4");
+    // this.api.trigger("test5");
+    // this.api.trigger("test6");
   }
 
   addCardDetails(card, index) {
@@ -93,10 +268,33 @@ export class DeckRunner {
     const subs = [
       ["TURN", this.turnAtIndex(index)],
       ["TOTAL", this.totalLandsPlayedAtIndex(index)],
-      ["HAND", this.totalLandsInHandAtIndex(index)],
-      ["PLAY", this.playLandAtIndex(index)],
-      ["BEHIND", this.landsBehindAtIndex(index)],
+      // ["PLAY", this.playLandAtIndex(index)],
+      // ["BEHIND", this.landsBehindAtIndex(index)],
     ];
+    if (this.totalLandsInHandAtIndex(index) > 0) {
+      subs.push([
+        "HAND",
+        `<div>Reserves: ${this.totalLandsInHandAtIndex(index)}</div>`,
+      ]);
+    } else {
+      subs.push(["HAND", ""]);
+    }
+    if (this.landsBehindAtIndex(index) > 0) {
+      subs.push([
+        "BEHIND",
+        `<div>Behind: ${this.landsBehindAtIndex(index)}</div>`,
+      ]);
+    } else {
+      subs.push(["BEHIND", ""]);
+    }
+    if (this.playLandAtIndex(index)) {
+      subs.push([
+        "PLAY",
+        `<div>${this.playLandAtIndex(index)}</div>`,
+      ]);
+    } else {
+      subs.push(["PLAY", ""]);
+    }
     return this.api.makeHTML(this.templates("cardStats"), subs);
   }
 
@@ -132,16 +330,32 @@ export class DeckRunner {
     return this.turnAtIndex(index) - this.totalLandsPlayedAtIndex(index);
   }
 
-  landsInOpeningHand(_, el) {
-    el.innerHTML = this.landsInOpeningHandCount();
+  _landsBehindAtTurn(turn) {
+    return 1;
   }
 
-  landsInOpeningHandCount() {
+  _landsInOpeningHand() {
     return this.#cards
       .slice(0, 7)
       .map((card) => card.category() === "land" ? 1 : 0)
       .reduce((acc, cur) => acc + cur, 0);
+    //el.innerHTML = this.landsInOpeningHandDisplay();
   }
+
+  landsInOpeningHand(_, el) {
+    el.innerHTML = this._landsInOpeningHand();
+  }
+
+  _landsPlayedAtTurn(turn) {
+    return 0;
+  }
+
+  // landsInOpeningHandDisplay() {
+  //   return this.#cards
+  //     .slice(0, 7)
+  //     .map((card) => card.category() === "land" ? 1 : 0)
+  //     .reduce((acc, cur) => acc + cur, 0);
+  // }
 
   loadCards() {
     this.#cards = this.parseDeckList(
@@ -199,9 +413,9 @@ export class DeckRunner {
       this.totalLandsPlayedAtIndex(index) >
         this.totalLandsPlayedAtIndex(index - 1)
     ) {
-      return "Yes";
+      return "Played Land: Yes";
     } else {
-      return "No";
+      return "Played Land: No";
     }
   }
 
@@ -210,84 +424,107 @@ export class DeckRunner {
     this.updatePage();
   }
 
-  runTest(expected, got, description) {
-    if (expected === got) {
-      this.#testResults.push(`PASSED: ${description}`);
-    } else {
-      this.#testResults.push(
-        `FAILED: ${description}\n  Expected: ${expected} - Got: ${got}`,
-      );
-    }
-  }
+  // runTest(expected, got, description) {
+  //   if (expected === got) {
+  //     this.#testResults.push(`PASSED: ${description}`);
+  //   } else {
+  //     this.#testResults.push(
+  //       `FAILED: ${description}\n  Expected: ${expected} - Got: ${got}`,
+  //     );
+  //   }
+  // }
 
-  test1(_, el) {
-    this.#cards = this.parseDeckList(makeTestDeckList([]));
-    this.runTest(
-      1,
-      this.landsBehindAtIndex(7),
-      "landsBehindAtIndex(7) is 1 if no incoming lands",
-    );
+  // test1(_, el) {
+  //   this.#cards = this.parseDeckList(makeTestDeckList([]));
+  //   this.runTest(
+  //     1,
+  //     this.landsBehindAtIndex(7),
+  //     "landsBehindAtIndex(7) is 1 if no incoming lands",
+  //   );
+  //   this.runTest(
+  //     0,
+  //     this.totalLandsPlayedAtIndex(7),
+  //     "totalLandsPlayedAtIndex === 0 on turn 1 if there are no land in the opening hand",
+  //   );
+  //   this.runTest(
+  //     0,
+  //     this.landsInOpeningHandDisplay(7),
+  //     "landsInOpeningHand === 0 if there are no land in the opening hand",
+  //   );
+  //   el.innerHTML = this.#testResults.join("\n");
+  //   this.updatePage();
+  // }
 
-    this.runTest(
-      0,
-      this.totalLandsPlayedAtIndex(7),
-      "totalLandsPlayedAtIndex === 0 on turn 1 if there are no land in the opening hand",
-    );
+  // test2(_, el) {
+  //   this.#cards = this.parseDeckList(makeTestDeckList([0]));
+  //   this.runTest(
+  //     1,
+  //     this.totalLandsPlayedAtIndex(7),
+  //     "totalLandsPlayedAtIndex === 1 on turn 1 if there's a land in the opening hand",
+  //   );
+  //   el.innerHTML = this.#testResults.join("\n");
+  //   this.updatePage();
+  // }
 
-    this.runTest(
-      0,
-      this.landsInOpeningHandCount(7),
-      "landsInOpeningHand === 0 if there are no land in the opening hand",
-    );
-    el.innerHTML = this.#testResults.join("\n");
-    this.updatePage();
-  }
+  // test3(_, el) {
+  //   this.#cards = this.parseDeckList(makeTestDeckList([0, 4, 5, 9]));
+  //   this.runTest(
+  //     1,
+  //     this.totalLandsPlayedAtIndex(7),
+  //     "totalLandsPlayedAtIndex(7) === 1 from test",
+  //   );
+  //   this.runTest(
+  //     2,
+  //     this.totalLandsPlayedAtIndex(8),
+  //     "totalLandsPlayedAtIndex(8) === 2 from test",
+  //   );
+  //   this.runTest(
+  //     4,
+  //     this.totalLandsPlayedAtIndex(12),
+  //     "totalLandsPlayedAtIndex(12) === 4 from test",
+  //   );
+  //   el.innerHTML = this.#testResults.join("\n");
+  //   this.updatePage();
+  // }
 
-  test2(_, el) {
-    this.#cards = this.parseDeckList(makeTestDeckList([0]));
-    this.runTest(
-      1,
-      this.totalLandsPlayedAtIndex(7),
-      "totalLandsPlayedAtIndex === 1 on turn 1 if there's a land in the opening hand",
-    );
-    el.innerHTML = this.#testResults.join("\n");
-    this.updatePage();
-  }
+  // test4(_, el) {
+  //   this.#cards = this.parseDeckList(
+  //     makeTestDeckList([1, 5, 8, 10, 13, 14, 15, 20, 22]),
+  //   );
+  //   this.runTest(
+  //     0,
+  //     this.landsBehindAtIndex(7),
+  //     "landsBehindAtIndex(7) === 0 if there are lands in the opening hand",
+  //   );
+  //   el.innerHTML = this.#testResults.join("\n");
+  //   this.updatePage();
+  // }
 
-  test3(_, el) {
-    this.#cards = this.parseDeckList(makeTestDeckList([0, 4, 5, 9]));
-    this.runTest(
-      1,
-      this.totalLandsPlayedAtIndex(7),
-      "totalLandsPlayedAtIndex(7) === 1 from test",
-    );
-    this.runTest(
-      2,
-      this.totalLandsPlayedAtIndex(8),
-      "totalLandsPlayedAtIndex(8) === 2 from test",
-    );
-    this.runTest(
-      4,
-      this.totalLandsPlayedAtIndex(12),
-      "totalLandsPlayedAtIndex(12) === 4 from test",
-    );
+  // test5(_, el) {
+  //   this.#cards = this.parseDeckList(
+  //     makeTestDeckList([5, 8]),
+  //   );
+  //   this.runTest(
+  //     0,
+  //     this.landsBehindAtIndex(8),
+  //     "landsBehindAtIndex(8) === 0 from test",
+  //   );
+  //   el.innerHTML = this.#testResults.join("\n");
+  //   this.updatePage();
+  // }
 
-    el.innerHTML = this.#testResults.join("\n");
-    this.updatePage();
-  }
-
-  test4(_, el) {
-    this.#cards = this.parseDeckList(
-      makeTestDeckList([1, 5, 8, 10, 13, 14, 15, 20, 22]),
-    );
-    this.runTest(
-      0,
-      this.landsBehindAtIndex(7),
-      "landsBehindAtIndex(7) === 0 if there are lands in the opening hand",
-    );
-    el.innerHTML = this.#testResults.join("\n");
-    this.updatePage();
-  }
+  // test6(_, el) {
+  //   this.#cards = this.parseDeckList(
+  //     makeTestDeckList([1, 3, 6, 7]),
+  //   );
+  //   this.runTest(
+  //     0,
+  //     this.landsBehindAtIndex(8),
+  //     "landsBehindAtIndex(8) === 0 from test",
+  //   );
+  //   el.innerHTML = this.#testResults.join("\n");
+  //   this.updatePage();
+  // }
 
   updatePage() {
     this.api.trigger(`
@@ -325,10 +562,10 @@ landsInOpeningHand
         return `
 <div class="card-details">
   <div>Turn: TURN</div>
-  <div>Behind: BEHIND</div>
-  <div>Play Land: PLAY</div>
+  PLAY
   <div>Total Played: TOTAL</div>
-  <div>Still in Hand: HAND</div>
+    HAND
+  BEHIND
 </div>
 `;
       case "card":
@@ -448,19 +685,6 @@ const testDeck = `1x Abandoned Air Temple (tla) 263 [Land]
 1x Wasteland (mb2) 115 [Land]
 1x Well of Lost Dreams (ltc) 291 [Draw]
 1x Youthful Valkyrie (fdn) 149 [Counters]`;
-
-/*
-
-Commander (Giada)
-8ae6fc26-cfad-4da8-98d9-49c27c24d293
-
-Land - Plains
-3a438199-54f8-4702-81cf-a9d42e7cd9f1
-
-Youthful Valkyrie
-9d795f79-c3a5-4ea1-a5cf-1ce73d6837b6
-
-*/
 
 function makeTestDeckList(cardIndexes) {
   const ids = Array(99).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
