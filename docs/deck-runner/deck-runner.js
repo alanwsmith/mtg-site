@@ -102,31 +102,44 @@ export class DeckRunner {
       },
       [
         [
-          "No lands in opening hand",
+          "No Lands in Opening Hand",
           () => {
             return this._landsInOpeningHand();
           },
           0,
         ],
         [
-          "0 Lands played at turn 1",
+          "Played No Land on Turn 1 if No Lands in Opening Hand",
+          () => {
+            return this._playedLandOnTurn(1);
+          },
+          "No",
+        ],
+        [
+          "Total Lands Played is 0 on Turn 1 if No Lands in Opening Hand or Drawn",
           () => {
             return this._landsPlayedAtTurn(1);
           },
           0,
         ],
         [
-          "solo",
-          "0 Lands played at turn 2",
+          "No Reserve Lands on Turn 1 if No Lands in Opening Hand",
           () => {
-            return this._landsPlayedAtTurn(2);
+            return this._reserveLandsOnTurn(1);
           },
           0,
         ],
         [
-          "1 Land behind at turn 1",
+          "Behind by 1 Land on Turn 1 if No Lands in Opening Hand or Drawn",
           () => {
-            return this._landsBehindAtTurn(1);
+            return this._landsBehindOnTurn(1);
+          },
+          1,
+        ],
+        [
+          "Behind by 2 Land on Turn 2 if No Lands in Opening Hand or Drawn",
+          () => {
+            return this._landsBehindOnTurn(2);
           },
           1,
         ],
@@ -150,26 +163,13 @@ export class DeckRunner {
     );
   }
 
-  // test1(_, el) {
-  //   this.#cards = this.parseDeckList(makeTestDeckList([]));
-  //   this.runTest(
-  //     1,
-  //     this.landsBehindAtIndex(7),
-  //     "landsBehindAtIndex(7) is 1 if no incoming lands",
-  //   );
-  //   this.runTest(
-  //     0,
-  //     this.totalLandsPlayedAtIndex(7),
-  //     "totalLandsPlayedAtIndex === 0 on turn 1 if there are no land in the opening hand",
-  //   );
-  //   this.runTest(
-  //     0,
-  //     this.landsInOpeningHandDisplay(7),
-  //     "landsInOpeningHand === 0 if there are no land in the opening hand",
-  //   );
-  //   el.innerHTML = this.#testResults.join("\n");
-  //   this.updatePage();
-  // }
+  _reserveLandsOnTurn(turn) {
+    return 0;
+  }
+
+  _playedLandOnTurn(turn) {
+    return "No";
+  }
 
   runSoloTests() {
     for (const testPayload of this.#tests) {
@@ -223,18 +223,6 @@ export class DeckRunner {
       .forEach((result) => console.error(result.message()));
   }
 
-  // if (assertions[2] === "equal") {
-  //   const result = assertion[1]();
-  //   if (assertion[2] === result) {
-  //     console.log(
-  //       `PASSED: ${assertion[0]} - Expected: ${assertion[2]} - Got: ${
-  //         assertion[1]
-  //       }`,
-  //     );
-  //   } else {
-  //   }
-  // }
-
   async bittyInit() {
     await this.loadExampleDeck();
     await this.loadIdMap();
@@ -245,12 +233,6 @@ export class DeckRunner {
     //this.api.trigger("runDeck");
     this.addTests();
     this.runTests();
-    // this.api.trigger("test1");
-    // this.api.trigger("test2");
-    // this.api.trigger("test3");
-    // this.api.trigger("test4");
-    // this.api.trigger("test5");
-    // this.api.trigger("test6");
   }
 
   addCardDetails(card, index) {
@@ -284,32 +266,30 @@ export class DeckRunner {
     const subs = [
       ["TURN", this.turnAtIndex(index)],
       ["TOTAL", this.totalLandsPlayedAtIndex(index)],
-      // ["PLAY", this.playLandAtIndex(index)],
+      ["PLAY", this._playedLandOnTurn(index)],
       // ["BEHIND", this.landsBehindAtIndex(index)],
     ];
     if (this.totalLandsInHandAtIndex(index) > 0) {
       subs.push([
-        "HAND",
+        "RESERVES",
         `<div>Reserves: ${this.totalLandsInHandAtIndex(index)}</div>`,
       ]);
     } else {
-      subs.push(["HAND", ""]);
+      subs.push([
+        "RESERVES",
+        `<div>Reserves: ${this.totalLandsInHandAtIndex(index)}</div>`,
+      ]);
     }
     if (this.landsBehindAtIndex(index) > 0) {
       subs.push([
         "BEHIND",
-        `<div>Behind: ${this.landsBehindAtIndex(index)}</div>`,
+        `<div>Behind: ${this._landsBehindOnTurn(index)}</div>`,
       ]);
     } else {
-      subs.push(["BEHIND", ""]);
-    }
-    if (this.playLandAtIndex(index)) {
       subs.push([
-        "PLAY",
-        `<div>${this.playLandAtIndex(index)}</div>`,
+        "BEHIND",
+        `<div>Behind: ${this._landsBehindOnTurn(index)}</div>`,
       ]);
-    } else {
-      subs.push(["PLAY", ""]);
     }
     return this.api.makeHTML(this.templates("cardStats"), subs);
   }
@@ -346,7 +326,7 @@ export class DeckRunner {
     return this.turnAtIndex(index) - this.totalLandsPlayedAtIndex(index);
   }
 
-  _landsBehindAtTurn(turn) {
+  _landsBehindOnTurn(turn) {
     return 1;
   }
 
@@ -578,9 +558,9 @@ landsInOpeningHand
         return `
 <div class="card-details">
   <div>Turn: TURN</div>
-  PLAY
+  <div>Land Played: PLAY</div>
   <div>Total Played: TOTAL</div>
-    HAND
+RESERVES
   BEHIND
 </div>
 `;
