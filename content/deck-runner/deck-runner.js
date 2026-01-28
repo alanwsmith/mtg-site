@@ -116,6 +116,7 @@ export class DeckRunner {
           0,
         ],
         [
+          "solo",
           "0 Lands played at turn 2",
           () => {
             return this._landsPlayedAtTurn(2);
@@ -170,9 +171,7 @@ export class DeckRunner {
   //   this.updatePage();
   // }
 
-  runTests() {
-    this.#testResults = [];
-    // Run solo tests
+  runSoloTests() {
     for (const testPayload of this.#tests) {
       for (const assertion of testPayload[1]) {
         if (assertion.length === 4 && assertion[0] === "solo") {
@@ -188,7 +187,9 @@ export class DeckRunner {
         }
       }
     }
-    // Run all tests if no solo tests were found
+  }
+
+  runMainTests() {
     if (this.#testResults.length === 0) {
       for (const testPayload of this.#tests) {
         testPayload[0](); // Run function under test
@@ -202,19 +203,18 @@ export class DeckRunner {
             ),
           );
         }
-
-        // testPayload[0](); // Run function under test
-        // for (const assertion of testPayload[1]) {
-        //   this.#testResults.push(
-        //     new TestResult(
-        //       assertion[0],
-        //       assertion[1](),
-        //       assertion[2],
-        //       testPayload[2],
-        //     ),
-        //   );
       }
     }
+  }
+
+  runTests() {
+    this.#testResults = [];
+    this.runSoloTests();
+    this.runMainTests();
+    this.outputTestResultsToConsole();
+  }
+
+  outputTestResultsToConsole() {
     this.#testResults
       .filter((result) => (result.result() === "PASSED"))
       .forEach((result) => console.log(result.message()));
