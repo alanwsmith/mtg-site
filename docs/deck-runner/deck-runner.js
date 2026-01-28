@@ -46,6 +46,7 @@ export class DeckRunner {
   #errors;
   #exampleDeck;
   #idMap;
+  #testResults;
 
   async bittyInit() {
     await this.loadExampleDeck();
@@ -54,7 +55,8 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    this.api.trigger("runDeck");
+    //this.api.trigger("runDeck");
+    this.api.trigger("test1");
   }
 
   addCardDetails(card, index) {
@@ -198,16 +200,39 @@ export class DeckRunner {
 
   runDeck(_, el) {
     shuffleArray(this.#cards);
+    this.updatePage();
+  }
+
+  runTest(expected, got, description) {
+    if (expected === got) {
+      this.#testResults.push(`PASSED: ${description}`);
+    } else {
+      this.#testResults.push(
+        `FAILED: ${description}\n  Expected: ${expected} - Got: ${got}`,
+      );
+    }
+  }
+
+  test1(_, el) {
+    this.#testResults = [];
+    this.#cards = this.parseDeckList(makeTestDeckList([]));
+    this.runTest(
+      this.landsBehindAtIndex(0),
+      1,
+      "landsBehind is 1 if no incoming lands",
+    );
+    el.innerHTML = this.#testResults.join("\n");
+
+    this.updatePage();
+  }
+
+  updatePage() {
     this.api.trigger(`
 commanderSlot 
 gameTurns
 initialHand 
 landsInOpeningHand
 `);
-  }
-
-  runTests(_, el) {
-    el.innerHTML = "";
   }
 
   totalLandsAtIndex(index) {
@@ -246,12 +271,11 @@ landsInOpeningHand
       case "card":
         return `<div class="card STATUS CATEGORY">
 <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
-<div>xxx</div>
 </div>`;
       case "cardV2":
         return `<div class="card STATUS CATEGORY">
 <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
-DETAILS
+DETAILS 
 </div>`;
     }
   }
@@ -360,3 +384,22 @@ const testDeck = `1x Abandoned Air Temple (tla) 263 [Land]
 1x Wasteland (mb2) 115 [Land]
 1x Well of Lost Dreams (ltc) 291 [Draw]
 1x Youthful Valkyrie (fdn) 149 [Counters]`;
+
+/*
+
+Commander (Giada)
+8ae6fc26-cfad-4da8-98d9-49c27c24d293
+
+Land - Plains
+3a438199-54f8-4702-81cf-a9d42e7cd9f1
+
+Youthful Valkyrie
+9d795f79-c3a5-4ea1-a5cf-1ce73d6837b6
+
+*/
+
+function makeTestDeckList(landIndexes) {
+  const ids = Array(99).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
+  ids.push(`1x Giada, Font of Hope (fdn) 141 [Commander{top}]`);
+  return ids.join("\n");
+}
