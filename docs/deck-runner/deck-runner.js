@@ -55,11 +55,11 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    // this.api.trigger("runDeck");
+    this.api.trigger("runDeck");
     // this.api.trigger("test1");
     // this.api.trigger("test2");
-    this.api.trigger("test3");
-    //this.api.trigger("test4");
+    // this.api.trigger("test3");
+    // this.api.trigger("test4");
   }
 
   addCardDetails(card, index) {
@@ -255,12 +255,23 @@ export class DeckRunner {
   }
 
   test3(_, el) {
-    this.#cards = this.parseDeckList(makeTestDeckList([0, 4, 5]));
+    this.#cards = this.parseDeckList(makeTestDeckList([0, 4, 5, 9]));
     this.runTest(
       1,
       this.totalLandsPlayedAtIndex(7),
-      "totalLandsPlayedAtIndex === 1 on turn 1 if there's a land in the opening hand",
+      "totalLandsPlayedAtIndex(7) === 1 from test",
     );
+    this.runTest(
+      2,
+      this.totalLandsPlayedAtIndex(8),
+      "totalLandsPlayedAtIndex(8) === 2 from test",
+    );
+    this.runTest(
+      4,
+      this.totalLandsPlayedAtIndex(12),
+      "totalLandsPlayedAtIndex(12) === 4 from test",
+    );
+
     el.innerHTML = this.#testResults.join("\n");
     this.updatePage();
   }
