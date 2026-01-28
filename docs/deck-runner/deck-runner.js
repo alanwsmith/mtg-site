@@ -105,6 +105,7 @@ export class DeckRunner {
       "Commander is first card in deck",
       () => {
         this.#cards = this.parseDeckList(makeTestDeckList([]));
+        this.updatePage();
       },
       [
         [
@@ -115,82 +116,90 @@ export class DeckRunner {
           },
         ],
         [
-          "First card in openingHand is not Commander",
+          "First card in this.openingHand() is Valkyrie",
           "Youthful Valkyrie",
           () => {
-            return this.openingHandCards()[0].name();
+            return this._openingHandCards()[0].name();
+          },
+        ],
+        [
+          "First card in this.turCards() is Valkyrie",
+          "Youthful Valkyrie",
+          () => {
+            return this.turnCards()[0].name();
           },
         ],
       ],
     );
 
-    // this.assertNotEqual(
-    //   "Commander is first card in deck",
-    //   () => {
-    //     this.#cards = this.parseDeckList(makeTestDeckList([]));
-    //   },
-    //   [
-    //     [
-    //       "First card in opening hand is not commander card",
-    //       "Giada, Font of Hope",
-    //       () => {
-    //         return this.turnCards()[0].name();
-    //       },
-    //     ],
-    //   ],
-    // );
+    this.assertNotEqual(
+      "Commander is first card in deck",
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([]));
+        this.updatePage();
+      },
+      [
+        [
+          "First card in opening hand is not commander card",
+          "Giada, Font of Hope",
+          () => {
+            return this.turnCards()[0].name();
+          },
+        ],
+      ],
+    );
 
-    // this.assert(
-    //   "No Lands in Opening Hand",
-    //   () => {
-    //     this.#cards = this.parseDeckList(makeTestDeckList([]));
-    //     this.updatePage();
-    //   },
-    //   [
-    //     [
-    //       "0 Lands reported in Opening Hand",
-    //       0,
-    //       () => {
-    //         return this._landsInOpeningHand();
-    //       },
-    //     ],
-    //     [
-    //       "No Land Played on Turn 1",
-    //       "None",
-    //       () => {
-    //         return this._landPlayedOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "0 Total Lands played on Turn 1",
-    //       0,
-    //       () => {
-    //         return this._totalLandsPlayedOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "0 Reserve Lands on Turn 1",
-    //       0,
-    //       () => {
-    //         return this._landsInReserveOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "1 Land Behind on Turn 1",
-    //       1,
-    //       () => {
-    //         return this._landsBehindOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "2 Lands Behind on Turn 2",
-    //       2,
-    //       () => {
-    //         return this._landsBehindOnTurn(2);
-    //       },
-    //     ],
-    //   ],
-    // );
+    this.assert(
+      "No Lands in Opening Hand",
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([]));
+        this.updatePage();
+      },
+      [
+        [
+          "0 Lands reported in Opening Hand",
+          0,
+          () => {
+            return this._landsInOpeningHand();
+          },
+        ],
+        [
+          "No Land Played on Turn 1",
+          "None",
+          () => {
+            return this._landPlayedOnTurn(1);
+          },
+        ],
+        [
+          "0 Total Lands played on Turn 1",
+          0,
+          () => {
+            return this._totalLandsPlayedOnTurn(1);
+          },
+        ],
+        [
+          "0 Reserve Lands on Turn 1",
+          0,
+          () => {
+            return this._landsInReserveOnTurn(1);
+          },
+        ],
+        [
+          "1 Land Behind on Turn 1",
+          1,
+          () => {
+            return this._landsBehindOnTurn(1);
+          },
+        ],
+        [
+          "2 Lands Behind on Turn 2",
+          2,
+          () => {
+            return this._landsBehindOnTurn(2);
+          },
+        ],
+      ],
+    );
 
     // this.assert(
     //   "1 Land in opening hand",
@@ -420,7 +429,7 @@ export class DeckRunner {
     });
   }
 
-  openingHandCards() {
+  _openingHandCards() {
     return this.#cards
       .filter((card, index) => card.kind() !== "Commander")
       .filter((card, index) => index <= 6);
@@ -610,9 +619,9 @@ export class DeckRunner {
     );
   }
 
-  initialHand(_, el) {
+  openingHandCards(_, el) {
     el.replaceChildren(
-      ...this.deckCards().slice(0, 7).map((card) => this.cardHTML(card)),
+      ...this._openingHandCards().map((card) => this.cardHTML(card)),
     );
   }
 
@@ -818,7 +827,7 @@ export class DeckRunner {
     this.api.trigger(`
 commanderSlot 
 gameTurns
-initialHand 
+openingHandCards
 landsInOpeningHand
 `);
   }
