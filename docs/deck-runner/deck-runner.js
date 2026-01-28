@@ -91,19 +91,19 @@ export class DeckRunner {
   #testResults;
   #tests = [];
 
-  assert(given, tests) {
-    this.#tests.push([given, tests, "is"]);
+  assert(givenText, givenFunction, tests, assertion) {
+    this.#tests.push([givenText, givenFunction, tests, "is"]);
   }
 
   addTests() {
     this.assert(
+      "No Lands in Opening Hand",
       () => {
         this.#cards = this.parseDeckList(makeTestDeckList([]));
         this.updatePage();
       },
       [
         [
-          "No Lands in Opening Hand",
           "Land Count for Opening Hand is 0",
           () => {
             return this._landsInOpeningHand();
@@ -112,7 +112,6 @@ export class DeckRunner {
         ],
         [
           "Played No Land on Turn 1 if No Lands in Opening Hand",
-          "",
           () => {
             return this._landPlayedOnTurn(1);
           },
@@ -120,7 +119,6 @@ export class DeckRunner {
         ],
         [
           "Total Lands Played is 0 on Turn 1 if No Lands in Opening Hand",
-          "",
           () => {
             return this._totalLandsPlayedOnTurn(1);
           },
@@ -128,7 +126,6 @@ export class DeckRunner {
         ],
         [
           "No Reserve Lands on Turn 1 if No Lands in Opening Hand",
-          "",
           () => {
             return this._landsInReserveOnTurn(1);
           },
@@ -136,7 +133,6 @@ export class DeckRunner {
         ],
         [
           "Behind by 1 Land on Turn 1 if No Lands in Opening Hand",
-          "",
           () => {
             return this._landsBehindOnTurn(1);
           },
@@ -144,7 +140,6 @@ export class DeckRunner {
         ],
         [
           "Behind by 2 Land on Turn 2 if No Lands in Opening Hand",
-          "",
           () => {
             return this._landsBehindOnTurn(2);
           },
@@ -154,14 +149,14 @@ export class DeckRunner {
     );
 
     this.assert(
+      "1 Land in opening hand",
       () => {
         this.#cards = this.parseDeckList(makeTestDeckList([0]));
         this.updatePage();
       },
       [
         [
-          "1 Land in opening hand",
-          "",
+          "1 Land reported in opening hand",
           () => {
             return this._landsInOpeningHand();
           },
@@ -169,7 +164,6 @@ export class DeckRunner {
         ],
         [
           "Played 1 Land on Turn 1 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._landPlayedOnTurn(1);
           },
@@ -177,7 +171,6 @@ export class DeckRunner {
         ],
         [
           "Played No Lands on Turn 2 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._landPlayedOnTurn(2);
           },
@@ -185,7 +178,6 @@ export class DeckRunner {
         ],
         [
           "Total Lands Played is 1 on Turn 1 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._totalLandsPlayedOnTurn(1);
           },
@@ -193,7 +185,6 @@ export class DeckRunner {
         ],
         [
           "Total Lands Played is 1 on Turn 2 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._totalLandsPlayedOnTurn(2);
           },
@@ -201,7 +192,6 @@ export class DeckRunner {
         ],
         [
           "No Reserve Lands on Turn 1 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._landsInReserveOnTurn(1);
           },
@@ -209,7 +199,6 @@ export class DeckRunner {
         ],
         [
           "No Reserve Lands on Turn 2 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._landsInReserveOnTurn(2);
           },
@@ -217,7 +206,6 @@ export class DeckRunner {
         ],
         [
           "Behind by 0 Lands on Turn 1 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._landsBehindOnTurn(1);
           },
@@ -225,7 +213,6 @@ export class DeckRunner {
         ],
         [
           "Behind by 1 Land on Turn 2 if 1 Land in Opening Hand",
-          "",
           () => {
             return this._landsBehindOnTurn(2);
           },
@@ -235,14 +222,14 @@ export class DeckRunner {
     );
 
     this.assert(
+      "2 Lands in opening hand",
       () => {
         this.#cards = this.parseDeckList(makeTestDeckList([0, 6]));
         this.updatePage();
       },
       [
         [
-          "2 Lands in opening hand",
-          "",
+          "Report 2 Lands in Opening Hand",
           () => {
             return this._landsInOpeningHand();
           },
@@ -250,7 +237,6 @@ export class DeckRunner {
         ],
         [
           "Played 1 Land from Reserves on Turn 1 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landPlayedOnTurn(1);
           },
@@ -258,7 +244,6 @@ export class DeckRunner {
         ],
         [
           "Played 1 Land from Reserves on Turn 2 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landPlayedOnTurn(2);
           },
@@ -266,7 +251,6 @@ export class DeckRunner {
         ],
         [
           "Played No Lands on Turn 3 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landPlayedOnTurn(3);
           },
@@ -274,7 +258,6 @@ export class DeckRunner {
         ],
         [
           "Total Lands Played is 1 on Turn 1 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._totalLandsPlayedOnTurn(1);
           },
@@ -282,7 +265,6 @@ export class DeckRunner {
         ],
         [
           "Total Lands Played is 2 on Turn 2 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._totalLandsPlayedOnTurn(2);
           },
@@ -290,7 +272,6 @@ export class DeckRunner {
         ],
         [
           "Total Lands Played is 2 on Turn 3 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._totalLandsPlayedOnTurn(3);
           },
@@ -298,7 +279,6 @@ export class DeckRunner {
         ],
         [
           "1 Reserve Land on Turn 1 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landsInReserveOnTurn(1);
           },
@@ -306,7 +286,6 @@ export class DeckRunner {
         ],
         [
           "No Reserve Lands on Turn 2 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landsInReserveOnTurn(2);
           },
@@ -314,7 +293,6 @@ export class DeckRunner {
         ],
         [
           "No Reserve Lands on Turn 3 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landsInReserveOnTurn(3);
           },
@@ -322,7 +300,6 @@ export class DeckRunner {
         ],
         [
           "Behind by 0 Lands on Turn 1 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landsBehindOnTurn(1);
           },
@@ -330,7 +307,6 @@ export class DeckRunner {
         ],
         [
           "Behind by 0 Lands on Turn 2 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landsBehindOnTurn(2);
           },
@@ -338,7 +314,6 @@ export class DeckRunner {
         ],
         [
           "Behind by 1 Land on Turn 3 if 2 Lands in Opening Hand",
-          "",
           () => {
             return this._landsBehindOnTurn(3);
           },
@@ -389,16 +364,16 @@ export class DeckRunner {
 
   runSoloTests() {
     for (const testPayload of this.#tests) {
-      for (const assertion of testPayload[1]) {
-        if (assertion.length === 5 && assertion[0] === "solo") {
-          testPayload[0](); // Run function under test
+      for (const assertion of testPayload[2]) {
+        if (assertion.length === 4 && assertion[0] === "solo") {
+          testPayload[1]();
           this.#testResults.push(
             new TestResult(
+              testPayload[0],
               assertion[1],
-              assertion[2],
-              assertion[3](),
-              testPayload[2],
-              assertion[4],
+              assertion[2](),
+              testPayload[3],
+              assertion[3],
             ),
           );
         }
@@ -409,15 +384,15 @@ export class DeckRunner {
   runMainTests() {
     if (this.#testResults.length === 0) {
       for (const testPayload of this.#tests) {
-        testPayload[0](); // Run function under test
-        for (const assertion of testPayload[1]) {
+        testPayload[1]();
+        for (const assertion of testPayload[2]) {
           this.#testResults.push(
             new TestResult(
+              testPayload[0],
               assertion[0],
-              assertion[1],
-              assertion[2](),
-              testPayload[2],
-              assertion[3],
+              assertion[1](),
+              testPayload[3],
+              assertion[2],
             ),
           );
         }
