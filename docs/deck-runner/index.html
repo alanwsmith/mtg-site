@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+:root {
+  --light--background-color: oklch(0.9634 0.02097 105.642);
+  --light--default-color: oklch(0.1951 0.23 105.642);
+  --light--faded-default-color: oklch(0.1951 0.23 105.642 / 0.653);
+  --light--heading-color: oklch(0.165 0.18556 225.642);
+  --light--faded-heading-color: oklch(0.165 0.18556 225.642 / 0.18);
+  --light--link-color: oklch(0.5537 0.15458 225.642);
+  --light--faded-link-color: oklch(0.5537 0.15458 225.642 / 0.604);
+  --light--accent-color: oklch(0.4986 0.10843 165.642);
+  --light--faded-accent-color: oklch(0.4986 0.10843 165.642 / 0.28);
+  --light--info-color: oklch(0.645 0.09691077318165202 345.642);
+  --light--faded-info-color: oklch(0.645 0.09691077318165202 345.642 / 0.376);
+  --light--black-color: oklch(0 0 301.9078701095805);
+  --light--faded-black-color: oklch(0 0 301.9078701095805 / 0.46);
+  --light--white-color: oklch(1 0 301.9078701095805);
+  --light--faded-white-color: oklch(1 0 301.9078701095805 / 0.46);
+  --light--match-color: oklch(1 0 301.9078701095805);
+  --light--faded-match-color: oklch(1 0 301.9078701095805 / 0.46);
+  --light--reverse-color: oklch(0 0 301.9078701095805);
+  --light--faded-reverse-color: oklch(0 0 301.9078701095805 / 0.46);
+  --dark--background-color: oklch(0.2124 0.0298 254.092);
+  --dark--default-color: oklch(0.8747 0.04454 254.092);
+  --dark--faded-default-color: oklch(0.8747 0.04454 254.092 / 0.157);
+  --dark--heading-color: oklch(0.6705 0.12874 254.092);
+  --dark--faded-heading-color: oklch(0.6705 0.12874 254.092 / 0.308);
+  --dark--link-color: oklch(0.7299 0.07889 14.091999999999985);
+  --dark--faded-link-color: oklch(0.7299 0.07889 14.091999999999985 / 0.609);
+  --dark--accent-color: oklch(0.7338 0.06558 194.09199999999998);
+  --dark--faded-accent-color: oklch(0.7338 0.06558 194.09199999999998 / 0.567);
+  --dark--info-color: oklch(0.4351 0.16022 74.09199999999998);
+  --dark--faded-info-color: oklch(0.4351 0.16022 74.09199999999998 / 0.359);
+  --dark--black-color: oklch(0 0 232.79402489007663);
+  --dark--faded-black-color: oklch(0 0 232.79402489007663 / 0.46);
+  --dark--white-color: oklch(1 0 232.79402489007663);
+  --dark--faded-white-color: oklch(1 0 232.79402489007663 / 0.46);
+  --dark--match-color: oklch(0 0 232.79402489007663);
+  --dark--faded-match-color: oklch(0 0 232.79402489007663 / 0.46);
+  --dark--reverse-color: oklch(1 0 232.79402489007663);
+  --dark--faded-reverse-color: oklch(1 0 232.79402489007663 / 0.46);
+  --hc-light--background-color: oklch(1 0.06752 259.652);
+  --hc-light--default-color: oklch(0.0995 0.23 259.652);
+  --hc-light--faded-default-color: oklch(0.0995 0.23 259.652 / 0.242);
+  --hc-light--heading-color: oklch(0.6217704856122922 0.08831300417260277 319.652);
+  --hc-light--faded-heading-color: oklch(0.6217704856122922 0.08831300417260277 319.652 / 0.572);
+  --hc-light--link-color: oklch(0.5245 0.15006780734890438 259.652);
+  --hc-light--faded-link-color: oklch(0.5245 0.15006780734890438 259.652 / 0.437);
+  --hc-light--accent-color: oklch(0.3227 0.19753 19.651999999999987);
+  --hc-light--faded-accent-color: oklch(0.3227 0.19753 19.651999999999987 / 0.318);
+  --hc-light--info-color: oklch(0.5586547900477358 0.169058911353704 199.65200000000004);
+  --hc-light--faded-info-color: oklch(0.5586547900477358 0.169058911353704 199.65200000000004 / 0.34);
+  --hc-light--black-color: oklch(0 0 53.5090680592232);
+  --hc-light--faded-black-color: oklch(0 0 53.5090680592232 / 0.46);
+  --hc-light--white-color: oklch(1 0 53.5090680592232);
+  --hc-light--faded-white-color: oklch(1 0 53.5090680592232 / 0.46);
+  --hc-light--match-color: oklch(1 0 53.5090680592232);
+  --hc-light--faded-match-color: oklch(1 0 53.5090680592232 / 0.46);
+  --hc-light--reverse-color: oklch(0 0 53.5090680592232);
+  --hc-light--faded-reverse-color: oklch(0 0 53.5090680592232 / 0.46);
+  --hc-dark--background-color: oklch(0 0.20706934229967444 142);
+  --hc-dark--default-color: oklch(1 0.20411 82);
+  --hc-dark--faded-default-color: oklch(1 0.20411 82 / 0.385);
+  --hc-dark--heading-color: oklch(0.9552 0.09830629780740073 142);
+  --hc-dark--faded-heading-color: oklch(0.9552 0.09830629780740073 142 / 0.697);
+  --hc-dark--link-color: oklch(0.962 0.004698125519856717 262);
+  --hc-dark--faded-link-color: oklch(0.962 0.004698125519856717 262 / 0.628);
+  --hc-dark--accent-color: oklch(0.874 0.23 142);
+  --hc-dark--faded-accent-color: oklch(0.874 0.23 142 / 0.374);
+  --hc-dark--info-color: oklch(0.6882 0.21203825105953206 22);
+  --hc-dark--faded-info-color: oklch(0.6882 0.21203825105953206 22 / 0.418);
+  --hc-dark--black-color: oklch(0 0 78.02412821214362);
+  --hc-dark--faded-black-color: oklch(0 0 78.02412821214362 / 0.46);
+  --hc-dark--white-color: oklch(1 0 78.02412821214362);
+  --hc-dark--faded-white-color: oklch(1 0 78.02412821214362 / 0.46);
+  --hc-dark--match-color: oklch(0 0 78.02412821214362);
+  --hc-dark--faded-match-color: oklch(0 0 78.02412821214362 / 0.46);
+  --hc-dark--reverse-color: oklch(1 0 78.02412821214362);
+  --hc-dark--faded-reverse-color: oklch(1 0 78.02412821214362 / 0.46);
+  --highlight-1-color: oklch(from var(--accent-color) l c h);
+  --highlight-2-color: oklch(from var(--accent-color) l c calc(h + 60));
+  --highlight-3-color: oklch(from var(--accent-color) l c calc(h + 120));
+  --highlight-4-color: oklch(from var(--accent-color) l c calc(h + 180));
+  --highlight-5-color: oklch(from var(--link-color) l c h);
+  --highlight-6-color: oklch(from var(--link-color) l c calc(h + 60));
+  --highlight-7-color: oklch(from var(--link-color) l c calc(h + 120));
+  --highlight-8-color: oklch(from var(--link-color) l c calc(h + 180));
+}
+
+:root {
+  --background-color: var(--switch--background-color, var(--light--background-color));
+  --default-color: var(--switch--default-color, var(--light--default-color));
+  --faded-default-color: var(--switch--faded-default-color, var(--light--faded-default-color));
+  --heading-color: var(--switch--heading-color, var(--light--heading-color));
+  --faded-heading-color: var(--switch--faded-heading-color, var(--light--faded-heading-color));
+  --link-color: var(--switch--link-color, var(--light--link-color));
+  --faded-link-color: var(--switch--faded-link-color, var(--light--faded-link-color));
+  --accent-color: var(--switch--accent-color, var(--light--accent-color));
+  --faded-accent-color: var(--switch--faded-accent-color, var(--light--faded-accent-color));
+  --info-color: var(--switch--info-color, var(--light--info-color));
+  --faded-info-color: var(--switch--faded-info-color, var(--light--faded-info-color));
+  --black-color: var(--switch--black-color, var(--light--black-color));
+  --faded-black-color: var(--switch--faded-black-color, var(--light--faded-black-color));
+  --white-color: var(--switch--white-color, var(--light--white-color));
+  --faded-white-color: var(--switch--faded-white-color, var(--light--faded-white-color));
+  --match-color: var(--switch--match-color, var(--light--match-color));
+  --faded-match-color: var(--switch--faded-match-color, var(--light--faded-match-color));
+  --reverse-color: var(--switch--reverse-color, var(--light--reverse-color));
+  --faded-reverse-color: var(--switch--faded-reverse-color, var(--light--faded-reverse-color));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: var(--switch--background-color, var(--dark--background-color));
+    --default-color: var(--switch--default-color, var(--dark--default-color));
+    --faded-default-color: var(--switch--faded-default-color, var(--dark--faded-default-color));
+    --heading-color: var(--switch--heading-color, var(--dark--heading-color));
+    --faded-heading-color: var(--switch--faded-heading-color, var(--dark--faded-heading-color));
+    --link-color: var(-switch--link-color-, var(--dark--link-color));
+    --faded-link-color: var(--switch--faded-link-color, var(--dark--faded-link-color));
+    --accent-color: var(--switch--accent-color, var(--dark--accent-color));
+    --faded-accent-color: var(--switch--faded-accent-color, var(--dark--faded-accent-color));
+    --info-color: var(--switch--info-color, var(--dark--info-color));
+    --faded-info-color: var(--switch--faded-info-color, var(--dark--faded-info-color));
+    --black-color: var(--switch--black-color, var(--dark--black-color));
+    --faded-black-color: var(--switch--faded-black-color, var(--dark--faded-black-color));
+    --white-color: var(--switch--white-color, var(--dark--white-color));
+    --faded-white-color: var(--switch--faded-white-color, var(--dark--faded-white-color));
+    --match-color: var(--switch--match-color, var(--dark--match-color));
+    --faded-match-color: var(--switch--faded-match-color, var(--dark--faded-match-color));
+    --reverse-color: var(--switch--reverse-color, var(--dark--reverse-color));
+    --faded-reverse-color: var(--switch--faded-reverse-color, var(--dark--faded-reverse-color));
+  }
+}</style><style>
+:root {
+  --load-hider: 0;
+}
+.load-hider {
+  opacity: var(--load-hider);
+}
+html {
+  background-color: var(--background-color);
+}
+body {
+  background-color: var(--background-color);
+}
+
+</style>    <script src="/styles/styles.js"></script>
+    <script src="&#x2f;components&#x2f;bitty-7.0.0.js" type="module"></script>
+    <link rel="stylesheet" href="/styles/main.css" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<title>Magic Tools</title>
+<meta property="og:title" content="Magic Tools" />
+<meta name="description" content="My Magic - The Gathering Tools" />
+<meta property="og:description" content="My Magic - The Gathering Tools" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://mtg.al9000.com/" />
+<meta property="og:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg" />
+<link rel="apple-touch-icon" sizes="180x180" href="&#x2f;favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="&#x2f;favicons/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="&#x2f;favicons/favicon-32x32.png" />
+<link rel="manifest" href="&#x2f;favicons/site.webmanifest" />
+<link rel="mask-icon" href="&#x2f;favicons/safari-pinned-tab.svg" color="#5bbad5" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg">
+<style>
+
+.card img {
+  border-radius: var(--xsmall-border-radius);
+  width: 8rem;
+}
+
+.deck-list {
+  height: 14rem;
+}
+
+.initial-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+textarea {
+  display: block;
+  font-size: var(--xsmall-font-size);
+  width: 80%;
+  height: 14rem;
+}
+
+
+</style>
+  </head>
+  <body>
+    <noscript>
+      Pages on this site use JavaScript. It's currently either
+      off, not working, or not available in your
+      browser/app. Some things won't work as a result.
+    </noscript>
+
+    <bitty-7-0
+      data-connect="/bits/default.js Main" 
+      class="load-hider">
+      <bitty-7-0 data-connect="/bits/default.js CodeBlockControls">
+        <bitty-7-0 data-connect="/bits/default.js ImageUpdater">
+          <bitty-7-0 data-connect="/bits/default.js DetailsOpener">
+
+<noscript>
+  <p>
+    NOTE: This site use JavaScript which appears to be turned off. 
+    Most content will be fine, but some things won't work.
+  </p>
+  <style>:root { --load-hider: 1; }</style>
+</noscript>
+<header class="default-wrapper xxlarge-bottom-margin xxlarge-bottom-padding">
+  <div class="top-nav">
+    <a href="/">Home</a>
+    <bitty-7-0 
+      data-connect="/bits/default.js ThemeSwitcher"
+      data-location="top"
+      data-init="themeSwitcher"></bitty-7-0>
+  </div>
+</header>
+      <main class="default-wrapper default-flow">
+
+<hgroup>
+  <h1>Deck Runner</h1>
+</hgroup>
+
+<p>
+  This is a work in progress. The idea is to 
+  generate hands from a deck so you can 
+  get a sense of how they'll play.
+</p>
+
+<bitty-7-0 data-connect="/deck-runner/deck-runner.js DeckRunner" class="default-flow">
+  <details>
+    <summary>Change Deck</summary>
+    <textarea class="deck-list" data-send="updateDeck">1x Abandoned Air Temple (tla) 263 [Land]
+1x Adagia, Windswept Bastion (eoe) 250 [Land]
+1x Admonition Angel (znc) 10 [Removal]
+1x Aegis Angel (e01) 1 [Protection]
+1x Ancient Tomb (uma) 236 *F* [Land]
+1x Angel of Condemnation (hou) 3 [Blink]
+1x Angelic Chorus (bbd) 87 [Lifegain]
+1x Angelic Field Marshal (cmm) 13 [Anthem]
+1x Angelic Sleuth (ncc) 12 [Draw]
+1x Archangel of Tithes (otj) 2 [Protection]
+1x Authority of the Consuls (fic) 232 [Lifegain]
+1x Blinding Angel (9ed) 7 [Protection]
+1x Breathkeeper Seraph (voc) 31 [Protection]
+1x Caduceus, Staff of Hermes (acr) 2 [Protection]
+1x Cavern of Souls (lci) 269 [Land]
+1x Commander's Plate (cmr) 305 [Protection]
+1x Conjurer's Mantle (moc) 12 [Draw]
+1x Cosmos Elixir (khm) 237 [Draw]
+1x Court of Grace (onc) 62 [Draw]
+1x Cradle of Vitality (jmp) 98 [Lifegain]
+1x Dazzling Angel (fdn) 9 [Lifegain]
+1x Elesh Norn, Grand Cenobite (plst) IMA-18 [Anthem]
+1x Elspeth Tirel (onc) 64 [Tokens]
+1x Enlightened Tutor (dmr) 6 [Tutor]
+1x Esper Sentinel (mh2) 12 [Draw]
+1x Exemplar of Light (fdn) 11 [Draw]
+1x Extinguisher Battleship (eoe) 242 [Removal]
+1x Folk Hero (clb) 650 *F* [Draw]
+1x Ghostly Prison (tdc) 116 [Protection]
+1x Giada, Font of Hope (fdn) 141 [Commander{top}]
+1x Guardian of the Gateless (cn2) 89 [Protection]
+1x Hall of Heliod's Generosity (dsc) 283 [Land]
+1x Hedron Archive (fdn) 726 *F* [Ramp]
+1x Herald of War (j25) 207 [Ramp]
+1x Herald's Horn (m3c) 296 [Ramp]
+1x Holy Cow (otj) 16 [Lifegain]
+1x Homeward Path (c16) 301 [Land]
+1x Hopeful Initiate (inr) 343 [Removal]
+1x Impostor of the Sixth Pride (plst) MH1-14 [Tokens]
+1x Inspiring Overseer (j25) 212 [Draw]
+1x Irregular Cohort (clb) 696 [Tokens]
+1x Ishgard, the Holy See // Faith & Grief (fin) 283 [Land]
+1x Judgment of Alexander (fic) 455 [Protection]
+1x Land Tax (cmm) 37 [Ramp]
+1x Light of Promise (m21) 25 [Lifegain]
+1x Linvala, Keeper of Silence (jmp) 119 [Stax]
+1x Lotus Field (m20) 249 [Land]
+1x Lyra Dawnbringer (fdn) 707 *F* [Lifegain]
+1x Mass Calcify (m15) 18 [Removal]
+1x Maze of Ith (dmr) 250 [Land]
+1x Metallic Mimic (inr) 268 [Counters]
+1x Minas Tirith (ltr) 256 [Land]
+1x Mirror Entity (otc) 83 [Anthem]
+1x Monumental Henge (mh3) 222 [Land]
+1x Nykthos, Shrine to Nyx (plst) THS-223 [Land]
+1x Nyx Lotus (thb) 235 [Ramp]
+1x Oblation (c21) 97 [Removal]
+1x Oketra's Monument (dmc) 188 [Ramp]
+1x Path of Ancestry (ecc) 158 [Land]
+1x Pearl Medallion (mh3) 294 [Ramp]
+11x Plains (ecl) 269 [Land]
+1x Reliquary Tower (tdc) 386 [Land]
+1x Resplendent Angel (lci) 32 [Tokens]
+1x Righteous Valkyrie (j25) 246 [Lifegain]
+1x Roaming Throne (lci) 258 [Copy]
+1x Rogue's Passage (fic) 415 [Land]
+1x Segovian Angel (plst) MH1-25 [Evasion]
+1x Sensei's Divining Top (mb2) 231 [Draw]
+1x Sephara, Sky's Blade (cmm) 54 [Protection]
+1x Seraph Sanctuary (plst) AVR-228 [Land]
+1x Serra's Sanctum (usg) 325 [Land]
+1x Smothering Tithe (cmm) 57 [Ramp]
+1x Sol Ring (ecc) 57 [Ramp]
+1x Starnheim Aspirant (j22) 250 [Ramp]
+1x Team Avatar (tla) 38 [Pump]
+1x The Eternity Elevator (eoe) 241 [Ramp]
+1x The Seriema (eoe) 35 [Tutor]
+1x Three Tree City (blb) 260 [Land]
+1x Throne of Eldraine (woc) 28 [Ramp]
+1x Tome of Legends (fic) 369 [Draw]
+1x Urza's Cave (mh3) 234 [Land]
+1x Urza's Incubator (mh3) 297 [Ramp]
+1x Vanguard Seraph (fdn) 28 [Draw]
+1x Vesuva (m3c) 404 [Land]
+1x Virtue of Loyalty // Ardenvale Fealty (woe) 38 [Counters]
+1x War of the Last Alliance (ltr) 36 *F* [Tutor]
+1x War Room (mkc) 310 [Land]
+1x Wasteland (mb2) 115 [Land]
+1x Well of Lost Dreams (ltc) 291 [Draw]
+1x Youthful Valkyrie (fdn) 149 [Counters]</textarea>
+  </details>
+
+  <div><button data-send="runDeck">Run Deck</button></div>
+  <h4>Commander</h4>
+  <div data-receive="showCommander"></div>
+
+  <h4>Opening Hand</h4>
+  <div class="initial-hand" data-receive="showInitialHand"></div>
+
+  <h4>The Rest of the Story</h4>
+  <div data-receive="showDeck"></div>
+
+</bitty-7-0>      </main>
+
+<footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
+  <div class="small-font-size">
+    <div class="text-align-center">
+    from <a href="https://www.alanwsmith.com/">alan w smith</a>
+    </div>
+    <div class="text-align-center"><a href="https:&#x2f;&#x2f;github.com&#x2f;alanwsmith&#x2f;mtg-site">source</a> ~ <a href="https://socials.alanwsmith.com/">socials</a> ~
+    <a href="https://links.alanwsmith.com/">other projects</a> ~
+    <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
+    </div>
+  </div>
+</footer>
+          </bitty-7-0>
+        </bitty-7-0>
+      </bitty-7-0>
+    </bitty-7-0>
+
+    <script>
+      setTimeout(() => { 
+        document.documentElement.style.setProperty("--load-hider", "1");
+      }, 1300);
+    </script>
+  </body>
+</html>
