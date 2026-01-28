@@ -46,7 +46,7 @@ export class DeckRunner {
   #errors;
   #exampleDeck;
   #idMap;
-  #testResults;
+  #testResults = [];
 
   async bittyInit() {
     await this.loadExampleDeck();
@@ -55,8 +55,11 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    //this.api.trigger("runDeck");
-    this.api.trigger("test1");
+    // this.api.trigger("runDeck");
+    // this.api.trigger("test1");
+    // this.api.trigger("test2");
+    this.api.trigger("test3");
+    //this.api.trigger("test4");
   }
 
   addCardDetails(card, index) {
@@ -126,11 +129,15 @@ export class DeckRunner {
   }
 
   landsBehindAtIndex(index) {
-    return this.turnAtIndex(index) - this.totalLandsPlayedAtIndex(index) - 1;
+    return this.turnAtIndex(index) - this.totalLandsPlayedAtIndex(index);
   }
 
   landsInOpeningHand(_, el) {
-    el.innerHTML = this.#cards
+    el.innerHTML = this.landsInOpeningHandCount();
+  }
+
+  landsInOpeningHandCount() {
+    return this.#cards
       .slice(0, 7)
       .map((card) => card.category() === "land" ? 1 : 0)
       .reduce((acc, cur) => acc + cur, 0);
@@ -214,15 +221,60 @@ export class DeckRunner {
   }
 
   test1(_, el) {
-    this.#testResults = [];
     this.#cards = this.parseDeckList(makeTestDeckList([]));
     this.runTest(
-      this.landsBehindAtIndex(0),
       1,
-      "landsBehind is 1 if no incoming lands",
+      this.landsBehindAtIndex(7),
+      "landsBehindAtIndex(7) is 1 if no incoming lands",
+    );
+
+    this.runTest(
+      0,
+      this.totalLandsPlayedAtIndex(7),
+      "totalLandsPlayedAtIndex === 0 on turn 1 if there are no land in the opening hand",
+    );
+
+    this.runTest(
+      0,
+      this.landsInOpeningHandCount(7),
+      "landsInOpeningHand === 0 if there are no land in the opening hand",
     );
     el.innerHTML = this.#testResults.join("\n");
+    this.updatePage();
+  }
 
+  test2(_, el) {
+    this.#cards = this.parseDeckList(makeTestDeckList([0]));
+    this.runTest(
+      1,
+      this.totalLandsPlayedAtIndex(7),
+      "totalLandsPlayedAtIndex === 1 on turn 1 if there's a land in the opening hand",
+    );
+    el.innerHTML = this.#testResults.join("\n");
+    this.updatePage();
+  }
+
+  test3(_, el) {
+    this.#cards = this.parseDeckList(makeTestDeckList([0, 4, 5]));
+    this.runTest(
+      1,
+      this.totalLandsPlayedAtIndex(7),
+      "totalLandsPlayedAtIndex === 1 on turn 1 if there's a land in the opening hand",
+    );
+    el.innerHTML = this.#testResults.join("\n");
+    this.updatePage();
+  }
+
+  test4(_, el) {
+    this.#cards = this.parseDeckList(
+      makeTestDeckList([1, 5, 8, 10, 13, 14, 15, 20, 22]),
+    );
+    this.runTest(
+      0,
+      this.landsBehindAtIndex(7),
+      "landsBehindAtIndex(7) === 0 if there are lands in the opening hand",
+    );
+    el.innerHTML = this.#testResults.join("\n");
     this.updatePage();
   }
 
@@ -249,7 +301,7 @@ landsInOpeningHand
   }
 
   totalLandsPlayedAtIndex(index) {
-    return Math.min(this.totalLandsAtIndex(index), index - 7);
+    return Math.min(this.totalLandsAtIndex(index), index - 6);
   }
 
   turnAtIndex(index) {
@@ -271,6 +323,7 @@ landsInOpeningHand
       case "card":
         return `<div class="card STATUS CATEGORY">
 <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
+<div>tmp to see background</div>
 </div>`;
       case "cardV2":
         return `<div class="card STATUS CATEGORY">
@@ -398,8 +451,11 @@ Youthful Valkyrie
 
 */
 
-function makeTestDeckList(landIndexes) {
+function makeTestDeckList(cardIndexes) {
   const ids = Array(99).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
   ids.push(`1x Giada, Font of Hope (fdn) 141 [Commander{top}]`);
+  for (const cardIndex of cardIndexes) {
+    ids[cardIndex] = "1x Plains (ecl) 269 [Land]";
+  }
   return ids.join("\n");
 }
