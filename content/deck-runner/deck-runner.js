@@ -7,7 +7,11 @@ class Card {
   }
 
   status() {
-    return this.category();
+    if (this.category() === "commander") {
+      return "deck-commander";
+    } else {
+      return "deck-99";
+    }
   }
 
   category() {
