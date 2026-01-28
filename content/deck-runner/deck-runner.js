@@ -104,10 +104,10 @@ export class DeckRunner {
 
   runDeck(_, el) {
     shuffleArray(this.#cards);
-    this.api.trigger("showCommander showInitialHand showDeck");
+    this.api.trigger("commanderSlot initialHand gameDraws");
   }
 
-  showCommander(_, el) {
+  commanderSlot(_, el) {
     el.replaceChildren(this.cardHTML(this.commanderCard()));
   }
 
@@ -119,12 +119,13 @@ export class DeckRunner {
     return this.#cards.filter((card) => card.kind() !== "Commander");
   }
 
-  showDeck(_, el) {
-    el.innerHTML = this.#cards.map((card) => `<div>${card.imageURL()}</div>`)
-      .join("");
+  gameDraws(_, el) {
+    el.replaceChildren(
+      ...this.deckCards().slice(7, 100).map((card) => this.cardHTML(card)),
+    );
   }
 
-  showInitialHand(_, el) {
+  initialHand(_, el) {
     el.replaceChildren(
       ...this.deckCards().slice(0, 7).map((card) => this.cardHTML(card)),
     );
@@ -145,6 +146,7 @@ export class DeckRunner {
       case "card":
         return `<div class="card STATUS CATEGORY">
 <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
+<div class="up-down">---</div>
 </div>`;
     }
   }

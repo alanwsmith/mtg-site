@@ -167,38 +167,7 @@ body {
 <link rel="mask-icon" href="&#x2f;favicons/safari-pinned-tab.svg" color="#5bbad5" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg">
-<style>
-
-.card img {
-  border: 2px solid transparent;
-  border-radius: var(--xsmall-border-radius);
-  width: 6.4rem;
-}
-
-.deck-list {
-  height: 14rem;
-}
-
-.initial-hand {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.2rem;
-}
-
-.land img {
-  border-bottom-color: blue;
-  border-right-color: blue;
-}
-
-textarea {
-  display: block;
-  font-size: var(--xsmall-font-size);
-  width: 80%;
-  height: 14rem;
-}
-
-
-</style>
+<link rel="stylesheet" href="/deck-runner/styles.css">
   </head>
   <body>
     <noscript>
@@ -337,15 +306,15 @@ textarea {
 1x Youthful Valkyrie (fdn) 149 [Counters]</textarea>
   </details>
 
-  <div><button data-send="runDeck">Run Deck</button></div>
   <h4>Commander</h4>
-  <div data-receive="showCommander"></div>
+  <div class="commander-slot" data-receive="commanderSlot"></div>
 
   <h4>Opening Hand</h4>
-  <div class="initial-hand" data-receive="showInitialHand"></div>
+  <div class="initial-hand" data-receive="initialHand"></div>
+  <div><button data-send="runDeck">Rerun Deck</button></div>
 
-  <h4>The Rest of the Story</h4>
-  <div data-receive="showDeck"></div>
+  <h4>Game Draws</h4>
+  <div class="game-draws" data-receive="gameDraws"></div>
 
 </bitty-7-0>      </main>
 

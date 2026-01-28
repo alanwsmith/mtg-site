@@ -1,0 +1,39 @@
+.card {
+  border: 2px solid var(--match-color);
+  border-radius: var(--xsmall-border-radius);
+  width: 6.4rem;
+}
+
+.deck-list {
+  height: 14rem;
+}
+
+.game-draws {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.initial-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.land {
+  border-bottom-color: blue;
+  border-right-color: blue;
+}
+
+textarea {
+  display: block;
+  font-size: var(--xsmall-font-size);
+  width: 80%;
+  height: 14rem;
+}
+
+.up-down {
+  font-size: var(--xsmall-font-size);
+}
+
+
