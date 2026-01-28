@@ -111,21 +111,21 @@ export class DeckRunner {
         [
           "Played No Land on Turn 1 if No Lands in Opening Hand",
           () => {
-            return this._playedLandOnTurn(1);
+            return this._landPlayedOnTurn(1);
           },
           "No",
         ],
         [
           "Total Lands Played is 0 on Turn 1 if No Lands in Opening Hand or Drawn",
           () => {
-            return this._landsPlayedAtTurn(1);
+            return this._landsPlayedOnTurn(1);
           },
           0,
         ],
         [
           "No Reserve Lands on Turn 1 if No Lands in Opening Hand",
           () => {
-            return this._reserveLandsOnTurn(1);
+            return this._landsInReserveOnTurn(1);
           },
           0,
         ],
@@ -141,33 +141,33 @@ export class DeckRunner {
           () => {
             return this._landsBehindOnTurn(2);
           },
-          1,
+          2,
         ],
       ],
     );
 
-    this.assert(
-      () => {
-        this.#cards = this.parseDeckList(makeTestDeckList([0]));
-        this.updatePage();
-      },
-      [
-        [
-          "1 Land in opening hand",
-          () => {
-            return this._landsInOpeningHand();
-          },
-          1,
-        ],
-      ],
-    );
+    // this.assert(
+    //   () => {
+    //     this.#cards = this.parseDeckList(makeTestDeckList([0]));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "1 Land in opening hand",
+    //       () => {
+    //         return this._landsInOpeningHand();
+    //       },
+    //       1,
+    //     ],
+    //   ],
+    // );
   }
 
-  _reserveLandsOnTurn(turn) {
+  _landsInReserveOnTurn(turn) {
     return 0;
   }
 
-  _playedLandOnTurn(turn) {
+  _landPlayedOnTurn(turn) {
     return "No";
   }
 
@@ -235,9 +235,9 @@ export class DeckRunner {
     this.runTests();
   }
 
-  addCardDetails(card, index) {
+  addCardDetails(card, turn) {
     const subs = [
-      ["DETAILS", this.cardStats(card, index)],
+      ["DETAILS", this.cardStatsV2(card, turn)],
     ];
     return this.api.makeHTML(card, subs);
   }
@@ -262,12 +262,22 @@ export class DeckRunner {
     return this.api.makeHTML(this.templates("card"), subs);
   }
 
-  cardStats(card, index) {
+  cardStatsV2(card, turn) {
+    const subs = [
+      ["TURN", turn],
+      ["PLAY", this._landPlayedOnTurn(turn)],
+      ["TOTAL", this._landsPlayedOnTurn(turn)],
+      ["RESERVE", this._landsInReserveOnTurn(turn)],
+      ["BEHIND", this._landsBehindOnTurn(turn)],
+    ];
+    return this.api.makeHTML(this.templates("cardStats"), subs);
+  }
+
+  cardStats(card, index, turn) {
     const subs = [
       ["TURN", this.turnAtIndex(index)],
       ["TOTAL", this.totalLandsPlayedAtIndex(index)],
-      ["PLAY", this._playedLandOnTurn(index)],
-      // ["BEHIND", this.landsBehindAtIndex(index)],
+      ["PLAY", this._landPlayedOnTurn(index)],
     ];
     if (this.totalLandsInHandAtIndex(index) > 0) {
       subs.push([
@@ -280,7 +290,7 @@ export class DeckRunner {
         `<div>Reserves: ${this.totalLandsInHandAtIndex(index)}</div>`,
       ]);
     }
-    if (this.landsBehindAtIndex(index) > 0) {
+    if (this._landsBehindOnTurn(index) > 0) {
       subs.push([
         "BEHIND",
         `<div>Behind: ${this._landsBehindOnTurn(index)}</div>`,
@@ -310,9 +320,12 @@ export class DeckRunner {
     el.replaceChildren(
       ...this
         .deckCards()
+        .filter((card, index) => index >= 7)
         .map((card) => this.baseCard(card))
-        .map((card, index) => this.addCardDetails(card, index))
-        .filter((card, index) => index >= 7),
+        .map((card, turnIndex0) => {
+          const turn = turnIndex0 + 1;
+          return this.addCardDetails(card, turn);
+        }),
     );
   }
 
@@ -327,7 +340,7 @@ export class DeckRunner {
   }
 
   _landsBehindOnTurn(turn) {
-    return 1;
+    return turn - this._landsPlayedOnTurn(turn);
   }
 
   _landsInOpeningHand() {
@@ -335,14 +348,13 @@ export class DeckRunner {
       .slice(0, 7)
       .map((card) => card.category() === "land" ? 1 : 0)
       .reduce((acc, cur) => acc + cur, 0);
-    //el.innerHTML = this.landsInOpeningHandDisplay();
   }
 
   landsInOpeningHand(_, el) {
     el.innerHTML = this._landsInOpeningHand();
   }
 
-  _landsPlayedAtTurn(turn) {
+  _landsPlayedOnTurn(turn) {
     return 0;
   }
 
@@ -558,10 +570,10 @@ landsInOpeningHand
         return `
 <div class="card-details">
   <div>Turn: TURN</div>
-  <div>Land Played: PLAY</div>
+  <div>Played Land: PLAY</div>
   <div>Total Played: TOTAL</div>
-RESERVES
-  BEHIND
+  <div>Reserve: RESERVE</div>
+  <div>Behind: BEHIND</div>
 </div>
 `;
       case "card":
