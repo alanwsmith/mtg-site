@@ -85,14 +85,12 @@ export class DeckRunner {
   }
 
   cardStats(card, index) {
-    const adjustedIndex = index - 7;
     const subs = [
-      ["_INDEX_", index],
-      ["_ADJUSTEDINDEX_", adjustedIndex],
-      ["TURN", adjustedIndex + 1],
+      ["TURN", this.turnAtIndex(index)],
       ["TOTAL", this.totalLandsPlayedAtIndex(index)],
       ["HAND", this.totalLandsInHandAtIndex(index)],
       ["PLAY", this.playLandAtIndex(index)],
+      ["BEHIND", this.landsBehindAtIndex(index)],
     ];
     return this.api.makeHTML(this.templates("cardStats"), subs);
   }
@@ -123,6 +121,10 @@ export class DeckRunner {
     el.replaceChildren(
       ...this.deckCards().slice(0, 7).map((card) => this.cardHTML(card)),
     );
+  }
+
+  landsBehindAtIndex(index) {
+    return this.turnAtIndex(index) - this.totalLandsPlayedAtIndex(index) - 1;
   }
 
   landsInOpeningHand(_, el) {
@@ -179,8 +181,8 @@ export class DeckRunner {
 
   playLandAtIndex(index) {
     if (
-      this.totalLandsPlayedAtIndex(index) -
-      this.totalLandsPlayedAtIndex(index - 1)
+      this.totalLandsPlayedAtIndex(index) >
+        this.totalLandsPlayedAtIndex(index - 1)
     ) {
       return "Yes";
     } else {
@@ -198,6 +200,10 @@ landsInOpeningHand
 `);
   }
 
+  runTests(_, el) {
+    el.innerHTML = "";
+  }
+
   totalLandsAtIndex(index) {
     return this.#cards.slice(0, index + 1).map((card) =>
       card.category() === "land" ? 1 : 0
@@ -212,7 +218,11 @@ landsInOpeningHand
   }
 
   totalLandsPlayedAtIndex(index) {
-    return Math.min(this.totalLandsAtIndex(index), index - 6);
+    return Math.min(this.totalLandsAtIndex(index), index - 7);
+  }
+
+  turnAtIndex(index) {
+    return index - 6;
   }
 
   templates(kind) {
@@ -222,12 +232,9 @@ landsInOpeningHand
 <div class="card-details">
   <div>Turn: TURN</div>
   <div>Behind: BEHIND</div>
-  <div>Adjusted Index: _ADJUSTEDINDEX_</div>
-  <div>Index: _INDEX_</div>
   <div>Play Land: PLAY</div>
   <div>Total Played: TOTAL</div>
   <div>Still in Hand: HAND</div>
-  <div>Remaining Lands: REMAINING</div>
 </div>
 `;
       case "card":

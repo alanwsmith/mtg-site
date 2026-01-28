@@ -1,3 +1,8 @@
+.banner {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+}
+
 .card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
