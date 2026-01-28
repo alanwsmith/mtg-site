@@ -217,10 +217,108 @@ export class DeckRunner {
         ],
       ],
     );
+
+    this.assert(
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([0, 6]));
+        this.updatePage();
+      },
+      [
+        [
+          "2 Land in opening hand",
+          () => {
+            return this._landsInOpeningHand();
+          },
+          2,
+        ],
+        [
+          "Played 1 Land from Reserves on Turn 1 if 2 Lands in Opening Hand",
+          () => {
+            return this._landPlayedOnTurn(1);
+          },
+          "Reserve",
+        ],
+        [
+          "Played 1 Land from Reserves on Turn 2 if 2 Lands in Opening Hand",
+          () => {
+            return this._landPlayedOnTurn(2);
+          },
+          "Reserve",
+        ],
+        [
+          "Played No Lands on Turn 3 if 2 Lands in Opening Hand",
+          () => {
+            return this._landPlayedOnTurn(3);
+          },
+          "None",
+        ],
+        [
+          "Total Lands Played is 1 on Turn 1 if 2 Lands in Opening Hand",
+          () => {
+            return this._totalLandsPlayedOnTurn(1);
+          },
+          1,
+        ],
+        [
+          "Total Lands Played is 2 on Turn 2 if 2 Lands in Opening Hand",
+          () => {
+            return this._totalLandsPlayedOnTurn(2);
+          },
+          2,
+        ],
+        [
+          "Total Lands Played is 2 on Turn 3 if 2 Lands in Opening Hand",
+          () => {
+            return this._totalLandsPlayedOnTurn(3);
+          },
+          2,
+        ],
+        [
+          "1 Reserve Land on Turn 1 if 2 Lands in Opening Hand",
+          () => {
+            return this._landsInReserveOnTurn(1);
+          },
+          1,
+        ],
+        [
+          "No Reserve Lands on Turn 2 if 2 Lands in Opening Hand",
+          () => {
+            return this._landsInReserveOnTurn(2);
+          },
+          0,
+        ],
+        [
+          "solo",
+          "No Reserve Lands on Turn 3 if 2 Lands in Opening Hand",
+          () => {
+            return this._landsInReserveOnTurn(3);
+          },
+          0,
+        ],
+        // [
+        //   "Behind by 0 Lands on Turn 1 if 2 Lands in Opening Hand",
+        //   () => {
+        //     return this._landsBehindOnTurn(1);
+        //   },
+        //   0,
+        // ],
+        // [
+        //   "Behind by 1 Land on Turn 2 if 2 Lands in Opening Hand",
+        //   () => {
+        //     return this._landsBehindOnTurn(2);
+        //   },
+        //   1,
+        // ],
+
+        //
+      ],
+    );
+
+    //
   }
 
   _landsInReserveOnTurn(turn) {
-    return 0;
+    return Math.max(this._landsInOpeningHand() - turn, 0);
   }
 
   _landPlayedOnTurn(turn) {
@@ -274,13 +372,19 @@ export class DeckRunner {
     this.outputTestResultsToConsole();
   }
 
+  failedTestCount() {
+    return this.#testResults
+      .filter((result) => (result.result() !== "PASSED")).length;
+  }
+
   outputTestResultsToConsole() {
-    this.#testResults
-      .filter((result) => (result.result() === "PASSED"))
-      .forEach((result) => console.log(result.message()));
     this.#testResults
       .filter((result) => (result.result() !== "PASSED"))
       .forEach((result) => console.error(result.message()));
+    this.#testResults
+      .filter((result) => this.failedTestCount() === 0)
+      .filter((result) => (result.result() === "PASSED"))
+      .forEach((result) => console.log(result.message()));
   }
 
   async bittyInit() {
@@ -415,7 +519,11 @@ export class DeckRunner {
   }
 
   _totalLandsPlayedOnTurn(turn) {
-    return this._landsInOpeningHand();
+    if (this._landsInOpeningHand() > turn) {
+      return turn;
+    } else {
+      return this._landsInOpeningHand();
+    }
   }
 
   // landsInOpeningHandDisplay() {
