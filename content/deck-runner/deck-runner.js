@@ -288,29 +288,33 @@ export class DeckRunner {
           0,
         ],
         [
-          "solo",
           "No Reserve Lands on Turn 3 if 2 Lands in Opening Hand",
           () => {
             return this._landsInReserveOnTurn(3);
           },
           0,
         ],
-        // [
-        //   "Behind by 0 Lands on Turn 1 if 2 Lands in Opening Hand",
-        //   () => {
-        //     return this._landsBehindOnTurn(1);
-        //   },
-        //   0,
-        // ],
-        // [
-        //   "Behind by 1 Land on Turn 2 if 2 Lands in Opening Hand",
-        //   () => {
-        //     return this._landsBehindOnTurn(2);
-        //   },
-        //   1,
-        // ],
-
-        //
+        [
+          "Behind by 0 Lands on Turn 1 if 2 Lands in Opening Hand",
+          () => {
+            return this._landsBehindOnTurn(1);
+          },
+          0,
+        ],
+        [
+          "Behind by 0 Lands on Turn 2 if 2 Lands in Opening Hand",
+          () => {
+            return this._landsBehindOnTurn(2);
+          },
+          0,
+        ],
+        [
+          "Behind by 1 Land on Turn 3 if 2 Lands in Opening Hand",
+          () => {
+            return this._landsBehindOnTurn(3);
+          },
+          1,
+        ],
       ],
     );
 
