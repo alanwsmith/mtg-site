@@ -113,7 +113,7 @@ export class DeckRunner {
           () => {
             return this._landPlayedOnTurn(1);
           },
-          "No",
+          "None",
         ],
         [
           "Total Lands Played is 0 on Turn 1 if No Lands in Opening Hand",
@@ -164,12 +164,54 @@ export class DeckRunner {
           () => {
             return this._landPlayedOnTurn(1);
           },
-          "Drawn",
+          "Reserve",
+        ],
+        [
+          "Played No Lands on Turn 2 if 1 Land in Opening Hand",
+          () => {
+            return this._landPlayedOnTurn(2);
+          },
+          "None",
         ],
         [
           "Total Lands Played is 1 on Turn 1 if 1 Land in Opening Hand",
           () => {
             return this._totalLandsPlayedOnTurn(1);
+          },
+          1,
+        ],
+        [
+          "Total Lands Played is 1 on Turn 2 if 1 Land in Opening Hand",
+          () => {
+            return this._totalLandsPlayedOnTurn(2);
+          },
+          1,
+        ],
+        [
+          "No Reserve Lands on Turn 1 if 1 Land in Opening Hand",
+          () => {
+            return this._landsInReserveOnTurn(1);
+          },
+          0,
+        ],
+        [
+          "No Reserve Lands on Turn 2 if 1 Land in Opening Hand",
+          () => {
+            return this._landsInReserveOnTurn(2);
+          },
+          0,
+        ],
+        [
+          "Behind by 0 Lands on Turn 1 if 1 Land in Opening Hand",
+          () => {
+            return this._landsBehindOnTurn(1);
+          },
+          0,
+        ],
+        [
+          "Behind by 1 Land on Turn 2 if 1 Land in Opening Hand",
+          () => {
+            return this._landsBehindOnTurn(2);
           },
           1,
         ],
@@ -183,9 +225,9 @@ export class DeckRunner {
 
   _landPlayedOnTurn(turn) {
     if (this._landsInOpeningHand() >= turn) {
-      return "Drawn";
+      return "Reserve";
     } else {
-      return "No";
+      return "None";
     }
   }
 
@@ -588,7 +630,7 @@ landsInOpeningHand
         return `
 <div class="card-details">
   <div>Turn: TURN</div>
-  <div>Played Land: PLAY</div>
+  <div>Played: PLAY</div>
   <div>Total Played: TOTAL</div>
   <div>Reserve: RESERVE</div>
   <div>Behind: BEHIND</div>
