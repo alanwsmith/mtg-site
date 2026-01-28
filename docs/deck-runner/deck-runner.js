@@ -91,7 +91,7 @@ export class DeckRunner {
       ["_ADJUSTEDINDEX_", adjustedIndex],
       ["TURN", adjustedIndex + 1],
       ["TOTAL", this.totalLandsPlayedAtIndex(index)],
-      ["DRAWN", this.totalLandsAtIndex(index)],
+      ["HAND", this.totalLandsInHandAtIndex(index)],
       ["PLAY", this.playLandAtIndex(index)],
     ];
     return this.api.makeHTML(this.templates("cardStats"), subs);
@@ -207,6 +207,10 @@ landsInOpeningHand
     );
   }
 
+  totalLandsInHandAtIndex(index) {
+    return this.totalLandsAtIndex(index) - this.totalLandsPlayedAtIndex(index);
+  }
+
   totalLandsPlayedAtIndex(index) {
     return Math.min(this.totalLandsAtIndex(index), index - 6);
   }
@@ -220,9 +224,9 @@ landsInOpeningHand
   <div>Behind: BEHIND</div>
   <div>Adjusted Index: _ADJUSTEDINDEX_</div>
   <div>Index: _INDEX_</div>
-  <div>Total Drawn: DRAWN</div>
   <div>Play Land: PLAY</div>
   <div>Total Played: TOTAL</div>
+  <div>Still in Hand: HAND</div>
   <div>Remaining Lands: REMAINING</div>
 </div>
 `;
