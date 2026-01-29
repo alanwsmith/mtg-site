@@ -1,40 +1,36 @@
-.banner {
-  display: grid;
-  grid-template-columns: 10rem 1fr;
+.commander-card {
+  border: 1px solid var(--faded-reverse-color);
+  border-radius: var(--small-border-radius);
+  width: 8.2rem;
 }
 
-.card {
+.draw-card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
   width: 6.2rem;
 }
 
-.card img {
-  border-radius: var(--xsmall-border-radius);
-}
-
-.card-details {
-  font-size: var(--xsmall-font-size);
-}
-
-.deck-list {
-  height: 14rem;
-}
-
-.turn-cards {
+.draw-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-.opening-hand-cards {
+.hand-card {
+  border: 1px solid var(--faded-reverse-color);
+  border-radius: var(--small-border-radius);
+  width: 6.2rem;
+}
+
+.hand-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-.land-card {
-  background-color: var(--faded-accent-color);
+.marquee {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
 }
 
 textarea {
@@ -43,9 +39,4 @@ textarea {
   width: 80%;
   height: 14rem;
 }
-
-.up-down {
-  font-size: var(--xsmall-font-size);
-}
-
 

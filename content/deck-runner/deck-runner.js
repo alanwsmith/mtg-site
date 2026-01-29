@@ -1,5 +1,17 @@
 const templates = {
-  commanderCard: `<div>
+  commanderCard: `<div class="commander-card">
+<img 
+  alt="The NAME card from Magic: The Gathering"
+  src="IMAGE_SRC" />
+</div>`,
+
+  drawCard: `<div class="draw-card">
+<img 
+  alt="The NAME card from Magic: The Gathering"
+  src="IMAGE_SRC" />
+</div>`,
+
+  handCard: `<div class="hand-card">
 <img 
   alt="The NAME card from Magic: The Gathering"
   src="IMAGE_SRC" />
@@ -22,7 +34,7 @@ class Card {
   }
 
   name() {
-    return this._name;
+    return escapeHTML(this._name);
   }
 }
 
@@ -32,12 +44,12 @@ class Commander {
     this._id = id;
   }
 
-  name() {
-    return this._name;
-  }
-
   id() {
     return this._id;
+  }
+
+  name() {
+    return escapeHTML(this._name);
   }
 }
 
@@ -163,6 +175,13 @@ export class DeckRunner {
           },
         ],
         [
+          "Verify first card in hand",
+          "Youthful Valkyrie",
+          () => {
+            return this.#hand.cards()[0].name();
+          },
+        ],
+        [
           "Draws is loaded",
           "Youthful Valkyrie",
           () => {
@@ -190,6 +209,7 @@ export class DeckRunner {
 
   commanderCard(_, el) {
     const subs = [
+      ["NAME", this.#commander.name()],
       ["IMAGE_SRC", this.makeImageURL(this.#commander.id())],
     ];
     el.replaceChildren(
@@ -197,9 +217,37 @@ export class DeckRunner {
     );
   }
 
+  drawCard(card) {
+    const subs = [
+      ["NAME", card.name()],
+      ["IMAGE_SRC", this.makeImageURL(card.id())],
+    ];
+    return this.api.makeHTML(templates.drawCard, subs);
+  }
+
+  drawCards(_, el) {
+    el.replaceChildren(
+      ...this.#draws.cards().map((card) => this.drawCard(card)),
+    );
+  }
+
   failedTestCount() {
     return this.#testResults
       .filter((result) => (result.result() !== "PASSED")).length;
+  }
+
+  handCard(card) {
+    const subs = [
+      ["NAME", card.name()],
+      ["IMAGE_SRC", this.makeImageURL(card.id())],
+    ];
+    return this.api.makeHTML(templates.handCard, subs);
+  }
+
+  handCards(_, el) {
+    el.replaceChildren(
+      ...this.#hand.cards().map((card) => this.handCard(card)),
+    );
   }
 
   loadCommander(list) {
@@ -230,8 +278,8 @@ export class DeckRunner {
         .map((match) => {
           return new Card(
             match[2],
-            match[3],
             this.#idMap[match[2]],
+            match[3],
           );
         }),
     );
@@ -250,8 +298,8 @@ export class DeckRunner {
         .map((match) => {
           return new Card(
             match[2],
-            match[3],
             this.#idMap[match[2]],
+            match[3],
           );
         }),
     );
@@ -341,9 +389,18 @@ export class DeckRunner {
 
   updatePage() {
     this.api.trigger(
-      "commanderCard",
+      "commanderCard handCards drawCards",
     );
   }
+}
+
+function escapeHTML(input) {
+  return input
+    .replaceAll(`&`, `&amp;`)
+    .replaceAll(`"`, `&quot;`)
+    .replaceAll(`'`, `&#39;`)
+    .replaceAll(`<`, `&lt;`)
+    .replaceAll(`>`, `&gt;`);
 }
 
 function makeTestDeckList(landsToAdd) {
