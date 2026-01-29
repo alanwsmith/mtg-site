@@ -671,7 +671,6 @@ export class DeckRunner {
   }
 
   deckList() {
-    return document.querySelector(".deck-list").value;
   }
 
   failedTestCount() {
@@ -896,9 +895,12 @@ export class DeckRunner {
   }
 
   shuffleDeck() {
-    this.#commander = this.loadCommander(this.deckList());
-    this.#hand = this.loadHand(this.deckList());
-    this.#draws = this.loadDraws(this.deckList());
+    let lines = document.querySelector(".deck-list").value.split("\n");
+    shuffleArray(lines);
+    const shuffledDeck = lines.join("\n");
+    this.#commander = this.loadCommander(shuffledDeck);
+    this.#hand = this.loadHand(shuffledDeck);
+    this.#draws = this.loadDraws(shuffledDeck);
     this.updatePage();
   }
 
@@ -935,4 +937,17 @@ function makeTestDeckList(landsToAdd) {
     ids[landIndex] = "1x Plains (ecl) 269 [Land]";
   }
   return ids.join("\n");
+}
+
+function shuffleArray(array) {
+  let currentIndex = array.length;
+  let randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
 }
