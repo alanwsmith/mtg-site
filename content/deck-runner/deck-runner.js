@@ -1,18 +1,18 @@
 const templates = {
   commanderCard: `<div class="commander-card">
 <img 
-  alt="The __NAME__ card from Magic: The Gathering"
-  src="__IMG_SRC__" />
+  alt="The CARDNAME card from Magic: The Gathering"
+  src="IMGSRC" />
 </div>`,
 
   drawCard: `<div class="draw-card">
 <img 
-  alt="The __NAME__ card from Magic: The Gathering"
-  src="__IMG_SRC__" />
+  alt="The CARDNAME card from Magic: The Gathering"
+  src="IMGSRC" />
 <div class="turn-details __PLAYED_LAND__">
-  <div>Turn: __TURN__</div>
-  <div>__LAND_FOR_TURN__</div>
-  <div>Total Played: __TOTAL_PLAYED__</div>
+  <div>Turn: TURNNUM</div>
+  <div>LANDPLAYEDFORTURN</div>
+  <div>Total Played: TOTALPLAYED</div>
   <div>Behind: __BEHIND__</div>
   <div>Reserves: __RESERVES__</div>
 </div>
@@ -20,8 +20,8 @@ const templates = {
 
   handCard: `<div class="hand-card">
 <img 
-  alt="The __NAME__ card from Magic: The Gathering"
-  src="__IMG_SRC__" />
+  alt="The CARDNAME card from Magic: The Gathering"
+  src="IMGSRC" />
 </div>`,
 };
 
@@ -247,6 +247,13 @@ export class DeckRunner {
             return this._landForTurn(1);
           },
         ],
+        [
+          "Total played on the first turn is 0",
+          0,
+          () => {
+            return this._totalPlayedOnTurn(1);
+          },
+        ],
       ],
     );
   }
@@ -261,8 +268,8 @@ export class DeckRunner {
 
   commanderCard(_, el) {
     const subs = [
-      ["__NAME__", this.#commander.name()],
-      ["__IMG_SRC__", this.makeImageURL(this.#commander.id())],
+      ["CARDNAME", this.#commander.name()],
+      ["IMGSRC", this.makeImageURL(this.#commander.id())],
     ];
     el.replaceChildren(
       this.api.makeHTML(templates.commanderCard, subs),
@@ -271,10 +278,11 @@ export class DeckRunner {
 
   drawCard(card) {
     const subs = [
-      ["__NAME__", card.name()],
-      ["__IMG_SRC__", this.makeImageURL(card.id())],
-      ["__TURN__", card.turn()],
-      ["__LAND_FOR_TURN__", this._landForTurn(card.turn())],
+      ["CARDNAME", card.name()],
+      ["IMGSRC", this.makeImageURL(card.id())],
+      ["TURNNUM", card.turn()],
+      ["LANDPLAYEDFORTURN", this._landForTurn(card.turn())],
+      ["TOTALPLAYED", this._totalPlayedOnTurn(card.turn())],
     ];
     return this.api.makeHTML(templates.drawCard, subs);
   }
@@ -292,8 +300,8 @@ export class DeckRunner {
 
   handCard(card) {
     const subs = [
-      ["__NAME__", card.name()],
-      ["__IMG_SRC__", this.makeImageURL(card.id())],
+      ["CARDNAME", card.name()],
+      ["IMGSRC", this.makeImageURL(card.id())],
     ];
     return this.api.makeHTML(templates.handCard, subs);
   }
@@ -445,6 +453,10 @@ export class DeckRunner {
     this.runSoloTests();
     this.runMainTests();
     this.outputTestResultsToConsole();
+  }
+
+  _totalPlayedOnTurn(turn) {
+    return 0;
   }
 
   updatePage() {
