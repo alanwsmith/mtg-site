@@ -33,10 +33,6 @@ class Card {
     return this._name;
   }
 
-  turn() {
-    return this._turn;
-  }
-
   setTurn(turn) {
     this._turn = turn;
   }
@@ -48,6 +44,11 @@ class Card {
       return "deck-99";
     }
   }
+
+  turn() {
+    return this._turn;
+  }
+
 }
 
 class TestResult {
@@ -282,141 +283,138 @@ export class DeckRunner {
       ],
     );
 
-    // this.assert(
-    //   "2 Lands in opening hand",
-    //   () => {
-    //     this.#cards = this.parseDeckList(makeTestDeckList([0, 6]));
-    //     this.updatePage();
-    //   },
-    //   [
-    //     [
-    //       "2 Lands reported in Opening Hand",
-    //       2,
-    //       () => {
-    //         return this._landsInOpeningHand();
-    //       },
-    //     ],
-    //     [
-    //       "Reserve Land Played on Turn 1",
-    //       "Reserve",
-    //       () => {
-    //         return this._landPlayedOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "Reserve Land Played on Turn 2",
-    //       "Reserve",
-    //       () => {
-    //         return this._landPlayedOnTurn(2);
-    //       },
-    //     ],
-    //     [
-    //       "No Lands Played on Turn 3",
-    //       "None",
-    //       () => {
-    //         return this._landPlayedOnTurn(3);
-    //       },
-    //     ],
-    //     [
-    //       "1 Total Lands Played on Turn 1",
-    //       1,
-    //       () => {
-    //         return this._totalLandsPlayedOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "2 Total Lands Played on Turn 2",
-    //       2,
-    //       () => {
-    //         return this._totalLandsPlayedOnTurn(2);
-    //       },
-    //     ],
-    //     [
-    //       "2 Total Lands Played on Turn 3",
-    //       2,
-    //       () => {
-    //         return this._totalLandsPlayedOnTurn(3);
-    //       },
-    //     ],
-    //     [
-    //       "1 Reserve Land on Turn 1",
-    //       1,
-    //       () => {
-    //         return this._landsInReserveOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "0 Reserve Lands on Turn 2",
-    //       0,
-    //       () => {
-    //         return this._landsInReserveOnTurn(2);
-    //       },
-    //     ],
-    //     [
-    //       "0 Reserve Lands on Turn 3",
-    //       0,
-    //       () => {
-    //         return this._landsInReserveOnTurn(3);
-    //       },
-    //     ],
-    //     [
-    //       "0 Lands Behind on Turn 1",
-    //       0,
-    //       () => {
-    //         return this._landsBehindOnTurn(1);
-    //       },
-    //     ],
-    //     [
-    //       "0 Lands Behind on Turn 2",
-    //       0,
-    //       () => {
-    //         return this._landsBehindOnTurn(2);
-    //       },
-    //     ],
-    //     [
-    //       "1 Land Behind on Turn 3",
-    //       1,
-    //       () => {
-    //         return this._landsBehindOnTurn(3);
-    //       },
-    //     ],
-    //   ],
-    // );
+    this.assert(
+      "2 Lands in opening hand",
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([0, 6]));
+        this.updatePage();
+      },
+      [
+        [
+          "2 Lands reported in Opening Hand",
+          2,
+          () => {
+            return this._landsInOpeningHand();
+          },
+        ],
+        [
+          "Reserve Land Played on Turn 1",
+          "Reserve",
+          () => {
+            return this._landPlayedOnTurn(1);
+          },
+        ],
+        [
+          "Reserve Land Played on Turn 2",
+          "Reserve",
+          () => {
+            return this._landPlayedOnTurn(2);
+          },
+        ],
+        [
+          "No Lands Played on Turn 3",
+          "None",
+          () => {
+            return this._landPlayedOnTurn(3);
+          },
+        ],
+        [
+          "1 Total Lands Played on Turn 1",
+          1,
+          () => {
+            return this._totalLandsPlayedOnTurn(1);
+          },
+        ],
+        [
+          "2 Total Lands Played on Turn 2",
+          2,
+          () => {
+            return this._totalLandsPlayedOnTurn(2);
+          },
+        ],
+        [
+          "2 Total Lands Played on Turn 3",
+          2,
+          () => {
+            return this._totalLandsPlayedOnTurn(3);
+          },
+        ],
+        [
+          "1 Reserve Land on Turn 1",
+          1,
+          () => {
+            return this._landsInReserveOnTurn(1);
+          },
+        ],
+        [
+          "0 Reserve Lands on Turn 2",
+          0,
+          () => {
+            return this._landsInReserveOnTurn(2);
+          },
+        ],
+        [
+          "0 Reserve Lands on Turn 3",
+          0,
+          () => {
+            return this._landsInReserveOnTurn(3);
+          },
+        ],
+        [
+          "0 Lands Behind on Turn 1",
+          0,
+          () => {
+            return this._landsBehindOnTurn(1);
+          },
+        ],
+        [
+          "0 Lands Behind on Turn 2",
+          0,
+          () => {
+            return this._landsBehindOnTurn(2);
+          },
+        ],
+        [
+          "1 Land Behind on Turn 3",
+          1,
+          () => {
+            return this._landsBehindOnTurn(3);
+          },
+        ],
+      ],
+    );
 
-    // this.assert(
-    //   "No cards in opening hand - 1 on first draw",
-    //   () => {
-    //     this.#cards = this.parseDeckList(makeTestDeckList([8]));
-    //     this.updatePage();
-    //   },
-    //   [
-    //     [
-    //       "0 Lands reported in Opening Hand",
-    //       0,
-    //       () => {
-    //         return this._landsInOpeningHand();
-    //       },
-    //     ],
-    //     [
-    //       "Drawn Land Played on Turn 1",
-    //       "Drawn",
-    //       () => {
-    //         return this._landPlayedOnTurn(1);
-    //       },
-    //     ],
-    //     // [
-    //     //   "0 Lands in the Opening hand and 1 Land is drawn on Turn 2",
-    //     //   "",
-    //     //   () => {
-    //     //     return this._landPlayedOnTurn(1);
-    //     //   },
-    //     //   "None",
-    //     // ],
-    //   ],
-    // );
-    //
-
-    //
+    this.assert(
+      "No cards in opening hand - 1 on first draw",
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([8]));
+        this.updatePage();
+      },
+      [
+        [
+          "0 Lands reported in Opening Hand",
+          0,
+          () => {
+            return this._landsInOpeningHand();
+          },
+        ],
+        [
+          "Drawn Land Played on Turn 1",
+          "Drawn",
+          () => {
+            return this._landPlayedOnTurn(1);
+          },
+        ],
+        // [
+        //   "0 Lands in the Opening hand and 1 Land is drawn on Turn 2",
+        //   "",
+        //   () => {
+        //     return this._landPlayedOnTurn(1);
+        //   },
+        //   "None",
+        // ],
+      ],
+    );
   }
 
   assert(givenText, givenFunction, tests, assertion) {
