@@ -19,7 +19,7 @@
   background-color: var(--info-color);
   border: var(--faded-info-border);
   border-radius: var(--small-border-radius);
-  width: 30%;
+  width: 7rem;
 }
 
 .details-header {
@@ -91,11 +91,6 @@
   background-color: var(--accent-color);
 }
 
-.marquee {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-}
-
 .opening {
   display: flex;
   justify-content: space-between;
@@ -103,7 +98,7 @@
 }
 
 .opening-stats {
-  min-width: 14rem;
+  min-width: 12rem;
   font-size: var(--small-font-size);
 }
 

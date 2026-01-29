@@ -306,25 +306,18 @@ body {
 1x Youthful Valkyrie (fdn) 149 [Counters]</textarea>
   </details>
 
-  <h4>Commander</h4>
-  <div class="marquee">
-    <div>
-    </div>
-  </div>
-
   <h4>Opening</h4>
   <div class="opening">
-      <div data-receive="commanderCard"></div>
-    <div class="hand-cards" data-receive="handCards">
-    </div>
-    <div class="opening-stats default-border">
-      <div>
-        Lands in Opening Hand: <span data-receive="handLandCount">-</span>
+    <div class="opening-stats faded-accent-border default-border-radius default-padding">
+      <div class="text-align-center default-padding">
+        <div data-receive="commanderCard"></div>
       </div>
-      <!--
-  <div class="text-align-right"><button data-send="runDeck">Rerun Deck</button></div>
--->
+      <div>
+        <span data-receive="handLandCount">-</span> Lands in Opening Hand
+      </div>
+      <div class="text-align-right"><button data-send="runDeck">Rerun Deck</button></div>
     </div>
+    <div class="hand-cards" data-receive="handCards"></div>
   </div>
 
   <h4>Draws</h4>
