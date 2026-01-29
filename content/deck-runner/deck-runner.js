@@ -459,33 +459,22 @@ export class DeckRunner {
           },
         ],
         [
-          "skip",
-          "First turn doesn't have card",
-          "none",
+          "Turn 1 plays a reserve card",
+          "reserve",
           () => {
             return this._landForTurn(1);
           },
         ],
         [
-          "skip",
-          "Second turn card played land from draw",
-          "draw",
+          "Turn 2 has no card to play",
+          "none",
           () => {
             return this._landForTurn(2);
           },
         ],
         [
-          "skip",
-          "Fifth turn card played land from draw",
-          "draw",
-          () => {
-            return this._landForTurn(5);
-          },
-        ],
-        [
-          "skip",
-          "Total played on the first turn is 0",
-          0,
+          "Total played on the turn 1 is 1",
+          1,
           () => {
             return this._totalPlayedOnTurn(1);
           },
@@ -627,6 +616,10 @@ export class DeckRunner {
   _landForTurn(turn) {
     if (this.#draws.cards()[turn - 1].kind() === "land") {
       return "draw";
+    } else if (
+      this.#hand.landCount() >= turn
+    ) {
+      return "reserve";
     } else {
       return "none";
     }
@@ -783,12 +776,14 @@ export class DeckRunner {
   }
 
   _totalPlayedOnTurn(turn) {
-    return this.#draws
+    const fromDraws = this.#draws
       .cards()
       .slice(0, turn)
       .filter((card) => card.kind() === "land")
       .map((card) => 1)
       .reduce((acc, cur) => acc + cur, 0);
+    const fullTotal = fromDraws + this.#hand.landCount();
+    return (Math.min(fullTotal, turn));
   }
 
   updatePage() {
