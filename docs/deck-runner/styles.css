@@ -8,8 +8,8 @@
 
 .card {
   display: inline-block;
-  max-width: 8rem;
-  min-width: 8rem;
+  max-width: 9rem;
+  min-width: 9rem;
 }
 
 .card img {
