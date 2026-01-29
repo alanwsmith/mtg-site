@@ -12,9 +12,9 @@ const templates = {
 <div class="turn-details __PLAYED_LAND__">
   <div>Turn: TURNNUM</div>
   <div>LANDPLAYEDFORTURN</div>
-  <div>Total Played: TOTALPLAYED</div>
-  <div>Behind: __BEHIND__</div>
-  <div>Reserves: __RESERVES__</div>
+  <div>Total Lands: TOTALPLAYED</div>
+  <div>Behind: BEHIND</div>
+  <div>Reserves: RESERVES</div>
 </div>
 </div>`,
 
@@ -254,6 +254,20 @@ export class DeckRunner {
             return this._totalPlayedOnTurn(1);
           },
         ],
+        [
+          "Behind count is 1 on turn 1",
+          1,
+          () => {
+            return this._behindCountOnTurn(1);
+          },
+        ],
+        [
+          "Reserved count is 0 on turn 1",
+          0,
+          () => {
+            return this._reservesCountOnTurn(1);
+          },
+        ],
       ],
     );
   }
@@ -264,6 +278,10 @@ export class DeckRunner {
 
   assertNotEqual(givenText, givenFunction, tests, assertion) {
     this.#tests.push([givenText, givenFunction, tests, "isNot"]);
+  }
+
+  _behindCountOnTurn(turn) {
+    return 1;
   }
 
   commanderCard(_, el) {
@@ -283,6 +301,8 @@ export class DeckRunner {
       ["TURNNUM", card.turn()],
       ["LANDPLAYEDFORTURN", this._landForTurn(card.turn())],
       ["TOTALPLAYED", this._totalPlayedOnTurn(card.turn())],
+      ["BEHIND", this._behindCountOnTurn(card.turn())],
+      ["RESERVES", this._reservesCountOnTurn(card.turn())],
     ];
     return this.api.makeHTML(templates.drawCard, subs);
   }
@@ -408,6 +428,10 @@ export class DeckRunner {
       .filter((result) => this.failedTestCount() === 0)
       .filter((result) => (result.result() === "PASSED"))
       .forEach((result) => console.log(result.message()));
+  }
+
+  _reservesCountOnTurn(turn) {
+    return 0;
   }
 
   runMainTests() {
