@@ -1,7 +1,7 @@
 .commander-card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
-  width: 8.2rem;
+  width: 6.2rem;
 }
 
 .draw-card {

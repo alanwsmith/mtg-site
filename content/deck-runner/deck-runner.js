@@ -26,14 +26,14 @@ const templates = {
 };
 
 class Card {
-  constructor(name, id, category) {
+  constructor(name, id, kind) {
     this._name = name;
     this._id = id;
-    this._category = category;
+    this._kind = kind;
   }
 
-  category() {
-    return this._category;
+  kind() {
+    return this._kind;
   }
 
   id() {
@@ -166,9 +166,10 @@ export class DeckRunner {
     this.assert(
       "Example Deck is loaded",
       () => {
-        this.#commander = this.loadCommander(makeTestDeckList([]));
-        this.#hand = this.loadHand(makeTestDeckList([]));
-        this.#draws = this.loadDraws(makeTestDeckList([]));
+        const landArray = [];
+        this.#commander = this.loadCommander(makeTestDeckList(landArray));
+        this.#hand = this.loadHand(makeTestDeckList(landArray));
+        this.#draws = this.loadDraws(makeTestDeckList(landArray));
         this.updatePage();
       },
       [
@@ -227,9 +228,10 @@ export class DeckRunner {
     this.assert(
       "Deck with no lands is loaded",
       () => {
-        this.#commander = this.loadCommander(makeTestDeckList([]));
-        this.#hand = this.loadHand(makeTestDeckList([]));
-        this.#draws = this.loadDraws(makeTestDeckList([]));
+        const landArray = [];
+        this.#commander = this.loadCommander(makeTestDeckList(landArray));
+        this.#hand = this.loadHand(makeTestDeckList(landArray));
+        this.#draws = this.loadDraws(makeTestDeckList(landArray));
         this.updatePage();
       },
       [
@@ -262,6 +264,13 @@ export class DeckRunner {
           },
         ],
         [
+          "Behind count is 2 on turn 2",
+          2,
+          () => {
+            return this._behindCountOnTurn(2);
+          },
+        ],
+        [
           "Reserved count is 0 on turn 1",
           0,
           () => {
@@ -270,6 +279,35 @@ export class DeckRunner {
         ],
       ],
     );
+
+    this.assert(
+      "Deck with 1 land as first draw card is loaded",
+      () => {
+        const landArray = [8];
+        this.#commander = this.loadCommander(makeTestDeckList(landArray));
+        this.#hand = this.loadHand(makeTestDeckList(landArray));
+        this.#draws = this.loadDraws(makeTestDeckList(landArray));
+        this.updatePage();
+      },
+      [
+        [
+          "0 lands in hand",
+          0,
+          () => {
+            return this.#hand.landCount();
+          },
+        ],
+        [
+          "First turn card played land from draw",
+          "Drew/Played Land",
+          () => {
+            return this._landForTurn(1);
+          },
+        ],
+      ],
+    );
+
+    //
   }
 
   assert(givenText, givenFunction, tests, assertion) {
@@ -281,7 +319,7 @@ export class DeckRunner {
   }
 
   _behindCountOnTurn(turn) {
-    return 1;
+    return turn;
   }
 
   commanderCard(_, el) {
@@ -333,7 +371,11 @@ export class DeckRunner {
   }
 
   _landForTurn(turn) {
-    return "No land to play";
+    if (this.#draws.cards()[turn - 1].kind() === "land") {
+      return "Drew/Played Land";
+    } else {
+      return "No land to play";
+    }
   }
 
   loadCommander(list) {
@@ -365,7 +407,7 @@ export class DeckRunner {
           const card = new Card(
             match[2],
             this.#idMap[match[2]],
-            match[3],
+            match[3].toLowerCase(),
           );
           card.setTurn(index + 1);
           return card;
@@ -510,7 +552,7 @@ function makeTestDeckList(landsToAdd) {
     Array(96).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0),
   );
   for (const landIndex of landsToAdd) {
-    ids[cardIndex] = "1x Plains (ecl) 269 [Land]";
+    ids[landIndex] = "1x Plains (ecl) 269 [Land]";
   }
   return ids.join("\n");
 }
