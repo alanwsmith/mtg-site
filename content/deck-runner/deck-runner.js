@@ -1,20 +1,27 @@
 const templates = {
   commanderCard: `<div class="commander-card">
 <img 
-  alt="The NAME card from Magic: The Gathering"
-  src="IMAGE_SRC" />
+  alt="The __NAME__ card from Magic: The Gathering"
+  src="__IMG_SRC__" />
 </div>`,
 
   drawCard: `<div class="draw-card">
 <img 
-  alt="The NAME card from Magic: The Gathering"
-  src="IMAGE_SRC" />
+  alt="The __NAME__ card from Magic: The Gathering"
+  src="__IMG_SRC__" />
+<div class="turn-details __PLAYED_LAND__">
+  <div>Turn: __TURN__</div>
+  <div>__LAND_FOR_TURN__</div>
+  <div>Total Played: __TOTAL_PLAYED__</div>
+  <div>Behind: __BEHIND__</div>
+  <div>Reserves: __RESERVES__</div>
+</div>
 </div>`,
 
   handCard: `<div class="hand-card">
 <img 
-  alt="The NAME card from Magic: The Gathering"
-  src="IMAGE_SRC" />
+  alt="The __NAME__ card from Magic: The Gathering"
+  src="__IMG_SRC__" />
 </div>`,
 };
 
@@ -35,6 +42,14 @@ class Card {
 
   name() {
     return escapeHTML(this._name);
+  }
+
+  setTurn(num) {
+    this._turn = num;
+  }
+
+  turn() {
+    return this._turn;
   }
 }
 
@@ -70,6 +85,10 @@ class Hand {
 
   cards() {
     return this._cards;
+  }
+
+  landCount() {
+    return 0;
   }
 }
 
@@ -195,6 +214,39 @@ export class DeckRunner {
             return this.#draws.cards().length;
           },
         ],
+        [
+          "First draw cards has turn 1",
+          1,
+          () => {
+            return this.#draws.cards()[0].turn();
+          },
+        ],
+      ],
+    );
+
+    this.assert(
+      "Deck with no lands is loaded",
+      () => {
+        this.#commander = this.loadCommander(makeTestDeckList([]));
+        this.#hand = this.loadHand(makeTestDeckList([]));
+        this.#draws = this.loadDraws(makeTestDeckList([]));
+        this.updatePage();
+      },
+      [
+        [
+          "0 lands in hand",
+          0,
+          () => {
+            return this.#hand.landCount();
+          },
+        ],
+        [
+          "First turn card played no lands",
+          "No land to play",
+          () => {
+            return this._landForTurn(1);
+          },
+        ],
       ],
     );
   }
@@ -209,8 +261,8 @@ export class DeckRunner {
 
   commanderCard(_, el) {
     const subs = [
-      ["NAME", this.#commander.name()],
-      ["IMAGE_SRC", this.makeImageURL(this.#commander.id())],
+      ["__NAME__", this.#commander.name()],
+      ["__IMG_SRC__", this.makeImageURL(this.#commander.id())],
     ];
     el.replaceChildren(
       this.api.makeHTML(templates.commanderCard, subs),
@@ -219,8 +271,10 @@ export class DeckRunner {
 
   drawCard(card) {
     const subs = [
-      ["NAME", card.name()],
-      ["IMAGE_SRC", this.makeImageURL(card.id())],
+      ["__NAME__", card.name()],
+      ["__IMG_SRC__", this.makeImageURL(card.id())],
+      ["__TURN__", card.turn()],
+      ["__LAND_FOR_TURN__", this._landForTurn(card.turn())],
     ];
     return this.api.makeHTML(templates.drawCard, subs);
   }
@@ -238,8 +292,8 @@ export class DeckRunner {
 
   handCard(card) {
     const subs = [
-      ["NAME", card.name()],
-      ["IMAGE_SRC", this.makeImageURL(card.id())],
+      ["__NAME__", card.name()],
+      ["__IMG_SRC__", this.makeImageURL(card.id())],
     ];
     return this.api.makeHTML(templates.handCard, subs);
   }
@@ -248,6 +302,10 @@ export class DeckRunner {
     el.replaceChildren(
       ...this.#hand.cards().map((card) => this.handCard(card)),
     );
+  }
+
+  _landForTurn(turn) {
+    return "No land to play";
   }
 
   loadCommander(list) {
@@ -275,12 +333,14 @@ export class DeckRunner {
         .filter((match) => match[3] !== "Commander")
         .filter((match) => match[3] !== "Maybeboard")
         .slice(7)
-        .map((match) => {
-          return new Card(
+        .map((match, index) => {
+          const card = new Card(
             match[2],
             this.#idMap[match[2]],
             match[3],
           );
+          card.setTurn(index + 1);
+          return card;
         }),
     );
   }

@@ -40,3 +40,7 @@ textarea {
   height: 14rem;
 }
 
+.turn-details {
+  font-size: var(--xxxsmall-font-size);
+}
+
