@@ -7,6 +7,7 @@ class Card {
     this._turn = turn;
   }
 
+  // TODO: Deprecate and move into .kind()
   category() {
     return this._kind.toLowerCase();
   }
@@ -26,7 +27,7 @@ class Card {
   }
 
   kind() {
-    return this._kind;
+    return this._kind.toLowerCase();
   }
 
   name() {
@@ -48,7 +49,6 @@ class Card {
   turn() {
     return this._turn;
   }
-
 }
 
 class TestResult {
@@ -109,7 +109,57 @@ export class DeckRunner {
   #testResults;
   #tests = [];
 
+  async bittyInit() {
+    await this.loadExampleDeck();
+    await this.loadIdMap();
+    this.loadCards();
+  }
+
+  bittyReady() {
+    //this.api.trigger("runDeck");
+    this.addTests();
+    this.runTests();
+  }
+
+  addCardDetails(card, turn) {
+    const subs = [
+      ["DETAILS", this.cardStatsV2(card, turn)],
+    ];
+    return this.api.makeHTML(card, subs);
+  }
+
   addTests() {
+    this.assert(
+      "Basic Deck Check with No Lands",
+      () => {
+        this.#cards = this.parseDeckList(makeTestDeckList([]));
+        this.updatePage();
+      },
+      [
+        [
+          "The this._openingHandCards() method works.",
+          "Youthful Valkyrie",
+          () => {
+            return this._openingHandCards()[0].name();
+          },
+        ],
+        [
+          "The this._turnCards() method works.",
+          "Youthful Valkyrie",
+          () => {
+            return this._turnCards()[0].name();
+          },
+        ],
+        [
+          "The this._turnCards() method works.",
+          "Giada, Font of Hope",
+          () => {
+            return this._commanderCard().name();
+          },
+        ],
+      ],
+    );
+
     this.assert(
       "Commander is first card in deck",
       () => {
@@ -176,7 +226,7 @@ export class DeckRunner {
           "No Land Played on Turn 1",
           "None",
           () => {
-            return this._landPlayedOnTurn(1);
+            return this._landTypePlayedOnTurn(1);
           },
         ],
         [
@@ -228,14 +278,14 @@ export class DeckRunner {
           "Reserve Land Played on Turn 1",
           "Reserve",
           () => {
-            return this._landPlayedOnTurn(1);
+            return this._landTypePlayedOnTurn(1);
           },
         ],
         [
           "No Land Played on Turn 2",
           "None",
           () => {
-            return this._landPlayedOnTurn(2);
+            return this._landTypePlayedOnTurn(2);
           },
         ],
         [
@@ -301,21 +351,21 @@ export class DeckRunner {
           "Reserve Land Played on Turn 1",
           "Reserve",
           () => {
-            return this._landPlayedOnTurn(1);
+            return this._landTypePlayedOnTurn(1);
           },
         ],
         [
           "Reserve Land Played on Turn 2",
           "Reserve",
           () => {
-            return this._landPlayedOnTurn(2);
+            return this._landTypePlayedOnTurn(2);
           },
         ],
         [
           "No Lands Played on Turn 3",
           "None",
           () => {
-            return this._landPlayedOnTurn(3);
+            return this._landTypePlayedOnTurn(3);
           },
         ],
         [
@@ -385,7 +435,7 @@ export class DeckRunner {
     );
 
     this.assert(
-      "No cards in opening hand - 1 on first draw",
+      "Land drawn on Turn 1 with no cards in opening hand",
       () => {
         this.#cards = this.parseDeckList(makeTestDeckList([8]));
         this.updatePage();
@@ -402,14 +452,14 @@ export class DeckRunner {
           "Drawn Land Played on Turn 1",
           "Drawn",
           () => {
-            return this._landPlayedOnTurn(1);
+            return this._landTypePlayedOnTurnV2(this._turnCards()[0]);
           },
         ],
         // [
         //   "0 Lands in the Opening hand and 1 Land is drawn on Turn 2",
         //   "",
         //   () => {
-        //     return this._landPlayedOnTurn(1);
+        //     return this._landTypePlayedOnTurn(1);
         //   },
         //   "None",
         // ],
@@ -425,123 +475,6 @@ export class DeckRunner {
     this.#tests.push([givenText, givenFunction, tests, "isNot"]);
   }
 
-  // _commanderCard() {
-  //   return this.#cards.find((card) => {
-  //     if (card.kind() === "Commander") {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   });
-  // }
-
-  _openingHandCards() {
-    return this.#cards
-      .filter((card, index) => card.kind() !== "Commander")
-      .filter((card, index) => index <= 6);
-  }
-
-  _turnCards() {
-    return this.#cards
-      .filter((card, index) => card.kind() !== "Commander")
-      .filter((card, index) => index > 6)
-      .map((card, index) => {
-        card.setTurn(index + 1);
-        return card;
-      });
-  }
-
-  _landsInReserveOnTurn(turn) {
-    return Math.max(this._landsInOpeningHand() - turn, 0);
-  }
-
-  _landPlayedOnTurn(turn) {
-    if (this._landsInOpeningHand() >= turn) {
-      return "Reserve";
-    } else {
-      return "None";
-    }
-  }
-
-  runSoloTests() {
-    for (const testPayload of this.#tests) {
-      for (const assertion of testPayload[2]) {
-        if (assertion.length === 4 && assertion[0] === "solo") {
-          testPayload[1]();
-          this.#testResults.push(
-            new TestResult(
-              testPayload[0],
-              assertion[1],
-              assertion[2],
-              testPayload[3],
-              assertion[3](),
-            ),
-          );
-        }
-      }
-    }
-  }
-
-  runMainTests() {
-    if (this.#testResults.length === 0) {
-      for (const testPayload of this.#tests) {
-        testPayload[1]();
-        for (const assertion of testPayload[2]) {
-          this.#testResults.push(
-            new TestResult(
-              testPayload[0],
-              assertion[0],
-              assertion[1],
-              testPayload[3],
-              assertion[2](),
-            ),
-          );
-        }
-      }
-    }
-  }
-
-  runTests() {
-    this.#testResults = [];
-    this.runSoloTests();
-    this.runMainTests();
-    this.outputTestResultsToConsole();
-  }
-
-  failedTestCount() {
-    return this.#testResults
-      .filter((result) => (result.result() !== "PASSED")).length;
-  }
-
-  outputTestResultsToConsole() {
-    this.#testResults
-      .filter((result) => (result.result() !== "PASSED"))
-      .forEach((result) => console.error(result.message()));
-    this.#testResults
-      .filter((result) => this.failedTestCount() === 0)
-      .filter((result) => (result.result() === "PASSED"))
-      .forEach((result) => console.log(result.message()));
-  }
-
-  async bittyInit() {
-    await this.loadExampleDeck();
-    await this.loadIdMap();
-    this.loadCards();
-  }
-
-  bittyReady() {
-    //this.api.trigger("runDeck");
-    this.addTests();
-    this.runTests();
-  }
-
-  addCardDetails(card, turn) {
-    const subs = [
-      ["DETAILS", this.cardStatsV2(card, turn)],
-    ];
-    return this.api.makeHTML(card, subs);
-  }
-
   baseCard(card) {
     const subs = [
       ["NAME", card.name()],
@@ -550,18 +483,6 @@ export class DeckRunner {
       ["IMAGEURL", card.imageURL()],
     ];
     return this.api.makeTXT(this.templates("cardV2"), subs);
-  }
-
-  turnCardHTML(card) {
-    const subs = [
-      ["NAME", card.name()],
-      ["STATUS", card.status()],
-      ["CATEGORY", card.category()],
-      ["IMAGEURL", card.imageURL()],
-      ["TURN", card.turn()],
-      ["PLAY", this._landPlayedOnTurn(card.turn())],
-    ];
-    return this.api.makeHTML(this.templates("turnCard"), subs);
   }
 
   cardHTML(card) {
@@ -574,22 +495,11 @@ export class DeckRunner {
     return this.api.makeHTML(this.templates("card"), subs);
   }
 
-  cardStatsV2(card, turn) {
-    const subs = [
-      ["TURN", turn],
-      ["PLAY", this._landPlayedOnTurn(card, turn)],
-      ["TOTAL", this._totalLandsPlayedOnTurn(turn)],
-      ["RESERVE", this._landsInReserveOnTurn(turn)],
-      ["BEHIND", this._landsBehindOnTurn(turn)],
-    ];
-    return this.api.makeHTML(this.templates("cardStats"), subs);
-  }
-
   cardStats(card, index, turn) {
     const subs = [
       ["TURN", this.turnAtIndex(index)],
       ["TOTAL", this.totalLandsPlayedAtIndex(index)],
-      ["PLAY", this._landPlayedOnTurn(index)],
+      ["PLAY", this._landTypePlayedOnTurn(index)],
     ];
     if (this.totalLandsInHandAtIndex(index) > 0) {
       subs.push([
@@ -616,56 +526,43 @@ export class DeckRunner {
     return this.api.makeHTML(this.templates("cardStats"), subs);
   }
 
-  commanderCard(_, el) {
-    console.log(
-      this._commanderCard(),
-    );
-    el.replaceChildren(this.cardHTML(this._commanderCard()));
+  cardStatsV2(card, turn) {
+    const subs = [
+      ["TURN", turn],
+      ["PLAY", this._landTypePlayedOnTurn(card, turn)],
+      ["TOTAL", this._totalLandsPlayedOnTurn(turn)],
+      ["RESERVE", this._landsInReserveOnTurn(turn)],
+      ["BEHIND", this._landsBehindOnTurn(turn)],
+    ];
+    return this.api.makeHTML(this.templates("cardStats"), subs);
   }
 
   _commanderCard() {
-    return this.#cards.find((card) => card.kind() === "Commander");
+    return this.#cards.find((card) => card.kind() === "commander");
   }
 
+  commanderCard(_, el) {
+    el.replaceChildren(this.cardHTML(this._commanderCard()));
+  }
+
+  // DEPRECATE in favor of turnCards()
   deckCards() {
-    return this.#cards.filter((card) => card.kind() !== "Commander");
+    return this.#cards.filter((card) => card.kind() !== "commander");
   }
 
-  turnCards(_, el) {
-    el.replaceChildren(
-      ...this
-        ._turnCards()
-        .map((card, turn) => {
-          return this.turnCardHTML(card, turn);
-        }),
-    );
-  }
-
-  // gameTurns(_, el) {
-  //   el.replaceChildren(
-  //     ...this
-  //       .deckCards()
-  //       .filter((card, index) => index >= 7)
-  //       .map((card) => this.baseCard(card))
-  //       .map((card, turnIndex0) => {
-  //         const turn = turnIndex0 + 1;
-  //         return this.addCardDetails(card, turn);
-  //       }),
-  //   );
-  // }
-
-  openingHandCards(_, el) {
-    el.replaceChildren(
-      ...this._openingHandCards().map((card) => this.cardHTML(card)),
-    );
-  }
-
-  landsBehindAtIndex(index) {
-    return this.turnAtIndex(index) - this.tcard, turnLandsPlayedAtIndex(index);
+  // DEPRECATED
+  failedTestCount() {
+    return this.#testResults
+      .filter((result) => (result.result() !== "PASSED")).length;
   }
 
   _landsBehindOnTurn(turn) {
     return turn - this._totalLandsPlayedOnTurn(turn);
+  }
+
+  // DEPRECATED
+  landsBehindAtIndex(index) {
+    return this.turnAtIndex(index) - this.tcard, turnLandsPlayedAtIndex(index);
   }
 
   _landsInOpeningHand() {
@@ -679,12 +576,23 @@ export class DeckRunner {
     el.innerHTML = this._landsInOpeningHand();
   }
 
-  _totalLandsPlayedOnTurn(turn, card) {
-    if (this._landsInOpeningHand() > turn) {
-      return turn;
+  _landsInReserveOnTurn(turn) {
+    return Math.max(this._landsInOpeningHand() - turn, 0);
+  }
+
+  _landTypePlayedOnTurn(turn) {
+    if (this._landsInOpeningHand() >= turn) {
+      return "Reserve";
     } else {
-      return this._landsInOpeningHand();
+      return "None";
     }
+  }
+
+  _landTypePlayedOnTurnV2(card) {
+    if (card.kind() === "land") {
+      return "Drawn";
+    }
+    return "None";
   }
 
   loadCards() {
@@ -714,6 +622,73 @@ export class DeckRunner {
     }
   }
 
+  _openingHandCards() {
+    return this.#cards
+      .filter((card, index) => card.kind() !== "commander")
+      .filter((card, index) => index <= 6);
+  }
+
+  openingHandCards(_, el) {
+    el.replaceChildren(
+      ...this._openingHandCards().map((card) => this.cardHTML(card)),
+    );
+  }
+
+  outputTestResultsToConsole() {
+    this.#testResults
+      .filter((result) => (result.result() !== "PASSED"))
+      .forEach((result) => console.error(result.message()));
+    this.#testResults
+      .filter((result) => this.failedTestCount() === 0)
+      .filter((result) => (result.result() === "PASSED"))
+      .forEach((result) => console.log(result.message()));
+  }
+
+  runMainTests() {
+    if (this.#testResults.length === 0) {
+      for (const testPayload of this.#tests) {
+        testPayload[1]();
+        for (const assertion of testPayload[2]) {
+          this.#testResults.push(
+            new TestResult(
+              testPayload[0],
+              assertion[0],
+              assertion[1],
+              testPayload[3],
+              assertion[2](),
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  runSoloTests() {
+    for (const testPayload of this.#tests) {
+      for (const assertion of testPayload[2]) {
+        if (assertion.length === 4 && assertion[0] === "solo") {
+          testPayload[1]();
+          this.#testResults.push(
+            new TestResult(
+              testPayload[0],
+              assertion[1],
+              assertion[2],
+              testPayload[3],
+              assertion[3](),
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  runTests() {
+    this.#testResults = [];
+    this.runSoloTests();
+    this.runMainTests();
+    this.outputTestResultsToConsole();
+  }
+
   parseDeckList(text) {
     const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
     const cards = [];
@@ -738,6 +713,7 @@ export class DeckRunner {
     return cards;
   }
 
+  // DEPRECATED
   playLandAtIndex(index) {
     if (
       this.totalLandsPlayedAtIndex(index) >
@@ -752,138 +728,6 @@ export class DeckRunner {
   runDeck(_, el) {
     shuffleArray(this.#cards);
     this.updatePage();
-  }
-
-  // runTest(expected, got, description) {
-  //   if (expected === got) {
-  //     this.#testResults.push(`PASSED: ${description}`);
-  //   } else {
-  //     this.#testResults.push(
-  //       `FAILED: ${description}\n  Expected: ${expected} - Got: ${got}`,
-  //     );
-  //   }
-  // }
-
-  // test1(_, el) {
-  //   this.#cards = this.parseDeckList(makeTestDeckList([]));
-  //   this.runTest(
-  //     1,
-  //     this.landsBehindAtIndex(7),
-  //     "landsBehindAtIndex(7) is 1 if no incoming lands",
-  //   );
-  //   this.runTest(
-  //     0,
-  //     this.totalLandsPlayedAtIndex(7),
-  //     "totalLandsPlayedAtIndex === 0 on turn 1 if there are no land in the opening hand",
-  //   );
-  //   this.runTest(
-  //     0,
-  //     this.landsInOpeningHandDisplay(7),
-  //     "landsInOpeningHand === 0 if there are no land in the opening hand",
-  //   );
-  //   el.innerHTML = this.#testResults.join("\n");
-  //   this.updatePage();
-  // }
-
-  // test2(_, el) {
-  //   this.#cards = this.parseDeckList(makeTestDeckList([0]));
-  //   this.runTest(
-  //     1,
-  //     this.totalLandsPlayedAtIndex(7),
-  //     "totalLandsPlayedAtIndex === 1 on turn 1 if there's a land in the opening hand",
-  //   );
-  //   el.innerHTML = this.#testResults.join("\n");
-  //   this.updatePage();
-  // }
-
-  // test3(_, el) {
-  //   this.#cards = this.parseDeckList(makeTestDeckList([0, 4, 5, 9]));
-  //   this.runTest(
-  //     1,
-  //     this.totalLandsPlayedAtIndex(7),
-  //     "totalLandsPlayedAtIndex(7) === 1 from test",
-  //   );
-  //   this.runTest(
-  //     2,
-  //     this.totalLandsPlayedAtIndex(8),
-  //     "totalLandsPlayedAtIndex(8) === 2 from test",
-  //   );
-  //   this.runTest(
-  //     4,
-  //     this.totalLandsPlayedAtIndex(12),
-  //     "totalLandsPlayedAtIndex(12) === 4 from test",
-  //   );
-  //   el.innerHTML = this.#testResults.join("\n");
-  //   this.updatePage();
-  // }
-
-  // test4(_, el) {
-  //   this.#cards = this.parseDeckList(
-  //     makeTestDeckList([1, 5, 8, 10, 13, 14, 15, 20, 22]),
-  //   );
-  //   this.runTest(
-  //     0,
-  //     this.landsBehindAtIndex(7),
-  //     "landsBehindAtIndex(7) === 0 if there are lands in the opening hand",
-  //   );
-  //   el.innerHTML = this.#testResults.join("\n");
-  //   this.updatePage();
-  // }
-
-  // test5(_, el) {
-  //   this.#cards = this.parseDeckList(
-  //     makeTestDeckList([5, 8]),
-  //   );
-  //   this.runTest(
-  //     0,
-  //     this.landsBehindAtIndex(8),
-  //     "landsBehindAtIndex(8) === 0 from test",
-  //   );
-  //   el.innerHTML = this.#testResults.join("\n");
-  //   this.updatePage();
-  // }
-
-  // test6(_, el) {
-  //   this.#cards = this.parseDeckList(
-  //     makeTestDeckList([1, 3, 6, 7]),
-  //   );
-  //   this.runTest(
-  //     0,
-  //     this.landsBehindAtIndex(8),
-  //     "landsBehindAtIndex(8) === 0 from test",
-  //   );
-  //   el.innerHTML = this.#testResults.join("\n");
-  //   this.updatePage();
-  // }
-
-  updatePage() {
-    this.api.trigger(`
-commanderCard
-openingHandCards
-turnCards
-landsInOpeningHand
-`);
-  }
-
-  totalLandsAtIndex(index) {
-    return this.#cards.slice(0, index + 1).map((card) =>
-      card.category() === "land" ? 1 : 0
-    ).reduce(
-      (acc, cur) => acc + cur,
-      0,
-    );
-  }
-
-  totalLandsInHandAtIndex(index) {
-    return this.totalLandsAtIndex(index) - this.totalLandsPlayedAtIndex(index);
-  }
-
-  totalLandsPlayedAtIndex(index) {
-    return Math.min(this.totalLandsAtIndex(index), index - 6);
-  }
-
-  turnAtIndex(index) {
-    return index - 6;
   }
 
   templates(kind) {
@@ -930,6 +774,79 @@ landsInOpeningHand
 </div>`;
     }
   }
+
+  totalLandsAtIndex(index) {
+    return this.#cards.slice(0, index + 1).map((card) =>
+      card.category() === "land" ? 1 : 0
+    ).reduce(
+      (acc, cur) => acc + cur,
+      0,
+    );
+  }
+
+  totalLandsInHandAtIndex(index) {
+    return this.totalLandsAtIndex(index) - this.totalLandsPlayedAtIndex(index);
+  }
+
+  _totalLandsPlayedOnTurn(turn, card) {
+    if (this._landsInOpeningHand() > turn) {
+      return turn;
+    } else {
+      return this._landsInOpeningHand();
+    }
+  }
+
+  // TODO: Deprecate in favor of _totalLandsPlayedOnTurn
+  totalLandsPlayedAtIndex(index) {
+    return Math.min(this.totalLandsAtIndex(index), index - 6);
+  }
+
+  turnCardHTML(card) {
+    const subs = [
+      ["NAME", card.name()],
+      ["STATUS", card.status()],
+      ["CATEGORY", card.category()],
+      ["IMAGEURL", card.imageURL()],
+      ["TURN", card.turn()],
+      ["PLAY", this._landTypePlayedOnTurn(card.turn())],
+    ];
+    return this.api.makeHTML(this.templates("turnCard"), subs);
+  }
+
+  turnAtIndex(index) {
+    return index - 6;
+  }
+
+  _turnCards() {
+    return this.#cards
+      .filter((card, index) => card.kind() !== "commander")
+      .filter((card, index) => index > 6)
+      .map((card, index) => {
+        card.setTurn(index + 1);
+        return card;
+      });
+  }
+
+  turnCards(_, el) {
+    el.replaceChildren(
+      ...this
+        ._turnCards()
+        .map((card, turn) => {
+          return this.turnCardHTML(card, turn);
+        }),
+    );
+  }
+
+  updatePage() {
+    this.api.trigger(`
+commanderCard
+openingHandCards
+turnCards
+landsInOpeningHand
+`);
+  }
+
+  //
 }
 
 function shuffleArray(array) {
