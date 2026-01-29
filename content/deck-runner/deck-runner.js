@@ -212,6 +212,13 @@ export class DeckRunner {
           },
         ],
         [
+          "0 lands in hand",
+          0,
+          () => {
+            return this.#hand.landCount();
+          },
+        ],
+        [
           "Verify first card in hand",
           "Youthful Valkyrie",
           () => {
@@ -252,13 +259,6 @@ export class DeckRunner {
         this.updatePage();
       },
       [
-        [
-          "0 lands in hand",
-          0,
-          () => {
-            return this.#hand.landCount();
-          },
-        ],
         [
           "First turn card played no lands",
           "none",
@@ -308,13 +308,6 @@ export class DeckRunner {
       },
       [
         [
-          "0 lands in hand",
-          0,
-          () => {
-            return this.#hand.landCount();
-          },
-        ],
-        [
           "First turn card played land from draw",
           "draw",
           () => {
@@ -355,13 +348,6 @@ export class DeckRunner {
         this.updatePage();
       },
       [
-        [
-          "0 lands in hand",
-          0,
-          () => {
-            return this.#hand.landCount();
-          },
-        ],
         [
           "First turn doesn't have card",
           "none",
@@ -511,6 +497,67 @@ export class DeckRunner {
       ],
     );
 
+    this.assert(
+      "Deck with 5 card in hand and draws on 2, 4, and 5",
+      () => {
+        const landArray = [2, 4, 5, 6, 8, 10, 11];
+        this.#commander = this.loadCommander(makeTestDeckList(landArray));
+        this.#hand = this.loadHand(makeTestDeckList(landArray));
+        this.#draws = this.loadDraws(makeTestDeckList(landArray));
+        this.updatePage();
+      },
+      [
+        [
+          "solo",
+          "Turn 6 plays a reserve card",
+          "reserve",
+          () => {
+            return this._landForTurn(6);
+          },
+        ],
+        [
+          "skip",
+          "Turn 2 has no card to play",
+          "none",
+          () => {
+            return this._landForTurn(2);
+          },
+        ],
+        [
+          "skip",
+          "Total played on the turn 1 is 1",
+          1,
+          () => {
+            return this._totalPlayedOnTurn(1);
+          },
+        ],
+        [
+          "skip",
+          "Total played on the turn 2 is 1",
+          1,
+          () => {
+            return this._totalPlayedOnTurn(2);
+          },
+        ],
+        [
+          "skip",
+          "Behind count on turn 1 is 0",
+          0,
+          () => {
+            return this._behindCountOnTurn(1);
+          },
+        ],
+        [
+          "skip",
+          "Behind count on turn 2 is 1",
+          1,
+          () => {
+            return this._behindCountOnTurn(2);
+          },
+        ],
+      ],
+    );
+
     //
   }
 
@@ -582,7 +629,7 @@ export class DeckRunner {
     if (this.#draws.cards()[turn - 1].kind() === "land") {
       return "draw";
     } else if (
-      this.#hand.landCount() >= turn
+      this.#hand.landCount() + this.#draws.landsOnTurn() >= turn
     ) {
       return "reserve";
     } else {
@@ -764,14 +811,9 @@ function escapeHTML(input) {
 }
 
 function makeTestDeckList(landsToAdd) {
-  let ids = [
-    `1x Youthful Valkyrie (fdn) 149 [Counters]`,
-    `1x Youthful Valkyrie (fdn) 149 [Counters]`,
-    `1x Youthful Valkyrie (fdn) 149 [Counters]`,
+  const ids = Array(98).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
+  ids.push(
     `1x Giada, Font of Hope (fdn) 141 [Commander{top}]`,
-  ];
-  ids = ids.concat(
-    Array(96).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0),
   );
   for (const landIndex of landsToAdd) {
     ids[landIndex] = "1x Plains (ecl) 269 [Land]";
