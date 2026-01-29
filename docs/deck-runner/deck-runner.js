@@ -29,7 +29,7 @@ class Deck {
       .reduce((acc, cur) => acc + cur, 0);
   }
 
-  landCount() {
+  handLandCount() {
     return this.hand().filter((card) => card.kind() === "land")
       .map((card) => 1)
       .reduce(
@@ -39,7 +39,7 @@ class Deck {
   }
 
   landsOnTurn(turn) {
-    return this.cards()
+    return this.draws()
       .slice(0, turn)
       .filter((card) => card.kind() === "land")
       .map((card) => 1)
@@ -278,9 +278,9 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    this.addTests();
-    this.runTests();
-    // this.shuffleDeck();
+    // this.addTests();
+    // this.runTests();
+    this.shuffleDeck();
   }
 
   addTests() {
@@ -289,7 +289,7 @@ export class DeckRunner {
       () => {
         const landArray = [];
         this.#deck = new Deck(makeTestDeckList(landArray), this.#idMap);
-        this.updatePage();
+        // this.updatePage();
       },
       [
         [
@@ -349,9 +349,16 @@ export class DeckRunner {
       () => {
         const landArray = [5];
         this.#deck = new Deck(makeTestDeckList(landArray), this.#idMap);
-        this.updatePage();
+        // this.updatePage();
       },
       [
+        [
+          "Turn 1 plays a reserve card",
+          "reserve",
+          () => {
+            return this._landPlayedForTurn(1);
+          },
+        ],
         [
           "Total played on the turn 1 is 1",
           1,
@@ -367,54 +374,33 @@ export class DeckRunner {
           },
         ],
         [
-          "Turn 1plays a reserve card",
-          "reserve",
+          "Behind count on turn 1 is 0",
+          0,
           () => {
-            return this._landPlayedForTurn(1);
+            return this._behindCountOnTurn(1);
           },
         ],
-        // [
-        //   "Total played on the turn 1 is 1",
-        //   1,
-        //   () => {
-        //     return this._totalLandsPlayedOnTurn(1);
-        //   },
-        // ],
-        // [
-        //   "Behind count on turn 7 is 0",
-        //   0,
-        //   () => {
-        //     return this._behindCountOnTurn(7);
-        //   },
-        // ],
-        // [
-        //   "Behind count on turn 8 is 1",
-        //   1,
-        //   () => {
-        //     return this._behindCountOnTurn(8);
-        //   },
-        // ],
-        // [
-        //   "Reserves count on turn 1 is 3",
-        //   3,
-        //   () => {
-        //     return this._reservesCountOnTurn(1);
-        //   },
-        // ],
-        // [
-        //   "Reserves count on turn 3 is 2",
-        //   2,
-        //   () => {
-        //     return this._reservesCountOnTurn(3);
-        //   },
-        // ],
-        // [
-        //   "Reserves count on turn 6 is 1",
-        //   1,
-        //   () => {
-        //     return this._reservesCountOnTurn(6);
-        //   },
-        // ],
+        [
+          "Behind count on turn 2 is 1",
+          1,
+          () => {
+            return this._behindCountOnTurn(2);
+          },
+        ],
+        [
+          "Reserves count on turn 1 is 0",
+          0,
+          () => {
+            return this._reservesCountOnTurn(1);
+          },
+        ],
+        [
+          "Reserves count on turn 2 is 0",
+          0,
+          () => {
+            return this._reservesCountOnTurn(2);
+          },
+        ],
       ],
     );
 
@@ -423,7 +409,7 @@ export class DeckRunner {
       () => {
         const landArray = [2, 4, 5, 6, 8, 10, 11];
         this.#deck = new Deck(makeTestDeckList(landArray), this.#idMap);
-        //this.updatePage();
+        this.updatePage();
       },
       [
         [
@@ -431,6 +417,20 @@ export class DeckRunner {
           3,
           () => {
             return this.#deck.landsOnTurn(6);
+          },
+        ],
+        [
+          "Reserve land count on Turn 1 is 3",
+          3,
+          () => {
+            return this._reservesCountOnTurn(1);
+          },
+        ],
+        [
+          "Reserve land count on Turn 2 is 3",
+          3,
+          () => {
+            return this._reservesCountOnTurn(2);
           },
         ],
         // [
@@ -1010,7 +1010,7 @@ export class DeckRunner {
     if (this.#deck.draws()[turn - 1].kind() === "land") {
       return "draw";
     } else if (
-      this.#deck.landCount() + this.#deck.landsOnTurn(turn) >= turn
+      this.#deck.handLandCount() + this.#deck.landsOnTurn(turn) >= turn
     ) {
       return "reserve";
     } else {
@@ -1130,7 +1130,7 @@ export class DeckRunner {
 
   _reservesCountOnTurn(turn) {
     return Math.max(
-      this.#deck.landCount() - turn +
+      this.#deck.handLandCount() - turn +
         this.#deck.landsOnTurn(turn),
       0,
     );
@@ -1214,7 +1214,7 @@ export class DeckRunner {
   _totalLandsPlayedOnTurn(turn) {
     return Math.min(
       this.#deck.landsOnTurn(turn) +
-        this.#deck.landCount(),
+        this.#deck.handLandCount(),
       turn,
     );
   }
