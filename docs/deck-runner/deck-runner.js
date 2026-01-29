@@ -1,4 +1,22 @@
-class Card {}
+class Card {
+  constructor(name, id, category) {
+    this._name = name;
+    this._id = id;
+    this._category = category;
+  }
+
+  category() {
+    return this._category;
+  }
+
+  id() {
+    return this._id;
+  }
+
+  name() {
+    return this._name;
+  }
+}
 
 class Commander {
   constructor(name, id) {
@@ -17,7 +35,15 @@ class Commander {
 
 class Draws {}
 
-class Hand {}
+class Hand {
+  constructor(cards) {
+    this._cards = cards;
+  }
+
+  cards() {
+    return this._cards;
+  }
+}
 
 class TestResult {
   constructor(given, then, expected, assertion, got) {
@@ -94,14 +120,28 @@ export class DeckRunner {
       "Example Deck is loaded",
       () => {
         this.#commander = this.loadCommander(makeTestDeckList([]));
+        this.#hand = this.loadHand(makeTestDeckList([]));
       },
       [
         [
-          "solo",
           "Commander is loaded",
           "Giada, Font of Hope",
           () => {
             return this.#commander.name();
+          },
+        ],
+        [
+          "Hand is loaded",
+          "Youthful Valkyrie",
+          () => {
+            return this.#hand.cards()[0].name();
+          },
+        ],
+        [
+          "Hand has only 7 cards",
+          7,
+          () => {
+            return this.#hand.cards().length;
           },
         ],
       ],
@@ -134,6 +174,26 @@ export class DeckRunner {
           this.#idMap[match[2]],
         );
       })[0];
+  }
+
+  loadHand(list) {
+    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
+    return new Hand(
+      list.split("\n")
+        .map((line) => line.match(cardMatcher))
+        .filter((match) => match !== null)
+        .filter((match) => match[3] !== undefined)
+        .filter((match) => match[3] !== "Commander")
+        .filter((match) => match[3] !== "Maybeboard")
+        .slice(0, 7)
+        .map((match) => {
+          return new Card(
+            match[2],
+            match[3],
+            this.#idMap[match[2]],
+          );
+        }),
+    );
   }
 
   async loadExampleDeck() {
