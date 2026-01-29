@@ -33,7 +33,7 @@ class Card {
   }
 
   kind() {
-    return this._kind;
+    return this._kind.toLowerCase();
   }
 
   id() {
@@ -57,6 +57,10 @@ class Commander {
   constructor(name, id) {
     this._name = name;
     this._id = id;
+  }
+
+  kind() {
+    return "commander";
   }
 
   id() {
@@ -88,7 +92,12 @@ class Hand {
   }
 
   landCount() {
-    return 0;
+    return this.cards().filter((card) => card.kind() === "land")
+      .map((card) => 1)
+      .reduce(
+        (acc, cur) => acc + cur,
+        0,
+      );
   }
 }
 
@@ -432,6 +441,122 @@ export class DeckRunner {
       ],
     );
 
+    this.assert(
+      "Deck with 1 card in hand",
+      () => {
+        const landArray = [1];
+        this.#commander = this.loadCommander(makeTestDeckList(landArray));
+        this.#hand = this.loadHand(makeTestDeckList(landArray));
+        this.#draws = this.loadDraws(makeTestDeckList(landArray));
+        this.updatePage();
+      },
+      [
+        [
+          "1 land in hand",
+          1,
+          () => {
+            return this.#hand.landCount();
+          },
+        ],
+        [
+          "skip",
+          "First turn doesn't have card",
+          "none",
+          () => {
+            return this._landForTurn(1);
+          },
+        ],
+        [
+          "skip",
+          "Second turn card played land from draw",
+          "draw",
+          () => {
+            return this._landForTurn(2);
+          },
+        ],
+        [
+          "skip",
+          "Fifth turn card played land from draw",
+          "draw",
+          () => {
+            return this._landForTurn(5);
+          },
+        ],
+        [
+          "skip",
+          "Total played on the first turn is 0",
+          0,
+          () => {
+            return this._totalPlayedOnTurn(1);
+          },
+        ],
+        [
+          "skip",
+          "Total played on the second turn is 1",
+          1,
+          () => {
+            return this._totalPlayedOnTurn(2);
+          },
+        ],
+        [
+          "skip",
+          "Total played on the third turn is 1",
+          1,
+          () => {
+            return this._totalPlayedOnTurn(3);
+          },
+        ],
+        [
+          "skip",
+          "Total played on the fifth turn is 2",
+          2,
+          () => {
+            return this._totalPlayedOnTurn(5);
+          },
+        ],
+        [
+          "skip",
+          "Behind count is 0 on turn 1",
+          1,
+          () => {
+            return this._behindCountOnTurn(1);
+          },
+        ],
+        [
+          "skip",
+          "Behind count is 1 on turn 2",
+          1,
+          () => {
+            return this._behindCountOnTurn(2);
+          },
+        ],
+        [
+          "skip",
+          "Behind count is 1 on turn 3",
+          2,
+          () => {
+            return this._behindCountOnTurn(3);
+          },
+        ],
+        [
+          "skip",
+          "Behind count is 1 on turn 5",
+          3,
+          () => {
+            return this._behindCountOnTurn(5);
+          },
+        ],
+        [
+          "skip",
+          "Behind count is 1 on turn 6",
+          4,
+          () => {
+            return this._behindCountOnTurn(6);
+          },
+        ],
+      ],
+    );
+
     //
   }
 
@@ -493,6 +618,10 @@ export class DeckRunner {
     el.replaceChildren(
       ...this.#hand.cards().map((card) => this.handCard(card)),
     );
+  }
+
+  handLandCount(_, el) {
+    el.innerHTML = this.#hand.landCount();
   }
 
   _landForTurn(turn) {
@@ -606,15 +735,22 @@ export class DeckRunner {
       for (const testPayload of this.#tests) {
         testPayload[1]();
         for (const assertion of testPayload[2]) {
-          this.#testResults.push(
-            new TestResult(
-              testPayload[0],
-              assertion[0],
-              assertion[1],
-              testPayload[3],
-              assertion[2](),
-            ),
-          );
+          if (
+            assertion.length === 3 ||
+            assertion.length === 4 &&
+              assertion[0] !== "solo" &&
+              assertion[0] !== "skip"
+          ) {
+            this.#testResults.push(
+              new TestResult(
+                testPayload[0],
+                assertion[0],
+                assertion[1],
+                testPayload[3],
+                assertion[2](),
+              ),
+            );
+          }
         }
       }
     }
@@ -657,7 +793,7 @@ export class DeckRunner {
 
   updatePage() {
     this.api.trigger(
-      "commanderCard handCards drawCards",
+      "commanderCard handCards drawCards handLandCount",
     );
   }
 }
