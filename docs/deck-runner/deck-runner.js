@@ -21,11 +21,11 @@ const templates = {
 <div class="details">
   <div class="details-header">
     <div class="details-line"><strong>Turn: TURNNUM</strong></div>
-    <div class="detail-line"><strong>Total Lands: TOTALPLAYED</strong></div>
+    <div class="detail-line"><strong>STATUS</strong></div>
   </div>
   <div class="details-header">
     <div class="details-line"></div>
-    <div class="detail-line"><strong>STATUS</strong></div>
+    <div class="detail-line"><strong>Total Lands: TOTALPLAYED</strong></div>
   </div>
 </div>
 <img 
@@ -205,8 +205,8 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    //  this.addTests();
-    // this.runTests();
+    //this.addTests();
+    //this.runTests();
     this.shuffleDeck();
   }
 
@@ -668,6 +668,7 @@ export class DeckRunner {
       ["IMGSRC", this.makeImageURL(card.id())],
       ["LANDPLAYEDFORTURN", this._landPlayedForTurnText(card.turn())],
       ["RESERVES", this._reservesCountOnTurnEl(card.turn())],
+      ["STATUS", this._turnStatus(card.turn())],
       ["TOTALPLAYED", this._totalLandsPlayedOnTurn(card.turn())],
       ["TURNCLASS", this._landPlayedForTurn(card.turn())],
       ["TURNNUM", card.turn()],
@@ -921,6 +922,18 @@ export class DeckRunner {
         this.#hand.landCount(),
       turn,
     );
+  }
+
+  _turnStatus(turn) {
+    if (this._reservesCountOnTurn(turn) > 0) {
+      return `Land Buffer: ${this._reservesCountOnTurn(turn)}`;
+    } else if (
+      this._behindCountOnTurn(turn) > 0
+    ) {
+      return `Lands Behind: ${this._behindCountOnTurn(turn)}`;
+    } else {
+      return "No Land Buffer";
+    }
   }
 
   updatePage() {
