@@ -1,13 +1,29 @@
+.behind {
+  background-color: var(--faded-info-color);
+  border-end-start-radius: var(--small-border-radius);
+  border-end-end-radius: var(--xsmall-border-radius);
+}
+
+.card {
+  width: 7rem;
+}
+
 .commander-card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
-  width: 6.2rem;
+}
+
+.detail-line {
+  padding-inline: var(--xxsmall-padding);
+}
+
+.details {
+  font-size: var(--xxxsmall-font-size);
 }
 
 .draw-card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
-  width: 6.2rem;
 }
 
 .draw-cards {
@@ -19,7 +35,6 @@
 .hand-card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
-  width: 6.2rem;
 }
 
 .hand-cards {
@@ -48,7 +63,4 @@ textarea {
   height: 14rem;
 }
 
-.turn-details {
-  font-size: var(--xxxsmall-font-size);
-}
 

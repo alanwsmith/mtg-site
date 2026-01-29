@@ -1,28 +1,32 @@
 const templates = {
-  commanderCard: `<div class="commander-card">
+  behindCount: `<div class="detail-line behind">Behind: COUNT</div>`,
+
+  commanderCard: `<div class="card commander-card">
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
 </div>`,
 
-  drawCard: `<div class="draw-card">
+  drawCard: `<div class="card draw-card land-played-TURNCLASS">
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
-<div class="turn-details land-played-TURNCLASS">
-  <div>Turn: TURNNUM</div>
-  <div>LANDPLAYEDFORTURN</div>
-  <div>Total Lands: TOTALPLAYED</div>
-  <div>Behind: BEHIND</div>
-  <div>Reserves: RESERVES</div>
+<div class="details">
+  <div class="detail-line">Turn: TURNNUM</div>
+  <div class="detail-line">LANDPLAYEDFORTURN</div>
+  <div class="detail-line">Total Lands: TOTALPLAYED</div>
+  BEHIND
+  RESERVES
 </div>
 </div>`,
 
-  handCard: `<div class="hand-card">
+  handCard: `<div class="card hand-card">
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
 </div>`,
+
+  reservesCount: `<div class="detail-line">Reserves: COUNT</div>`,
 };
 
 class Card {
@@ -263,7 +267,7 @@ export class DeckRunner {
           "First turn card played no lands",
           "none",
           () => {
-            return this._landForTurn(1);
+            return this._landPlayedForTurn(1);
           },
         ],
         [
@@ -311,7 +315,7 @@ export class DeckRunner {
           "First turn card played land from draw",
           "draw",
           () => {
-            return this._landForTurn(1);
+            return this._landPlayedForTurn(1);
           },
         ],
         [
@@ -352,21 +356,21 @@ export class DeckRunner {
           "First turn doesn't have card",
           "none",
           () => {
-            return this._landForTurn(1);
+            return this._landPlayedForTurn(1);
           },
         ],
         [
           "Second turn card played land from draw",
           "draw",
           () => {
-            return this._landForTurn(2);
+            return this._landPlayedForTurn(2);
           },
         ],
         [
           "Fifth turn card played land from draw",
           "draw",
           () => {
-            return this._landForTurn(5);
+            return this._landPlayedForTurn(5);
           },
         ],
         [
@@ -456,14 +460,14 @@ export class DeckRunner {
           "Turn 1 plays a reserve card",
           "reserve",
           () => {
-            return this._landForTurn(1);
+            return this._landPlayedForTurn(1);
           },
         ],
         [
           "Turn 2 has no card to play",
           "none",
           () => {
-            return this._landForTurn(2);
+            return this._landPlayedForTurn(2);
           },
         ],
         [
@@ -511,7 +515,7 @@ export class DeckRunner {
           "Turn 6 plays a reserve card",
           "reserve",
           () => {
-            return this._landForTurn(6);
+            return this._landPlayedForTurn(6);
           },
         ],
         [
@@ -573,7 +577,7 @@ export class DeckRunner {
           "Turn 6 plays a reserve card",
           "none",
           () => {
-            return this._landForTurn(6);
+            return this._landPlayedForTurn(6);
           },
         ],
         [
@@ -608,6 +612,17 @@ export class DeckRunner {
     return turn - this._totalLandsPlayedOnTurn(turn);
   }
 
+  _behindCountOnTurnEl(turn) {
+    if (this._behindCountOnTurn(turn) > 0) {
+      const subs = [
+        ["COUNT", this._behindCountOnTurn(turn)],
+      ];
+      return this.api.makeTXT(templates.behindCount, subs);
+    } else {
+      return "";
+    }
+  }
+
   commanderCard(_, el) {
     const subs = [
       ["CARDNAME", this.#commander.name()],
@@ -623,11 +638,11 @@ export class DeckRunner {
       ["CARDNAME", card.name()],
       ["IMGSRC", this.makeImageURL(card.id())],
       ["TURNNUM", card.turn()],
-      ["TURNCLASS", this._landForTurn(card.turn())],
-      ["LANDPLAYEDFORTURN", this._landForTurn(card.turn())],
+      ["TURNCLASS", this._landPlayedForTurn(card.turn())],
+      ["LANDPLAYEDFORTURN", this._landPlayedForTurnText(card.turn())],
       ["TOTALPLAYED", this._totalLandsPlayedOnTurn(card.turn())],
-      ["BEHIND", this._behindCountOnTurn(card.turn())],
-      ["RESERVES", this._reservesCountOnTurn(card.turn())],
+      ["BEHIND", this._behindCountOnTurnEl(card.turn())],
+      ["RESERVES", this._reservesCountOnTurnEl(card.turn())],
     ];
     return this.api.makeHTML(templates.drawCard, subs);
   }
@@ -661,7 +676,7 @@ export class DeckRunner {
     el.innerHTML = this.#hand.landCount();
   }
 
-  _landForTurn(turn) {
+  _landPlayedForTurn(turn) {
     if (this.#draws.cards()[turn - 1].kind() === "land") {
       return "draw";
     } else if (
@@ -670,6 +685,17 @@ export class DeckRunner {
       return "reserve";
     } else {
       return "none";
+    }
+  }
+
+  _landPlayedForTurnText(turn) {
+    switch (this._landPlayedForTurn(turn)) {
+      case ("draw"):
+        return "Played land from draw";
+      case ("none"):
+        return "No land to play";
+      case ("reserve"):
+        return "Played land from hand";
     }
   }
 
@@ -773,6 +799,17 @@ export class DeckRunner {
         this.#draws.landsOnTurn(turn),
       0,
     );
+  }
+
+  _reservesCountOnTurnEl(turn) {
+    if (this._reservesCountOnTurn(turn) > 0) {
+      const subs = [
+        ["COUNT", this._reservesCountOnTurn(turn)],
+      ];
+      return this.api.makeTXT(templates.reservesCount, subs);
+    } else {
+      return "";
+    }
   }
 
   runMainTests() {
