@@ -65,9 +65,6 @@ class Deck {
           this._cards.push(card);
         }
       });
-    this.cards().forEach((card) => {
-      console.log(card.name());
-    });
   }
 
   shuffle() {
@@ -285,6 +282,7 @@ export class DeckRunner {
   }
 
   bittyReady() {
+    this.api.trigger("loadDeckList");
     // this.addTests();
     // this.runTests();
     this.shuffleDeck();
@@ -1036,6 +1034,15 @@ export class DeckRunner {
     }
   }
 
+  loadDeckList() {
+    const data = localStorage.getItem("deckList");
+    if (data) {
+      document.querySelector(".deck-list").value = JSON.parse(data).deckList;
+    } else {
+      document.querySelector(".deck-list").value = this.#exampleDeck;
+    }
+  }
+
   // loadCommander(list) {
   //   const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
   //   return list.split("\n")
@@ -1208,6 +1215,13 @@ export class DeckRunner {
   }
 
   shuffleDeck() {
+    localStorage
+      .setItem(
+        "deckList",
+        JSON.stringify({
+          deckList: document.querySelector(".deck-list").value,
+        }),
+      );
     this.#deck = new Deck(
       document.querySelector(".deck-list").value,
       this.#idMap,
