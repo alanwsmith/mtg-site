@@ -498,7 +498,7 @@ export class DeckRunner {
     );
 
     this.assert(
-      "Deck with 5 card in hand and draws on 2, 4, and 5",
+      "Deck with 4 card in hand and draws on 2, 4, and 5",
       () => {
         const landArray = [2, 4, 5, 6, 8, 10, 11];
         this.#commander = this.loadCommander(makeTestDeckList(landArray));
@@ -554,6 +554,40 @@ export class DeckRunner {
           1,
           () => {
             return this._reservesCountOnTurn(6);
+          },
+        ],
+      ],
+    );
+
+    this.assert(
+      "Deck with 4 card in hand and draw on 5",
+      () => {
+        const landArray = [2, 4, 5, 6, 11];
+        this.#commander = this.loadCommander(makeTestDeckList(landArray));
+        this.#hand = this.loadHand(makeTestDeckList(landArray));
+        this.#draws = this.loadDraws(makeTestDeckList(landArray));
+        this.updatePage();
+      },
+      [
+        [
+          "Turn 6 plays a reserve card",
+          "none",
+          () => {
+            return this._landForTurn(6);
+          },
+        ],
+        [
+          "Total played on the turn 6 is 5",
+          5,
+          () => {
+            return this._totalLandsPlayedOnTurn(6);
+          },
+        ],
+        [
+          "Behind count on turn 6 is 1",
+          1,
+          () => {
+            return this._behindCountOnTurn(6);
           },
         ],
       ],
@@ -745,6 +779,10 @@ export class DeckRunner {
       for (const testPayload of this.#tests) {
         testPayload[1]();
         for (const assertion of testPayload[2]) {
+          // TODO: Add a feature here where you can
+          // do `break` to skip the rest of the
+          // tests in a payload without having
+          // to skip them individually.
           if (
             assertion.length === 3 ||
             assertion.length === 4 &&
