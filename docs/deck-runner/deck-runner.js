@@ -33,7 +33,15 @@ class Commander {
   }
 }
 
-class Draws {}
+class Draws {
+  constructor(cards) {
+    this._cards = cards;
+  }
+
+  cards() {
+    return this._cards;
+  }
+}
 
 class Hand {
   constructor(cards) {
@@ -121,6 +129,7 @@ export class DeckRunner {
       () => {
         this.#commander = this.loadCommander(makeTestDeckList([]));
         this.#hand = this.loadHand(makeTestDeckList([]));
+        this.#draws = this.loadDraws(makeTestDeckList([]));
       },
       [
         [
@@ -142,6 +151,20 @@ export class DeckRunner {
           7,
           () => {
             return this.#hand.cards().length;
+          },
+        ],
+        [
+          "Draws is loaded",
+          "Youthful Valkyrie",
+          () => {
+            return this.#draws.cards()[0].name();
+          },
+        ],
+        [
+          "Draws has only 92 cards",
+          92,
+          () => {
+            return this.#draws.cards().length;
           },
         ],
       ],
@@ -174,6 +197,26 @@ export class DeckRunner {
           this.#idMap[match[2]],
         );
       })[0];
+  }
+
+  loadDraws(list) {
+    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
+    return new Hand(
+      list.split("\n")
+        .map((line) => line.match(cardMatcher))
+        .filter((match) => match !== null)
+        .filter((match) => match[3] !== undefined)
+        .filter((match) => match[3] !== "Commander")
+        .filter((match) => match[3] !== "Maybeboard")
+        .slice(7)
+        .map((match) => {
+          return new Card(
+            match[2],
+            match[3],
+            this.#idMap[match[2]],
+          );
+        }),
+    );
   }
 
   loadHand(list) {
