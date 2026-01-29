@@ -14,6 +14,11 @@
   border-radius: var(--small-border-radius);
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+}
+
 .commander-card {
   color: var(--match-color);
   background-color: var(--info-color);
@@ -40,7 +45,7 @@
   padding: var(--xxxsmall-padding);
   border: 2px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
-  max-width: 18%;
+  max-width: 23%;
 }
 
 .draw-cards {
@@ -69,12 +74,12 @@
 
 .hand-kind-land {
   color: var(--match-color);
-  background-color: var(--accent-color);
+  background-color: var(--heading-color);
 }
 
 .hand-kind-non-land {
   color: var(--match-color);
-  background-color: var(--faded-reverse-color);
+  background-color: var(--reverse-color);
 }
 
 .land-played-draw {

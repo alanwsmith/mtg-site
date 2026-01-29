@@ -1,45 +1,53 @@
 const templates = {
-  behindCount: `<div class="detail-line behind">Behind: COUNT</div>`,
+  behindCount:
+    `<div class="detail-line"><strong>Lands Behind: COUNT</strong></div>`,
 
   commanderCard: `<div class="card commander-card">
+<div class="details">
+  Commander
+</div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
   <div class="details">
     <div class="details-header">
       <div></div>
-      <div>[commander]</div>
+      <div>&nbsp;</div>
     </div>
   </div>
 </div>`,
 
   drawCard: `<div class="card draw-card land-played-TURNCLASS">
 <div class="details">
-Turn: TURNNUM 
-  BEHIND
+  <div class="details-header">
+    <div class="details-line"><strong>Turn: TURNNUM</strong></div>
+    <div class="detail-line"><strong>Total Lands: TOTALPLAYED</strong></div>
+  </div>
+  <div class="details-header">
+    <div class="details-line"></div>
+    <div class="detail-line"><strong>STATUS</strong></div>
+  </div>
 </div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
 <div class="details">
   <div class="details-header">
-    <div>[CARDKIND]</div>
   </div>
   <div class="detail-line">LANDPLAYEDFORTURN</div>
-  <div class="detail-line">Total Lands: TOTALPLAYED</div>
-  RESERVES
 </div>
 </div>`,
 
   handCard: `<div class="card hand-card hand-kind-HANDCLASS">
-<div class="details">Opening Hand</div>
+<div class="details">
+  <div>Opening Hand</div>
+</div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
 <div class="details hand-card-details">
   <div class="details-header">
-    <div></div>
-    <div>[CARDKIND]</div>
+    <div>&nbsp;</div>
   </div>
 </div>
 </div>`,
@@ -654,15 +662,15 @@ export class DeckRunner {
 
   drawCard(card) {
     const subs = [
-      ["CARDNAME", card.name()],
-      ["CARDKIND", card.kind()],
-      ["IMGSRC", this.makeImageURL(card.id())],
-      ["TURNNUM", card.turn()],
-      ["TURNCLASS", this._landPlayedForTurn(card.turn())],
-      ["LANDPLAYEDFORTURN", this._landPlayedForTurnText(card.turn())],
-      ["TOTALPLAYED", this._totalLandsPlayedOnTurn(card.turn())],
       ["BEHIND", this._behindCountOnTurnEl(card.turn())],
+      ["CARDKIND", card.kind()],
+      ["CARDNAME", card.name()],
+      ["IMGSRC", this.makeImageURL(card.id())],
+      ["LANDPLAYEDFORTURN", this._landPlayedForTurnText(card.turn())],
       ["RESERVES", this._reservesCountOnTurnEl(card.turn())],
+      ["TOTALPLAYED", this._totalLandsPlayedOnTurn(card.turn())],
+      ["TURNCLASS", this._landPlayedForTurn(card.turn())],
+      ["TURNNUM", card.turn()],
     ];
     return this.api.makeHTML(templates.drawCard, subs);
   }
