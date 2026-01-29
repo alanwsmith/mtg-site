@@ -1,3 +1,11 @@
+const templates = {
+  commanderCard: `<div>
+<img 
+  alt="The NAME card from Magic: The Gathering"
+  src="IMAGE_SRC" />
+</div>`,
+};
+
 class Card {
   constructor(name, id, category) {
     this._name = name;
@@ -130,6 +138,7 @@ export class DeckRunner {
         this.#commander = this.loadCommander(makeTestDeckList([]));
         this.#hand = this.loadHand(makeTestDeckList([]));
         this.#draws = this.loadDraws(makeTestDeckList([]));
+        this.updatePage();
       },
       [
         [
@@ -177,6 +186,15 @@ export class DeckRunner {
 
   assertNotEqual(givenText, givenFunction, tests, assertion) {
     this.#tests.push([givenText, givenFunction, tests, "isNot"]);
+  }
+
+  commanderCard(_, el) {
+    const subs = [
+      ["IMAGE_SRC", this.makeImageURL(this.#commander.id())],
+    ];
+    el.replaceChildren(
+      this.api.makeHTML(templates.commanderCard, subs),
+    );
   }
 
   failedTestCount() {
@@ -260,6 +278,12 @@ export class DeckRunner {
     }
   }
 
+  makeImageURL(id) {
+    const char1 = id.substring(0, 1);
+    const char2 = id.substring(1, 2);
+    return `https://cards.scryfall.io/border_crop/front/${char1}/${char2}/${id}.jpg`;
+  }
+
   outputTestResultsToConsole() {
     this.#testResults
       .filter((result) => (result.result() !== "PASSED"))
@@ -315,7 +339,11 @@ export class DeckRunner {
     this.outputTestResultsToConsole();
   }
 
-  updatePage() {}
+  updatePage() {
+    this.api.trigger(
+      "commanderCard",
+    );
+  }
 }
 
 function makeTestDeckList(landsToAdd) {
