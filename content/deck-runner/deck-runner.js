@@ -311,6 +311,20 @@ export class DeckRunner {
             return this._totalPlayedOnTurn(1);
           },
         ],
+        [
+          "Behind count is 0 on turn 1",
+          0,
+          () => {
+            return this._behindCountOnTurn(1);
+          },
+        ],
+        [
+          "Behind count is 1 on turn 2",
+          1,
+          () => {
+            return this._behindCountOnTurn(2);
+          },
+        ],
       ],
     );
 
@@ -326,7 +340,7 @@ export class DeckRunner {
   }
 
   _behindCountOnTurn(turn) {
-    return turn;
+    return turn - this._totalPlayedOnTurn(turn);
   }
 
   commanderCard(_, el) {
