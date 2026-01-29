@@ -194,8 +194,9 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    this.addTests();
-    this.runTests();
+    //  this.addTests();
+    // this.runTests();
+    this.shuffleDeck();
   }
 
   addTests() {
@@ -669,6 +670,10 @@ export class DeckRunner {
     );
   }
 
+  deckList() {
+    return document.querySelector(".deck-list").value;
+  }
+
   failedTestCount() {
     return this.#testResults
       .filter((result) => (result.result() !== "PASSED")).length;
@@ -888,6 +893,13 @@ export class DeckRunner {
     this.runSoloTests();
     this.runMainTests();
     this.outputTestResultsToConsole();
+  }
+
+  shuffleDeck() {
+    this.#commander = this.loadCommander(this.deckList());
+    this.#hand = this.loadHand(this.deckList());
+    this.#draws = this.loadDraws(this.deckList());
+    this.updatePage();
   }
 
   _totalLandsPlayedOnTurn(turn) {

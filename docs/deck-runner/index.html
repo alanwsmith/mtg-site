@@ -208,7 +208,10 @@ body {
 <p>
   This is a work in progress. The idea is to 
   generate hands from a deck so you can 
-  get a sense of how they'll play.
+  get a sense of how they'll play. 
+  I'll add stats at some point. For now, 
+  I just want to see examples of how 
+  cards will come off the draws will go.
 </p>
 
 <bitty-7-0 data-connect="/deck-runner/deck-runner.js DeckRunner" class="default-flow">
@@ -312,12 +315,15 @@ body {
       <div class="text-align-center default-padding">
         <div data-receive="commanderCard"></div>
       </div>
-      <div>
+      <div class="default-padding faded-default-block-border">
         <span data-receive="handLandCount">-</span> Lands in Opening Hand
       </div>
-      <div class="text-align-right"><button data-send="runDeck">Rerun Deck</button></div>
+      <div class="text-align-right default-padding"><button data-send="runDeck">Shuffle and Redraw Deck</button></div>
     </div>
-    <div class="hand-cards" data-receive="handCards"></div>
+
+    <div class="opening-stats faded-accent-border default-border-radius default-padding">
+      <div class="hand-cards" data-receive="handCards"></div>
+    </div>
   </div>
 
   <h4>Draws</h4>
