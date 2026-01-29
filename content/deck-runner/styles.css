@@ -1,7 +1,9 @@
 .behind {
-  background-color: var(--faded-info-color);
-  border-end-start-radius: var(--small-border-radius);
+  background-color: var(--faded-link-color);
+  border-end-start-radius: var(--xsmall-border-radius);
   border-end-end-radius: var(--xsmall-border-radius);
+  padding-bottom: var(--xxxsmall-padding);
+  margin-top: var(--xsmall-margin);
 }
 
 .card {
@@ -18,6 +20,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .detail-line {
   padding-inline: var(--xxsmall-padding);
 }
@@ -42,6 +45,13 @@
   border-radius: var(--small-border-radius);
 }
 
+.hand-card-details {
+  background-color: var(--faded-reverse-color);
+  border-end-start-radius: var(--xsmall-border-radius);
+  border-end-end-radius: var(--xsmall-border-radius);
+  color: var(--match-color);
+}
+
 .hand-cards {
   display: flex;
   flex-wrap: wrap;
@@ -49,16 +59,34 @@
 }
 
 .land-played-draw {
-  background-color: var(--faded-accent-color);
+  color: var(--match-color);
+  background-color: var(--accent-color);
+}
+
+.land-played-none {
+  color: var(--match-color);
+  background-color: var(--reverse-color);
 }
 
 .land-played-reserve {
-  background-color: var(--faded-accent-color);
+  color: var(--match-color);
+  background-color: var(--accent-color);
 }
 
 .marquee {
   display: grid;
   grid-template-columns: 9rem 1fr;
+}
+
+.reserves {
+  border-top: var(--faded-match-border);
+  /*
+  background-color: var(--faded-link-color);
+  border-end-start-radius: var(--xsmall-border-radius);
+  border-end-end-radius: var(--xsmall-border-radius);
+*/
+  padding-bottom: var(--xxxsmall-padding);
+  margin-top: var(--xsmall-margin);
 }
 
 textarea {

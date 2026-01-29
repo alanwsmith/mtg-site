@@ -14,7 +14,7 @@ const templates = {
 <div class="details">
   <div class="details-header">
     <div>Turn: TURNNUM</div>
-    <div>CARDKIND</div>
+    <div>[CARDKIND]</div>
   </div>
   <div class="detail-line">LANDPLAYEDFORTURN</div>
   <div class="detail-line">Total Lands: TOTALPLAYED</div>
@@ -27,9 +27,15 @@ const templates = {
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
+<div class="details hand-card-details">
+  <div class="details-header">
+    <div></div>
+    <div>[CARDKIND]</div>
+  </div>
+</div>
 </div>`,
 
-  reservesCount: `<div class="detail-line">Reserves: COUNT</div>`,
+  reservesCount: `<div class="detail-line reserves">Hand Reserves: COUNT</div>`,
 };
 
 class Card {
@@ -664,6 +670,7 @@ export class DeckRunner {
 
   handCard(card) {
     const subs = [
+      ["CARDKIND", card.kind()],
       ["CARDNAME", card.name()],
       ["IMGSRC", this.makeImageURL(card.id())],
     ];
@@ -695,11 +702,11 @@ export class DeckRunner {
   _landPlayedForTurnText(turn) {
     switch (this._landPlayedForTurn(turn)) {
       case ("draw"):
-        return "Played land from draw";
+        return "Draw land played";
       case ("none"):
         return "No land to play";
       case ("reserve"):
-        return "Played land from hand";
+        return "Reserve land played";
     }
   }
 
