@@ -38,14 +38,6 @@ class Card {
     this._turn = turn;
   }
 
-  status() {
-    if (this.category() === "commander") {
-      return "deck-commander";
-    } else {
-      return "deck-99";
-    }
-  }
-
   turn() {
     return this._turn;
   }
@@ -478,7 +470,6 @@ export class DeckRunner {
   baseCard(card) {
     const subs = [
       ["NAME", card.name()],
-      ["STATUS", card.status()],
       ["CATEGORY", card.category()],
       ["IMAGEURL", card.imageURL()],
     ];
@@ -488,7 +479,6 @@ export class DeckRunner {
   cardHTML(card) {
     const subs = [
       ["NAME", card.name()],
-      ["STATUS", card.status()],
       ["CATEGORY", card.category()],
       ["IMAGEURL", card.imageURL()],
     ];
@@ -745,11 +735,10 @@ export class DeckRunner {
 
       case "turnCard":
         return `
-<div class="card STATUS CATEGORY">
+<div class="card KIND">
   <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
   <div class="card-details">
     <div>Name: NAME</div>
-    <div>Stauts: STATUS</div>
     <div>Category: CATEGORY</div>
     <div>Turn: TURN</div>
     <div>Played: PLAY</div>
@@ -761,14 +750,14 @@ export class DeckRunner {
 
       case "card":
         return `
-<div class="card STATUS CATEGORY">
+<div class="card KIND">
   <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
   <div>tmp to see background</div>
 </div>`;
 
       case "cardV2":
         return `
-<div class="card STATUS CATEGORY">
+<div class="card KIND">
   <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
   DETAILS 
 </div>`;
@@ -804,7 +793,6 @@ export class DeckRunner {
   turnCardHTML(card) {
     const subs = [
       ["NAME", card.name()],
-      ["STATUS", card.status()],
       ["CATEGORY", card.category()],
       ["IMAGEURL", card.imageURL()],
       ["TURN", card.turn()],
