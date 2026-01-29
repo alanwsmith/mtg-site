@@ -522,27 +522,38 @@ export class DeckRunner {
           },
         ],
         [
-          "skip",
-          "Total played on the turn 2 is 1",
-          1,
-          () => {
-            return this._totalLandsPlayedOnTurn(2);
-          },
-        ],
-        [
-          "skip",
-          "Behind count on turn 1 is 0",
+          "Behind count on turn 7 is 0",
           0,
           () => {
-            return this._behindCountOnTurn(1);
+            return this._behindCountOnTurn(7);
           },
         ],
         [
-          "skip",
-          "Behind count on turn 2 is 1",
+          "Behind count on turn 8 is 1",
           1,
           () => {
-            return this._behindCountOnTurn(2);
+            return this._behindCountOnTurn(8);
+          },
+        ],
+        [
+          "Reserves count on turn 1 is 3",
+          3,
+          () => {
+            return this._reservesCountOnTurn(1);
+          },
+        ],
+        [
+          "Reserves count on turn 3 is 2",
+          2,
+          () => {
+            return this._reservesCountOnTurn(3);
+          },
+        ],
+        [
+          "Reserves count on turn 6 is 1",
+          1,
+          () => {
+            return this._reservesCountOnTurn(6);
           },
         ],
       ],
@@ -722,7 +733,11 @@ export class DeckRunner {
   }
 
   _reservesCountOnTurn(turn) {
-    return 0;
+    return Math.max(
+      this.#hand.landCount() - turn +
+        this.#draws.landsOnTurn(turn),
+      0,
+    );
   }
 
   runMainTests() {
