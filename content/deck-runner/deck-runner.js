@@ -80,6 +80,14 @@ class Draws {
   cards() {
     return this._cards;
   }
+
+  landsOnTurn(turn) {
+    return this.cards()
+      .slice(0, turn)
+      .filter((card) => card.kind() === "land")
+      .map((card) => 1)
+      .reduce((acc, cur) => acc + cur, 0);
+  }
 }
 
 class Hand {
@@ -642,7 +650,7 @@ export class DeckRunner {
 
   loadDraws(list) {
     const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
-    return new Hand(
+    return new Draws(
       list.split("\n")
         .map((line) => line.match(cardMatcher))
         .filter((match) => match !== null)
@@ -776,14 +784,10 @@ export class DeckRunner {
   }
 
   _totalPlayedOnTurn(turn) {
-    const fromDraws = this.#draws
-      .cards()
-      .slice(0, turn)
-      .filter((card) => card.kind() === "land")
-      .map((card) => 1)
-      .reduce((acc, cur) => acc + cur, 0);
-    const fullTotal = fromDraws + this.#hand.landCount();
-    return (Math.min(fullTotal, turn));
+    return Math.min(
+      this.#draws.landsOnTurn(turn) +
+        this.#hand.landCount(),
+    );
   }
 
   updatePage() {
