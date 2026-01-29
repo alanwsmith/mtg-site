@@ -833,9 +833,9 @@ export class DeckRunner {
     return this.api.makeHTML(templates.handCard, subs);
   }
 
-  handCards(_, el) {
+  openingHandCards(_, el) {
     el.replaceChildren(
-      ...this.#hand.cards().map((card) => this.handCard(card)),
+      ...this.#deck.hand().map((card) => this.handCard(card)),
     );
   }
 
@@ -1070,7 +1070,7 @@ export class DeckRunner {
 
   updatePage() {
     this.api.trigger(
-      "commanderCard handLandCount", // handCards drawCards handLandCount",
+      "commanderCard handLandCount openingHandCards", // handCards drawCards handLandCount",
     );
   }
 }
