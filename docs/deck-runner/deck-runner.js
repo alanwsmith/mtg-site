@@ -40,7 +40,7 @@ const templates = {
 
   handCard: `<div class="card hand-card hand-kind-HANDCLASS">
 <div class="details">
-  <div>Opening Hand</div>
+  <div class="detail-line">LANDNONLAND</div>
 </div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
@@ -698,8 +698,10 @@ export class DeckRunner {
     ];
     if (card.kind() === "land") {
       subs.push(["HANDCLASS", card.kind()]);
+      subs.push(["LANDNONLAND", "Land"]);
     } else {
       subs.push(["HANDCLASS", "non-land"]);
+      subs.push(["LANDNONLAND", "Non-Land"]);
     }
     return this.api.makeHTML(templates.handCard, subs);
   }
