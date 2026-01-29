@@ -218,7 +218,7 @@ export class DeckRunner {
           "No Land Played on Turn 1",
           "None",
           () => {
-            return this._landTypePlayedOnTurn(1);
+            return this._landTypePlayedOnTurnV2(this._turnCards()[0]);
           },
         ],
         [
@@ -270,7 +270,7 @@ export class DeckRunner {
           "Reserve Land Played on Turn 1",
           "Reserve",
           () => {
-            return this._landTypePlayedOnTurn(1);
+            return this._landTypePlayedOnTurnV2(this._turnCards()[0]);
           },
         ],
         [
@@ -434,6 +434,16 @@ export class DeckRunner {
       },
       [
         [
+          "solo",
+          "Drawn Land Count on Turn 3 is 1",
+          1,
+          () => {
+            const turn = 3;
+            return this._landsThatHaveBeenDrawnOnTurn(turn);
+          },
+        ],
+
+        [
           "0 Lands reported in Opening Hand",
           0,
           () => {
@@ -441,8 +451,8 @@ export class DeckRunner {
           },
         ],
         [
-          "Drawn Land Played on Turn 1",
-          "Drawn",
+          "Draw Land Played on Turn 1",
+          "Draw",
           () => {
             return this._landTypePlayedOnTurnV2(this._turnCards()[0]);
           },
@@ -570,6 +580,13 @@ export class DeckRunner {
     return Math.max(this._landsInOpeningHand() - turn, 0);
   }
 
+  _landsThatHaveBeenDrawnOnTurn(turn) {
+    return this._turnCards()
+      .filter((card, index) => turn >= index + 1)
+      .filter((card) => card.kind() === "land")
+      .length;
+  }
+
   _landTypePlayedOnTurn(turn) {
     if (this._landsInOpeningHand() >= turn) {
       return "Reserve";
@@ -580,7 +597,9 @@ export class DeckRunner {
 
   _landTypePlayedOnTurnV2(card) {
     if (card.kind() === "land") {
-      return "Drawn";
+      return "Draw";
+    } else {
+      return "Reserve";
     }
     return "None";
   }
@@ -735,12 +754,12 @@ export class DeckRunner {
 
       case "turnCard":
         return `
-<div class="card KIND">
+<div class="card KIND-card">
   <img src="IMAGEURL" alt="The NAME card from Magic: The Gathering" />
   <div class="card-details">
-    <div>Name: NAME</div>
-    <div>Category: CATEGORY</div>
     <div>Turn: TURN</div>
+    <div>Name: NAME</div>
+    <div>Kind: KIND</div>
     <div>Played: PLAY</div>
     <div>Total Played: TOTAL</div>
     <div>Reserve: RESERVE</div>
@@ -748,6 +767,8 @@ export class DeckRunner {
   </div>
 </div>`;
 
+        // DEPRECATED in favor of commanderCard,
+      // openingHandCards, or turnCards
       case "card":
         return `
 <div class="card KIND">
@@ -755,6 +776,8 @@ export class DeckRunner {
   <div>tmp to see background</div>
 </div>`;
 
+        // DEPRECATED in favor of commanderCard,
+      // openingHandCards, or turnCards
       case "cardV2":
         return `
 <div class="card KIND">
@@ -792,11 +815,11 @@ export class DeckRunner {
 
   turnCardHTML(card) {
     const subs = [
-      ["NAME", card.name()],
-      ["CATEGORY", card.category()],
-      ["IMAGEURL", card.imageURL()],
       ["TURN", card.turn()],
-      ["PLAY", this._landTypePlayedOnTurn(card.turn())],
+      ["NAME", card.name()],
+      ["KIND", card.kind()],
+      ["PLAY", this._landTypePlayedOnTurnV2(card)],
+      ["IMAGEURL", card.imageURL()],
     ];
     return this.api.makeHTML(this.templates("turnCard"), subs);
   }
