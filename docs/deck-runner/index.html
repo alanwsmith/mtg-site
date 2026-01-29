@@ -309,14 +309,23 @@ body {
   <h4>Commander</h4>
   <div class="marquee">
     <div>
-      <div class="commander-card" data-receive="commanderCard"></div>
     </div>
-    <div>Lands in Opening Hand: <span data-receive="handLandCount">-</span></div>
   </div>
 
-  <h4>Opening Hand</h4>
-  <div class="hand-cards" data-receive="handCards"></div>
-  <div><button data-send="runDeck">Rerun Deck</button></div>
+  <h4>Opening</h4>
+  <div class="opening">
+      <div data-receive="commanderCard"></div>
+    <div class="hand-cards" data-receive="handCards">
+    </div>
+    <div class="opening-stats default-border">
+      <div>
+        Lands in Opening Hand: <span data-receive="handLandCount">-</span>
+      </div>
+      <!--
+  <div class="text-align-right"><button data-send="runDeck">Rerun Deck</button></div>
+-->
+    </div>
+  </div>
 
   <h4>Draws</h4>
   <div class="draw-cards" data-receive="drawCards"></div>

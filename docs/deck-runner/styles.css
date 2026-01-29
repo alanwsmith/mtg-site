@@ -7,12 +7,19 @@
 }
 
 .card {
-  width: 7rem;
+  display: inline-block;
+}
+
+.card img {
+  border-radius: var(--small-border-radius);
 }
 
 .commander-card {
-  border: 1px solid var(--faded-reverse-color);
+  color: var(--match-color);
+  background-color: var(--info-color);
+  border: var(--faded-info-border);
   border-radius: var(--small-border-radius);
+  width: 30%;
 }
 
 .details-header {
@@ -32,6 +39,7 @@
 .draw-card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
+  max-width: 18%;
 }
 
 .draw-cards {
@@ -43,10 +51,10 @@
 .hand-card {
   border: 1px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
+  width: 30%;
 }
 
 .hand-card-details {
-  background-color: var(--faded-reverse-color);
   border-end-start-radius: var(--xsmall-border-radius);
   border-end-end-radius: var(--xsmall-border-radius);
   color: var(--match-color);
@@ -56,6 +64,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+}
+
+.hand-kind-land {
+  color: var(--match-color);
+  background-color: var(--accent-color);
+}
+
+.hand-kind-non-land {
+  color: var(--match-color);
+  background-color: var(--faded-reverse-color);
 }
 
 .land-played-draw {
@@ -76,6 +94,17 @@
 .marquee {
   display: grid;
   grid-template-columns: 9rem 1fr;
+}
+
+.opening {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.opening-stats {
+  min-width: 14rem;
+  font-size: var(--small-font-size);
 }
 
 .reserves {

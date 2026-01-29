@@ -5,6 +5,12 @@ const templates = {
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
+  <div class="details">
+    <div class="details-header">
+      <div></div>
+      <div>[commander]</div>
+    </div>
+  </div>
 </div>`,
 
   drawCard: `<div class="card draw-card land-played-TURNCLASS">
@@ -23,7 +29,7 @@ const templates = {
 </div>
 </div>`,
 
-  handCard: `<div class="card hand-card">
+  handCard: `<div class="card hand-card hand-kind-HANDCLASS">
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
@@ -674,6 +680,11 @@ export class DeckRunner {
       ["CARDNAME", card.name()],
       ["IMGSRC", this.makeImageURL(card.id())],
     ];
+    if (card.kind() === "land") {
+      subs.push(["HANDCLASS", card.kind()]);
+    } else {
+      subs.push(["HANDCLASS", "non-land"]);
+    }
     return this.api.makeHTML(templates.handCard, subs);
   }
 
