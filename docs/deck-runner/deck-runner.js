@@ -244,7 +244,7 @@ export class DeckRunner {
         ],
         [
           "First turn card played no lands",
-          "No land to play",
+          "none",
           () => {
             return this._landForTurn(1);
           },
@@ -299,9 +299,16 @@ export class DeckRunner {
         ],
         [
           "First turn card played land from draw",
-          "Drew/Played Land",
+          "draw",
           () => {
             return this._landForTurn(1);
+          },
+        ],
+        [
+          "Total played on the first turn is 1",
+          1,
+          () => {
+            return this._totalPlayedOnTurn(1);
           },
         ],
       ],
@@ -372,9 +379,9 @@ export class DeckRunner {
 
   _landForTurn(turn) {
     if (this.#draws.cards()[turn - 1].kind() === "land") {
-      return "Drew/Played Land";
+      return "draw";
     } else {
-      return "No land to play";
+      return "none";
     }
   }
 
@@ -522,7 +529,12 @@ export class DeckRunner {
   }
 
   _totalPlayedOnTurn(turn) {
-    return 0;
+    return this.#draws
+      .cards()
+      .slice(0, turn)
+      .filter((card) => card.kind() === "land")
+      .map((card) => 1)
+      .reduce((acc, cur) => acc + cur, 0);
   }
 
   updatePage() {
