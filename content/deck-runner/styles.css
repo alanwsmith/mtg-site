@@ -46,6 +46,7 @@
   border: 2px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
   max-width: 23%;
+  min-width: 23%;
 }
 
 .draw-cards {
@@ -107,6 +108,13 @@
 .opening-stats {
   min-width: 12rem;
   font-size: var(--small-font-size);
+}
+
+.progress-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-bottom: var(--large-padding);
 }
 
 .reserves {

@@ -1,3 +1,46 @@
+class Deck {
+  constructor(list, idMap) {
+    this.idMap = idMap;
+    this.loadList(list);
+  }
+
+  cards() {
+    return this._cards;
+  }
+
+  commander() {
+    return this.cards().filter((card) => card.kind() === "commander")[0];
+  }
+
+  hand() {
+    return this.cards().filter((card) => card.kind() !== "commander")
+      .slice(0, 7);
+  }
+
+  loadList(list) {
+    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
+    this._cards = [];
+    list.split("\n")
+      .map((line) => line.match(cardMatcher))
+      .filter((match) => match !== null)
+      .filter((match) => match[3] !== undefined)
+      .filter((match) => match[3] !== "Maybeboard")
+      .filter((match) => match[3] !== "Sideboard")
+      .forEach((match, index) => {
+        for (let count = 0; count < parseInt(match[1], 10); count += 1) {
+          const card = new Card(
+            match[2],
+            this.idMap[match[2]],
+            match[3].toLowerCase(),
+          );
+          card.setTurn(index + 1);
+          this._cards.push(card);
+        }
+      });
+    console.log(this.cards());
+  }
+}
+
 const templates = {
   behindCount:
     `<div class="detail-line"><strong>Lands Behind: COUNT</strong></div>`,
@@ -21,38 +64,40 @@ const templates = {
 <div class="details">
   <div class="details-header">
     <div class="details-line"><strong>Turn: TURNNUM</strong></div>
-    <div class="detail-line"><strong>STATUS</strong></div>
+    <div class="detail-line"><strong>Total: TOTALPLAYED</strong></div>
   </div>
   <div class="details-header">
-    <div class="details-line"></div>
-    <div class="detail-line"><strong>Total Lands: TOTALPLAYED</strong></div>
+    <div class="details-line"><strong>LANDPLAYEDFORTURN</strong></div>
+    <div class="detail-line"><strong>STATUS</strong></div>
   </div>
 </div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
-<div class="details">
-  <div class="details-header">
-  </div>
-  <div class="detail-line">LANDPLAYEDFORTURN</div>
-</div>
 </div>`,
 
   handCard: `<div class="card hand-card hand-kind-HANDCLASS">
 <div class="details">
-  <div class="detail-line">LANDNONLAND</div>
+  <div class="detail-line"><strong>LANDNONLAND</strong></div>
 </div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
-<div class="details hand-card-details">
-  <div class="details-header">
-    <div>&nbsp;</div>
-  </div>
-</div>
 </div>`,
 
   reservesCount: `<div class="detail-line reserves">Land Reserves: COUNT</div>`,
+
+  progressReport: `
+<div class="card draw-card">
+<div class="details">
+  <div class="detail-line"><strong>Progress Report</strong></div>
+<div class="detail-line">tktktk</div>
+</div>
+`,
+
+  progressGroup: `
+<div class="progress-group">CARDS</div>
+`,
 };
 
 class Card {
@@ -188,11 +233,12 @@ class TestResult {
     }
   }
 }
-
 export class DeckRunner {
-  #commander;
-  #draws;
-  #hand;
+  #deck;
+
+  #commander; // DEPRECATE
+  #draws; // DEPRECATE
+  #hand; // DEPRECATE
   #idMap;
   #errors;
   #exampleDeck;
@@ -205,8 +251,8 @@ export class DeckRunner {
   }
 
   bittyReady() {
-    //this.addTests();
-    //this.runTests();
+    this.addTests();
+    this.runTests();
     this.shuffleDeck();
   }
 
@@ -215,414 +261,445 @@ export class DeckRunner {
       "Example Deck is loaded",
       () => {
         const landArray = [];
-        this.#commander = this.loadCommander(makeTestDeckList(landArray));
-        this.#hand = this.loadHand(makeTestDeckList(landArray));
-        this.#draws = this.loadDraws(makeTestDeckList(landArray));
-        this.updatePage();
+        this.#deck = new Deck(makeTestDeckList(landArray), this.#idMap);
       },
       [
         [
-          "Commander is loaded",
+          "There are 100 cards in the deck",
+          100,
+          () => {
+            return this.#deck.cards().length;
+          },
+        ],
+        [
+          "Commander is Giada",
           "Giada, Font of Hope",
           () => {
-            return this.#commander.name();
+            return this.#deck.commander().name();
           },
         ],
         [
-          "Hand is loaded",
-          "Youthful Valkyrie",
-          () => {
-            return this.#hand.cards()[0].name();
-          },
-        ],
-        [
-          "Hand has only 7 cards",
+          "Hand has 7 cards",
           7,
           () => {
-            return this.#hand.cards().length;
-          },
-        ],
-        [
-          "0 lands in hand",
-          0,
-          () => {
-            return this.#hand.landCount();
-          },
-        ],
-        [
-          "Verify first card in hand",
-          "Youthful Valkyrie",
-          () => {
-            return this.#hand.cards()[0].name();
-          },
-        ],
-        [
-          "Draws is loaded",
-          "Youthful Valkyrie",
-          () => {
-            return this.#draws.cards()[0].name();
-          },
-        ],
-        [
-          "Draws has only 92 cards",
-          92,
-          () => {
-            return this.#draws.cards().length;
-          },
-        ],
-        [
-          "First draw cards has turn 1",
-          1,
-          () => {
-            return this.#draws.cards()[0].turn();
+            return this.#deck.hand().length;
           },
         ],
       ],
     );
 
-    this.assert(
-      "Deck with no lands is loaded",
-      () => {
-        const landArray = [];
-        this.#commander = this.loadCommander(makeTestDeckList(landArray));
-        this.#hand = this.loadHand(makeTestDeckList(landArray));
-        this.#draws = this.loadDraws(makeTestDeckList(landArray));
-        this.updatePage();
-      },
-      [
-        [
-          "First turn card played no lands",
-          "none",
-          () => {
-            return this._landPlayedForTurn(1);
-          },
-        ],
-        [
-          "Total played on the first turn is 0",
-          0,
-          () => {
-            return this._totalLandsPlayedOnTurn(1);
-          },
-        ],
-        [
-          "Behind count is 1 on turn 1",
-          1,
-          () => {
-            return this._behindCountOnTurn(1);
-          },
-        ],
-        [
-          "Behind count is 2 on turn 2",
-          2,
-          () => {
-            return this._behindCountOnTurn(2);
-          },
-        ],
-        [
-          "Reserved count is 0 on turn 1",
-          0,
-          () => {
-            return this._reservesCountOnTurn(1);
-          },
-        ],
-      ],
-    );
+    // this.assert(
+    //   "Example Deck is loaded",
+    //   () => {
+    //     const landArray = [];
+    //     this.#commander = this.loadCommander(makeTestDeckList(landArray));
+    //     this.#hand = this.loadHand(makeTestDeckList(landArray));
+    //     this.#draws = this.loadDraws(makeTestDeckList(landArray));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "Commander is loaded",
+    //       "Giada, Font of Hope",
+    //       () => {
+    //         return this.#commander.name();
+    //       },
+    //     ],
+    //     [
+    //       "Hand is loaded",
+    //       "Youthful Valkyrie",
+    //       () => {
+    //         return this.#hand.cards()[0].name();
+    //       },
+    //     ],
+    //     [
+    //       "Hand has only 7 cards",
+    //       7,
+    //       () => {
+    //         return this.#hand.cards().length;
+    //       },
+    //     ],
+    //     [
+    //       "0 lands in hand",
+    //       0,
+    //       () => {
+    //         return this.#hand.landCount();
+    //       },
+    //     ],
+    //     [
+    //       "Verify first card in hand",
+    //       "Youthful Valkyrie",
+    //       () => {
+    //         return this.#hand.cards()[0].name();
+    //       },
+    //     ],
+    //     [
+    //       "Draws is loaded",
+    //       "Youthful Valkyrie",
+    //       () => {
+    //         return this.#draws.cards()[0].name();
+    //       },
+    //     ],
+    //     [
+    //       "Draws has only 92 cards",
+    //       92,
+    //       () => {
+    //         return this.#draws.cards().length;
+    //       },
+    //     ],
+    //     [
+    //       "First draw cards has turn 1",
+    //       1,
+    //       () => {
+    //         return this.#draws.cards()[0].turn();
+    //       },
+    //     ],
+    //   ],
+    // );
 
-    this.assert(
-      "Deck with 1 land as first draw card is loaded",
-      () => {
-        const landArray = [7];
-        this.#commander = this.loadCommander(makeTestDeckList(landArray));
-        this.#hand = this.loadHand(makeTestDeckList(landArray));
-        this.#draws = this.loadDraws(makeTestDeckList(landArray));
-        this.updatePage();
-      },
-      [
-        [
-          "First turn card played land from draw",
-          "draw",
-          () => {
-            return this._landPlayedForTurn(1);
-          },
-        ],
-        [
-          "Total played on the first turn is 1",
-          1,
-          () => {
-            return this._totalLandsPlayedOnTurn(1);
-          },
-        ],
-        [
-          "Behind count is 0 on turn 1",
-          0,
-          () => {
-            return this._behindCountOnTurn(1);
-          },
-        ],
-        [
-          "Behind count is 1 on turn 2",
-          1,
-          () => {
-            return this._behindCountOnTurn(2);
-          },
-        ],
-      ],
-    );
+    // this.assert(
+    //   "Deck with no lands is loaded",
+    //   () => {
+    //     const landArray = [];
+    //     this.#commander = this.loadCommander(makeTestDeckList(landArray));
+    //     this.#hand = this.loadHand(makeTestDeckList(landArray));
+    //     this.#draws = this.loadDraws(makeTestDeckList(landArray));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "First turn card played no lands",
+    //       "none",
+    //       () => {
+    //         return this._landPlayedForTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the first turn is 0",
+    //       0,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 1 on turn 1",
+    //       1,
+    //       () => {
+    //         return this._behindCountOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 2 on turn 2",
+    //       2,
+    //       () => {
+    //         return this._behindCountOnTurn(2);
+    //       },
+    //     ],
+    //     [
+    //       "Reserved count is 0 on turn 1",
+    //       0,
+    //       () => {
+    //         return this._reservesCountOnTurn(1);
+    //       },
+    //     ],
+    //   ],
+    // );
 
-    this.assert(
-      "Deck with lands on turns 2 and 5",
-      () => {
-        const landArray = [8, 11];
-        this.#commander = this.loadCommander(makeTestDeckList(landArray));
-        this.#hand = this.loadHand(makeTestDeckList(landArray));
-        this.#draws = this.loadDraws(makeTestDeckList(landArray));
-        this.updatePage();
-      },
-      [
-        [
-          "First turn doesn't have card",
-          "none",
-          () => {
-            return this._landPlayedForTurn(1);
-          },
-        ],
-        [
-          "Second turn card played land from draw",
-          "draw",
-          () => {
-            return this._landPlayedForTurn(2);
-          },
-        ],
-        [
-          "Fifth turn card played land from draw",
-          "draw",
-          () => {
-            return this._landPlayedForTurn(5);
-          },
-        ],
-        [
-          "Total played on the first turn is 0",
-          0,
-          () => {
-            return this._totalLandsPlayedOnTurn(1);
-          },
-        ],
-        [
-          "Total played on the second turn is 1",
-          1,
-          () => {
-            return this._totalLandsPlayedOnTurn(2);
-          },
-        ],
-        [
-          "Total played on the third turn is 1",
-          1,
-          () => {
-            return this._totalLandsPlayedOnTurn(3);
-          },
-        ],
-        [
-          "Total played on the fifth turn is 2",
-          2,
-          () => {
-            return this._totalLandsPlayedOnTurn(5);
-          },
-        ],
-        [
-          "Behind count is 0 on turn 1",
-          1,
-          () => {
-            return this._behindCountOnTurn(1);
-          },
-        ],
-        [
-          "Behind count is 1 on turn 2",
-          1,
-          () => {
-            return this._behindCountOnTurn(2);
-          },
-        ],
-        [
-          "Behind count is 1 on turn 3",
-          2,
-          () => {
-            return this._behindCountOnTurn(3);
-          },
-        ],
-        [
-          "Behind count is 1 on turn 5",
-          3,
-          () => {
-            return this._behindCountOnTurn(5);
-          },
-        ],
-        [
-          "Behind count is 1 on turn 6",
-          4,
-          () => {
-            return this._behindCountOnTurn(6);
-          },
-        ],
-      ],
-    );
+    // this.assert(
+    //   "Deck with 1 land as first draw card is loaded",
+    //   () => {
+    //     const landArray = [7];
+    //     this.#commander = this.loadCommander(makeTestDeckList(landArray));
+    //     this.#hand = this.loadHand(makeTestDeckList(landArray));
+    //     this.#draws = this.loadDraws(makeTestDeckList(landArray));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "First turn card played land from draw",
+    //       "draw",
+    //       () => {
+    //         return this._landPlayedForTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the first turn is 1",
+    //       1,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 0 on turn 1",
+    //       0,
+    //       () => {
+    //         return this._behindCountOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 1 on turn 2",
+    //       1,
+    //       () => {
+    //         return this._behindCountOnTurn(2);
+    //       },
+    //     ],
+    //   ],
+    // );
 
-    this.assert(
-      "Deck with 1 card in hand",
-      () => {
-        const landArray = [1];
-        this.#commander = this.loadCommander(makeTestDeckList(landArray));
-        this.#hand = this.loadHand(makeTestDeckList(landArray));
-        this.#draws = this.loadDraws(makeTestDeckList(landArray));
-        this.updatePage();
-      },
-      [
-        [
-          "1 land in hand",
-          1,
-          () => {
-            return this.#hand.landCount();
-          },
-        ],
-        [
-          "Turn 1 plays a reserve card",
-          "reserve",
-          () => {
-            return this._landPlayedForTurn(1);
-          },
-        ],
-        [
-          "Turn 2 has no card to play",
-          "none",
-          () => {
-            return this._landPlayedForTurn(2);
-          },
-        ],
-        [
-          "Total played on the turn 1 is 1",
-          1,
-          () => {
-            return this._totalLandsPlayedOnTurn(1);
-          },
-        ],
-        [
-          "Total played on the turn 2 is 1",
-          1,
-          () => {
-            return this._totalLandsPlayedOnTurn(2);
-          },
-        ],
-        [
-          "Behind count on turn 1 is 0",
-          0,
-          () => {
-            return this._behindCountOnTurn(1);
-          },
-        ],
-        [
-          "Behind count on turn 2 is 1",
-          1,
-          () => {
-            return this._behindCountOnTurn(2);
-          },
-        ],
-      ],
-    );
+    // this.assert(
+    //   "Deck with lands on turns 2 and 5",
+    //   () => {
+    //     const landArray = [8, 11];
+    //     this.#commander = this.loadCommander(makeTestDeckList(landArray));
+    //     this.#hand = this.loadHand(makeTestDeckList(landArray));
+    //     this.#draws = this.loadDraws(makeTestDeckList(landArray));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "First turn doesn't have card",
+    //       "none",
+    //       () => {
+    //         return this._landPlayedForTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Second turn card played land from draw",
+    //       "draw",
+    //       () => {
+    //         return this._landPlayedForTurn(2);
+    //       },
+    //     ],
+    //     [
+    //       "Fifth turn card played land from draw",
+    //       "draw",
+    //       () => {
+    //         return this._landPlayedForTurn(5);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the first turn is 0",
+    //       0,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the second turn is 1",
+    //       1,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(2);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the third turn is 1",
+    //       1,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(3);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the fifth turn is 2",
+    //       2,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(5);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 0 on turn 1",
+    //       1,
+    //       () => {
+    //         return this._behindCountOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 1 on turn 2",
+    //       1,
+    //       () => {
+    //         return this._behindCountOnTurn(2);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 1 on turn 3",
+    //       2,
+    //       () => {
+    //         return this._behindCountOnTurn(3);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 1 on turn 5",
+    //       3,
+    //       () => {
+    //         return this._behindCountOnTurn(5);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count is 1 on turn 6",
+    //       4,
+    //       () => {
+    //         return this._behindCountOnTurn(6);
+    //       },
+    //     ],
+    //   ],
+    // );
 
-    this.assert(
-      "Deck with 4 card in hand and draws on 2, 4, and 5",
-      () => {
-        const landArray = [2, 4, 5, 6, 8, 10, 11];
-        this.#commander = this.loadCommander(makeTestDeckList(landArray));
-        this.#hand = this.loadHand(makeTestDeckList(landArray));
-        this.#draws = this.loadDraws(makeTestDeckList(landArray));
-        this.updatePage();
-      },
-      [
-        [
-          "Turn 6 plays a reserve card",
-          "reserve",
-          () => {
-            return this._landPlayedForTurn(6);
-          },
-        ],
-        [
-          "Total played on the turn 1 is 1",
-          1,
-          () => {
-            return this._totalLandsPlayedOnTurn(1);
-          },
-        ],
-        [
-          "Behind count on turn 7 is 0",
-          0,
-          () => {
-            return this._behindCountOnTurn(7);
-          },
-        ],
-        [
-          "Behind count on turn 8 is 1",
-          1,
-          () => {
-            return this._behindCountOnTurn(8);
-          },
-        ],
-        [
-          "Reserves count on turn 1 is 3",
-          3,
-          () => {
-            return this._reservesCountOnTurn(1);
-          },
-        ],
-        [
-          "Reserves count on turn 3 is 2",
-          2,
-          () => {
-            return this._reservesCountOnTurn(3);
-          },
-        ],
-        [
-          "Reserves count on turn 6 is 1",
-          1,
-          () => {
-            return this._reservesCountOnTurn(6);
-          },
-        ],
-      ],
-    );
+    // this.assert(
+    //   "Deck with 1 card in hand",
+    //   () => {
+    //     const landArray = [1];
+    //     this.#commander = this.loadCommander(makeTestDeckList(landArray));
+    //     this.#hand = this.loadHand(makeTestDeckList(landArray));
+    //     this.#draws = this.loadDraws(makeTestDeckList(landArray));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "1 land in hand",
+    //       1,
+    //       () => {
+    //         return this.#hand.landCount();
+    //       },
+    //     ],
+    //     [
+    //       "Turn 1 plays a reserve card",
+    //       "reserve",
+    //       () => {
+    //         return this._landPlayedForTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Turn 2 has no card to play",
+    //       "none",
+    //       () => {
+    //         return this._landPlayedForTurn(2);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the turn 1 is 1",
+    //       1,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the turn 2 is 1",
+    //       1,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(2);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count on turn 1 is 0",
+    //       0,
+    //       () => {
+    //         return this._behindCountOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count on turn 2 is 1",
+    //       1,
+    //       () => {
+    //         return this._behindCountOnTurn(2);
+    //       },
+    //     ],
+    //   ],
+    // );
 
-    this.assert(
-      "Deck with 4 card in hand and draw on 5",
-      () => {
-        const landArray = [2, 4, 5, 6, 11];
-        this.#commander = this.loadCommander(makeTestDeckList(landArray));
-        this.#hand = this.loadHand(makeTestDeckList(landArray));
-        this.#draws = this.loadDraws(makeTestDeckList(landArray));
-        this.updatePage();
-      },
-      [
-        [
-          "Turn 6 plays a reserve card",
-          "none",
-          () => {
-            return this._landPlayedForTurn(6);
-          },
-        ],
-        [
-          "Total played on the turn 6 is 5",
-          5,
-          () => {
-            return this._totalLandsPlayedOnTurn(6);
-          },
-        ],
-        [
-          "Behind count on turn 6 is 1",
-          1,
-          () => {
-            return this._behindCountOnTurn(6);
-          },
-        ],
-      ],
-    );
+    // this.assert(
+    //   "Deck with 4 card in hand and draws on 2, 4, and 5",
+    //   () => {
+    //     const landArray = [2, 4, 5, 6, 8, 10, 11];
+    //     this.#commander = this.loadCommander(makeTestDeckList(landArray));
+    //     this.#hand = this.loadHand(makeTestDeckList(landArray));
+    //     this.#draws = this.loadDraws(makeTestDeckList(landArray));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "Turn 6 plays a reserve card",
+    //       "reserve",
+    //       () => {
+    //         return this._landPlayedForTurn(6);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the turn 1 is 1",
+    //       1,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count on turn 7 is 0",
+    //       0,
+    //       () => {
+    //         return this._behindCountOnTurn(7);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count on turn 8 is 1",
+    //       1,
+    //       () => {
+    //         return this._behindCountOnTurn(8);
+    //       },
+    //     ],
+    //     [
+    //       "Reserves count on turn 1 is 3",
+    //       3,
+    //       () => {
+    //         return this._reservesCountOnTurn(1);
+    //       },
+    //     ],
+    //     [
+    //       "Reserves count on turn 3 is 2",
+    //       2,
+    //       () => {
+    //         return this._reservesCountOnTurn(3);
+    //       },
+    //     ],
+    //     [
+    //       "Reserves count on turn 6 is 1",
+    //       1,
+    //       () => {
+    //         return this._reservesCountOnTurn(6);
+    //       },
+    //     ],
+    //   ],
+    // );
+
+    // this.assert(
+    //   "Deck with 4 card in hand and draw on 5",
+    //   () => {
+    //     const landArray = [2, 4, 5, 6, 11];
+    //     this.#commander = this.loadCommander(makeTestDeckList(landArray));
+    //     this.#hand = this.loadHand(makeTestDeckList(landArray));
+    //     this.#draws = this.loadDraws(makeTestDeckList(landArray));
+    //     this.updatePage();
+    //   },
+    //   [
+    //     [
+    //       "Turn 6 plays a reserve card",
+    //       "none",
+    //       () => {
+    //         return this._landPlayedForTurn(6);
+    //       },
+    //     ],
+    //     [
+    //       "Total played on the turn 6 is 5",
+    //       5,
+    //       () => {
+    //         return this._totalLandsPlayedOnTurn(6);
+    //       },
+    //     ],
+    //     [
+    //       "Behind count on turn 6 is 1",
+    //       1,
+    //       () => {
+    //         return this._behindCountOnTurn(6);
+    //       },
+    //     ],
+    //   ],
+    // );
 
     //
   }
@@ -677,8 +754,27 @@ export class DeckRunner {
   }
 
   drawCards(_, el) {
+    let cards = this.#draws.cards().map((card) => this.drawCard(card));
+
+    // for (let pg = 150; pg > 0; pg -= 5) {
+    //   const report = this.api.makeHTML(templates.progressReport);
+    //   cards.splice(pg, 0, report);
+    //   // const cards = this.#draws.cards()
+    //   //   .slice(pg, pg + 5)
+    //   //   .map((card) => this.drawCard(card));
+    //   // cards.push(this.api.makeHTML(templates.progressReport));
+    //   // const subs = [
+    //   //   ["CARDS", cards],
+    //   // ];
+    //   // const report = this.api.makeHTML(templates.progressGroup, subs);
+    //   // el.appendChild(report);
+    // }
+
+    // const outputArray = this.#draws.cards().map((card) => this.drawCard(card));
+    // outputArray.splice(5, 0, this.api.makeHTML(templates.progressReport));
+
     el.replaceChildren(
-      ...this.#draws.cards().map((card) => this.drawCard(card)),
+      ...cards,
     );
   }
 
@@ -731,70 +827,75 @@ export class DeckRunner {
   _landPlayedForTurnText(turn) {
     switch (this._landPlayedForTurn(turn)) {
       case ("draw"):
-        return "Played Drawn Land";
+        return "Played Draw";
       case ("none"):
         return "---";
       case ("reserve"):
-        return "Played Reserve Land";
+        return "Played Reserve";
     }
   }
 
-  loadCommander(list) {
-    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
-    return list.split("\n")
-      .map((line) => line.match(cardMatcher))
-      .filter((match) => match !== null)
-      .filter((match) => match[3] !== undefined)
-      .filter((match) => match[3] === "Commander")
-      .map((match) => {
-        return new Commander(
-          match[2],
-          this.#idMap[match[2]],
-        );
-      })[0];
+  loadDeck(list) {
   }
 
-  loadDraws(list) {
-    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
-    return new Draws(
-      list.split("\n")
-        .map((line) => line.match(cardMatcher))
-        .filter((match) => match !== null)
-        .filter((match) => match[3] !== undefined)
-        .filter((match) => match[3] !== "Commander")
-        .filter((match) => match[3] !== "Maybeboard")
-        .slice(7)
-        .map((match, index) => {
-          const card = new Card(
-            match[2],
-            this.#idMap[match[2]],
-            match[3].toLowerCase(),
-          );
-          card.setTurn(index + 1);
-          return card;
-        }),
-    );
-  }
+  // loadCommander(list) {
+  //   const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
+  //   return list.split("\n")
+  //     .map((line) => line.match(cardMatcher))
+  //     .filter((match) => match !== null)
+  //     .filter((match) => match[3] !== undefined)
+  //     .filter((match) => match[3] === "Commander")
+  //     .map((match) => {
+  //       return new Commander(
+  //         match[2],
+  //         this.#idMap[match[2]],
+  //       );
+  //     })[0];
+  // }
 
-  loadHand(list) {
-    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
-    return new Hand(
-      list.split("\n")
-        .map((line) => line.match(cardMatcher))
-        .filter((match) => match !== null)
-        .filter((match) => match[3] !== undefined)
-        .filter((match) => match[3] !== "Commander")
-        .filter((match) => match[3] !== "Maybeboard")
-        .slice(0, 7)
-        .map((match) => {
-          return new Card(
-            match[2],
-            this.#idMap[match[2]],
-            match[3],
-          );
-        }),
-    );
-  }
+  // loadDraws(list) {
+  //   const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
+  //   const cards = [];
+  //   list.split("\n")
+  //     .map((line) => line.match(cardMatcher))
+  //     .filter((match) => match !== null)
+  //     .filter((match) => match[3] !== undefined)
+  //     .filter((match) => match[3] !== "Commander")
+  //     .filter((match) => match[3] !== "Maybeboard")
+  //     .slice(7)
+  //     .forEach((match, index) => {
+  //       for (let count = 0; count < parseInt(match[1], 10); count += 1) {
+  //         const card = new Card(
+  //           match[2],
+  //           this.#idMap[match[2]],
+  //           match[3].toLowerCase(),
+  //         );
+  //         card.setTurn(index + 1);
+  //         cards.push(card);
+  //       }
+  //     });
+  //   return new Draws(cards);
+  // }
+
+  // loadHand(list) {
+  //   const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
+  //   return new Hand(
+  //     list.split("\n")
+  //       .map((line) => line.match(cardMatcher))
+  //       .filter((match) => match !== null)
+  //       .filter((match) => match[3] !== undefined)
+  //       .filter((match) => match[3] !== "Commander")
+  //       .filter((match) => match[3] !== "Maybeboard")
+  //       .slice(0, 7)
+  //       .map((match) => {
+  //         return new Card(
+  //           match[2],
+  //           this.#idMap[match[2]],
+  //           match[3],
+  //         );
+  //       }),
+  //   );
+  // }
 
   async loadExampleDeck() {
     const url = `/deck-runner/example-deck.txt`;
@@ -909,13 +1010,13 @@ export class DeckRunner {
   }
 
   shuffleDeck() {
-    let lines = document.querySelector(".deck-list").value.split("\n");
-    shuffleArray(lines);
-    const shuffledDeck = lines.join("\n");
-    this.#commander = this.loadCommander(shuffledDeck);
-    this.#hand = this.loadHand(shuffledDeck);
-    this.#draws = this.loadDraws(shuffledDeck);
-    this.updatePage();
+    // let lines = document.querySelector(".deck-list").value.split("\n");
+    // shuffleArray(lines);
+    // const shuffledDeck = lines.join("\n");
+    // this.#commander = this.loadCommander(shuffledDeck);
+    // this.#hand = this.loadHand(shuffledDeck);
+    // this.#draws = this.loadDraws(shuffledDeck);
+    // this.updatePage();
   }
 
   _totalLandsPlayedOnTurn(turn) {
@@ -928,13 +1029,13 @@ export class DeckRunner {
 
   _turnStatus(turn) {
     if (this._reservesCountOnTurn(turn) > 0) {
-      return `Land Buffer: ${this._reservesCountOnTurn(turn)}`;
+      return `Buffer: ${this._reservesCountOnTurn(turn)}`;
     } else if (
       this._behindCountOnTurn(turn) > 0
     ) {
-      return `Lands Behind: ${this._behindCountOnTurn(turn)}`;
+      return `Behind: ${this._behindCountOnTurn(turn)}`;
     } else {
-      return "No Land Buffer";
+      return "Buffer: 0";
     }
   }
 
@@ -955,10 +1056,14 @@ function escapeHTML(input) {
 }
 
 function makeTestDeckList(landsToAdd) {
-  const ids = Array(99).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
+  const ids = Array(83).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
   ids.push(
     `1x Giada, Font of Hope (fdn) 141 [Commander{top}]`,
   );
+  ids.push(
+    `16x Youthful Valkyrie (fdn) 149 [Counters]`,
+  );
+
   for (const landIndex of landsToAdd) {
     ids[landIndex] = "1x Plains (ecl) 269 [Land]";
   }
