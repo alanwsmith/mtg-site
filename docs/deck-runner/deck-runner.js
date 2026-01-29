@@ -12,6 +12,13 @@ class Deck {
     return this.cards().filter((card) => card.kind() === "commander")[0];
   }
 
+  draws() {
+    this.cards().filter((card) => card.kind() !== "commander")
+      .slice(7).forEach((card, index) => card.setTurn(index + 1));
+    return this.cards().filter((card) => card.kind() !== "commander")
+      .slice(7);
+  }
+
   hand() {
     return this.cards().filter((card) => card.kind() !== "commander")
       .slice(0, 7);
@@ -33,11 +40,9 @@ class Deck {
             this.idMap[match[2]],
             match[3].toLowerCase(),
           );
-          card.setTurn(index + 1);
           this._cards.push(card);
         }
       });
-    console.log(this.cards());
   }
 }
 
@@ -283,6 +288,20 @@ export class DeckRunner {
           7,
           () => {
             return this.#deck.hand().length;
+          },
+        ],
+        [
+          "Draws has 92 cards",
+          92,
+          () => {
+            return this.#deck.draws().length;
+          },
+        ],
+        [
+          "First draw card has turn 1",
+          1,
+          () => {
+            return this.#deck.draws()[0].turn();
           },
         ],
       ],
@@ -729,8 +748,8 @@ export class DeckRunner {
 
   commanderCard(_, el) {
     const subs = [
-      ["CARDNAME", this.#commander.name()],
-      ["IMGSRC", this.makeImageURL(this.#commander.id())],
+      ["CARDNAME", this.#deck.commander().name()],
+      ["IMGSRC", this.makeImageURL(this.#deck.commander().id())],
     ];
     el.replaceChildren(
       this.api.makeHTML(templates.commanderCard, subs),
@@ -1010,13 +1029,11 @@ export class DeckRunner {
   }
 
   shuffleDeck() {
-    // let lines = document.querySelector(".deck-list").value.split("\n");
-    // shuffleArray(lines);
-    // const shuffledDeck = lines.join("\n");
-    // this.#commander = this.loadCommander(shuffledDeck);
-    // this.#hand = this.loadHand(shuffledDeck);
-    // this.#draws = this.loadDraws(shuffledDeck);
-    // this.updatePage();
+    let lines = document.querySelector(".deck-list").value.split("\n");
+    shuffleArray(lines);
+    const shuffledDeck = lines.join("\n");
+    this.#deck = new Deck(shuffledDeck, this.#idMap);
+    this.updatePage();
   }
 
   _totalLandsPlayedOnTurn(turn) {
@@ -1041,7 +1058,7 @@ export class DeckRunner {
 
   updatePage() {
     this.api.trigger(
-      "commanderCard handCards drawCards handLandCount",
+      "commanderCard", // handCards drawCards handLandCount",
     );
   }
 }
