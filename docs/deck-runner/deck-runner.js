@@ -14,22 +14,25 @@ const templates = {
 </div>`,
 
   drawCard: `<div class="card draw-card land-played-TURNCLASS">
+<div class="details">
+Turn: TURNNUM 
+  BEHIND
+</div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
 <div class="details">
   <div class="details-header">
-    <div>Turn: TURNNUM</div>
     <div>[CARDKIND]</div>
   </div>
   <div class="detail-line">LANDPLAYEDFORTURN</div>
   <div class="detail-line">Total Lands: TOTALPLAYED</div>
-  BEHIND
   RESERVES
 </div>
 </div>`,
 
   handCard: `<div class="card hand-card hand-kind-HANDCLASS">
+<div class="details">Opening Hand</div>
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
@@ -41,7 +44,7 @@ const templates = {
 </div>
 </div>`,
 
-  reservesCount: `<div class="detail-line reserves">Hand Reserves: COUNT</div>`,
+  reservesCount: `<div class="detail-line reserves">Land Reserves: COUNT</div>`,
 };
 
 class Card {
@@ -717,11 +720,11 @@ export class DeckRunner {
   _landPlayedForTurnText(turn) {
     switch (this._landPlayedForTurn(turn)) {
       case ("draw"):
-        return "Draw land played";
+        return "Played Drawn Land";
       case ("none"):
-        return "No land to play";
+        return "---";
       case ("reserve"):
-        return "Reserve land played";
+        return "Played Reserve Land";
     }
   }
 

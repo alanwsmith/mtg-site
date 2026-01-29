@@ -37,7 +37,8 @@
 }
 
 .draw-card {
-  border: 1px solid var(--faded-reverse-color);
+  padding: var(--xxxsmall-padding);
+  border: 2px solid var(--faded-reverse-color);
   border-radius: var(--small-border-radius);
   max-width: 18%;
 }
@@ -78,7 +79,7 @@
 
 .land-played-draw {
   color: var(--match-color);
-  background-color: var(--accent-color);
+  background-color: var(--heading-color);
 }
 
 .land-played-none {
@@ -90,6 +91,7 @@
   color: var(--match-color);
   background-color: var(--accent-color);
 }
+
 
 .opening {
   display: flex;
