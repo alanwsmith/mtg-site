@@ -28,6 +28,14 @@
   gap: 0.4rem;
 }
 
+.land-played-draw {
+  background-color: var(--faded-accent-color);
+}
+
+.land-played-reserve {
+  background-color: var(--faded-accent-color);
+}
+
 .marquee {
   display: grid;
   grid-template-columns: 9rem 1fr;

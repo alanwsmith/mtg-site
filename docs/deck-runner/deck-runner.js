@@ -9,7 +9,7 @@ const templates = {
 <img 
   alt="The CARDNAME card from Magic: The Gathering"
   src="IMGSRC" />
-<div class="turn-details __PLAYED_LAND__">
+<div class="turn-details land-played-TURNCLASS">
   <div>Turn: TURNNUM</div>
   <div>LANDPLAYEDFORTURN</div>
   <div>Total Lands: TOTALPLAYED</div>
@@ -623,6 +623,7 @@ export class DeckRunner {
       ["CARDNAME", card.name()],
       ["IMGSRC", this.makeImageURL(card.id())],
       ["TURNNUM", card.turn()],
+      ["TURNCLASS", this._landForTurn(card.turn())],
       ["LANDPLAYEDFORTURN", this._landForTurn(card.turn())],
       ["TOTALPLAYED", this._totalLandsPlayedOnTurn(card.turn())],
       ["BEHIND", this._behindCountOnTurn(card.turn())],
