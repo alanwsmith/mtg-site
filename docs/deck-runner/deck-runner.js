@@ -270,7 +270,7 @@ export class DeckRunner {
           "Total played on the first turn is 0",
           0,
           () => {
-            return this._totalPlayedOnTurn(1);
+            return this._totalLandsPlayedOnTurn(1);
           },
         ],
         [
@@ -318,7 +318,7 @@ export class DeckRunner {
           "Total played on the first turn is 1",
           1,
           () => {
-            return this._totalPlayedOnTurn(1);
+            return this._totalLandsPlayedOnTurn(1);
           },
         ],
         [
@@ -373,28 +373,28 @@ export class DeckRunner {
           "Total played on the first turn is 0",
           0,
           () => {
-            return this._totalPlayedOnTurn(1);
+            return this._totalLandsPlayedOnTurn(1);
           },
         ],
         [
           "Total played on the second turn is 1",
           1,
           () => {
-            return this._totalPlayedOnTurn(2);
+            return this._totalLandsPlayedOnTurn(2);
           },
         ],
         [
           "Total played on the third turn is 1",
           1,
           () => {
-            return this._totalPlayedOnTurn(3);
+            return this._totalLandsPlayedOnTurn(3);
           },
         ],
         [
           "Total played on the fifth turn is 2",
           2,
           () => {
-            return this._totalPlayedOnTurn(5);
+            return this._totalLandsPlayedOnTurn(5);
           },
         ],
         [
@@ -470,14 +470,14 @@ export class DeckRunner {
           "Total played on the turn 1 is 1",
           1,
           () => {
-            return this._totalPlayedOnTurn(1);
+            return this._totalLandsPlayedOnTurn(1);
           },
         ],
         [
           "Total played on the turn 2 is 1",
           1,
           () => {
-            return this._totalPlayedOnTurn(2);
+            return this._totalLandsPlayedOnTurn(2);
           },
         ],
         [
@@ -508,7 +508,6 @@ export class DeckRunner {
       },
       [
         [
-          "solo",
           "Turn 6 plays a reserve card",
           "reserve",
           () => {
@@ -516,19 +515,11 @@ export class DeckRunner {
           },
         ],
         [
-          "skip",
-          "Turn 2 has no card to play",
-          "none",
-          () => {
-            return this._landForTurn(2);
-          },
-        ],
-        [
-          "skip",
+          "solo",
           "Total played on the turn 1 is 1",
           1,
           () => {
-            return this._totalPlayedOnTurn(1);
+            return this._totalLandsPlayedOnTurn(1);
           },
         ],
         [
@@ -536,7 +527,7 @@ export class DeckRunner {
           "Total played on the turn 2 is 1",
           1,
           () => {
-            return this._totalPlayedOnTurn(2);
+            return this._totalLandsPlayedOnTurn(2);
           },
         ],
         [
@@ -570,7 +561,7 @@ export class DeckRunner {
   }
 
   _behindCountOnTurn(turn) {
-    return turn - this._totalPlayedOnTurn(turn);
+    return turn - this._totalLandsPlayedOnTurn(turn);
   }
 
   commanderCard(_, el) {
@@ -589,7 +580,7 @@ export class DeckRunner {
       ["IMGSRC", this.makeImageURL(card.id())],
       ["TURNNUM", card.turn()],
       ["LANDPLAYEDFORTURN", this._landForTurn(card.turn())],
-      ["TOTALPLAYED", this._totalPlayedOnTurn(card.turn())],
+      ["TOTALPLAYED", this._totalLandsPlayedOnTurn(card.turn())],
       ["BEHIND", this._behindCountOnTurn(card.turn())],
       ["RESERVES", this._reservesCountOnTurn(card.turn())],
     ];
@@ -787,10 +778,11 @@ export class DeckRunner {
     this.outputTestResultsToConsole();
   }
 
-  _totalPlayedOnTurn(turn) {
+  _totalLandsPlayedOnTurn(turn) {
     return Math.min(
       this.#draws.landsOnTurn(turn) +
         this.#hand.landCount(),
+      turn,
     );
   }
 
