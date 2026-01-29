@@ -21,7 +21,7 @@
   height: 14rem;
 }
 
-.game-draws {
+.turn-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
