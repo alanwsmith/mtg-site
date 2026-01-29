@@ -328,6 +328,110 @@ export class DeckRunner {
       ],
     );
 
+    this.assert(
+      "Deck with lands on turns 2 and 5",
+      () => {
+        const landArray = [9, 12];
+        this.#commander = this.loadCommander(makeTestDeckList(landArray));
+        this.#hand = this.loadHand(makeTestDeckList(landArray));
+        this.#draws = this.loadDraws(makeTestDeckList(landArray));
+        this.updatePage();
+      },
+      [
+        [
+          "0 lands in hand",
+          0,
+          () => {
+            return this.#hand.landCount();
+          },
+        ],
+        [
+          "First turn doesn't have card",
+          "none",
+          () => {
+            return this._landForTurn(1);
+          },
+        ],
+        [
+          "Second turn card played land from draw",
+          "draw",
+          () => {
+            return this._landForTurn(2);
+          },
+        ],
+        [
+          "Fifth turn card played land from draw",
+          "draw",
+          () => {
+            return this._landForTurn(5);
+          },
+        ],
+        [
+          "Total played on the first turn is 0",
+          0,
+          () => {
+            return this._totalPlayedOnTurn(1);
+          },
+        ],
+        [
+          "Total played on the second turn is 1",
+          1,
+          () => {
+            return this._totalPlayedOnTurn(2);
+          },
+        ],
+        [
+          "Total played on the third turn is 1",
+          1,
+          () => {
+            return this._totalPlayedOnTurn(3);
+          },
+        ],
+        [
+          "Total played on the fifth turn is 2",
+          2,
+          () => {
+            return this._totalPlayedOnTurn(5);
+          },
+        ],
+        [
+          "Behind count is 0 on turn 1",
+          1,
+          () => {
+            return this._behindCountOnTurn(1);
+          },
+        ],
+        [
+          "Behind count is 1 on turn 2",
+          1,
+          () => {
+            return this._behindCountOnTurn(2);
+          },
+        ],
+        [
+          "Behind count is 1 on turn 3",
+          2,
+          () => {
+            return this._behindCountOnTurn(3);
+          },
+        ],
+        [
+          "Behind count is 1 on turn 5",
+          3,
+          () => {
+            return this._behindCountOnTurn(5);
+          },
+        ],
+        [
+          "Behind count is 1 on turn 6",
+          4,
+          () => {
+            return this._behindCountOnTurn(6);
+          },
+        ],
+      ],
+    );
+
     //
   }
 
