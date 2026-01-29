@@ -24,6 +24,11 @@ class Deck {
       .slice(0, 7);
   }
 
+  handLandCount() {
+    return this.hand().filter((card) => card.kind() === "land").map((_) => 1)
+      .reduce((acc, cur) => acc + cur, 0);
+  }
+
   loadList(list) {
     const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
     this._cards = [];
@@ -302,6 +307,13 @@ export class DeckRunner {
           1,
           () => {
             return this.#deck.draws()[0].turn();
+          },
+        ],
+        [
+          "0 lands in hand",
+          0,
+          () => {
+            return this.#deck.handLandCount();
           },
         ],
       ],
@@ -828,7 +840,7 @@ export class DeckRunner {
   }
 
   handLandCount(_, el) {
-    el.innerHTML = this.#hand.landCount();
+    el.innerHTML = this.#deck.handLandCount();
   }
 
   _landPlayedForTurn(turn) {
@@ -1058,7 +1070,7 @@ export class DeckRunner {
 
   updatePage() {
     this.api.trigger(
-      "commanderCard", // handCards drawCards handLandCount",
+      "commanderCard handLandCount", // handCards drawCards handLandCount",
     );
   }
 }
