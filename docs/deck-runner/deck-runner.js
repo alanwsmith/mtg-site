@@ -488,67 +488,24 @@ export class DeckRunner {
           },
         ],
         [
-          "skip",
-          "Total played on the second turn is 1",
+          "Total played on the turn 2 is 1",
           1,
           () => {
             return this._totalPlayedOnTurn(2);
           },
         ],
         [
-          "skip",
-          "Total played on the third turn is 1",
-          1,
-          () => {
-            return this._totalPlayedOnTurn(3);
-          },
-        ],
-        [
-          "skip",
-          "Total played on the fifth turn is 2",
-          2,
-          () => {
-            return this._totalPlayedOnTurn(5);
-          },
-        ],
-        [
-          "skip",
-          "Behind count is 0 on turn 1",
-          1,
+          "Behind count on turn 1 is 0",
+          0,
           () => {
             return this._behindCountOnTurn(1);
           },
         ],
         [
-          "skip",
-          "Behind count is 1 on turn 2",
+          "Behind count on turn 2 is 1",
           1,
           () => {
             return this._behindCountOnTurn(2);
-          },
-        ],
-        [
-          "skip",
-          "Behind count is 1 on turn 3",
-          2,
-          () => {
-            return this._behindCountOnTurn(3);
-          },
-        ],
-        [
-          "skip",
-          "Behind count is 1 on turn 5",
-          3,
-          () => {
-            return this._behindCountOnTurn(5);
-          },
-        ],
-        [
-          "skip",
-          "Behind count is 1 on turn 6",
-          4,
-          () => {
-            return this._behindCountOnTurn(6);
           },
         ],
       ],
