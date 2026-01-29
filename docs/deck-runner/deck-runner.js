@@ -300,7 +300,7 @@ export class DeckRunner {
     this.assert(
       "Deck with 1 land as first draw card is loaded",
       () => {
-        const landArray = [8];
+        const landArray = [7];
         this.#commander = this.loadCommander(makeTestDeckList(landArray));
         this.#hand = this.loadHand(makeTestDeckList(landArray));
         this.#draws = this.loadDraws(makeTestDeckList(landArray));
@@ -341,7 +341,7 @@ export class DeckRunner {
     this.assert(
       "Deck with lands on turns 2 and 5",
       () => {
-        const landArray = [9, 12];
+        const landArray = [8, 11];
         this.#commander = this.loadCommander(makeTestDeckList(landArray));
         this.#hand = this.loadHand(makeTestDeckList(landArray));
         this.#draws = this.loadDraws(makeTestDeckList(landArray));
@@ -515,7 +515,6 @@ export class DeckRunner {
           },
         ],
         [
-          "solo",
           "Total played on the turn 1 is 1",
           1,
           () => {
@@ -620,7 +619,7 @@ export class DeckRunner {
     if (this.#draws.cards()[turn - 1].kind() === "land") {
       return "draw";
     } else if (
-      this.#hand.landCount() + this.#draws.landsOnTurn() >= turn
+      this.#hand.landCount() + this.#draws.landsOnTurn(turn) >= turn
     ) {
       return "reserve";
     } else {
@@ -803,7 +802,7 @@ function escapeHTML(input) {
 }
 
 function makeTestDeckList(landsToAdd) {
-  const ids = Array(98).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
+  const ids = Array(99).fill(`1x Youthful Valkyrie (fdn) 149 [Counters]`, 0);
   ids.push(
     `1x Giada, Font of Hope (fdn) 141 [Commander{top}]`,
   );
