@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+:root {
+  --light--background-color: oklch(0.9634 0.02097 105.642);
+  --light--default-color: oklch(0.1951 0.23 105.642);
+  --light--faded-default-color: oklch(0.1951 0.23 105.642 / 0.653);
+  --light--heading-color: oklch(0.165 0.18556 225.642);
+  --light--faded-heading-color: oklch(0.165 0.18556 225.642 / 0.18);
+  --light--link-color: oklch(0.5537 0.15458 225.642);
+  --light--faded-link-color: oklch(0.5537 0.15458 225.642 / 0.604);
+  --light--accent-color: oklch(0.4986 0.10843 165.642);
+  --light--faded-accent-color: oklch(0.4986 0.10843 165.642 / 0.28);
+  --light--info-color: oklch(0.645 0.09691077318165202 345.642);
+  --light--faded-info-color: oklch(0.645 0.09691077318165202 345.642 / 0.376);
+  --light--black-color: oklch(0 0 301.9078701095805);
+  --light--faded-black-color: oklch(0 0 301.9078701095805 / 0.46);
+  --light--white-color: oklch(1 0 301.9078701095805);
+  --light--faded-white-color: oklch(1 0 301.9078701095805 / 0.46);
+  --light--match-color: oklch(1 0 301.9078701095805);
+  --light--faded-match-color: oklch(1 0 301.9078701095805 / 0.46);
+  --light--reverse-color: oklch(0 0 301.9078701095805);
+  --light--faded-reverse-color: oklch(0 0 301.9078701095805 / 0.46);
+  --dark--background-color: oklch(0.2124 0.0298 254.092);
+  --dark--default-color: oklch(0.8747 0.04454 254.092);
+  --dark--faded-default-color: oklch(0.8747 0.04454 254.092 / 0.157);
+  --dark--heading-color: oklch(0.6705 0.12874 254.092);
+  --dark--faded-heading-color: oklch(0.6705 0.12874 254.092 / 0.308);
+  --dark--link-color: oklch(0.7299 0.07889 14.091999999999985);
+  --dark--faded-link-color: oklch(0.7299 0.07889 14.091999999999985 / 0.609);
+  --dark--accent-color: oklch(0.7338 0.06558 194.09199999999998);
+  --dark--faded-accent-color: oklch(0.7338 0.06558 194.09199999999998 / 0.567);
+  --dark--info-color: oklch(0.4351 0.16022 74.09199999999998);
+  --dark--faded-info-color: oklch(0.4351 0.16022 74.09199999999998 / 0.359);
+  --dark--black-color: oklch(0 0 232.79402489007663);
+  --dark--faded-black-color: oklch(0 0 232.79402489007663 / 0.46);
+  --dark--white-color: oklch(1 0 232.79402489007663);
+  --dark--faded-white-color: oklch(1 0 232.79402489007663 / 0.46);
+  --dark--match-color: oklch(0 0 232.79402489007663);
+  --dark--faded-match-color: oklch(0 0 232.79402489007663 / 0.46);
+  --dark--reverse-color: oklch(1 0 232.79402489007663);
+  --dark--faded-reverse-color: oklch(1 0 232.79402489007663 / 0.46);
+  --hc-light--background-color: oklch(1 0.06752 259.652);
+  --hc-light--default-color: oklch(0.0995 0.23 259.652);
+  --hc-light--faded-default-color: oklch(0.0995 0.23 259.652 / 0.242);
+  --hc-light--heading-color: oklch(0.6217704856122922 0.08831300417260277 319.652);
+  --hc-light--faded-heading-color: oklch(0.6217704856122922 0.08831300417260277 319.652 / 0.572);
+  --hc-light--link-color: oklch(0.5245 0.15006780734890438 259.652);
+  --hc-light--faded-link-color: oklch(0.5245 0.15006780734890438 259.652 / 0.437);
+  --hc-light--accent-color: oklch(0.3227 0.19753 19.651999999999987);
+  --hc-light--faded-accent-color: oklch(0.3227 0.19753 19.651999999999987 / 0.318);
+  --hc-light--info-color: oklch(0.5586547900477358 0.169058911353704 199.65200000000004);
+  --hc-light--faded-info-color: oklch(0.5586547900477358 0.169058911353704 199.65200000000004 / 0.34);
+  --hc-light--black-color: oklch(0 0 53.5090680592232);
+  --hc-light--faded-black-color: oklch(0 0 53.5090680592232 / 0.46);
+  --hc-light--white-color: oklch(1 0 53.5090680592232);
+  --hc-light--faded-white-color: oklch(1 0 53.5090680592232 / 0.46);
+  --hc-light--match-color: oklch(1 0 53.5090680592232);
+  --hc-light--faded-match-color: oklch(1 0 53.5090680592232 / 0.46);
+  --hc-light--reverse-color: oklch(0 0 53.5090680592232);
+  --hc-light--faded-reverse-color: oklch(0 0 53.5090680592232 / 0.46);
+  --hc-dark--background-color: oklch(0 0.20706934229967444 142);
+  --hc-dark--default-color: oklch(1 0.20411 82);
+  --hc-dark--faded-default-color: oklch(1 0.20411 82 / 0.385);
+  --hc-dark--heading-color: oklch(0.9552 0.09830629780740073 142);
+  --hc-dark--faded-heading-color: oklch(0.9552 0.09830629780740073 142 / 0.697);
+  --hc-dark--link-color: oklch(0.962 0.004698125519856717 262);
+  --hc-dark--faded-link-color: oklch(0.962 0.004698125519856717 262 / 0.628);
+  --hc-dark--accent-color: oklch(0.874 0.23 142);
+  --hc-dark--faded-accent-color: oklch(0.874 0.23 142 / 0.374);
+  --hc-dark--info-color: oklch(0.6882 0.21203825105953206 22);
+  --hc-dark--faded-info-color: oklch(0.6882 0.21203825105953206 22 / 0.418);
+  --hc-dark--black-color: oklch(0 0 78.02412821214362);
+  --hc-dark--faded-black-color: oklch(0 0 78.02412821214362 / 0.46);
+  --hc-dark--white-color: oklch(1 0 78.02412821214362);
+  --hc-dark--faded-white-color: oklch(1 0 78.02412821214362 / 0.46);
+  --hc-dark--match-color: oklch(0 0 78.02412821214362);
+  --hc-dark--faded-match-color: oklch(0 0 78.02412821214362 / 0.46);
+  --hc-dark--reverse-color: oklch(1 0 78.02412821214362);
+  --hc-dark--faded-reverse-color: oklch(1 0 78.02412821214362 / 0.46);
+  --highlight-1-color: oklch(from var(--accent-color) l c h);
+  --highlight-2-color: oklch(from var(--accent-color) l c calc(h + 60));
+  --highlight-3-color: oklch(from var(--accent-color) l c calc(h + 120));
+  --highlight-4-color: oklch(from var(--accent-color) l c calc(h + 180));
+  --highlight-5-color: oklch(from var(--link-color) l c h);
+  --highlight-6-color: oklch(from var(--link-color) l c calc(h + 60));
+  --highlight-7-color: oklch(from var(--link-color) l c calc(h + 120));
+  --highlight-8-color: oklch(from var(--link-color) l c calc(h + 180));
+}
+
+:root {
+  --background-color: var(--switch--background-color, var(--light--background-color));
+  --default-color: var(--switch--default-color, var(--light--default-color));
+  --faded-default-color: var(--switch--faded-default-color, var(--light--faded-default-color));
+  --heading-color: var(--switch--heading-color, var(--light--heading-color));
+  --faded-heading-color: var(--switch--faded-heading-color, var(--light--faded-heading-color));
+  --link-color: var(--switch--link-color, var(--light--link-color));
+  --faded-link-color: var(--switch--faded-link-color, var(--light--faded-link-color));
+  --accent-color: var(--switch--accent-color, var(--light--accent-color));
+  --faded-accent-color: var(--switch--faded-accent-color, var(--light--faded-accent-color));
+  --info-color: var(--switch--info-color, var(--light--info-color));
+  --faded-info-color: var(--switch--faded-info-color, var(--light--faded-info-color));
+  --black-color: var(--switch--black-color, var(--light--black-color));
+  --faded-black-color: var(--switch--faded-black-color, var(--light--faded-black-color));
+  --white-color: var(--switch--white-color, var(--light--white-color));
+  --faded-white-color: var(--switch--faded-white-color, var(--light--faded-white-color));
+  --match-color: var(--switch--match-color, var(--light--match-color));
+  --faded-match-color: var(--switch--faded-match-color, var(--light--faded-match-color));
+  --reverse-color: var(--switch--reverse-color, var(--light--reverse-color));
+  --faded-reverse-color: var(--switch--faded-reverse-color, var(--light--faded-reverse-color));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: var(--switch--background-color, var(--dark--background-color));
+    --default-color: var(--switch--default-color, var(--dark--default-color));
+    --faded-default-color: var(--switch--faded-default-color, var(--dark--faded-default-color));
+    --heading-color: var(--switch--heading-color, var(--dark--heading-color));
+    --faded-heading-color: var(--switch--faded-heading-color, var(--dark--faded-heading-color));
+    --link-color: var(-switch--link-color-, var(--dark--link-color));
+    --faded-link-color: var(--switch--faded-link-color, var(--dark--faded-link-color));
+    --accent-color: var(--switch--accent-color, var(--dark--accent-color));
+    --faded-accent-color: var(--switch--faded-accent-color, var(--dark--faded-accent-color));
+    --info-color: var(--switch--info-color, var(--dark--info-color));
+    --faded-info-color: var(--switch--faded-info-color, var(--dark--faded-info-color));
+    --black-color: var(--switch--black-color, var(--dark--black-color));
+    --faded-black-color: var(--switch--faded-black-color, var(--dark--faded-black-color));
+    --white-color: var(--switch--white-color, var(--dark--white-color));
+    --faded-white-color: var(--switch--faded-white-color, var(--dark--faded-white-color));
+    --match-color: var(--switch--match-color, var(--dark--match-color));
+    --faded-match-color: var(--switch--faded-match-color, var(--dark--faded-match-color));
+    --reverse-color: var(--switch--reverse-color, var(--dark--reverse-color));
+    --faded-reverse-color: var(--switch--faded-reverse-color, var(--dark--faded-reverse-color));
+  }
+}</style><style>
+:root {
+  --load-hider: 0;
+}
+.load-hider {
+  opacity: var(--load-hider);
+}
+html {
+  background-color: var(--background-color);
+}
+body {
+  background-color: var(--background-color);
+}
+
+</style>    <script src="/styles/styles.js"></script>
+    <script src="&#x2f;components&#x2f;bitty-7.0.0.js" type="module"></script>
+    <link rel="stylesheet" href="/styles/main.css" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<title>Magic Tools</title>
+<meta property="og:title" content="Magic Tools" />
+<meta name="description" content="My Magic - The Gathering Tools" />
+<meta property="og:description" content="My Magic - The Gathering Tools" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://mtg.al9000.com/" />
+<meta property="og:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg" />
+<link rel="apple-touch-icon" sizes="180x180" href="&#x2f;favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="&#x2f;favicons/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="&#x2f;favicons/favicon-32x32.png" />
+<link rel="manifest" href="&#x2f;favicons/site.webmanifest" />
+<link rel="mask-icon" href="&#x2f;favicons/safari-pinned-tab.svg" color="#5bbad5" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg">
+  </head>
+  <body>
+    <noscript>
+      Pages on this site use JavaScript. It's currently either
+      off, not working, or not available in your
+      browser/app. Some things won't work as a result.
+    </noscript>
+
+    <bitty-7-0
+      data-connect="/bits/default.js Main" 
+      class="load-hider">
+      <bitty-7-0 data-connect="/bits/default.js CodeBlockControls">
+        <bitty-7-0 data-connect="/bits/default.js ImageUpdater">
+          <bitty-7-0 data-connect="/bits/default.js DetailsOpener">
+
+<noscript>
+  <p>
+    NOTE: This site use JavaScript which appears to be turned off. 
+    Most content will be fine, but some things won't work.
+  </p>
+  <style>:root { --load-hider: 1; }</style>
+</noscript>
+<header class="default-wrapper xxlarge-bottom-margin xxlarge-bottom-padding">
+  <div class="top-nav">
+    <a href="/">Home</a>
+    <bitty-7-0 
+      data-connect="/bits/default.js ThemeSwitcher"
+      data-location="top"
+      data-init="themeSwitcher"></bitty-7-0>
+  </div>
+</header>
+      <main class="default-wrapper default-flow">
+<hgroup>
+    <h1>Yuriko Deck V4</h1>
+  </hgroup>
+
+<h2>Strategies</h2>
+
+<ul>
+<li>
+<p>If you have black marked connection and
+skyllclamp, you can keep feeding tokens
+into battle and they'll either win or
+you get to draw two cards.</p>
+</li>
+<li>
+<p>You can attack with Changeling
+Outcast that can't be blocked and then use
+ninjitsu to bring in another ninja.</p>
+</li>
+<li>
+<p>pretty sure one of the ninjas can
+put another ninja back in the deck
+which means you could keep cycling
+them with the skeleton creature
+if they have a good <strong>enters
+battlefield</strong> feature.</p>
+</li>
+<li>
+<p>Get Sink into Stupor in the
+deck which can be played as a
+land if you need one or bounce
+a nonland permanent opponent card.</p>
+</li>
+<li>
+<p>Can attach with something and use
+Vodalian Illusionist to phase
+out a defender. Or, phase out
+an attacking creature?</p>
+</li>
+<li>
+<p>Use feed the swarm and reanimate
+to kill a creature and then
+take control of it immediately.
+Same could be done with Infernal
+Grasp.</p>
+</li>
+<li>
+<p>Tragic Slip - an instant for
+1 black you can use to give
+a creature -13/-13 if something
+died on the turn.</p>
+</li>
+<li>
+<p>Don't use crippling chill on your
+turn. wait until an opponent
+has done their untap step. The
+text says it won't untap
+during the next one so you
+get to knock something
+out for two turns if I'm reading
+this right.</p>
+</li>
+<li>
+<p>If you have Shizo, Death's
+Storehouse, use a black to
+tap it so a creature can
+attack with fear. (make sure
+there aren't artifact or
+other black creatures that
+can counter it.</p>
+</li>
+<li>
+<p>use secret tunnel with
+4 mana to have two creatures
+that can't be blocked on the
+turn.</p>
+</li>
+</ul>
+<h2>Cards To Pick</h2>
+<p>These are strong contenders
+for picks for the deck:</p>
+<ul>
+<li>
+<p>Conspiracy turn everything
+into a given type</p>
+</li>
+<li>
+<p>xenograft turns everything
+into a given type</p>
+</li>
+<li>
+<p>so does the aqueous one</p>
+</li>
+<li>
+<p>amoeboid give creature types</p>
+</li>
+<li>
+<p>standardize is an instant
+that can make everything a given
+creature type</p>
+</li>
+<li>
+<p>Maskwood Nexus turns all the
+creature you control into every
+creature type.</p>
+</li>
+<li>
+<p>leyline of transformation
+converts creatures to a specifc
+type in addttion to their other
+types.</p>
+</li>
+<li>
+<p>arcane adaptation lets you choose
+a creature type and make all
+your creatures that type.</p>
+</li>
+<li>
+<p>combo hivestone with artificial
+evolution to make everything
+ninjas (not sure it's necessary,
+but it's a possibility)</p>
+</li>
+<li>
+<p>Can Irenicus' Vile Duplicataion
+bring in a second legendary
+that doesnt' cause it to
+bump out since it won't
+be a legendary, or is the
+name all that matters?</p>
+</li>
+<li>
+<p>Sakashima of a thousand faces
+as a second commander so you
+get double the draws and
+hits for each attack.</p>
+</li>
+<li>
+<p>glasspool mimic -
+copy another creature or
+be a land</p>
+</li>
+<li>
+<p>Fell the profane - either
+destroy a target creature/planeswalker
+or play as a land.</p>
+</li>
+<li>
+<p>Malakir Rebirth - either
+land or allows a creature
+to come back if it dies on
+the turn.</p>
+</li>
+<li>
+<p>Hagra Mauling - can play as either
+destroy a creature
+or as a land</p>
+</li>
+<li>
+<p>Agadeem's Awkening - can
+either pull cards from the
+graveyard or play as a land.</p>
+</li>
+<li>
+<p>Pelakka Predation - an
+opponent reveals their hand,
+you have them discard a
+card with mana value of
+3 or greater</p>
+</li>
+<li></li>
+<li>
+<p>Phyrexian Arena -
+draw a card and lose a life
+each turn</p>
+</li>
+<li>
+<p>Zof Concumption - opponents
+lose 5 life you gain 4 life</p>
+</li>
+<li>
+<p>Pelakka</p>
+</li>
+<li>
+<p>Darkness - prevent
+all combat damage that
+would be dealt this turn.</p>
+</li>
+<li>
+<p>Withering Torment -
+destroy target creature
+or enchantment.</p>
+</li>
+<li>
+<p>Diabolic Intent - Sac
+a creature to find a card
+in your library and put it
+in your hand.</p>
+</li>
+<li>
+<p>Morbid Opportunist -
+whenever a creature dies
+you draw a card.</p>
+</li>
+<li>
+<p>Consuming Corruption
+seems worth it as it does
+damage based on the number
+of swamps you have and
+you gain that much life.</p>
+</li>
+<li>
+<p>Callous Oppressor -
+gain control of a creature
+that's a different kind
+than an opponent picks.</p>
+</li>
+<li>
+<p>Willbender - can be played
+face down. when it's turned
+face up it changes the target
+of a target spell or ability
+with a single target.</p>
+</li>
+<li>
+<p>Washout - return all permanents
+of the color of your choice
+to their owners hands.</p>
+</li>
+<li>
+<p>Coastal Piracy - when a creature
+deals combat damage you draw
+a card.</p>
+</li>
+<li>
+<p>Vodalian Illusionist - target
+creature phases out.</p>
+</li>
+<li>
+<p>Soka's boomerang for tapping
+a creature before someone
+can attack with it.</p>
+</li>
+<li>
+<p>Aboshan, Cephalid Emperor -
+Pay three blue to tap all creatures
+without flying. Need to look up,
+but I think you can do that
+after an opponents untap step</p>
+</li>
+<li>
+<p>Counterbalance - when an
+opponent casts a spell you
+reveal top card in the library
+and if manas match the spell
+is countered. (feels like a free
+chance to counter every spell?)</p>
+</li>
+<li>
+<p>Equilibrium - whenever you cast
+a creature spell, you may
+pay 1 and return target creature
+to it's owner's hand.</p>
+</li>
+<li>
+<p>Day of Dragons -</p>
+</li>
+</ul>
+<p>Turns everybody into 5/5 dragons
+with flying. when the enchantment
+leaves, all the original creatures
+come back. (feels like maybe too
+costly and if you don't have a
+way to sac the enchantment it
+doesn't feel worth it. would
+be great for a 1-shot if
+you could though.)</p>
+<ul>
+<li>
+<p>Dark Ritual - spend 1 black
+get 3 black.</p>
+</li>
+<li>
+<p>Reanimate - 1 black to
+pull a target creature card
+from a graveyard to your control</p>
+</li>
+<li>
+<p>Phyrexian Arena - give you
+an extra draw each turn at the
+cost of 1 life</p>
+</li>
+<li>
+<p>Deadly Rollick - can
+exile target creature for
+free if you have a commander
+in play.</p>
+</li>
+<li>
+<p>Victimize - Sac on creature
+to return two from your
+graveyard.</p>
+</li>
+<li>
+<p>Black Market Connections</p>
+</li>
+<li>
+<p>Blood artist - whenever
+a creature dies you gain
+a life and a target opponent
+loses a life</p>
+</li>
+<li>
+<p>Night's Whisper - lose
+2 life to draw 2 cards.</p>
+</li>
+<li>
+<p>Exsanguinate - X + 2 black.
+opponents lose X. You gain
+life for all the life lost.</p>
+</li>
+<li>
+<p>Damnation - to have a board
+wipe.</p>
+</li>
+<li>
+<p>Sanguine bond - whenever
+you gain life, target opponent
+loses that much life.</p>
+</li>
+<li>
+<p>Sheolred, the apocalypse -
+whenever you draw a card
+you gain two life, when
+every an opponent draws one
+they lose 2 life</p>
+</li>
+<li>
+<p>Vito, Thorn of the Dusk
+Rose - whenever you gain
+life, target opponent loses
+that much life.</p>
+</li>
+<li>
+<p>Massacre Wurm - give
+opponents -2/-2 and whenever
+a creature an opponnet
+controls dies they lose 2 life.</p>
+</li>
+<li>
+<p>Grave pact - when
+a creature you control dies
+opponents sac a creature.</p>
+</li>
+<li>
+<p>Changeling Outcast - every
+creature type - can't be
+blocked. perfect for
+ninjitsu.</p>
+</li>
+<li>
+<p>Charcoal Diamond
+turn gets 1 black mana</p>
+</li>
+<li>
+<p>Black market -
+gets a charge for each creature
+that dies, you get mana
+for each charge.</p>
+</li>
+<li>
+<p>Torment of Hailfire</p>
+</li>
+</ul>
+<p>Pay X plus 2 black - opponent
+loses 3 life or sacs a creature
+for each X.</p>
+<ul>
+<li>
+<p>Bloodchief Ascension
+gets counters if an opponent
+lost 2 or more life on their
+turn. with 3 or more counters
+can have a player lose 2 life
+when a card goes into their
+graveyard and you gain
+2 life.</p>
+</li>
+<li>
+<p>Ophimancer - creates black
+snake tokens with deathtouch
+at the start of each upkeep
+that can be sacraficed.</p>
+</li>
+<li>
+<p>Ayara, First of Locthwain
+can turn and sac a black
+creature to draw a card.</p>
+</li>
+<li>
+<p>The Darkness Crystal</p>
+</li>
+<li>
+<p>Morbid opportunist
+whenevery something else
+dies you draw a card
+once per turn.</p>
+</li>
+<li>
+<p>Dauthi Voidwalker
+opponents cards get exiled
+and you can pull one of
+them and play it without
+paying its mana cost.</p>
+</li>
+<li>
+<p>Sheoldred, the apocalypse
+whenever you draw a card
+gain 2 life, when opponents
+draw they lose two life</p>
+</li>
+<li>
+<p>Vito, thorn of dusk
+whenever you gain a life
+target opponent loses the
+much. can pay 3colorless
+and 2 black to give everyone
+life link.</p>
+</li>
+<li>
+<p>Orpomancer (or whatever
+the card is called)
+that lets you make a 1/1
+black snake with
+death touch at the start
+of each upkeep so you
+can sac it.</p>
+</li>
+<li>
+<p>Sheoldred's Edict
+Each player sac either:
+nontoken creature,
+creature token, or
+a planeswalker.
+(Good for the sideboard)</p>
+</li>
+<li>
+<p>Dictate of Erebos
+whenever a creature you
+control dies each opponent
+sacs a creature</p>
+</li>
+<li>
+<p>phyresian reclamation
+1 colorless and 1 black
+and 2 life returns
+creature from graveyard
+to hand</p>
+</li>
+<li>
+<p>Wound Reflection
+basically doubles the
+damage to each opponent
+on their end step.
+this can proc with the
+life gain thing which
+could jump to the
+other one.</p>
+</li>
+<li>
+<p>can you cycle obsessive
+pursuit with the other
+life link triggers?</p>
+</li>
+<li>
+<p>Black Mage's Rod does
+1 damage when you cast
+non-creature spells</p>
+</li>
+<li>
+<p>crowded crypt
+mana or sacrafice for
+draw</p>
+</li>
+<li>
+<p>infernal idol
+mana or sacrafice for
+draw</p>
+</li>
+<li>
+<p>cabal coffers -
+2 of anything turns
+into 1 black for
+each swamp. doesn't
+proc without the
+input.</p>
+</li>
+<li>
+<p>cabal stronghold
+add 1 colorless, or
+use 3 colorless to
+get one black for each
+swamp you control.</p>
+</li>
+</ul>
+<p>I think I like this more
+than the coffers becuase
+it always give you at
+least 1.</p>
+      </main>
+
+<footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
+  <div class="small-font-size">
+    <div class="text-align-center">
+    from <a href="https://www.alanwsmith.com/">alan w smith</a>
+    </div>
+    <div class="text-align-center"><a href="https:&#x2f;&#x2f;github.com&#x2f;alanwsmith&#x2f;mtg-site">source</a> ~ <a href="https://socials.alanwsmith.com/">socials</a> ~
+    <a href="https://links.alanwsmith.com/">other projects</a> ~
+    <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
+    </div>
+  </div>
+</footer>
+          </bitty-7-0>
+        </bitty-7-0>
+      </bitty-7-0>
+    </bitty-7-0>
+
+    <script>
+      setTimeout(() => { 
+        document.documentElement.style.setProperty("--load-hider", "1");
+      }, 1300);
+    </script>
+  </body>
+</html>
