@@ -60,13 +60,16 @@ export class Converter {
       .filter((match) => match[3] !== undefined)
       .forEach((match, index) => {
         for (let count = 0; count < parseInt(match[1], 10); count += 1) {
+          const id = this.#idMap[match[2]];
           this.#data.cards.push(
             {
               name: match[2],
-              id: this.#idMap[match[2]],
+              id: id,
               count: match[1],
               kind: match[3].toLowerCase(),
               line: match[0],
+              idChar1: id.substring(0, 1),
+              idChar2: id.substring(1, 2),
             },
           );
         }
