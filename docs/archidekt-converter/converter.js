@@ -1,7 +1,7 @@
 const t = {
   // https://cards.scryfall.io/border_crop/front/8/3/83f510b7-4cbd-4883-9c26-c8824bc668ac.jpg
   wget:
-    `[ ! -e "ID.jpg" ] && wget https://cards.scryfall.io/border_crop/front/PREFIX1/PREFIX2/ID.jpg\nsleep 1`,
+    `[ ! -e "ID.jpg" ] && wget https://cards.scryfall.io/border_crop/front/PREFIX1/PREFIX2/ID.jpg && sleep 1`,
 };
 
 export class Converter {
@@ -68,8 +68,8 @@ export class Converter {
               count: match[1],
               kind: match[3].toLowerCase(),
               line: match[0],
-              idChar1: id.substring(0, 1),
-              idChar2: id.substring(1, 2),
+              char1: id.substring(0, 1),
+              char2: id.substring(1, 2),
             },
           );
         }

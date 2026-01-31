@@ -6,8 +6,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Aetherflux Reservoir (plst) KLD-192 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "9",
-      "idChar2": "6"
+      "char1": "9",
+      "char2": "6"
     },
     {
       "name": "Agatha's Soul Cauldron",
@@ -15,8 +15,8 @@
       "count": "1",
       "kind": "counters",
       "line": "1x Agatha's Soul Cauldron (woe) 242 [Counters]",
-      "idChar1": "0",
-      "idChar2": "1"
+      "char1": "0",
+      "char2": "1"
     },
     {
       "name": "Alhammarret's Archive",
@@ -24,8 +24,8 @@
       "count": "1",
       "kind": "draw",
       "line": "1x Alhammarret's Archive (c21) 233 [Draw]",
-      "idChar1": "4",
-      "idChar2": "f"
+      "char1": "4",
+      "char2": "f"
     },
     {
       "name": "Amoeboid Changeling",
@@ -33,8 +33,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Amoeboid Changeling (j22) 269 [Protection]",
-      "idChar1": "0",
-      "idChar2": "6"
+      "char1": "0",
+      "char2": "6"
     },
     {
       "name": "Aqueous Form",
@@ -42,8 +42,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Aqueous Form (cmr) 56 [Evasion]",
-      "idChar1": "c",
-      "idChar2": "8"
+      "char1": "c",
+      "char2": "8"
     },
     {
       "name": "Archfiend of Depravity",
@@ -51,8 +51,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Archfiend of Depravity (fic) 273 [Removal]",
-      "idChar1": "0",
-      "idChar2": "e"
+      "char1": "0",
+      "char2": "e"
     },
     {
       "name": "Argentum Armor",
@@ -60,8 +60,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Argentum Armor (afc) 198 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "f",
-      "idChar2": "b"
+      "char1": "f",
+      "char2": "b"
     },
     {
       "name": "As Foretold",
@@ -69,8 +69,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x As Foretold (who) 214 [Ramp]",
-      "idChar1": "c",
-      "idChar2": "4"
+      "char1": "c",
+      "char2": "4"
     },
     {
       "name": "Ashes to Ashes",
@@ -78,8 +78,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Ashes to Ashes (5ed) 141 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "9",
-      "idChar2": "e"
+      "char1": "9",
+      "char2": "e"
     },
     {
       "name": "Aura Thief",
@@ -87,8 +87,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Aura Thief (plst) UDS-26 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "8",
-      "idChar2": "a"
+      "char1": "8",
+      "char2": "a"
     },
     {
       "name": "Banner of Kinship",
@@ -96,8 +96,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Banner of Kinship (fdn) 127 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "a",
-      "idChar2": "1"
+      "char1": "a",
+      "char2": "1"
     },
     {
       "name": "Basilisk Collar",
@@ -105,8 +105,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Basilisk Collar (fdn) 669 [Removal]",
-      "idChar1": "7",
-      "idChar2": "b"
+      "char1": "7",
+      "char2": "b"
     },
     {
       "name": "Bender's Waterskin",
@@ -114,8 +114,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Bender's Waterskin (tla) 255 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "6",
-      "idChar2": "d"
+      "char1": "6",
+      "char2": "d"
     },
     {
       "name": "Beseech the Queen",
@@ -123,8 +123,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Beseech the Queen (plst) SHM-57 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "f",
-      "idChar2": "7"
+      "char1": "f",
+      "char2": "7"
     },
     {
       "name": "Bident of Thassa",
@@ -132,8 +132,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Bident of Thassa (blc) 162 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "9",
-      "idChar2": "4"
+      "char1": "9",
+      "char2": "4"
     },
     {
       "name": "Black Market Connections",
@@ -141,8 +141,8 @@
       "count": "1",
       "kind": "draw",
       "line": "1x Black Market Connections (acr) 87 [Draw]",
-      "idChar1": "b",
-      "idChar2": "8"
+      "char1": "b",
+      "char2": "8"
     },
     {
       "name": "Blatant Thievery",
@@ -150,8 +150,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Blatant Thievery (plst) E02-8 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "2"
+      "char1": "0",
+      "char2": "2"
     },
     {
       "name": "Bloodforged Battle-Axe",
@@ -159,8 +159,8 @@
       "count": "1",
       "kind": "pump",
       "line": "1x Bloodforged Battle-Axe (pip) 226 [Pump]",
-      "idChar1": "1",
-      "idChar2": "4"
+      "char1": "1",
+      "char2": "4"
     },
     {
       "name": "Bloodline Pretender",
@@ -168,8 +168,8 @@
       "count": "1",
       "kind": "counters",
       "line": "1x Bloodline Pretender (moc) 350 [Counters]",
-      "idChar1": "7",
-      "idChar2": "3"
+      "char1": "7",
+      "char2": "3"
     },
     {
       "name": "Bontu's Monument",
@@ -177,8 +177,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Bontu's Monument (drc) 124 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "1",
-      "idChar2": "7"
+      "char1": "1",
+      "char2": "7"
     },
     {
       "name": "Brotherhood Regalia",
@@ -186,8 +186,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Brotherhood Regalia (acr) 71 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "8",
-      "idChar2": "a"
+      "char1": "8",
+      "char2": "a"
     },
     {
       "name": "Buster Sword",
@@ -195,8 +195,8 @@
       "count": "1",
       "kind": "draw",
       "line": "1x Buster Sword (fin) 255 [Draw]",
-      "idChar1": "3",
-      "idChar2": "7"
+      "char1": "3",
+      "char2": "7"
     },
     {
       "name": "Changeling Outcast",
@@ -204,8 +204,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Changeling Outcast (otc) 128 [Evasion]",
-      "idChar1": "a",
-      "idChar2": "b"
+      "char1": "a",
+      "char2": "b"
     },
     {
       "name": "Chimil, the Inner Sun",
@@ -213,8 +213,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Chimil, the Inner Sun (ecc) 137 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "7",
-      "idChar2": "b"
+      "char1": "7",
+      "char2": "b"
     },
     {
       "name": "Clearwater Pathway // Murkwater Pathway",
@@ -222,8 +222,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Clearwater Pathway // Murkwater Pathway (plst) ZNR-260 [Land]",
-      "idChar1": "b",
-      "idChar2": "4"
+      "char1": "b",
+      "char2": "4"
     },
     {
       "name": "Coastal Piracy",
@@ -231,8 +231,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Coastal Piracy (tle) 156 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "f"
+      "char1": "0",
+      "char2": "f"
     },
     {
       "name": "Command Tower",
@@ -240,8 +240,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Command Tower (ecc) 59 [Land]",
-      "idChar1": "d",
-      "idChar2": "a"
+      "char1": "d",
+      "char2": "a"
     },
     {
       "name": "Commander's Plate",
@@ -249,8 +249,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Commander's Plate (cmr) 305 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "1",
-      "idChar2": "9"
+      "char1": "1",
+      "char2": "9"
     },
     {
       "name": "Conqueror's Flail",
@@ -258,8 +258,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Conqueror's Flail (fic) 340 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "d",
-      "idChar2": "5"
+      "char1": "d",
+      "char2": "5"
     },
     {
       "name": "Cosmos Elixir",
@@ -267,8 +267,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Cosmos Elixir (khm) 237 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "6",
-      "idChar2": "b"
+      "char1": "6",
+      "char2": "b"
     },
     {
       "name": "Counterspell",
@@ -276,8 +276,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Counterspell (dsc) 114 [Removal]",
-      "idChar1": "4",
-      "idChar2": "f"
+      "char1": "4",
+      "char2": "f"
     },
     {
       "name": "Court of Vantress",
@@ -285,8 +285,8 @@
       "count": "1",
       "kind": "copy",
       "line": "1x Court of Vantress (woc) 22 [Copy]",
-      "idChar1": "b",
-      "idChar2": "6"
+      "char1": "b",
+      "char2": "6"
     },
     {
       "name": "Covert Technician",
@@ -294,8 +294,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x Covert Technician (neo) 49 [Ramp]",
-      "idChar1": "d",
-      "idChar2": "b"
+      "char1": "d",
+      "char2": "b"
     },
     {
       "name": "Crashing Wave",
@@ -303,8 +303,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Crashing Wave (tla) 47 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "9",
-      "idChar2": "f"
+      "char1": "9",
+      "char2": "f"
     },
     {
       "name": "Crawlspace",
@@ -312,8 +312,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Crawlspace (dmr) 217 [Protection]",
-      "idChar1": "5",
-      "idChar2": "b"
+      "char1": "5",
+      "char2": "b"
     },
     {
       "name": "Crux of Fate",
@@ -321,8 +321,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Crux of Fate (fic) 275 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "1",
-      "idChar2": "1"
+      "char1": "1",
+      "char2": "1"
     },
     {
       "name": "Cyclonic Rift",
@@ -330,8 +330,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Cyclonic Rift (rvr) 40 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "d",
-      "idChar2": "f"
+      "char1": "d",
+      "char2": "f"
     },
     {
       "name": "Damnation",
@@ -339,8 +339,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Damnation (2x2) 73 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "d",
-      "idChar2": "3"
+      "char1": "d",
+      "char2": "3"
     },
     {
       "name": "Darksteel Plate",
@@ -348,8 +348,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Darksteel Plate (fic) 342 [Protection]",
-      "idChar1": "3",
-      "idChar2": "f"
+      "char1": "3",
+      "char2": "f"
     },
     {
       "name": "Darkwater Catacombs",
@@ -357,8 +357,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Darkwater Catacombs (fic) 384 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "3"
+      "char1": "0",
+      "char2": "3"
     },
     {
       "name": "Decanter of Endless Water",
@@ -366,8 +366,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x Decanter of Endless Water (clb) 444 [Ramp]",
-      "idChar1": "5",
-      "idChar2": "1"
+      "char1": "5",
+      "char2": "1"
     },
     {
       "name": "Demolition Field",
@@ -375,8 +375,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Demolition Field (fic) 385 [Land]",
-      "idChar1": "0",
-      "idChar2": "c"
+      "char1": "0",
+      "char2": "c"
     },
     {
       "name": "Diabolic Vision",
@@ -384,8 +384,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Diabolic Vision (dsc) 87 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "c",
-      "idChar2": "3"
+      "char1": "c",
+      "char2": "3"
     },
     {
       "name": "Dimir Infiltrator",
@@ -393,8 +393,8 @@
       "count": "1",
       "kind": "tutor",
       "line": "1x Dimir Infiltrator (pca) 86 [Tutor]",
-      "idChar1": "b",
-      "idChar2": "9"
+      "char1": "b",
+      "char2": "9"
     },
     {
       "name": "Dimir Signet",
@@ -402,8 +402,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Dimir Signet (clu) 221 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "c",
-      "idChar2": "3"
+      "char1": "c",
+      "char2": "3"
     },
     {
       "name": "Dispel",
@@ -411,8 +411,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Dispel (plst) BFZ-76 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "b",
-      "idChar2": "c"
+      "char1": "b",
+      "char2": "c"
     },
     {
       "name": "Dokuchi Silencer",
@@ -420,8 +420,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Dokuchi Silencer (neo) 95 [Removal]",
-      "idChar1": "a",
-      "idChar2": "2"
+      "char1": "a",
+      "char2": "2"
     },
     {
       "name": "Dolmen Gate",
@@ -429,8 +429,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Dolmen Gate (plst) LRW-256 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "f",
-      "idChar2": "d"
+      "char1": "f",
+      "char2": "d"
     },
     {
       "name": "Explorer's Scope",
@@ -438,8 +438,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Explorer's Scope (fic) 344 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "b",
-      "idChar2": "e"
+      "char1": "b",
+      "char2": "e"
     },
     {
       "name": "Feed the Swarm",
@@ -447,8 +447,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Feed the Swarm (tle) 257 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "a",
-      "idChar2": "7"
+      "char1": "a",
+      "char2": "7"
     },
     {
       "name": "Final Act",
@@ -456,8 +456,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Final Act (m3c) 104 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "3",
-      "idChar2": "c"
+      "char1": "3",
+      "char2": "c"
     },
     {
       "name": "Fire Nation Engineer",
@@ -465,8 +465,8 @@
       "count": "1",
       "kind": "counters",
       "line": "1x Fire Nation Engineer (tla) 99 [Counters]",
-      "idChar1": "5",
-      "idChar2": "d"
+      "char1": "5",
+      "char2": "d"
     },
     {
       "name": "Fog Bank",
@@ -474,8 +474,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Fog Bank (fdn) 591 [Protection]",
-      "idChar1": "1",
-      "idChar2": "8"
+      "char1": "1",
+      "char2": "8"
     },
     {
       "name": "Genji Glove",
@@ -483,8 +483,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Genji Glove (fin) 258 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "f",
-      "idChar2": "7"
+      "char1": "f",
+      "char2": "7"
     },
     {
       "name": "Ghastly Death Tyrant",
@@ -492,8 +492,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Ghastly Death Tyrant (clb) 127 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "5",
-      "idChar2": "6"
+      "char1": "5",
+      "char2": "6"
     },
     {
       "name": "Ghost Quarter",
@@ -501,8 +501,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Ghost Quarter (mb2) 109 [Land]",
-      "idChar1": "1",
-      "idChar2": "2"
+      "char1": "1",
+      "char2": "2"
     },
     {
       "name": "Gilded Lotus",
@@ -510,8 +510,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Gilded Lotus (fdn) 725 *F* [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "a",
-      "idChar2": "a"
+      "char1": "a",
+      "char2": "a"
     },
     {
       "name": "Glen Elendra Archmage",
@@ -519,8 +519,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Glen Elendra Archmage (woc) 94 [Removal]",
-      "idChar1": "b",
-      "idChar2": "d"
+      "char1": "b",
+      "char2": "d"
     },
     {
       "name": "Gloomlake Verge",
@@ -528,8 +528,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Gloomlake Verge (dsk) 260 [Land]",
-      "idChar1": "8",
-      "idChar2": "3"
+      "char1": "8",
+      "char2": "3"
     },
     {
       "name": "Grave Pact",
@@ -537,8 +537,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Grave Pact (cmm) 165 [Removal]",
-      "idChar1": "f",
-      "idChar2": "5"
+      "char1": "f",
+      "char2": "5"
     },
     {
       "name": "Hedron Archive",
@@ -546,8 +546,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Hedron Archive (fdn) 726 *F* [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "5",
-      "idChar2": "3"
+      "char1": "5",
+      "char2": "3"
     },
     {
       "name": "Helm of Awakening",
@@ -555,8 +555,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Helm of Awakening (dmr) 224 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "e",
-      "idChar2": "9"
+      "char1": "e",
+      "char2": "9"
     },
     {
       "name": "Helm of the Ghastlord",
@@ -564,8 +564,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Helm of the Ghastlord (shm) 166 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "6",
-      "idChar2": "5"
+      "char1": "6",
+      "char2": "5"
     },
     {
       "name": "Higure, the Still Wind",
@@ -573,8 +573,8 @@
       "count": "1",
       "kind": "tutor",
       "line": "1x Higure, the Still Wind (pca) 18 [Tutor]",
-      "idChar1": "f",
-      "idChar2": "7"
+      "char1": "f",
+      "char2": "7"
     },
     {
       "name": "Homeward Path",
@@ -582,8 +582,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Homeward Path (c16) 301 [Land]",
-      "idChar1": "5",
-      "idChar2": "4"
+      "char1": "5",
+      "char2": "4"
     },
     {
       "name": "Honest Work",
@@ -591,8 +591,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Honest Work (tla) 55 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "5",
-      "idChar2": "7"
+      "char1": "5",
+      "char2": "7"
     },
     {
       "name": "Ingenious Infiltrator",
@@ -600,8 +600,8 @@
       "count": "1",
       "kind": "draw",
       "line": "1x Ingenious Infiltrator (mh1) 204 [Draw]",
-      "idChar1": "9",
-      "idChar2": "1"
+      "char1": "9",
+      "char2": "1"
     },
     {
       "name": "Inkrise Infiltrator",
@@ -609,8 +609,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Inkrise Infiltrator (neo) 100 [Evasion]",
-      "idChar1": "c",
-      "idChar2": "b"
+      "char1": "c",
+      "char2": "b"
     },
     {
       "name": "Island",
@@ -618,8 +618,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -627,8 +627,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -636,8 +636,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -645,8 +645,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -654,8 +654,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -663,8 +663,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -672,8 +672,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -681,8 +681,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -690,8 +690,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -699,8 +699,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -708,8 +708,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -717,8 +717,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -726,8 +726,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Island",
@@ -735,8 +735,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Island (ecl) 270 [Land]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Kaito, Dancing Shadow",
@@ -744,8 +744,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Kaito, Dancing Shadow (one) 204 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "d"
+      "char1": "0",
+      "char2": "d"
     },
     {
       "name": "Lightning Greaves",
@@ -753,8 +753,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Lightning Greaves (fic) 349 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "8",
-      "idChar2": "b"
+      "char1": "8",
+      "char2": "b"
     },
     {
       "name": "Lim-Dûl's Vault",
@@ -762,8 +762,8 @@
       "count": "1",
       "kind": "tutor",
       "line": "1x Lim-Dûl's Vault (c13) 197 [Tutor]",
-      "idChar1": "c",
-      "idChar2": "e"
+      "char1": "c",
+      "char2": "e"
     },
     {
       "name": "Machine God's Effigy",
@@ -771,8 +771,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Machine God's Effigy (brc) 16 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "6",
-      "idChar2": "3"
+      "char1": "6",
+      "char2": "3"
     },
     {
       "name": "Mai, Scornful Striker",
@@ -780,8 +780,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Mai, Scornful Striker (tla) 109 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "7",
-      "idChar2": "4"
+      "char1": "7",
+      "char2": "4"
     },
     {
       "name": "Mask of Riddles",
@@ -789,8 +789,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Mask of Riddles (ncc) 347 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "b",
-      "idChar2": "f"
+      "char1": "b",
+      "char2": "f"
     },
     {
       "name": "Maskwood Nexus",
@@ -798,8 +798,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Maskwood Nexus (drc) 132 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "1",
-      "idChar2": "2"
+      "char1": "1",
+      "char2": "2"
     },
     {
       "name": "Maximum Overdrive",
@@ -807,8 +807,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Maximum Overdrive (dft) 96 [Protection]",
-      "idChar1": "5",
-      "idChar2": "f"
+      "char1": "5",
+      "char2": "f"
     },
     {
       "name": "Maze of Ith",
@@ -816,8 +816,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Maze of Ith (dmr) 250 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "5",
-      "idChar2": "8"
+      "char1": "5",
+      "char2": "8"
     },
     {
       "name": "Meteor Crater",
@@ -825,8 +825,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Meteor Crater (pls) 140 [Land]",
-      "idChar1": "0",
-      "idChar2": "4"
+      "char1": "0",
+      "char2": "4"
     },
     {
       "name": "Mist-Syndicate Naga",
@@ -834,8 +834,8 @@
       "count": "1",
       "kind": "tokens",
       "line": "1x Mist-Syndicate Naga (mh1) 58 [Tokens]",
-      "idChar1": "6",
-      "idChar2": "5"
+      "char1": "6",
+      "char2": "5"
     },
     {
       "name": "Mistblade Shinobi",
@@ -843,8 +843,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Mistblade Shinobi (pca) 20 [Removal]",
-      "idChar1": "f",
-      "idChar2": "3"
+      "char1": "f",
+      "char2": "3"
     },
     {
       "name": "Mistwalker",
@@ -852,8 +852,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Mistwalker (j22) 323 [Evasion]",
-      "idChar1": "9",
-      "idChar2": "2"
+      "char1": "9",
+      "char2": "2"
     },
     {
       "name": "Mithril Coat",
@@ -861,8 +861,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Mithril Coat (ltr) 245 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "f"
+      "char1": "0",
+      "char2": "f"
     },
     {
       "name": "Moonglove Changeling",
@@ -870,8 +870,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Moonglove Changeling (plst) MOR-67 [Removal]",
-      "idChar1": "6",
-      "idChar2": "9"
+      "char1": "6",
+      "char2": "9"
     },
     {
       "name": "Mothdust Changeling",
@@ -879,8 +879,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Mothdust Changeling (plst) MOR-42 [Evasion]",
-      "idChar1": "1",
-      "idChar2": "8"
+      "char1": "1",
+      "char2": "8"
     },
     {
       "name": "Muddle the Mixture",
@@ -888,8 +888,8 @@
       "count": "1",
       "kind": "tutor",
       "line": "1x Muddle the Mixture (rvr) 50 [Tutor]",
-      "idChar1": "e",
-      "idChar2": "6"
+      "char1": "e",
+      "char2": "6"
     },
     {
       "name": "Mystic Remora",
@@ -897,8 +897,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Mystic Remora (dmr) 59 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "4",
-      "idChar2": "0"
+      "char1": "4",
+      "char2": "0"
     },
     {
       "name": "Nashi, Moon Sage's Scion",
@@ -906,8 +906,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Nashi, Moon Sage's Scion (otc) 143 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "1",
-      "idChar2": "e"
+      "char1": "1",
+      "char2": "e"
     },
     {
       "name": "Nezumi Prowler",
@@ -915,8 +915,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Nezumi Prowler (neo) 116 [Removal]",
-      "idChar1": "c",
-      "idChar2": "a"
+      "char1": "c",
+      "char2": "a"
     },
     {
       "name": "Nykthos, Shrine to Nyx",
@@ -924,8 +924,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Nykthos, Shrine to Nyx (plst) THS-223 [Land]",
-      "idChar1": "8",
-      "idChar2": "3"
+      "char1": "8",
+      "char2": "3"
     },
     {
       "name": "Nyx Lotus",
@@ -933,8 +933,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Nyx Lotus (thb) 235 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "5",
-      "idChar2": "b"
+      "char1": "5",
+      "char2": "b"
     },
     {
       "name": "Offer Immortality",
@@ -942,8 +942,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Offer Immortality (fdn) 525 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Osteomancer Adept",
@@ -951,8 +951,8 @@
       "count": "1",
       "kind": "recursion",
       "line": "1x Osteomancer Adept (blb) 103 [Recursion]",
-      "idChar1": "7",
-      "idChar2": "d"
+      "char1": "7",
+      "char2": "d"
     },
     {
       "name": "Perish",
@@ -960,8 +960,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Perish (plst) TMP-147 [Removal]",
-      "idChar1": "7",
-      "idChar2": "7"
+      "char1": "7",
+      "char2": "7"
     },
     {
       "name": "Phantom Ninja",
@@ -969,8 +969,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Phantom Ninja (j25) 345 [Evasion]",
-      "idChar1": "a",
-      "idChar2": "3"
+      "char1": "a",
+      "char2": "3"
     },
     {
       "name": "Propaganda",
@@ -978,8 +978,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Propaganda (fic) 268 [Protection]",
-      "idChar1": "e",
-      "idChar2": "1"
+      "char1": "e",
+      "char2": "1"
     },
     {
       "name": "Prosperous Thief",
@@ -987,8 +987,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x Prosperous Thief (neo) 73 [Ramp]",
-      "idChar1": "d",
-      "idChar2": "a"
+      "char1": "d",
+      "char2": "a"
     },
     {
       "name": "Quietus Spike",
@@ -996,8 +996,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Quietus Spike (ncc) 377 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "7",
-      "idChar2": "d"
+      "char1": "7",
+      "char2": "d"
     },
     {
       "name": "Rain of Daggers",
@@ -1005,8 +1005,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Rain of Daggers (mb2) 186 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "f",
-      "idChar2": "4"
+      "char1": "f",
+      "char2": "4"
     },
     {
       "name": "Reality Acid",
@@ -1014,8 +1014,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Reality Acid (tsr) 81 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "a",
-      "idChar2": "8"
+      "char1": "a",
+      "char2": "8"
     },
     {
       "name": "Reliquary Tower",
@@ -1023,8 +1023,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Reliquary Tower (tdc) 386 [Land]",
-      "idChar1": "6",
-      "idChar2": "b"
+      "char1": "6",
+      "char2": "b"
     },
     {
       "name": "Rikku, Resourceful Guardian",
@@ -1032,8 +1032,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Rikku, Resourceful Guardian (fic) 41 [Evasion]",
-      "idChar1": "b",
-      "idChar2": "6"
+      "char1": "b",
+      "char2": "6"
     },
     {
       "name": "Roaming Throne",
@@ -1041,8 +1041,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Roaming Throne (lci) 258 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "3",
-      "idChar2": "2"
+      "char1": "3",
+      "char2": "2"
     },
     {
       "name": "Robe of the Archmagi",
@@ -1050,8 +1050,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Robe of the Archmagi (clb) 91 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "7",
-      "idChar2": "4"
+      "char1": "7",
+      "char2": "4"
     },
     {
       "name": "Rune of Mortality",
@@ -1059,8 +1059,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Rune of Mortality (khm) 108 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "6",
-      "idChar2": "f"
+      "char1": "6",
+      "char2": "f"
     },
     {
       "name": "Sapphire Medallion",
@@ -1068,8 +1068,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Sapphire Medallion (mh3) 296 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "a",
-      "idChar2": "7"
+      "char1": "a",
+      "char2": "7"
     },
     {
       "name": "Secret of Bloodbending",
@@ -1077,8 +1077,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Secret of Bloodbending (tla) 69 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "9",
-      "idChar2": "b"
+      "char1": "9",
+      "char2": "b"
     },
     {
       "name": "Shatter the Oath",
@@ -1086,8 +1086,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Shatter the Oath (woe) 106 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "c",
-      "idChar2": "c"
+      "char1": "c",
+      "char2": "c"
     },
     {
       "name": "Shizo, Death's Storehouse",
@@ -1095,8 +1095,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Shizo, Death's Storehouse (dmc) 233 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "9"
+      "char1": "0",
+      "char2": "9"
     },
     {
       "name": "Silver Shroud Costume",
@@ -1104,8 +1104,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Silver Shroud Costume (pip) 142 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "4",
-      "idChar2": "9"
+      "char1": "4",
+      "char2": "9"
     },
     {
       "name": "Skeletal Changeling",
@@ -1113,8 +1113,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Skeletal Changeling (plst) LRW-140 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "6",
-      "idChar2": "f"
+      "char1": "6",
+      "char2": "f"
     },
     {
       "name": "Smoke Shroud",
@@ -1122,8 +1122,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Smoke Shroud (j25) 361 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "e",
-      "idChar2": "0"
+      "char1": "e",
+      "char2": "0"
     },
     {
       "name": "Sol Ring",
@@ -1131,8 +1131,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x Sol Ring (ecc) 57 [Ramp]",
-      "idChar1": "0",
-      "idChar2": "4"
+      "char1": "0",
+      "char2": "4"
     },
     {
       "name": "Spectral Sailor",
@@ -1140,8 +1140,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Spectral Sailor (fdn) 164 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "3"
+      "char1": "0",
+      "char2": "3"
     },
     {
       "name": "Strionic Resonator",
@@ -1149,8 +1149,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Strionic Resonator (moc) 384 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "b",
-      "idChar2": "9"
+      "char1": "b",
+      "char2": "9"
     },
     {
       "name": "Sudden Spoiling",
@@ -1158,8 +1158,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Sudden Spoiling (tsr) 144 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "7",
-      "idChar2": "3"
+      "char1": "7",
+      "char2": "3"
     },
     {
       "name": "Sunken Ruins",
@@ -1167,8 +1167,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Sunken Ruins (fic) 430 [Land]",
-      "idChar1": "9",
-      "idChar2": "1"
+      "char1": "9",
+      "char2": "1"
     },
     {
       "name": "Swamp",
@@ -1176,8 +1176,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1185,8 +1185,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1194,8 +1194,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1203,8 +1203,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1212,8 +1212,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1221,8 +1221,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1230,8 +1230,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1239,8 +1239,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1248,8 +1248,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1257,8 +1257,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1266,8 +1266,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1275,8 +1275,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1284,8 +1284,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1293,8 +1293,8 @@
       "count": "14",
       "kind": "land",
       "line": "14x Swamp (ecl) 271 [Land]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Swiftfoot Boots",
@@ -1302,8 +1302,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Swiftfoot Boots (fic) 361 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "1",
-      "idChar2": "9"
+      "char1": "1",
+      "char2": "9"
     },
     {
       "name": "Sword of Feast and Famine",
@@ -1311,8 +1311,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x Sword of Feast and Famine (acr) 99 [Ramp]",
-      "idChar1": "c",
-      "idChar2": "7"
+      "char1": "c",
+      "char2": "7"
     },
     {
       "name": "Sword of the Animist",
@@ -1320,8 +1320,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Sword of the Animist (fic) 362 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "6",
-      "idChar2": "4"
+      "char1": "6",
+      "char2": "4"
     },
     {
       "name": "Tetsuko Umezawa, Fugitive",
@@ -1329,8 +1329,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Tetsuko Umezawa, Fugitive (blc) 177 [Evasion]",
-      "idChar1": "f",
-      "idChar2": "3"
+      "char1": "f",
+      "char2": "3"
     },
     {
       "name": "The Key to the Vault",
@@ -1338,8 +1338,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x The Key to the Vault (otj) 54 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "1",
-      "idChar2": "6"
+      "char1": "1",
+      "char2": "6"
     },
     {
       "name": "The Ozolith",
@@ -1347,8 +1347,8 @@
       "count": "1",
       "kind": "counters",
       "line": "1x The Ozolith (iko) 237 [Counters]",
-      "idChar1": "9",
-      "idChar2": "3"
+      "char1": "9",
+      "char2": "3"
     },
     {
       "name": "The Walls of Ba Sing Se",
@@ -1356,8 +1356,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x The Walls of Ba Sing Se (tla) 261 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "2",
-      "idChar2": "4"
+      "char1": "2",
+      "char2": "4"
     },
     {
       "name": "Thespian's Stage",
@@ -1365,8 +1365,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Thespian's Stage (mb2) 113 [Land]",
-      "idChar1": "2",
-      "idChar2": "6"
+      "char1": "2",
+      "char2": "6"
     },
     {
       "name": "Thought Vessel",
@@ -1374,8 +1374,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x Thought Vessel (fic) 368 [Ramp]",
-      "idChar1": "7",
-      "idChar2": "1"
+      "char1": "7",
+      "char2": "1"
     },
     {
       "name": "Thousand-Faced Shadow",
@@ -1383,8 +1383,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Thousand-Faced Shadow (neo) 86 [Evasion]",
-      "idChar1": "8",
-      "idChar2": "9"
+      "char1": "8",
+      "char2": "9"
     },
     {
       "name": "Thran Dynamo",
@@ -1392,8 +1392,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Thran Dynamo (blc) 290 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "7",
-      "idChar2": "c"
+      "char1": "7",
+      "char2": "c"
     },
     {
       "name": "Three Tree City",
@@ -1401,8 +1401,8 @@
       "count": "1",
       "kind": "land",
       "line": "1x Three Tree City (blb) 260 [Land]",
-      "idChar1": "5",
-      "idChar2": "6"
+      "char1": "5",
+      "char2": "6"
     },
     {
       "name": "Throatseeker",
@@ -1410,8 +1410,8 @@
       "count": "1",
       "kind": "anthem",
       "line": "1x Throatseeker (mh1) 110 [Anthem]",
-      "idChar1": "b",
-      "idChar2": "0"
+      "char1": "b",
+      "char2": "0"
     },
     {
       "name": "Toxic Deluge",
@@ -1419,8 +1419,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Toxic Deluge (mh3) 277 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "5",
-      "idChar2": "a"
+      "char1": "5",
+      "char2": "a"
     },
     {
       "name": "Trusty Boomerang",
@@ -1428,8 +1428,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Trusty Boomerang (tla) 260 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "d",
-      "idChar2": "f"
+      "char1": "d",
+      "char2": "f"
     },
     {
       "name": "Universal Automaton",
@@ -1437,8 +1437,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Universal Automaton (j22) 803 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "5",
-      "idChar2": "3"
+      "char1": "5",
+      "char2": "3"
     },
     {
       "name": "Unwinding Clock",
@@ -1446,8 +1446,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Unwinding Clock (plst) NPH-164 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "c",
-      "idChar2": "3"
+      "char1": "c",
+      "char2": "3"
     },
     {
       "name": "Vampire Nighthawk",
@@ -1455,8 +1455,8 @@
       "count": "1",
       "kind": "lifegain",
       "line": "1x Vampire Nighthawk (fdn) 186 [Lifegain]",
-      "idChar1": "0",
-      "idChar2": "a"
+      "char1": "0",
+      "char2": "a"
     },
     {
       "name": "Venser's Journal",
@@ -1464,8 +1464,8 @@
       "count": "1",
       "kind": "lifegain",
       "line": "1x Venser's Journal (c21) 273 [Lifegain]",
-      "idChar1": "d",
-      "idChar2": "2"
+      "char1": "d",
+      "char2": "2"
     },
     {
       "name": "Vesuva",
@@ -1473,8 +1473,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Vesuva (m3c) 404 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "0",
-      "idChar2": "7"
+      "char1": "0",
+      "char2": "7"
     },
     {
       "name": "Walker of Secret Ways",
@@ -1482,8 +1482,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Walker of Secret Ways (pca) 27 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "7",
-      "idChar2": "c"
+      "char1": "7",
+      "char2": "c"
     },
     {
       "name": "Watery Grasp",
@@ -1491,8 +1491,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Watery Grasp (tla) 82 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "2",
-      "idChar2": "6"
+      "char1": "2",
+      "char2": "6"
     },
     {
       "name": "Whip of Erebos",
@@ -1500,8 +1500,8 @@
       "count": "1",
       "kind": "recursion",
       "line": "1x Whip of Erebos (dsc) 159 [Recursion]",
-      "idChar1": "b",
-      "idChar2": "7"
+      "char1": "b",
+      "char2": "7"
     },
     {
       "name": "Whispersilk Cloak",
@@ -1509,8 +1509,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Whispersilk Cloak (dsc) 257 [Protection]",
-      "idChar1": "5",
-      "idChar2": "a"
+      "char1": "5",
+      "char2": "a"
     },
     {
       "name": "White Lotus Tile",
@@ -1518,8 +1518,8 @@
       "count": "1",
       "kind": "ramp",
       "line": "1x White Lotus Tile (tla) 262 [Ramp]",
-      "idChar1": "1",
-      "idChar2": "d"
+      "char1": "1",
+      "char2": "d"
     },
     {
       "name": "Wingcrafter",
@@ -1527,8 +1527,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Wingcrafter (mm3) 58 [Evasion]",
-      "idChar1": "0",
-      "idChar2": "b"
+      "char1": "0",
+      "char2": "b"
     },
     {
       "name": "Winged Boots",
@@ -1536,8 +1536,8 @@
       "count": "1",
       "kind": "protection",
       "line": "1x Winged Boots (otc) 124 [Protection]",
-      "idChar1": "1",
-      "idChar2": "1"
+      "char1": "1",
+      "char2": "1"
     },
     {
       "name": "Withering Torment",
@@ -1545,8 +1545,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Withering Torment (dsk) 124 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "3",
-      "idChar2": "8"
+      "char1": "3",
+      "char2": "8"
     },
     {
       "name": "Witness Protection",
@@ -1554,8 +1554,8 @@
       "count": "1",
       "kind": "removal",
       "line": "1x Witness Protection (fdn) 168 [Removal]",
-      "idChar1": "f",
-      "idChar2": "2"
+      "char1": "f",
+      "char2": "2"
     },
     {
       "name": "Wizard Class",
@@ -1563,8 +1563,8 @@
       "count": "1",
       "kind": "draw",
       "line": "1x Wizard Class (blc) 112 [Draw]",
-      "idChar1": "d",
-      "idChar2": "1"
+      "char1": "d",
+      "char2": "1"
     },
     {
       "name": "Wonder",
@@ -1572,8 +1572,8 @@
       "count": "1",
       "kind": "evasion",
       "line": "1x Wonder (tdc) 170 [Evasion]",
-      "idChar1": "5",
-      "idChar2": "6"
+      "char1": "5",
+      "char2": "6"
     },
     {
       "name": "Worn Powerstone",
@@ -1581,8 +1581,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Worn Powerstone (mh3) 298 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "a",
-      "idChar2": "c"
+      "char1": "a",
+      "char2": "c"
     },
     {
       "name": "Yuriko, the Tiger's Shadow",
@@ -1590,8 +1590,8 @@
       "count": "1",
       "kind": "commander",
       "line": "1x Yuriko, the Tiger's Shadow (cmm) 364 [Commander{top}]",
-      "idChar1": "f",
-      "idChar2": "e"
+      "char1": "f",
+      "char2": "e"
     },
     {
       "name": "Zuko's Conviction",
@@ -1599,8 +1599,8 @@
       "count": "1",
       "kind": "maybeboard",
       "line": "1x Zuko's Conviction (tla) 123 [Maybeboard{noDeck}{noPrice}]",
-      "idChar1": "a",
-      "idChar2": "d"
+      "char1": "a",
+      "char2": "d"
     }
   ]
 }
