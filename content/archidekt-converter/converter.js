@@ -11,6 +11,19 @@ export class Converter {
     el.value = "";
   }
 
+  curlCommands(_, el) {
+    el.value = this.#data.cards.map((card) => {
+      // console.log(card.scryfallId);
+      const prefix1 = card.id.substring(0, 1);
+      const prefix2 = card.id.substring(1, 2);
+      const url =
+        `https://cards.scryfall.io/border_crop/front/${prefix1}/${prefix2}/${card.id}.jpg`;
+      return `wget ${url}\nsleep 1`;
+    }).join("\n");
+
+    // https://cards.scryfall.io/border_crop/front/8/3/83f510b7-4cbd-4883-9c26-c8824bc668ac.jpg
+  }
+
   async loadIdMap() {
     const url =
       "https://raw.githubusercontent.com/alanwsmith/mtg-data/refs/heads/main/docs/v1/misc/names-to-scryfall-ids.json";
@@ -36,7 +49,7 @@ export class Converter {
 
   outputJSON(_, el) {
     this.#data.cards = [];
-    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+)/;
+    const cardMatcher = /(\d+)x\s+(.*?)\s+\(.*?\[(\w+).*/;
     document.querySelector(".input-data").value.split("\n")
       .map((line) => line.match(cardMatcher))
       .filter((match) => match !== null)
@@ -47,11 +60,14 @@ export class Converter {
             {
               name: match[2],
               id: this.#idMap[match[2]],
+              count: match[1],
               kind: match[3].toLowerCase(),
+              line: match[0],
             },
           );
         }
       });
-    el.value = JSON.stringify(this.#data.cards);
+    el.value = JSON.stringify(this.#data, null, 2);
+    this.api.trigger("curlCommands");
   }
 }
