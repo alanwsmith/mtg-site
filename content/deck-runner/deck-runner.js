@@ -159,6 +159,7 @@ class Card {
   }
 }
 
+//  DEPRECATED
 class Commander {
   constructor(name, id) {
     this._name = name;
@@ -178,6 +179,7 @@ class Commander {
   }
 }
 
+//  DEPRECATED
 class Draws {
   constructor(cards) {
     this._cards = cards;
@@ -196,6 +198,7 @@ class Draws {
   }
 }
 
+//  DEPRECATED
 class Hand {
   constructor(cards) {
     this._cards = cards;

@@ -1,0 +1,4719 @@
+{
+  "cards": [
+    {
+      "name": "Abjure",
+      "id": "fbad9449-d09c-4fd0-b2ad-2aa3a29e03bf",
+      "kind": "removal"
+    },
+    {
+      "name": "Aboshan, Cephalid Emperor",
+      "id": "82db4a41-03e8-4f0c-946c-a98fc5c9f7c8",
+      "kind": "protection"
+    },
+    {
+      "name": "Academy Ruins",
+      "id": "a95b7645-154f-4904-bf71-db7eb24d4df2",
+      "kind": "land"
+    },
+    {
+      "name": "Access Tunnel",
+      "id": "4bef5957-71a4-4fe0-b2ce-dff8e8690bd9",
+      "kind": "land"
+    },
+    {
+      "name": "Accursed Witch // Infectious Curse",
+      "id": "8093f8b0-5d50-48ca-b616-e92535a47138",
+      "kind": "ramp"
+    },
+    {
+      "name": "Adaptive Omnitool",
+      "id": "1603aab8-731c-407a-bb44-625c36ace43e",
+      "kind": "draw"
+    },
+    {
+      "name": "Aether Poisoner",
+      "id": "c9b217f1-1621-40d1-8a98-24c1f7cba800",
+      "kind": "tokens"
+    },
+    {
+      "name": "Aether Snap",
+      "id": "dd9cade1-b077-4fb0-b55a-01b9916647e7",
+      "kind": "removal"
+    },
+    {
+      "name": "Aether Spellbomb",
+      "id": "a54e8ce9-edd7-4ae7-9521-6fb6727cf63b",
+      "kind": "removal"
+    },
+    {
+      "name": "Aetherblade Agent // Gitaxian Mindstinger",
+      "id": "dad34ae5-56b4-4394-be02-e043dc1cc23d",
+      "kind": "draw"
+    },
+    {
+      "name": "Aetherflux Reservoir",
+      "id": "96b6b2e1-c3e6-464c-8a13-b15deb34e862",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Aetherize",
+      "id": "1e5530fc-0291-4a17-b048-c5d24e6f51d8",
+      "kind": "removal"
+    },
+    {
+      "name": "Agadeem's Awakening // Agadeem, the Undercrypt",
+      "id": "67f4c93b-080c-4196-b095-6a120a221988",
+      "kind": "recursion"
+    },
+    {
+      "name": "Agatha's Soul Cauldron",
+      "id": "019b51b0-e5c6-4208-922b-7736686dddcd",
+      "kind": "counters"
+    },
+    {
+      "name": "Agent of the Iron Throne",
+      "id": "5a5984d3-1e76-4d97-9373-b59cfa9c38ae",
+      "kind": "drain"
+    },
+    {
+      "name": "Agent of the Shadow Thieves",
+      "id": "f50448e9-afe4-4d4e-b027-bbb855f17aeb",
+      "kind": "protection"
+    },
+    {
+      "name": "Agent of Treachery",
+      "id": "cc6686e6-4535-49be-b0b3-e76464656cd2",
+      "kind": "removal"
+    },
+    {
+      "name": "Ahriman",
+      "id": "162a415c-5465-497e-8f4e-c6f09681641d",
+      "kind": "draw"
+    },
+    {
+      "name": "Akroma's Memorial",
+      "id": "950ee61d-0bc1-4d7b-ba68-157061aa98eb",
+      "kind": "protection"
+    },
+    {
+      "name": "Alchemist's Gift",
+      "id": "6e4c9574-1ee3-461e-848f-8f02c6a8b7ee",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Alesha's Legacy",
+      "id": "a9262bf6-df6a-446c-ba70-18270a09842d",
+      "kind": "protection"
+    },
+    {
+      "name": "Alhammarret's Archive",
+      "id": "4f4187f1-05bd-4db6-a2e7-d677eff588ee",
+      "kind": "draw"
+    },
+    {
+      "name": "Alora, Merry Thief",
+      "id": "1c3c779b-d1d8-4b1e-bb06-ed7071a5ec0b",
+      "kind": "evasion"
+    },
+    {
+      "name": "Amoeboid Changeling",
+      "id": "068518d2-f061-4061-b208-158e991156b6",
+      "kind": "protection"
+    },
+    {
+      "name": "Amphibian Downpour",
+      "id": "2d8aeca5-622a-45be-8168-07e7c00e3092",
+      "kind": "removal"
+    },
+    {
+      "name": "Amulet of Vigor",
+      "id": "997bc933-ac30-477b-a4e1-5333b796a99d",
+      "kind": "ramp"
+    },
+    {
+      "name": "An Offer You Can't Refuse",
+      "id": "a829747f-cf9b-4d81-ba66-9f0630ed4565",
+      "kind": "removal"
+    },
+    {
+      "name": "Ancestral Knowledge",
+      "id": "05b90d72-00ac-4423-8cdf-e1471c6cd0ae",
+      "kind": "draw"
+    },
+    {
+      "name": "Aqueous Form",
+      "id": "c859f7cb-ac12-490e-b769-6f019791f2a5",
+      "kind": "evasion"
+    },
+    {
+      "name": "Arcane Adaptation",
+      "id": "bf3edaaf-cf63-4e17-94ae-9d9991d9fb5f",
+      "kind": "tokens"
+    },
+    {
+      "name": "Arcane Denial",
+      "id": "9b3f47a9-65fb-4b53-8e52-1c4b678b5841",
+      "kind": "removal"
+    },
+    {
+      "name": "Arcane Signet",
+      "id": "aa9e7f3c-e752-4cee-9e9d-fae38ba27dc9",
+      "kind": "ramp"
+    },
+    {
+      "name": "Archaeomancer",
+      "id": "cc258713-6ce3-44e0-9b4b-8fa7d1d093a1",
+      "kind": "recursion"
+    },
+    {
+      "name": "Archfiend of Depravity",
+      "id": "0ec85db7-c8ec-4730-b692-c140977436aa",
+      "kind": "removal"
+    },
+    {
+      "name": "Archmage Emeritus",
+      "id": "62f20d75-cfe5-427b-92d3-35c7e77db0d5",
+      "kind": "draw"
+    },
+    {
+      "name": "Archmage of Runes",
+      "id": "334b5018-2da9-49f1-9d09-83d312ecfb02",
+      "kind": "draw"
+    },
+    {
+      "name": "Archmage's Newt",
+      "id": "a440bbd6-8e51-4db1-90d9-7fa9fc327ad5",
+      "kind": "recursion"
+    },
+    {
+      "name": "Archway of Innovation",
+      "id": "6a90f9e6-9251-4203-9599-cc4032a5e6e1",
+      "kind": "land"
+    },
+    {
+      "name": "Argentum Armor",
+      "id": "fb1b7468-85f9-472e-9f7c-b268f84aea1c",
+      "kind": "removal"
+    },
+    {
+      "name": "Artificial Evolution",
+      "id": "f46894d1-2503-43fa-938e-7bbf19101d13",
+      "kind": "protection"
+    },
+    {
+      "name": "As Foretold",
+      "id": "c468b523-84fc-4657-adef-acc1eec6ef2e",
+      "kind": "ramp"
+    },
+    {
+      "name": "Ashes to Ashes",
+      "id": "9e61209b-0f56-4bab-9ada-700f91b18dec",
+      "kind": "removal"
+    },
+    {
+      "name": "Ashiok, Dream Render",
+      "id": "f2df3258-c053-48a8-974f-d80899b2cd93",
+      "kind": "mill"
+    },
+    {
+      "name": "Asinine Antics",
+      "id": "50b96a97-0d7d-4e05-9e2f-0b99a039b655",
+      "kind": "removal"
+    },
+    {
+      "name": "Astrologian's Planisphere",
+      "id": "bfa4e927-1d6f-4a64-9801-7d168a5ef3f6",
+      "kind": "pump"
+    },
+    {
+      "name": "Augury Owl",
+      "id": "4e5b8297-406e-4aef-ba46-867c1bf4cc8e",
+      "kind": "draw"
+    },
+    {
+      "name": "Aven Heartstabber",
+      "id": "acef329c-61e6-41c1-8d89-ff2417949839",
+      "kind": "draw"
+    },
+    {
+      "name": "Ayara, First of Locthwain",
+      "id": "ed0ace28-9a33-4f0d-b8c8-f5517f20ccf1",
+      "kind": "draw"
+    },
+    {
+      "name": "Azra Smokeshaper",
+      "id": "f627e521-2b8f-4d0f-a9d3-cc4e331ce57d",
+      "kind": "protection"
+    },
+    {
+      "name": "Azure Beastbinder",
+      "id": "211af1bf-910b-41a5-b928-f378188d1871",
+      "kind": "removal"
+    },
+    {
+      "name": "Baleful Mastery",
+      "id": "579e20e7-1395-4a6c-a836-ae3419fc8808",
+      "kind": "removal"
+    },
+    {
+      "name": "Baleful Strix",
+      "id": "be8439e6-f779-49f0-806a-b04995697a6a",
+      "kind": "draw"
+    },
+    {
+      "name": "Banner of Kinship",
+      "id": "a14c16c0-4053-46b0-8fa6-be8b4a7a1c8a",
+      "kind": "anthem"
+    },
+    {
+      "name": "Basalt Monolith",
+      "id": "f79de5e7-1545-420c-bfe1-ee2444fca85b",
+      "kind": "ramp"
+    },
+    {
+      "name": "Basilisk Collar",
+      "id": "7b36fba7-71f7-4b7f-bde5-b3a9752ad21c",
+      "kind": "removal"
+    },
+    {
+      "name": "Battle-Rage Blessing",
+      "id": "7cfc631b-49d1-4f1c-adac-5b07a2ccd06f",
+      "kind": "protection"
+    },
+    {
+      "name": "Bender's Waterskin",
+      "id": "6d4a1712-d19e-4475-9614-a0b1af4da610",
+      "kind": "ramp"
+    },
+    {
+      "name": "Beseech the Mirror",
+      "id": "18c59776-e1f1-4197-a128-db1d603f56b7",
+      "kind": "tutor"
+    },
+    {
+      "name": "Beseech the Queen",
+      "id": "f7d6a020-8843-4a97-9d00-86f3928e8acd",
+      "kind": "tutor"
+    },
+    {
+      "name": "Beyeen Veil // Beyeen Coast",
+      "id": "5f411f08-45dd-4d73-8894-daf51c175150",
+      "kind": "protection"
+    },
+    {
+      "name": "Bident of Thassa",
+      "id": "94751d5e-7693-44af-b1b5-e440677dc7a2",
+      "kind": "draw"
+    },
+    {
+      "name": "Bilious Skulldweller",
+      "id": "dfb81cb1-ac56-4803-a962-359854a447df",
+      "kind": "infect"
+    },
+    {
+      "name": "Biting-Palm Ninja",
+      "id": "3017df51-67ae-4c3d-8210-086f83bc2040",
+      "kind": "removal"
+    },
+    {
+      "name": "Bitter Triumph",
+      "id": "c5333556-eea2-41ae-833e-007b9d540700",
+      "kind": "removal"
+    },
+    {
+      "name": "Bitterblossom",
+      "id": "b9640cbf-b016-410e-9eff-e8924883517b",
+      "kind": "tokens"
+    },
+    {
+      "name": "Bitterthorn, Nissa's Animus",
+      "id": "fa7a883f-e180-48ce-b7d4-cded2f74c323",
+      "kind": "ramp"
+    },
+    {
+      "name": "Black Mage's Rod",
+      "id": "35e8f140-055f-4fc7-a765-fb030d828214",
+      "kind": "burn"
+    },
+    {
+      "name": "Black Market",
+      "id": "78c80c6d-f3ae-48d3-ba6a-b9b738e1affb",
+      "kind": "ramp"
+    },
+    {
+      "name": "Black Market Connections",
+      "id": "b8c66fab-7494-42b1-bc4e-dae85a48fa41",
+      "kind": "draw"
+    },
+    {
+      "name": "Blackblade Reforged",
+      "id": "240448cd-c308-49ae-9e4b-0c35adc59fba",
+      "kind": "pump"
+    },
+    {
+      "name": "Blackbloom Rogue // Blackbloom Bog",
+      "id": "32779721-b021-4bd4-95d1-4a19b78d9faa",
+      "kind": "evasion"
+    },
+    {
+      "name": "Blade of Selves",
+      "id": "d0ca6a34-724f-47bb-b12d-c4998ffc3bf7",
+      "kind": "tokens"
+    },
+    {
+      "name": "Blade of the Bloodchief",
+      "id": "34e7bebf-1844-476c-a947-978393908fa2",
+      "kind": "counters"
+    },
+    {
+      "name": "Bladebrand",
+      "id": "ae6f6255-865a-45fa-811d-ce477df730f2",
+      "kind": "draw"
+    },
+    {
+      "name": "Blatant Thievery",
+      "id": "0210b3b4-d253-464f-b533-b79bf67d47a4",
+      "kind": "theft"
+    },
+    {
+      "name": "Blighted Agent",
+      "id": "cddaebde-a060-4510-8c97-68432d931987",
+      "kind": "infect"
+    },
+    {
+      "name": "Blinkmoth Nexus",
+      "id": "3ac535c1-9ef3-45b5-8959-7e79589d47ad",
+      "kind": "land"
+    },
+    {
+      "name": "Blitzball Stadium",
+      "id": "771808d9-d0c8-418b-ab6c-1ae6fc07ca20",
+      "kind": "draw"
+    },
+    {
+      "name": "Blood Artist",
+      "id": "036f387a-8dee-482e-b3e3-cf79b54c61e1",
+      "kind": "drain"
+    },
+    {
+      "name": "Blood Fountain",
+      "id": "dd03651e-ada0-41dc-8722-0eba476943e3",
+      "kind": "recursion"
+    },
+    {
+      "name": "Blood Money",
+      "id": "bbbc5c9d-110a-44cd-a2c9-8bad7dac4b5f",
+      "kind": "removal"
+    },
+    {
+      "name": "Bloodchief's Thirst",
+      "id": "059e8447-6b1c-4651-a734-a8fea2cbf7b2",
+      "kind": "removal"
+    },
+    {
+      "name": "Bloodforged Battle-Axe",
+      "id": "14f12690-377e-46ae-bbae-f17c27b6acb4",
+      "kind": "pump"
+    },
+    {
+      "name": "Bloodletter of Aclazotz",
+      "id": "d4f6027a-003a-4f9d-929a-0b6da1fa42c9",
+      "kind": "drain"
+    },
+    {
+      "name": "Bloodthirsty Aerialist",
+      "id": "378b2e55-e383-408e-af57-072e47cea779",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Bloodthirsty Blade",
+      "id": "bcdf583e-25f8-4227-96e9-e70ec8a36b09",
+      "kind": "removal"
+    },
+    {
+      "name": "Bloodthirsty Conqueror",
+      "id": "ce860ed4-a5bd-4347-9eab-dd716ea84db1",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Blue Mage's Cane",
+      "id": "9b3cfc13-db4e-4ec3-8444-f715bcd43be6",
+      "kind": "recursion"
+    },
+    {
+      "name": "Blur",
+      "id": "77a43413-3ab0-4ef6-83de-192a11d48f00",
+      "kind": "blink"
+    },
+    {
+      "name": "Body of Knowledge",
+      "id": "185b2e8f-ab37-42e4-b3a1-f38b19a2e05a",
+      "kind": "draw"
+    },
+    {
+      "name": "Bone Picker",
+      "id": "f7de3d27-f3e0-4aea-a737-6577de1bd1c5",
+      "kind": "evasion"
+    },
+    {
+      "name": "Bontu's Monument",
+      "id": "171a9a3f-6278-4921-9848-2b8459869d6c",
+      "kind": "ramp"
+    },
+    {
+      "name": "Boomerang Basics",
+      "id": "17ab958a-abc6-472e-ad6a-97c731d89c74",
+      "kind": "removal"
+    },
+    {
+      "name": "Brainstone",
+      "id": "6e86ad39-2a90-466d-b188-056216429f4e",
+      "kind": "draw"
+    },
+    {
+      "name": "Brainstorm",
+      "id": "8beb987c-1b67-4a4e-ae71-58547afad2a0",
+      "kind": "draw"
+    },
+    {
+      "name": "Brotherhood Regalia",
+      "id": "8a6439a6-288d-427e-b14b-a99e8ef8c5cd",
+      "kind": "evasion"
+    },
+    {
+      "name": "Buried Ruin",
+      "id": "7ab1a074-9d92-4125-9200-84cd035f8f53",
+      "kind": "land"
+    },
+    {
+      "name": "Buster Sword",
+      "id": "374d7383-a1a7-4eea-91f7-290180e14cc9",
+      "kind": "draw"
+    },
+    {
+      "name": "Cabal Coffers",
+      "id": "e1efb0d3-2c72-46ff-bdc1-1069967365a0",
+      "kind": "land"
+    },
+    {
+      "name": "Cabal Executioner",
+      "id": "cd7727a7-0cdf-4fd5-82b4-e6587c10ca80",
+      "kind": "removal"
+    },
+    {
+      "name": "Cackling Counterpart",
+      "id": "a865fdc5-955a-4c4a-90c0-342c15fd7bbc",
+      "kind": "copy"
+    },
+    {
+      "name": "Callous Oppressor",
+      "id": "b3dd3ce7-e0e3-4412-9983-ff933584f59b",
+      "kind": "theft"
+    },
+    {
+      "name": "Capsize",
+      "id": "f36f6545-e4e0-4dc8-acea-e527e43f3e14",
+      "kind": "removal"
+    },
+    {
+      "name": "Case of the Ransacked Lab",
+      "id": "16a9a596-61de-4fcf-aae0-41836c3deca5",
+      "kind": "ramp"
+    },
+    {
+      "name": "Cast into Darkness",
+      "id": "0c1880d4-90c7-46a2-bbc9-d2b52971d11c",
+      "kind": "removal"
+    },
+    {
+      "name": "Cavern of Souls",
+      "id": "3aad15a2-8a1b-4460-9b06-e85863081878",
+      "kind": "land"
+    },
+    {
+      "name": "Chameleon, Master of Disguise",
+      "id": "43892ce7-f63a-4294-922b-8f879f684033",
+      "kind": "copy"
+    },
+    {
+      "name": "Champion's Helm",
+      "id": "c6548a30-577a-47e7-aa6e-8f6db1f7b78e",
+      "kind": "protection"
+    },
+    {
+      "name": "Changeling Outcast",
+      "id": "ab499df5-ed76-43ad-81b3-70afd0487ccd",
+      "kind": "evasion"
+    },
+    {
+      "name": "Charcoal Diamond",
+      "id": "f0475c79-bc7f-4de8-a020-226bc658d303",
+      "kind": "ramp"
+    },
+    {
+      "name": "Chasm Skulker",
+      "id": "794e01e7-430c-43cf-ba2b-1028cd088148",
+      "kind": "tokens"
+    },
+    {
+      "name": "Chimil, the Inner Sun",
+      "id": "7b696878-bf6c-4323-baa5-93c44dde075e",
+      "kind": "draw"
+    },
+    {
+      "name": "Choice of Damnations",
+      "id": "05939f15-2d95-47df-b66f-131c3e7ea95f",
+      "kind": "removal"
+    },
+    {
+      "name": "Chromatic Lantern",
+      "id": "bf810ace-f866-457c-8671-a84c73b6f733",
+      "kind": "ramp"
+    },
+    {
+      "name": "Chromatic Orrery",
+      "id": "3af78d76-ad5c-44ba-880d-b834bcde5398",
+      "kind": "ramp"
+    },
+    {
+      "name": "Chrome Dome",
+      "id": "994a01eb-2689-49e7-be23-0713da9da9a8",
+      "kind": "creature"
+    },
+    {
+      "name": "Chronicle of Victory",
+      "id": "b3c2d68d-690b-41e7-99ed-2d20c7e0a9b4",
+      "kind": "draw"
+    },
+    {
+      "name": "Circle of Power",
+      "id": "c969bd0f-f174-4e2f-b95c-c9ccd5d0b8ba",
+      "kind": "draw"
+    },
+    {
+      "name": "Clearwater Pathway // Murkwater Pathway",
+      "id": "b4b99ebb-0d54-4fe5-a495-979aaa564aa8",
+      "kind": "land"
+    },
+    {
+      "name": "Clever Impersonator",
+      "id": "c0516453-3e6a-4b7f-8df6-72a6e207169a",
+      "kind": "clones"
+    },
+    {
+      "name": "Cloak of the Bat",
+      "id": "2f508a65-ff32-480a-b9c6-075074d0c3c3",
+      "kind": "evasion"
+    },
+    {
+      "name": "Cloud Key",
+      "id": "b851ab76-e40e-4232-b120-0bc1905ef0b4",
+      "kind": "ramp"
+    },
+    {
+      "name": "Coastal Breach",
+      "id": "bf8b550a-c86f-4684-a4f6-14e75172324f",
+      "kind": "removal"
+    },
+    {
+      "name": "Coastal Piracy",
+      "id": "0f2c4e43-71b2-4483-ba54-4be1dcffcd5f",
+      "kind": "draw"
+    },
+    {
+      "name": "Coat of Arms",
+      "id": "513d4c36-6ad4-4ee9-b161-3136eb59504f",
+      "kind": "anthem"
+    },
+    {
+      "name": "Coat with Venom",
+      "id": "8cc8e012-7043-405c-b6cd-b3b38f8a8d54",
+      "kind": "removal"
+    },
+    {
+      "name": "Coldsteel Heart",
+      "id": "b2548ad2-3c62-4ed1-899c-1002b46cdd8f",
+      "kind": "ramp"
+    },
+    {
+      "name": "Colossus Hammer",
+      "id": "897a134e-7e61-4fe1-bbae-23ef1fe5c0cf",
+      "kind": "pump"
+    },
+    {
+      "name": "Combat Research",
+      "id": "6c44738c-706f-40b2-a09d-b21cd0889049",
+      "kind": "draw"
+    },
+    {
+      "name": "Command Tower",
+      "id": "da4d9f44-9079-4144-8dd9-076be04032d4",
+      "kind": "land"
+    },
+    {
+      "name": "Commandeer",
+      "id": "dca0a9a8-5ebc-43a3-8450-420ab6b7b76e",
+      "kind": "counters"
+    },
+    {
+      "name": "Commander's Plate",
+      "id": "19992dbd-7a6a-43d3-b1db-01716b2eed27",
+      "kind": "protection"
+    },
+    {
+      "name": "Commander's Sphere",
+      "id": "a0d50603-e31f-4cd7-b4b6-49847d99eb2e",
+      "kind": "ramp"
+    },
+    {
+      "name": "Commit // Memory",
+      "id": "855af9a8-31fc-4290-8204-04ee026f8853",
+      "kind": "removal"
+    },
+    {
+      "name": "Confiscate",
+      "id": "a98a1553-e5f3-4c9c-833d-579e82e1708f",
+      "kind": "removal"
+    },
+    {
+      "name": "Conjurer's Closet",
+      "id": "af2115e4-009e-4432-99bb-05e844bc18b6",
+      "kind": "blink"
+    },
+    {
+      "name": "Connive // Concoct",
+      "id": "d7481287-fce9-4ef0-a3a8-7801c9eb3fa8",
+      "kind": "recursion"
+    },
+    {
+      "name": "Conqueror's Flail",
+      "id": "d5f5399a-26c6-4ecd-9715-f6440f6958f1",
+      "kind": "protection"
+    },
+    {
+      "name": "Consider",
+      "id": "ff6f3824-3670-46e1-af43-0db405726084",
+      "kind": "draw"
+    },
+    {
+      "name": "Conspiracy",
+      "id": "8bbdb402-0e22-4f83-987a-9d0268a82f10",
+      "kind": "anthem"
+    },
+    {
+      "name": "Consult the Star Charts",
+      "id": "a16a6555-2e3a-4587-aacd-0307d696b26c",
+      "kind": "draw"
+    },
+    {
+      "name": "Consuming Corruption",
+      "id": "9068b3a4-9130-42d8-a26b-52010b7daa8b",
+      "kind": "removal"
+    },
+    {
+      "name": "Contagion Clasp",
+      "id": "edd7f08a-3baf-4fb0-921e-b0e7b4a1a545",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Contagion Engine",
+      "id": "dce72636-08e4-484e-ad81-4d1597a31ffb",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Contaminated Aquifer",
+      "id": "9fad6994-1280-4a8e-a2f5-34b4ed6ef6f5",
+      "kind": "land"
+    },
+    {
+      "name": "Contentious Plan",
+      "id": "8e30deb6-9e1f-4545-ae30-c30ba6c7b3a0",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Control Magic",
+      "id": "84992800-9bad-4598-afd4-f1e59d2e0956",
+      "kind": "removal"
+    },
+    {
+      "name": "Copy Enchantment",
+      "id": "ce82b316-8982-41bf-a990-6b776a9e83ac",
+      "kind": "copy"
+    },
+    {
+      "name": "Coral Atoll",
+      "id": "77e3ea71-ea9f-4bbf-93cb-0f6339f8a3ab",
+      "kind": "land"
+    },
+    {
+      "name": "Corrupt Court Official",
+      "id": "4692610e-d64c-438e-b5ad-0cf67fd57f1f",
+      "kind": "discard"
+    },
+    {
+      "name": "Corrupted Conscience",
+      "id": "7276c584-76ed-4c20-a5ea-627c8f7751e6",
+      "kind": "infect"
+    },
+    {
+      "name": "Corrupted Conviction",
+      "id": "8046f892-3317-4ef7-9cf7-97b9060540c8",
+      "kind": "draw"
+    },
+    {
+      "name": "Cosmos Elixir",
+      "id": "6bf084fe-7762-49c5-974a-cdecc10666b3",
+      "kind": "draw"
+    },
+    {
+      "name": "Costly Plunder",
+      "id": "598405fd-02d2-4bf8-b241-7a2ae6338913",
+      "kind": "draw"
+    },
+    {
+      "name": "Counterbalance",
+      "id": "c329ff2b-0331-4934-a8df-870dd7bf402b",
+      "kind": "removal"
+    },
+    {
+      "name": "Counterintelligence",
+      "id": "eafbeafb-ef84-4a8d-9ca8-ca305b1feeea",
+      "kind": "sorcery"
+    },
+    {
+      "name": "Counterpoint",
+      "id": "b74caf65-1e6c-444e-9121-906ba7e8ea20",
+      "kind": "removal"
+    },
+    {
+      "name": "Counterspell",
+      "id": "4f616706-ec97-4923-bb1e-11a69fbaa1f8",
+      "kind": "removal"
+    },
+    {
+      "name": "Countersquall",
+      "id": "f99f864e-a10f-47f4-94c5-4571b5c11b3b",
+      "kind": "removal"
+    },
+    {
+      "name": "Court of Ambition",
+      "id": "5deb0185-62b3-474b-83a1-25473fdae4fa",
+      "kind": "discard"
+    },
+    {
+      "name": "Court of Locthwain",
+      "id": "a8e1f698-1c04-4f31-aeaa-b796c5eb5070",
+      "kind": "theft"
+    },
+    {
+      "name": "Court of Vantress",
+      "id": "b6f78616-f54e-43d0-b2ae-9ed06fe4dd9f",
+      "kind": "copy"
+    },
+    {
+      "name": "Cover of Darkness",
+      "id": "0d6d7d88-d82b-40f4-bf57-ec5d7c480689",
+      "kind": "evasion"
+    },
+    {
+      "name": "Covert Technician",
+      "id": "dbae9991-43a2-4afb-a882-fff6b0d89d12",
+      "kind": "ramp"
+    },
+    {
+      "name": "Cranial Plating",
+      "id": "e1375f17-bc25-4a65-98b7-4785bbdbe974",
+      "kind": "pump"
+    },
+    {
+      "name": "Crashing Wave",
+      "id": "9fd02eb4-1ef5-4a14-89a8-b25e720e8016",
+      "kind": "removal"
+    },
+    {
+      "name": "Crawlspace",
+      "id": "5b8e092a-610d-4cea-bb92-65e01954b5c4",
+      "kind": "protection"
+    },
+    {
+      "name": "Creeping Tar Pit",
+      "id": "1f60e172-fcdc-4699-a212-815201375d47",
+      "kind": "land"
+    },
+    {
+      "name": "Crippling Blight",
+      "id": "3f9c1ba3-8b7c-413b-865d-0ca4b2f55903",
+      "kind": "removal"
+    },
+    {
+      "name": "Crippling Chill",
+      "id": "53f73e5f-6228-494f-b74e-aca3520dc2b2",
+      "kind": "draw"
+    },
+    {
+      "name": "Crippling Fear",
+      "id": "713a28c0-0d12-4c62-bc91-59c2ddfc9ef8",
+      "kind": "removal"
+    },
+    {
+      "name": "Crux of Fate",
+      "id": "11721b88-2654-482c-b9d4-80e54efdbf63",
+      "kind": "removal"
+    },
+    {
+      "name": "Crystal Ball",
+      "id": "d344d88f-a63b-4593-990f-af6346cad91a",
+      "kind": "draw"
+    },
+    {
+      "name": "Crystal Skull, Isu Spyglass",
+      "id": "b10fa72b-6742-4b65-8654-ac70b6240e38",
+      "kind": "ramp"
+    },
+    {
+      "name": "Cunning Evasion",
+      "id": "300a431c-48a9-4d63-8256-cb6bdaa67b4c",
+      "kind": "bounce"
+    },
+    {
+      "name": "Curiosity",
+      "id": "c5a0be10-c20f-4ac0-89a5-1770ecf48aad",
+      "kind": "draw"
+    },
+    {
+      "name": "Curiosity Crafter",
+      "id": "0452c73b-4522-4808-8f97-0e84e2944ee9",
+      "kind": "draw"
+    },
+    {
+      "name": "Curse of the Swine",
+      "id": "4967955e-66ce-4df5-a9fa-305c3f8e2e25",
+      "kind": "removal"
+    },
+    {
+      "name": "Curtains' Call",
+      "id": "9899d9c7-7c68-4d10-8249-5d1193f77030",
+      "kind": "removal"
+    },
+    {
+      "name": "Cut Down",
+      "id": "753db072-5d6a-4f37-8f7d-255572ecd3bd",
+      "kind": "removal"
+    },
+    {
+      "name": "Cyber Conversion",
+      "id": "e4ce5aa7-70cb-4ab2-9a25-4363aa2b370f",
+      "kind": "removal"
+    },
+    {
+      "name": "Cyclonic Rift",
+      "id": "dfb7c4b9-f2f4-4d4e-baf2-86551c8150fe",
+      "kind": "removal"
+    },
+    {
+      "name": "Damnation",
+      "id": "d3c0aac5-b9f1-4446-bfea-3e1dd1cf1f2f",
+      "kind": "removal"
+    },
+    {
+      "name": "Dark Confidant",
+      "id": "2520ab23-a068-4462-b261-2754409b4108",
+      "kind": "draw"
+    },
+    {
+      "name": "Dark Knight's Greatsword",
+      "id": "b50dcc7c-260f-4d8c-9a9e-9244ec23a91e",
+      "kind": "pump"
+    },
+    {
+      "name": "Dark Ritual",
+      "id": "95f27eeb-6f14-4db3-adb9-9be5ed76b34b",
+      "kind": "ramp"
+    },
+    {
+      "name": "Darkness",
+      "id": "584834fb-b7b6-40eb-9fec-8df17172ce5f",
+      "kind": "protection"
+    },
+    {
+      "name": "Darkness Descends",
+      "id": "c8aa3895-df83-4f8e-9e23-1a665614b662",
+      "kind": "sorcery"
+    },
+    {
+      "name": "Darkslick Shores",
+      "id": "c49305d1-ac95-43ea-b02d-c3c7205bcda6",
+      "kind": "land"
+    },
+    {
+      "name": "Darksteel Ingot",
+      "id": "f279fcf1-e4f5-4873-9d73-8d62e0343b81",
+      "kind": "ramp"
+    },
+    {
+      "name": "Darksteel Plate",
+      "id": "3f99fb1e-99a6-4c83-98eb-7bff23996a7f",
+      "kind": "protection"
+    },
+    {
+      "name": "Darkwater Catacombs",
+      "id": "03fbf51d-f622-4629-a228-a03ce7caf500",
+      "kind": "land"
+    },
+    {
+      "name": "Dauthi Voidwalker",
+      "id": "3573b9a2-7911-475c-8ae7-25bd0dbb7159",
+      "kind": "stax"
+    },
+    {
+      "name": "Dawnsire, Sunstar Dreadnought",
+      "id": "6133355c-3dcf-466a-b771-fe6c44d4fa4d",
+      "kind": "removal"
+    },
+    {
+      "name": "Day of the Dragons",
+      "id": "76e4dd1d-b0bd-4fcf-b5c5-fe203af2fe8e",
+      "kind": "blink"
+    },
+    {
+      "name": "Day's Undoing",
+      "id": "ac13a82d-43f5-4b96-bf5f-18e33fae921b",
+      "kind": "draw"
+    },
+    {
+      "name": "Deadly Dispute",
+      "id": "b22ef77b-67a3-45d3-9d18-12b7b124cbf4",
+      "kind": "draw"
+    },
+    {
+      "name": "Deadly Precision",
+      "id": "4661daf6-d960-4278-8946-70948efaf99d",
+      "kind": "removal"
+    },
+    {
+      "name": "Deadly Rollick",
+      "id": "0e13f735-54fa-42b6-aea4-ced33811d7d4",
+      "kind": "removal"
+    },
+    {
+      "name": "Decanter of Endless Water",
+      "id": "518bbc36-58ea-44c4-a857-75a3aff058f5",
+      "kind": "ramp"
+    },
+    {
+      "name": "Deepglow Skate",
+      "id": "6fb36f7b-6d31-413d-8392-ae4f8ca3c0c4",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Defabricate",
+      "id": "7dd32168-0b9c-4633-adec-d41cf125cc35",
+      "kind": "removal"
+    },
+    {
+      "name": "Defense Grid",
+      "id": "f939dac5-ad71-4163-adde-4f435412477c",
+      "kind": "stax"
+    },
+    {
+      "name": "Defile",
+      "id": "5bcb4398-edd1-41a7-a496-b12bce22ceb6",
+      "kind": "removal"
+    },
+    {
+      "name": "Defiler of Dreams",
+      "id": "881cc4a3-252b-4155-a34f-63d4b4f44442",
+      "kind": "draw"
+    },
+    {
+      "name": "Defiler of Flesh",
+      "id": "61a4dd11-6166-4a54-95c0-728c623d0fbc",
+      "kind": "ramp"
+    },
+    {
+      "name": "Demolition Field",
+      "id": "0c7e51b6-4898-4632-b39c-3ce438caa882",
+      "kind": "land"
+    },
+    {
+      "name": "Demonic Tutor",
+      "id": "a24b4cb6-cebb-428b-8654-74347a6a8d63",
+      "kind": "tutor"
+    },
+    {
+      "name": "Devastation Tide",
+      "id": "2d493bd6-af71-45be-bd4c-1d8f94bca19e",
+      "kind": "removal"
+    },
+    {
+      "name": "Diabolic Intent",
+      "id": "d72ab698-de67-4ca8-8e42-b05346bf52fa",
+      "kind": "tutor"
+    },
+    {
+      "name": "Diabolic Tutor",
+      "id": "d650dd8c-edd8-44e4-ae95-aaaf84557a72",
+      "kind": "tutor"
+    },
+    {
+      "name": "Diabolic Vision",
+      "id": "c360753a-af32-4f1d-a1c7-c3f3c075ecc0",
+      "kind": "draw"
+    },
+    {
+      "name": "Dictate of Erebos",
+      "id": "9f06db70-95f9-41eb-8e5f-8bc56fd34c09",
+      "kind": "removal"
+    },
+    {
+      "name": "Dig Through Time",
+      "id": "572b3180-9822-4885-b81c-b1bf8aca5a5e",
+      "kind": "draw"
+    },
+    {
+      "name": "Diluvian Primordial",
+      "id": "eb14cd77-d37e-4849-816f-cd36e2a37765",
+      "kind": "theft"
+    },
+    {
+      "name": "Dimir Aqueduct",
+      "id": "84bf9d60-64b8-4209-acfe-e07eefc6bf1f",
+      "kind": "land"
+    },
+    {
+      "name": "Dimir Cluestone",
+      "id": "0d8ac24f-3309-453a-b2d6-6363df9a1ddd",
+      "kind": "ramp"
+    },
+    {
+      "name": "Dimir Cutpurse",
+      "id": "b50f7d5f-8b4d-46d4-86ce-92fbc475c039",
+      "kind": "draw"
+    },
+    {
+      "name": "Dimir Infiltrator",
+      "id": "b94cc636-de31-41b2-9c35-0bdfcdd0c1c1",
+      "kind": "tutor"
+    },
+    {
+      "name": "Dimir Keyrune",
+      "id": "69d1dd6c-21d3-4fe8-af1b-7088dcceef08",
+      "kind": "ramp"
+    },
+    {
+      "name": "Dimir Locket",
+      "id": "08e3dd7a-8378-4368-a5e4-a1ca7899a67b",
+      "kind": "ramp"
+    },
+    {
+      "name": "Dimir Signet",
+      "id": "c3af24ce-b1ab-4137-9222-a4080acae928",
+      "kind": "ramp"
+    },
+    {
+      "name": "Dismember",
+      "id": "3d286cf6-3e16-4941-9326-1818b1e06d69",
+      "kind": "removal"
+    },
+    {
+      "name": "Dispel",
+      "id": "bceab6b3-6b64-4964-a501-ce806a6c13ad",
+      "kind": "counters"
+    },
+    {
+      "name": "Displace",
+      "id": "8ab850c5-6f5e-41b7-ab52-094579caca12",
+      "kind": "blink"
+    },
+    {
+      "name": "Displacer Kitten",
+      "id": "c7a401b8-29fb-46ef-a663-427f66724d5c",
+      "kind": "blink"
+    },
+    {
+      "name": "Distant Melody",
+      "id": "f1d7e8c9-0936-47eb-8996-309e7a7edcad",
+      "kind": "draw"
+    },
+    {
+      "name": "Dokuchi Shadow-Walker",
+      "id": "81496a81-c986-4749-a28c-45341764e28f",
+      "kind": "evasion"
+    },
+    {
+      "name": "Dokuchi Silencer",
+      "id": "a24d5664-e214-466d-bb53-4e8f6f75a009",
+      "kind": "removal"
+    },
+    {
+      "name": "Dolmen Gate",
+      "id": "fdcbf10e-32f2-41c5-a7a2-5f24662892d2",
+      "kind": "protection"
+    },
+    {
+      "name": "Donatello, Gadget Master",
+      "id": "8b5dd830-dab8-4628-845f-3d17973f9ffa",
+      "kind": "creature"
+    },
+    {
+      "name": "Donatello, Mutant Mechanic",
+      "id": "3271b821-8efc-49e2-96fd-c48e2b2585c6",
+      "kind": "creature"
+    },
+    {
+      "name": "Donatello, Rad Scientist",
+      "id": "3a80b791-17e1-46be-bc65-ab96f52b23dd",
+      "kind": "removal"
+    },
+    {
+      "name": "Donatello, the Brains",
+      "id": "774716f4-d211-497a-be91-69cd700edbf2",
+      "kind": "tokens"
+    },
+    {
+      "name": "Donnie & April, Adorkable Duo",
+      "id": "7b4bdb8c-e19f-46bd-9743-edc26ee5c8e2",
+      "kind": "draw"
+    },
+    {
+      "name": "Doom Blade",
+      "id": "90699423-2556-40f7-b8f5-c9d82f22d52e",
+      "kind": "removal"
+    },
+    {
+      "name": "Door of Destinies",
+      "id": "75fd3fea-158a-4575-84a8-879ee9404242",
+      "kind": "anthem"
+    },
+    {
+      "name": "Dowsing Dagger // Lost Vale",
+      "id": "514d53be-6ade-4f73-a844-e9ae2dafd6ce",
+      "kind": "ramp"
+    },
+    {
+      "name": "Dragonlord Silumgar",
+      "id": "9ee837b8-c280-4a5b-acdf-71247ab096f5",
+      "kind": "removal"
+    },
+    {
+      "name": "Dramatic Reversal",
+      "id": "30de9083-8702-471c-92e7-5cf89936a208",
+      "kind": "untap"
+    },
+    {
+      "name": "Dreadhorde Invasion",
+      "id": "241a6a3b-8809-4d22-bf1e-c4620c609aba",
+      "kind": "tokens"
+    },
+    {
+      "name": "Dream Cache",
+      "id": "d7da182c-cde3-40d8-976e-a88427a1edb8",
+      "kind": "draw"
+    },
+    {
+      "name": "Dream Harvest",
+      "id": "a4ebc0e7-02d7-4d38-9376-a39963e6d3fa",
+      "kind": "sorcery"
+    },
+    {
+      "name": "Dreamstone Hedron",
+      "id": "d0a27816-7ee9-4fa1-aa01-78796ad62337",
+      "kind": "ramp"
+    },
+    {
+      "name": "Dreamtide Whale",
+      "id": "fd7dc03e-2a61-482a-b7eb-6cdb7f375fd8",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Dross Skullbomb",
+      "id": "66270dd2-9139-4329-9621-852962836688",
+      "kind": "draw"
+    },
+    {
+      "name": "Drown in Ichor",
+      "id": "bf148ef4-0ed7-4fbe-8ab6-01dd3981c8d3",
+      "kind": "removal"
+    },
+    {
+      "name": "Drown in the Loch",
+      "id": "eb7b9762-740b-4c1c-a411-20dbf023aea5",
+      "kind": "removal"
+    },
+    {
+      "name": "Drowned Catacomb",
+      "id": "07b4a6dd-0e2f-43be-93c6-7578c34a9443",
+      "kind": "land"
+    },
+    {
+      "name": "Eaten by Piranhas",
+      "id": "475e28bb-1333-45e1-b6fd-83121c2f1ab9",
+      "kind": "removal"
+    },
+    {
+      "name": "Eater of Virtue",
+      "id": "34d92077-d7b2-4996-848f-fd4917e2fb42",
+      "kind": "pump"
+    },
+    {
+      "name": "Echoing Truth",
+      "id": "5d987d26-c8e8-4edf-8ac0-6a2980265710",
+      "kind": "removal"
+    },
+    {
+      "name": "Efficient Construction",
+      "id": "af4d2f70-816c-4410-b3a3-9b9a4b69df52",
+      "kind": "tokens"
+    },
+    {
+      "name": "Elbrus, the Binding Blade // Withengar Unbound",
+      "id": "683af377-c491-4f62-900c-6b83d75c33c9",
+      "kind": "finisher"
+    },
+    {
+      "name": "Eldrazi Monument",
+      "id": "d5439677-d3db-4083-8dd9-0d654016bd79",
+      "kind": "protection"
+    },
+    {
+      "name": "Elixir of Immortality",
+      "id": "6741ab27-9e1f-4aa5-96b9-b450eda7c5c2",
+      "kind": "recursion"
+    },
+    {
+      "name": "Embodiment of Agonies",
+      "id": "77972745-8689-4733-9a9d-39ae9d6273a2",
+      "kind": "counters"
+    },
+    {
+      "name": "Emrakul, the Promised End",
+      "id": "71911392-42b0-4b6d-baf7-918a4bd3b924",
+      "kind": "finisher"
+    },
+    {
+      "name": "Enduring Curiosity",
+      "id": "8616629e-08f9-41ad-bfec-f86c8096f1cb",
+      "kind": "draw"
+    },
+    {
+      "name": "Enduring Tenacity",
+      "id": "d5756d4b-3068-412c-8643-880d3459151e",
+      "kind": "drain"
+    },
+    {
+      "name": "Engine Rat",
+      "id": "949d6137-98d3-4f46-ab1e-08d7492af307",
+      "kind": "removal"
+    },
+    {
+      "name": "Enter the Enigma",
+      "id": "cf5479c7-9e46-4a57-abe7-8cc670de89e4",
+      "kind": "draw"
+    },
+    {
+      "name": "Entropic Battlecruiser",
+      "id": "cc59796b-9025-44b6-a188-cf6684ebffb9",
+      "kind": "discard"
+    },
+    {
+      "name": "Epic Downfall",
+      "id": "3b4a6804-04f5-4467-bb1c-9466a47bc55f",
+      "kind": "removal"
+    },
+    {
+      "name": "Equilibrium",
+      "id": "dfbe8836-88c3-4f5d-88a0-73e54673960e",
+      "kind": "bounce"
+    },
+    {
+      "name": "Erebos's Intervention",
+      "id": "88e35c80-6cfe-49fc-8138-562233ccf987",
+      "kind": "removal"
+    },
+    {
+      "name": "Essence Flux",
+      "id": "c94b37df-aaa5-4981-be3b-c934a7971123",
+      "kind": "blink"
+    },
+    {
+      "name": "Eternal Thirst",
+      "id": "5bbc405d-0cfb-45c6-baa1-75845d82e713",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Eternity Vessel",
+      "id": "a9222e18-41b3-423f-8715-305a0d8fd410",
+      "kind": "landfall"
+    },
+    {
+      "name": "Etherium Sculptor",
+      "id": "b0556f20-1ea8-4ab5-9a09-dec9959f017b",
+      "kind": "ramp"
+    },
+    {
+      "name": "Etrata, Deadly Fugitive",
+      "id": "4410db5a-62af-43ac-979d-88a7c975f7bd",
+      "kind": "theft"
+    },
+    {
+      "name": "Evacuation",
+      "id": "b11037bc-e719-461e-a89e-9c026dfd9fd4",
+      "kind": "removal"
+    },
+    {
+      "name": "Eventide's Shadow",
+      "id": "9c5d71a6-8e68-4aee-b781-486276d17fce",
+      "kind": "sorcery"
+    },
+    {
+      "name": "Everflowing Chalice",
+      "id": "e4ed0052-d6dd-4f69-8313-10863baefac9",
+      "kind": "ramp"
+    },
+    {
+      "name": "Everglades",
+      "id": "5f82ffe7-c5a2-453d-9820-3c576b6f263c",
+      "kind": "land"
+    },
+    {
+      "name": "Exclude",
+      "id": "014bc5a5-4483-42e9-9c14-1ad229b28eb7",
+      "kind": "removal"
+    },
+    {
+      "name": "Executioner's Capsule",
+      "id": "032ea333-96e1-4ad8-8947-21d6bc3a9f91",
+      "kind": "removal"
+    },
+    {
+      "name": "Executioner's Hood",
+      "id": "7447d115-9b29-4086-8435-40c7c957f242",
+      "kind": "evasion"
+    },
+    {
+      "name": "Exile into Darkness",
+      "id": "4d6ac32c-9555-4408-8b18-c3098802b7ad",
+      "kind": "sorcery"
+    },
+    {
+      "name": "Experimental Augury",
+      "id": "8b817b17-27cf-4f6b-baf2-4c4dbb3e71d1",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Explorer's Scope",
+      "id": "be120499-fe2f-4c21-982c-566d0dbbddff",
+      "kind": "ramp"
+    },
+    {
+      "name": "Expropriate",
+      "id": "9c8a2a5a-cb9b-4582-a453-085da78584f9",
+      "kind": "finisher"
+    },
+    {
+      "name": "Exquisite Blood",
+      "id": "0e8ccfa7-4178-476a-a155-0ca1c98556c9",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Exsanguinate",
+      "id": "f11d7311-4066-4a5d-ba28-9857fa707a0b",
+      "kind": "finisher"
+    },
+    {
+      "name": "Extraplanar Lens",
+      "id": "f050a675-c6a2-4d0d-bac6-1d8c51ecf824",
+      "kind": "ramp"
+    },
+    {
+      "name": "Extravagant Replication",
+      "id": "6a41dfae-bc7e-4105-8f7e-fd0109197ad8",
+      "kind": "copy"
+    },
+    {
+      "name": "Eye of Ramos",
+      "id": "78d22400-39f6-444d-b508-783a7df7e945",
+      "kind": "ramp"
+    },
+    {
+      "name": "Ezio, Blade of Vengeance",
+      "id": "bbdc8019-9b5e-4d9a-a09b-2a14f41ddfe1",
+      "kind": "draw"
+    },
+    {
+      "name": "Fabricate",
+      "id": "44e49332-b1e1-4b88-b508-516b55c67a1d",
+      "kind": "tutor"
+    },
+    {
+      "name": "Fade Away",
+      "id": "a6f9103e-dcc2-4f7a-a8ca-eaa831f5f83b",
+      "kind": "removal"
+    },
+    {
+      "name": "Faerie Mastermind",
+      "id": "52d3005f-a1c7-4ef5-911f-ccc0752f4181",
+      "kind": "draw"
+    },
+    {
+      "name": "Faerie Seer",
+      "id": "d1fcfeb4-1818-4e08-be4c-27b8a9dc12e6",
+      "kind": "evasion"
+    },
+    {
+      "name": "Fallen Shinobi",
+      "id": "979076a7-313f-4227-a4c3-548e86997e0a",
+      "kind": "draw"
+    },
+    {
+      "name": "Falthis, Shadowcat Familiar",
+      "id": "84537fea-ad81-4a9a-99d4-722a938adc7d",
+      "kind": "evasion"
+    },
+    {
+      "name": "Familiar's Ruse",
+      "id": "6179d2a5-4694-4dcc-9261-9f5201c53a67",
+      "kind": "removal"
+    },
+    {
+      "name": "Far // Away",
+      "id": "d13cdb71-a499-41db-84e6-95f84650c524",
+      "kind": "removal"
+    },
+    {
+      "name": "Fates' Reversal",
+      "id": "19ff3d76-e985-4d8d-837e-89360cc23824",
+      "kind": "recursion"
+    },
+    {
+      "name": "Feed the Swarm",
+      "id": "a776f96b-01bf-430a-b1ad-9f4651070610",
+      "kind": "removal"
+    },
+    {
+      "name": "Feign Death",
+      "id": "32af7061-fca6-4a06-be3c-01881e6b96f7",
+      "kind": "protection"
+    },
+    {
+      "name": "Fell",
+      "id": "c96ac326-de44-470b-a592-a4c2a052c091",
+      "kind": "removal"
+    },
+    {
+      "name": "Fell the Profane // Fell Mire",
+      "id": "a3cb782d-c459-468d-9779-9b5669abc337",
+      "kind": "removal"
+    },
+    {
+      "name": "Fellwar Stone",
+      "id": "bbfb3591-1f81-4576-828b-fd00fea599dd",
+      "kind": "ramp"
+    },
+    {
+      "name": "Fierce Guardianship",
+      "id": "f7f3dd95-bd14-4e0f-a388-444f9cf1b0dc",
+      "kind": "removal"
+    },
+    {
+      "name": "Fight On!",
+      "id": "e1b0739a-dcc4-4034-96d7-69e551b2f36b",
+      "kind": "recursion"
+    },
+    {
+      "name": "Final Act",
+      "id": "3ce94036-a20f-486a-a301-64928dcc0ac7",
+      "kind": "removal"
+    },
+    {
+      "name": "Finale of Revelation",
+      "id": "0a77e063-e8f6-4cb2-954e-74cf41ce73da",
+      "kind": "draw"
+    },
+    {
+      "name": "Firdoch Core",
+      "id": "8e45cd37-bf97-4742-978d-96f96ed653cd",
+      "kind": "artifact"
+    },
+    {
+      "name": "Fire Nation Engineer",
+      "id": "5daba108-277d-46c8-ac35-7610f4786813",
+      "kind": "counters"
+    },
+    {
+      "name": "Fireshrieker",
+      "id": "484fbce6-71bd-40eb-a71b-86958a094708",
+      "kind": "pump"
+    },
+    {
+      "name": "Flare of Denial",
+      "id": "71a98efb-9b0a-496b-ac21-8d70527ea544",
+      "kind": "removal"
+    },
+    {
+      "name": "Flare of Malice",
+      "id": "19efb9ce-62eb-4cbf-b01e-979f3fd09ba6",
+      "kind": "removal"
+    },
+    {
+      "name": "Flash Counter",
+      "id": "dc14e61f-481a-4bfa-aca0-fb63dc952be6",
+      "kind": "counters"
+    },
+    {
+      "name": "Flesh-Eater Imp",
+      "id": "c9b1925a-d0d5-4ee6-bf80-734237a9dd31",
+      "kind": "infect"
+    },
+    {
+      "name": "Flusterstorm",
+      "id": "f900eeb7-7c45-44bc-ad3a-0bbe594ecf50",
+      "kind": "counters"
+    },
+    {
+      "name": "Flux Channeler",
+      "id": "3c520263-6bad-4521-ba9e-192ca8223b07",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Fly",
+      "id": "f1a91cc6-67e1-4f1b-86e2-eb388a75d6ad",
+      "kind": "evasion"
+    },
+    {
+      "name": "Fog Bank",
+      "id": "18748b1d-4161-482c-a726-8762b4c1819c",
+      "kind": "protection"
+    },
+    {
+      "name": "Folio of Fancies",
+      "id": "6afc67d1-1018-4a15-ab5f-377fd11dcd3d",
+      "kind": "draw"
+    },
+    {
+      "name": "Force of Despair",
+      "id": "8f497b0d-4448-4201-bd55-c147da1a216d",
+      "kind": "removal"
+    },
+    {
+      "name": "Force of Negation",
+      "id": "1825a719-1b2a-4af9-9cd2-7cb497cd0317",
+      "kind": "counters"
+    },
+    {
+      "name": "Force of Will",
+      "id": "89f612d6-7c59-4a7b-a87d-45f789e88ba5",
+      "kind": "counters"
+    },
+    {
+      "name": "Forensic Gadgeteer",
+      "id": "97d08a15-e61c-4421-a541-c68a4f87cb74",
+      "kind": "draw"
+    },
+    {
+      "name": "Forger's Foundry",
+      "id": "16c32c5a-e011-4729-a4a0-b2deac7d5056",
+      "kind": "ramp"
+    },
+    {
+      "name": "Forsaken Monument",
+      "id": "82dfdb91-aa69-45a1-adcc-9fcd85f84ccf",
+      "kind": "ramp"
+    },
+    {
+      "name": "Foulmire Knight // Profane Insight",
+      "id": "4676c019-886c-4b0d-9849-c044c0e03da3",
+      "kind": "draw"
+    },
+    {
+      "name": "Frantic Search",
+      "id": "a1c71f3e-16be-492a-8a3e-5911867270bd",
+      "kind": "draw"
+    },
+    {
+      "name": "Freed from the Real",
+      "id": "c47ee6f6-50c1-4f56-b9ce-4c309bfb92ca",
+      "kind": "untap"
+    },
+    {
+      "name": "Frogify",
+      "id": "d89be5f5-75d4-42a0-81e9-5da5bf868e73",
+      "kind": "removal"
+    },
+    {
+      "name": "Fumulus, the Infestation",
+      "id": "ee5e47c2-7648-4218-b42c-ed9650e12914",
+      "kind": "tokens"
+    },
+    {
+      "name": "Funeral Room // Awakening Hall",
+      "id": "48237c98-5067-47a8-af74-7b9bce57c6a4",
+      "kind": "drain"
+    },
+    {
+      "name": "Futurist Operative",
+      "id": "c5858176-9f85-403c-8338-48eb55db5c3d",
+      "kind": "evasion"
+    },
+    {
+      "name": "Gemstone Caverns",
+      "id": "7f273641-c5f3-48bc-b89e-3cff52d26a0b",
+      "kind": "land"
+    },
+    {
+      "name": "Genji Glove",
+      "id": "f724dde1-84b0-4e3b-a9b8-44cd22bb9f79",
+      "kind": "finisher"
+    },
+    {
+      "name": "Ghost Lantern // Bind Spirit",
+      "id": "f2bde2d6-7c2a-4566-a45a-ccdbbed039b7",
+      "kind": "recursion"
+    },
+    {
+      "name": "Ghost Quarter",
+      "id": "12f8071c-8955-4aa2-889c-6043df047223",
+      "kind": "land"
+    },
+    {
+      "name": "Ghostly Flicker",
+      "id": "dc143ba3-2a58-4980-9fa0-a05a9e9ed082",
+      "kind": "blink"
+    },
+    {
+      "name": "Gift of Doom",
+      "id": "ad6e1ba7-047b-41a3-8ab4-17a5c5476749",
+      "kind": "protection"
+    },
+    {
+      "name": "Gifted Aetherborn",
+      "id": "8644d4d1-8499-40a8-a01f-68172c82bf58",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Gilacorn",
+      "id": "b7f90eef-2393-4e44-9895-00489d3eaa92",
+      "kind": "counters"
+    },
+    {
+      "name": "Gilded Lotus",
+      "id": "aa5e88f1-0ddf-45d7-bbd0-baa88d121867",
+      "kind": "ramp"
+    },
+    {
+      "name": "Gingerbrute",
+      "id": "09a4578a-7dc6-4da3-93ee-913b10be5740",
+      "kind": "evasion"
+    },
+    {
+      "name": "Gisa's Favorite Shovel",
+      "id": "8139bb44-47e8-4076-99ed-ad3623198ad9",
+      "kind": "removal"
+    },
+    {
+      "name": "Glasspool Mimic // Glasspool Shore",
+      "id": "5adcb500-8c77-4925-8e2c-1243502827d1",
+      "kind": "clones"
+    },
+    {
+      "name": "Glen Elendra Archmage",
+      "id": "bd9af767-42da-46c7-a2b8-3957b2e3063f",
+      "kind": "removal"
+    },
+    {
+      "name": "Gloomlake Verge",
+      "id": "83f510b7-4cbd-4883-9c26-c8824bc668ac",
+      "kind": "land"
+    },
+    {
+      "name": "Go for the Throat",
+      "id": "5446e1ba-c745-45b2-ad05-b22abf04daec",
+      "kind": "removal"
+    },
+    {
+      "name": "Goldvein Pick",
+      "id": "a241317d-2277-467e-a8f9-aa71c944e244",
+      "kind": "ramp"
+    },
+    {
+      "name": "Gorgon Flail",
+      "id": "eefc48cb-79aa-4e28-a736-ae9e4e2bc97b",
+      "kind": "removal"
+    },
+    {
+      "name": "Gorgon's Head",
+      "id": "d745dd92-9f7a-44a4-a27f-2ff17753db1c",
+      "kind": "removal"
+    },
+    {
+      "name": "Gossip's Talent",
+      "id": "b299889a-03d6-4659-b0e1-f0830842e40f",
+      "kind": "blink"
+    },
+    {
+      "name": "Graceful Adept",
+      "id": "648430cc-80d1-479f-ae31-76687d2eb57c",
+      "kind": "draw"
+    },
+    {
+      "name": "Grafdigger's Cage",
+      "id": "0a135e09-b534-4836-9a10-3a9a4a9f8c53",
+      "kind": "stax"
+    },
+    {
+      "name": "Grafted Exoskeleton",
+      "id": "f86a9d3f-43a8-4da3-9eed-353582986140",
+      "kind": "infect"
+    },
+    {
+      "name": "Grasp of Darkness",
+      "id": "7737b578-8ae3-4846-b508-93ef40f25244",
+      "kind": "removal"
+    },
+    {
+      "name": "Grave Pact",
+      "id": "f5a4970b-2ba6-4c91-a301-369369cdf360",
+      "kind": "removal"
+    },
+    {
+      "name": "Grave Venerations",
+      "id": "ec52f819-038a-41c3-91ef-91b1975d094c",
+      "kind": "enchantment"
+    },
+    {
+      "name": "Gravecrawler",
+      "id": "6987d609-ba0f-42bf-9b61-bdfb943c03b5",
+      "kind": "recursion"
+    },
+    {
+      "name": "Grazilaxx, Illithid Scholar",
+      "id": "3de11222-c2fa-4544-a501-a02b31797259",
+      "kind": "draw"
+    },
+    {
+      "name": "Grendel, Spawn of Knull",
+      "id": "5fa7a8dc-67b3-4f96-af6e-98bb0a052d92",
+      "kind": "evasion"
+    },
+    {
+      "name": "Grim Hireling",
+      "id": "38326f48-548c-4b18-9ad2-0b7c23385deb",
+      "kind": "ramp"
+    },
+    {
+      "name": "Grim Tutor",
+      "id": "928558ab-e29a-44cb-ac2f-88443571f41a",
+      "kind": "tutor"
+    },
+    {
+      "name": "Grimdancer",
+      "id": "819257c8-9806-48bd-ba49-e117ca31de54",
+      "kind": "counters"
+    },
+    {
+      "name": "Grindstone",
+      "id": "0f15505d-b32f-4b71-8b99-f27bc964c5a8",
+      "kind": "mill"
+    },
+    {
+      "name": "Gudul Lurker",
+      "id": "c84d5344-2d15-43da-b536-27e0d308606b",
+      "kind": "evasion"
+    },
+    {
+      "name": "Guildless Commons",
+      "id": "8f943d5d-e8a1-4fe1-aad5-80c7ccf15435",
+      "kind": "land"
+    },
+    {
+      "name": "Guildsworn Prowler",
+      "id": "d7efb10f-c760-431c-8ac6-904965d850dc",
+      "kind": "draw"
+    },
+    {
+      "name": "Hagra Mauling // Hagra Broodpit",
+      "id": "7c04c734-354d-4925-8161-7052110951df",
+      "kind": "removal"
+    },
+    {
+      "name": "Halimar Depths",
+      "id": "63eb18e0-c723-4de4-8498-c5362c75b2b4",
+      "kind": "land"
+    },
+    {
+      "name": "Hama, the Bloodbender",
+      "id": "6fa1197d-7b19-4d86-81e2-5c87de87757b",
+      "kind": "theft"
+    },
+    {
+      "name": "Hammer of Nazahn",
+      "id": "e77a8ac1-f40d-423e-a0b3-0a8e236a6c1e",
+      "kind": "protection"
+    },
+    {
+      "name": "Hand of Silumgar",
+      "id": "d3cbb127-6149-4d0b-ad98-1968f2ebe8e4",
+      "kind": "creature"
+    },
+    {
+      "name": "Harmonized Crescendo",
+      "id": "2715e0c0-9913-4bea-9a42-ad1164f6130a",
+      "kind": "draw"
+    },
+    {
+      "name": "Haunted Cloak",
+      "id": "abffd0a3-ea7a-43cf-b92d-d9f436bef58e",
+      "kind": "evasion"
+    },
+    {
+      "name": "Heartless Act",
+      "id": "b57c57a8-d72b-4c6c-a2db-a7ef61190f42",
+      "kind": "removal"
+    },
+    {
+      "name": "Hedron Archive",
+      "id": "535b9ac6-dba2-4162-86ed-df3e9fad0306",
+      "kind": "ramp"
+    },
+    {
+      "name": "Helm of Awakening",
+      "id": "e9e4ff9c-6244-43e1-b569-32a270c4e014",
+      "kind": "ramp"
+    },
+    {
+      "name": "Helm of the Ghastlord",
+      "id": "653dd5b7-1ad3-4df1-bd2a-4e6ae362a8a2",
+      "kind": "draw"
+    },
+    {
+      "name": "Helm of the Host",
+      "id": "1d65d20c-09e5-4139-838b-7e0e48eb2b2b",
+      "kind": "copy"
+    },
+    {
+      "name": "Henrika Domnathi // Henrika, Infernal Seer",
+      "id": "946ca338-5f43-4cff-bd93-1b28449c5fdc",
+      "kind": "draw"
+    },
+    {
+      "name": "Herald of Secret Streams",
+      "id": "e6e1f2ab-e437-444e-9edb-73278d9c7616",
+      "kind": "evasion"
+    },
+    {
+      "name": "Herald's Horn",
+      "id": "4bfa71d4-4125-4404-9c24-979401bae592",
+      "kind": "ramp"
+    },
+    {
+      "name": "Heraldic Banner",
+      "id": "743ea709-dbb3-4db8-a2ce-544f47eb6339",
+      "kind": "ramp"
+    },
+    {
+      "name": "Hero's Blade",
+      "id": "6da612ec-983b-4a7b-8d52-b853a4c565de",
+      "kind": "pump"
+    },
+    {
+      "name": "Hero's Downfall",
+      "id": "ad2c01d9-8f54-46c0-9dc9-d4d4764ce1c9",
+      "kind": "removal"
+    },
+    {
+      "name": "High Tide",
+      "id": "babd2248-5517-4b7b-a159-9a1f7b5583c8",
+      "kind": "ramp"
+    },
+    {
+      "name": "Higure, the Still Wind",
+      "id": "f7b96d12-6309-48d1-bbdc-7bc88f4e2518",
+      "kind": "tutor"
+    },
+    {
+      "name": "Hired Poisoner",
+      "id": "bf97e572-90d6-46fc-81c3-956a7ef88983",
+      "kind": "removal"
+    },
+    {
+      "name": "Hivestone",
+      "id": "69e62171-713c-49c0-8e16-b193ff181dcd",
+      "kind": "anthem"
+    },
+    {
+      "name": "Homeward Path",
+      "id": "54734347-eee7-4c52-b514-7342afeccabd",
+      "kind": "land"
+    },
+    {
+      "name": "Honest Work",
+      "id": "57e0ccb0-22f0-4e4d-9a47-c4fec2c7f251",
+      "kind": "removal"
+    },
+    {
+      "name": "Hullbreaker Horror",
+      "id": "137acb70-a1fd-4ea9-a5d9-f4b438eb5e82",
+      "kind": "removal"
+    },
+    {
+      "name": "Hullcarver",
+      "id": "817b5b18-beb5-48c8-aa45-0515ff9ca5da",
+      "kind": "removal"
+    },
+    {
+      "name": "Hydroelectric Specimen // Hydroelectric Laboratory",
+      "id": "8689ecd7-e9a6-458b-99d2-6dbaca527f00",
+      "kind": "protection"
+    },
+    {
+      "name": "Ichormoon Gauntlet",
+      "id": "2c093ce0-2561-4847-ab58-f6f1650d743e",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Icon of Ancestry",
+      "id": "f6cdbdf3-f8bd-48a9-8a47-6b0b9d5de0db",
+      "kind": "draw"
+    },
+    {
+      "name": "Illithid Harvester // Plant Tadpoles",
+      "id": "df9573a3-d013-4631-98ed-78418bf0bc78",
+      "kind": "removal"
+    },
+    {
+      "name": "Illusionist's Bracers",
+      "id": "9dd8d940-a973-4469-bf78-90318d98f3ab",
+      "kind": "copy"
+    },
+    {
+      "name": "Illusionist's Gambit",
+      "id": "a00cc6ab-e97c-4eba-bc7e-49d77690433b",
+      "kind": "protection"
+    },
+    {
+      "name": "Imp's Mischief",
+      "id": "0eb0e8e7-266f-441e-b1cd-12b8ec3f7d71",
+      "kind": "protection"
+    },
+    {
+      "name": "Imperial Seal",
+      "id": "e71a6bd3-7478-4c3a-8ae0-98352ce28492",
+      "kind": "tutor"
+    },
+    {
+      "name": "Imposter Mech",
+      "id": "59b7450c-3163-4f12-9af1-2e998a6c36cf",
+      "kind": "copy"
+    },
+    {
+      "name": "Impostor Syndrome",
+      "id": "08da9f92-0e25-4f39-aaa4-d8974af81a41",
+      "kind": "copy"
+    },
+    {
+      "name": "Imprisoned in the Moon",
+      "id": "0d150547-09f5-45ce-a825-89944b066bd4",
+      "kind": "removal"
+    },
+    {
+      "name": "In Garruk's Wake",
+      "id": "57a6f727-8239-45e6-9dbb-67d2d3c9239d",
+      "kind": "removal"
+    },
+    {
+      "name": "Inevitable Betrayal",
+      "id": "71725895-38cd-4017-bbf0-0b7dc9b5db60",
+      "kind": "theft"
+    },
+    {
+      "name": "Inexorable Tide",
+      "id": "40441345-23ca-47e4-b349-bd13d986e41e",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Infectious Inquiry",
+      "id": "0a10f284-b043-4307-bdc7-6dad47cc9221",
+      "kind": "draw"
+    },
+    {
+      "name": "Infernal Grasp",
+      "id": "2430acb7-b371-4a03-88e7-0660a51836dd",
+      "kind": "removal"
+    },
+    {
+      "name": "Ingenious Infiltrator",
+      "id": "919cd266-b796-4a1c-937f-76b565c82495",
+      "kind": "draw"
+    },
+    {
+      "name": "Ink-Eyes, Servant of Oni",
+      "id": "55ed38fc-dc1f-4a03-8869-147f7eb8646b",
+      "kind": "recursion"
+    },
+    {
+      "name": "Inkrise Infiltrator",
+      "id": "cbb6e447-5f40-4039-8a17-257b4a55382c",
+      "kind": "evasion"
+    },
+    {
+      "name": "Insatiable Avarice",
+      "id": "a108b0e4-1b43-4659-9e91-facb0bd57ebb",
+      "kind": "tutor"
+    },
+    {
+      "name": "Insight Engine",
+      "id": "b826de8b-ed21-4e2b-b99a-e860c1cb876b",
+      "kind": "draw"
+    },
+    {
+      "name": "Into the Flood Maw",
+      "id": "50b9575a-53d9-4df7-b86c-cda021107d3f",
+      "kind": "removal"
+    },
+    {
+      "name": "Invisible Stalker",
+      "id": "14d265aa-c1d8-4faa-b282-5c273ab725fd",
+      "kind": "evasion"
+    },
+    {
+      "name": "Irenicus's Vile Duplication",
+      "id": "40a791df-2483-406d-90b0-a8d402d615d6",
+      "kind": "copy"
+    },
+    {
+      "name": "Isareth the Awakener",
+      "id": "d5de9b95-1c20-4d1a-be7d-4307ec2803ba",
+      "kind": "recursion"
+    },
+    {
+      "name": "Island",
+      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
+      "kind": "land"
+    },
+    {
+      "name": "Island",
+      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
+      "kind": "land"
+    },
+    {
+      "name": "Island",
+      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
+      "kind": "land"
+    },
+    {
+      "name": "Island",
+      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
+      "kind": "land"
+    },
+    {
+      "name": "Island",
+      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
+      "kind": "land"
+    },
+    {
+      "name": "Island",
+      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
+      "kind": "land"
+    },
+    {
+      "name": "Isochron Scepter",
+      "id": "2aa24fe0-e275-4307-b26c-2a656068a451",
+      "kind": "copy"
+    },
+    {
+      "name": "Ixidron",
+      "id": "c30ec372-5cf7-471c-b3fd-411095fc249a",
+      "kind": "removal"
+    },
+    {
+      "name": "Jace, the Mind Sculptor",
+      "id": "c8817585-0d32-4d56-9142-0d29512e86a9",
+      "kind": "draw"
+    },
+    {
+      "name": "Jet Medallion",
+      "id": "d423365c-a32c-4060-b178-3221e3200387",
+      "kind": "ramp"
+    },
+    {
+      "name": "Jwari Disruption // Jwari Ruins",
+      "id": "301750a7-d1fd-435e-bfa8-9d2fb22ad627",
+      "kind": "removal"
+    },
+    {
+      "name": "Kaito Shizuki",
+      "id": "2d35a710-3008-4e27-8afd-6e83329f9917",
+      "kind": "draw"
+    },
+    {
+      "name": "Kaito, Bane of Nightmares",
+      "id": "55a14f30-4ff9-4472-90a6-c3139f1c18e5",
+      "kind": "draw"
+    },
+    {
+      "name": "Kaito, Cunning Infiltrator",
+      "id": "5dabdea9-2015-49b9-853d-4f7e1262eab3",
+      "kind": "evasion"
+    },
+    {
+      "name": "Kaito, Dancing Shadow",
+      "id": "0d97f59a-07b8-47ef-aa88-d94f8c3feae4",
+      "kind": "draw"
+    },
+    {
+      "name": "Kaito's Pursuit",
+      "id": "dd73fa5a-be0f-49a4-a921-afefbc8fa9c5",
+      "kind": "discard"
+    },
+    {
+      "name": "Kaldra Compleat",
+      "id": "572fb0dc-d876-4e1b-91d1-9c595f6f6f04",
+      "kind": "protection"
+    },
+    {
+      "name": "Kami of Jealous Thirst",
+      "id": "a2958c96-97f8-4961-813c-938b83e20d07",
+      "kind": "drain"
+    },
+    {
+      "name": "Kappa Cannoneer",
+      "id": "99cd996f-be74-4dbb-9460-6d650cedfca6",
+      "kind": "finisher"
+    },
+    {
+      "name": "Karn's Temporal Sundering",
+      "id": "7a64c1a4-02ce-49d2-97f2-970b8c33672d",
+      "kind": "removal"
+    },
+    {
+      "name": "Kasmina's Transmutation",
+      "id": "b5287705-cf89-49cb-b1f2-bff7a9119c98",
+      "kind": "removal"
+    },
+    {
+      "name": "Katara, Bending Prodigy",
+      "id": "e8372167-383f-4302-a8ea-b6bf495c870c",
+      "kind": "draw"
+    },
+    {
+      "name": "Katara's Reversal",
+      "id": "8ba06a79-d3b7-4705-9c5e-becaea1dd9e3",
+      "kind": "removal"
+    },
+    {
+      "name": "Kindred Discovery",
+      "id": "8d264ad1-10a3-41ba-9740-48f2c07a0ec3",
+      "kind": "draw"
+    },
+    {
+      "name": "Kindred Dominance",
+      "id": "af613b69-b9f6-4221-a21b-c8e4b0f010f1",
+      "kind": "removal"
+    },
+    {
+      "name": "Kotose, the Silent Spider",
+      "id": "314e97b5-cd43-4f5e-acdd-a107208e061c",
+      "kind": "theft"
+    },
+    {
+      "name": "Krang & Shredder",
+      "id": "9b5437e2-e3f4-4c19-a2aa-a75f65a001bb",
+      "kind": "creature"
+    },
+    {
+      "name": "Krydle of Baldur's Gate",
+      "id": "75f4d622-2d50-4e6e-87a5-5a1cc65d6919",
+      "kind": "mill"
+    },
+    {
+      "name": "Land Equilibrium",
+      "id": "51c5df75-746c-4e4b-84f1-76b689d317d7",
+      "kind": "stax"
+    },
+    {
+      "name": "Lash of the Balrog",
+      "id": "812fee97-e145-4458-b495-bc6ad227335b",
+      "kind": "removal"
+    },
+    {
+      "name": "Lash of Thorns",
+      "id": "ea45e972-6e4a-4854-9be3-6ffb24e7d7a5",
+      "kind": "removal"
+    },
+    {
+      "name": "Lashwrithe",
+      "id": "de21d433-5c2c-49c0-80d1-bf6e8471f9d4",
+      "kind": "pump"
+    },
+    {
+      "name": "Lavaspur Boots",
+      "id": "e50709de-e6ef-4dbc-af1e-290fed279f34",
+      "kind": "protection"
+    },
+    {
+      "name": "Lazav, Dimir Mastermind",
+      "id": "003dc436-a3af-4e65-b4f8-387155fbcb85",
+      "kind": "copy"
+    },
+    {
+      "name": "Leechridden Swamp",
+      "id": "a07a0e31-ace6-40ad-8700-2d58135b5320",
+      "kind": "land"
+    },
+    {
+      "name": "Leyline Axe",
+      "id": "b9c03336-a321-4c06-94d1-809f328fabd8",
+      "kind": "pump"
+    },
+    {
+      "name": "Lightning Greaves",
+      "id": "8b59b12c-fde5-4f19-a357-e09f06f490cc",
+      "kind": "protection"
+    },
+    {
+      "name": "Liliana of the Dark Realms",
+      "id": "00cbe506-7332-4d29-9404-b7c6e1e791d8",
+      "kind": "ramp"
+    },
+    {
+      "name": "Liliana's Caress",
+      "id": "0d995382-57a6-40a4-9050-31f57cb8dae3",
+      "kind": "discard"
+    },
+    {
+      "name": "Lim-Dûl's Vault",
+      "id": "cec89c38-0b72-44b0-ac6c-7eb9503e1256",
+      "kind": "tutor"
+    },
+    {
+      "name": "Lithoform Engine",
+      "id": "6683416a-5820-4cd0-b28a-60a53239e9ef",
+      "kind": "copy"
+    },
+    {
+      "name": "Locke Cole",
+      "id": "572feb8c-6976-40a8-8a34-b4db836cca56",
+      "kind": "draw"
+    },
+    {
+      "name": "Lórien Revealed",
+      "id": "0ce44270-a684-4489-9077-521456e6dfaa",
+      "kind": "draw"
+    },
+    {
+      "name": "Lotus Bloom",
+      "id": "db89ae4d-1cc2-41d8-a4de-a54b958c4429",
+      "kind": "ramp"
+    },
+    {
+      "name": "Lotus Field",
+      "id": "0e013033-3995-4ba8-b0c3-0614c79aaaab",
+      "kind": "land"
+    },
+    {
+      "name": "Lotus Vale",
+      "id": "2e5cd12a-2a07-44a8-8eac-de00d26fe9e3",
+      "kind": "land"
+    },
+    {
+      "name": "Louisoix's Sacrifice",
+      "id": "4a6976f2-0bd5-449a-8fcf-f5a732ce22c1",
+      "kind": "removal"
+    },
+    {
+      "name": "Machine God's Effigy",
+      "id": "637f69c2-ba24-42d1-9345-8ebdb04b6904",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mai, Scornful Striker",
+      "id": "74dd4c0e-27b8-4c47-b7a6-a281413cd6b4",
+      "kind": "drain"
+    },
+    {
+      "name": "Malakir Familiar",
+      "id": "24fe5c92-7da2-47b5-ad13-f95590e93ac2",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Malicious Affliction",
+      "id": "127f3f4d-93f4-4e52-b3c1-325c3981e0e1",
+      "kind": "removal"
+    },
+    {
+      "name": "Mana Drain",
+      "id": "3c429c40-2389-41e5-8681-4bb274e25eba",
+      "kind": "removal"
+    },
+    {
+      "name": "Mana Vault",
+      "id": "c1a31d52-a407-4ded-bfca-cc812f11afa0",
+      "kind": "ramp"
+    },
+    {
+      "name": "Manifold Key",
+      "id": "0f5a15cd-a359-48c9-9280-ce139f1fb061",
+      "kind": "untap"
+    },
+    {
+      "name": "Marauding Blight-Priest",
+      "id": "5f70dafc-c638-4ec0-ab5b-62998f752720",
+      "kind": "drain"
+    },
+    {
+      "name": "March of Swirling Mist",
+      "id": "100171d8-7436-44c8-b4cb-0101ffa05c25",
+      "kind": "protection"
+    },
+    {
+      "name": "Mask of Griselbrand",
+      "id": "a8c36e65-395c-4800-bd0a-c444940a9b36",
+      "kind": "draw"
+    },
+    {
+      "name": "Mask of Riddles",
+      "id": "bf483e4c-4a6e-4b78-8e5d-c8b17f7bb433",
+      "kind": "draw"
+    },
+    {
+      "name": "Maskwood Nexus",
+      "id": "1246c42d-57c0-4cba-959a-15ad89d8a50b",
+      "kind": "tokens"
+    },
+    {
+      "name": "Massacre Wurm",
+      "id": "39be2675-986c-4812-9448-99737e797671",
+      "kind": "removal"
+    },
+    {
+      "name": "Masterwork of Ingenuity",
+      "id": "80b38b13-fc19-4ffc-8100-249f9eb8cca6",
+      "kind": "copy"
+    },
+    {
+      "name": "Maximum Overdrive",
+      "id": "5f6e5bb2-cfe9-48e5-86f9-e21f3d328327",
+      "kind": "protection"
+    },
+    {
+      "name": "Maze of Ith",
+      "id": "5889fde1-730d-43d0-aaa4-499784a80530",
+      "kind": "land"
+    },
+    {
+      "name": "Meathook Massacre II",
+      "id": "3db59d06-a226-42b2-8f01-6b63a6eea83f",
+      "kind": "removal"
+    },
+    {
+      "name": "Mechanized Production",
+      "id": "eaf86997-68e8-4c37-99f1-db10ac08f54c",
+      "kind": "copy"
+    },
+    {
+      "name": "Memnite",
+      "id": "975459ba-e1c2-4800-a3fa-5c0cf8ce728f",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mephitic Draught",
+      "id": "adcae196-dbcc-44d5-b700-c57b0b646483",
+      "kind": "draw"
+    },
+    {
+      "name": "Mephitic Ooze",
+      "id": "5465de95-1249-4f14-a2e3-2b2861dfe058",
+      "kind": "removal"
+    },
+    {
+      "name": "Merchant Scroll",
+      "id": "bb5385d2-ca5d-4fb9-934b-b7cc8b38ac89",
+      "kind": "tutor"
+    },
+    {
+      "name": "Meteor Crater",
+      "id": "043a2299-1cfc-4732-a10a-58c773b9992c",
+      "kind": "land"
+    },
+    {
+      "name": "Midnight Assassin",
+      "id": "02a4a5b3-0477-4709-8bce-3e01f54001b6",
+      "kind": "evasion"
+    },
+    {
+      "name": "Minamo, School at Water's Edge",
+      "id": "7536292c-da25-41c8-ba28-1e35758a7f3d",
+      "kind": "land"
+    },
+    {
+      "name": "Minas Morgul, Dark Fortress",
+      "id": "50f76652-15e7-4190-842e-db6db6d66e91",
+      "kind": "land"
+    },
+    {
+      "name": "Mind Control",
+      "id": "ec7f77af-17d7-4746-bc83-f455b9b6f9ea",
+      "kind": "theft"
+    },
+    {
+      "name": "Mind Games",
+      "id": "4da50979-1f5d-48d1-9406-dfc785273c04",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mind Stone",
+      "id": "f1f616f2-d69d-4763-8ff0-3eb05a543926",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mind's Dilation",
+      "id": "4f2980ba-2468-4a36-afdb-87e6567797a9",
+      "kind": "theft"
+    },
+    {
+      "name": "Mindbreak Trap",
+      "id": "4f51140b-6254-431a-8810-94307bfdfbbe",
+      "kind": "counters"
+    },
+    {
+      "name": "Mindsplice Apparatus",
+      "id": "7f4ad1cb-4bbb-4485-b322-0b003f06d034",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mirage Mirror",
+      "id": "cb1252c2-b951-4125-93a2-9282b607b6a4",
+      "kind": "copy"
+    },
+    {
+      "name": "Mire Triton",
+      "id": "a070b7af-7c85-4129-81ca-e2ec0540085e",
+      "kind": "mill"
+    },
+    {
+      "name": "Mirror Room // Fractured Realm",
+      "id": "c2e085dd-a448-4f5a-9cfa-5c2034234e7c",
+      "kind": "copy"
+    },
+    {
+      "name": "Mirror Shield",
+      "id": "e7624e84-93ce-4983-8624-ebc934cab67f",
+      "kind": "protection"
+    },
+    {
+      "name": "Mirrormade",
+      "id": "a26cbfbe-fbb8-4804-b065-ab2c42ddad9b",
+      "kind": "copy"
+    },
+    {
+      "name": "Miscast",
+      "id": "033afbd5-9937-4957-98ba-48e469a490bb",
+      "kind": "counters"
+    },
+    {
+      "name": "Mischievous Catgeist // Catlike Curiosity",
+      "id": "a3ff628a-ef8e-45c4-84e7-a33ec28f025a",
+      "kind": "draw"
+    },
+    {
+      "name": "Misdirection",
+      "id": "c96763d6-0cea-40ed-afb2-886bfebe50a0",
+      "kind": "protection"
+    },
+    {
+      "name": "Misleading Signpost",
+      "id": "c15dfe35-c570-4aaf-b82d-270c15464fe2",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mist-Cloaked Herald",
+      "id": "574f73a7-9ff7-4ce3-9f56-002af968d35a",
+      "kind": "evasion"
+    },
+    {
+      "name": "Mist-Syndicate Naga",
+      "id": "65c8f074-e260-4f8e-85d1-1904ca928b51",
+      "kind": "tokens"
+    },
+    {
+      "name": "Mistblade Shinobi",
+      "id": "f333193b-a95a-43dc-b50a-58412a33c8b6",
+      "kind": "removal"
+    },
+    {
+      "name": "Mistrise Village",
+      "id": "d44bccbf-6fab-46e4-8ddb-6577e27ec6e8",
+      "kind": "land"
+    },
+    {
+      "name": "Mithril Coat",
+      "id": "0fd1fc09-a09d-45e6-8a07-3a8a83b4e6ec",
+      "kind": "protection"
+    },
+    {
+      "name": "Mockingbird",
+      "id": "ade32396-8841-4ba4-8852-d11146607f21",
+      "kind": "copy"
+    },
+    {
+      "name": "Moon-Circuit Hacker",
+      "id": "c6e466d1-943d-41e6-a47d-c9d951ca4262",
+      "kind": "draw"
+    },
+    {
+      "name": "Moonblade Shinobi",
+      "id": "f4ab7f30-ca75-4656-9738-1d965f18a22d",
+      "kind": "tokens"
+    },
+    {
+      "name": "Moonsnare Prototype",
+      "id": "9d8bc0e9-a536-4bca-92a6-8dca85e1e984",
+      "kind": "ramp"
+    },
+    {
+      "name": "Moonsnare Specialist",
+      "id": "1e8b209f-f577-45cc-9d18-03c1d67d391e",
+      "kind": "removal"
+    },
+    {
+      "name": "Moonstone Harbinger",
+      "id": "59e4aa8d-1d06-48db-b205-aa2f1392bbcb",
+      "kind": "anthem"
+    },
+    {
+      "name": "Morbid Curiosity",
+      "id": "03898f46-a26c-4765-8f1e-ea976fc53d7e",
+      "kind": "draw"
+    },
+    {
+      "name": "Morbid Opportunist",
+      "id": "5f0440bc-807a-4425-8707-e74f468b2ca7",
+      "kind": "draw"
+    },
+    {
+      "name": "Morphic Pool",
+      "id": "48e40927-dd87-42ed-b805-0ae8ba81f5fb",
+      "kind": "land"
+    },
+    {
+      "name": "Mortuary Mire",
+      "id": "058f30e5-64a9-4d6b-b7a6-0fd95d460cae",
+      "kind": "land"
+    },
+    {
+      "name": "Mothdust Changeling",
+      "id": "18acffb1-c1e8-4729-a350-64823b2f9d29",
+      "kind": "evasion"
+    },
+    {
+      "name": "Mox Amber",
+      "id": "66024e69-ad60-4c9a-a0ca-da138d33ad80",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mox Opal",
+      "id": "56001a36-126b-4c08-af98-a6cc4d84210e",
+      "kind": "ramp"
+    },
+    {
+      "name": "Muddle the Mixture",
+      "id": "e69d760c-48fb-4e7f-8611-547b0c22928c",
+      "kind": "tutor"
+    },
+    {
+      "name": "Mudflat Village",
+      "id": "53ec4ad3-9cf0-4f1b-a9db-d63feee594ab",
+      "kind": "land"
+    },
+    {
+      "name": "Mukotai Ambusher",
+      "id": "0adf3293-c1e0-447c-8231-26fa9476a262",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Murder",
+      "id": "2c249609-9cf7-46f1-b94c-9329add966bb",
+      "kind": "removal"
+    },
+    {
+      "name": "Murderous Compulsion",
+      "id": "5fca1faf-bd47-45cd-a2d9-b2efbc75cbb5",
+      "kind": "removal"
+    },
+    {
+      "name": "Murderous Cut",
+      "id": "b2dadff2-883f-4134-a881-be145cdcbd84",
+      "kind": "removal"
+    },
+    {
+      "name": "Murderous Rider // Swift End",
+      "id": "80fffad3-2486-4350-8dff-54a215ebfc28",
+      "kind": "removal"
+    },
+    {
+      "name": "Mutated Cultist",
+      "id": "cc4bb871-cde9-43a9-8089-5987fa0dd4ef",
+      "kind": "ramp"
+    },
+    {
+      "name": "Mutavault",
+      "id": "3d2f5d31-a1c6-465f-b518-b40acdfab8aa",
+      "kind": "land"
+    },
+    {
+      "name": "Myriad Landscape",
+      "id": "a0e2098f-1d94-491a-a7e9-a45a9f69e3a8",
+      "kind": "land"
+    },
+    {
+      "name": "Mystic Forge",
+      "id": "bc0de77a-c503-4000-9eb5-aa28a5e91082",
+      "kind": "draw"
+    },
+    {
+      "name": "Mystic Reflection",
+      "id": "f7b877e2-60eb-46cd-acd7-8555b9e7e993",
+      "kind": "removal"
+    },
+    {
+      "name": "Mystic Remora",
+      "id": "40140991-cffa-4b52-9a25-37e9a8aa9ddd",
+      "kind": "draw"
+    },
+    {
+      "name": "Mystic Sanctuary",
+      "id": "67652446-6d12-4e2a-bb51-ba685f2e79d1",
+      "kind": "land"
+    },
+    {
+      "name": "Mystic Speculation",
+      "id": "92adfcb4-6a0a-46f9-a171-bfa9fade2156",
+      "kind": "draw"
+    },
+    {
+      "name": "Mystical Tutor",
+      "id": "36fa9a0b-b0c9-43ea-ba11-99d7982f974e",
+      "kind": "tutor"
+    },
+    {
+      "name": "Nanogene Conversion",
+      "id": "81aa8dbd-ae18-4d62-a721-94afcb12bf27",
+      "kind": "copy"
+    },
+    {
+      "name": "Narset's Reversal",
+      "id": "4ede8d68-6870-445c-b140-da98adbc246a",
+      "kind": "removal"
+    },
+    {
+      "name": "Nashi, Moon Sage's Scion",
+      "id": "1e62de3b-6a41-43e3-93ad-9a1e3894be3b",
+      "kind": "draw"
+    },
+    {
+      "name": "Nashi, Searcher in the Dark",
+      "id": "0fbf9e1e-43f2-499e-844d-22fc10dbad06",
+      "kind": "draw"
+    },
+    {
+      "name": "Nasty End",
+      "id": "c34f88d7-15a1-434f-88d7-3d4fcf406d54",
+      "kind": "draw"
+    },
+    {
+      "name": "Navigation Orb",
+      "id": "d512a77e-2435-4695-9408-df8e17dd1fbd",
+      "kind": "ramp"
+    },
+    {
+      "name": "Necrobite",
+      "id": "06c5bca1-b0f0-4032-b2ed-71bdbaa41993",
+      "kind": "protection"
+    },
+    {
+      "name": "Necrogen Communion",
+      "id": "6ac8cd7c-992f-4953-b5bf-42e5a9ff09ad",
+      "kind": "protection"
+    },
+    {
+      "name": "Necromantic Thirst",
+      "id": "8c934b09-726a-49c7-88fa-8b2e7ebf87b7",
+      "kind": "recursion"
+    },
+    {
+      "name": "Negate",
+      "id": "ff3b0dba-0207-4249-bdab-e807c76ce39e",
+      "kind": "removal"
+    },
+    {
+      "name": "Nesting Grounds",
+      "id": "c25ad164-4076-496d-833c-d607391b1ac8",
+      "kind": "land"
+    },
+    {
+      "name": "Nettlecyst",
+      "id": "0a7cb0f8-2946-4b00-a192-0b31c8e1ec5c",
+      "kind": "pump"
+    },
+    {
+      "name": "Neurok Stealthsuit",
+      "id": "d5e58c74-0ba6-452a-94a6-8256c4f6aba8",
+      "kind": "protection"
+    },
+    {
+      "name": "Never // Return",
+      "id": "a4b32135-7061-4278-a01a-4fcbaadc9706",
+      "kind": "removal"
+    },
+    {
+      "name": "Nezumi Prowler",
+      "id": "ca911e9a-bd04-4531-a81e-3485e9cbe89e",
+      "kind": "removal"
+    },
+    {
+      "name": "Night's Whisper",
+      "id": "c6627166-bf0e-49f2-9077-252cfb0fab4d",
+      "kind": "draw"
+    },
+    {
+      "name": "Nightmare's Thirst",
+      "id": "f12efbc0-ce88-4622-ad07-2808e651ac5a",
+      "kind": "removal"
+    },
+    {
+      "name": "Nightveil Predator",
+      "id": "72efc1ee-3583-4814-beaa-bbee709275e6",
+      "kind": "protection"
+    },
+    {
+      "name": "Ninja of the Deep Hours",
+      "id": "5fea7980-55e1-47c1-ab18-a89c976b55fc",
+      "kind": "draw"
+    },
+    {
+      "name": "Ninja of the New Moon",
+      "id": "08be60eb-15ec-4112-919c-995062a9ed54",
+      "kind": "creature"
+    },
+    {
+      "name": "Ninja Teen",
+      "id": "0825a28f-f60b-4f80-83e3-cad6f9b266ce",
+      "kind": "enchantment"
+    },
+    {
+      "name": "Ninja's Blades",
+      "id": "a6b5af82-3646-44f9-ac12-1d7fa698f037",
+      "kind": "draw"
+    },
+    {
+      "name": "No Mercy",
+      "id": "63c5e1dd-2fe6-4734-8406-7bcdf17aa60c",
+      "kind": "protection"
+    },
+    {
+      "name": "North Pole Patrol",
+      "id": "c2c0c138-5b61-4949-8431-4a6d458ead6a",
+      "kind": "ramp"
+    },
+    {
+      "name": "Not Dead After All",
+      "id": "d01a2b68-efe6-4027-846d-db7b19d9eef6",
+      "kind": "protection"
+    },
+    {
+      "name": "Nuka-Cola Vending Machine",
+      "id": "bd5cc052-7175-4bb8-a52c-f1fb80cb731a",
+      "kind": "tokens"
+    },
+    {
+      "name": "Null Elemental Blast",
+      "id": "8e259868-d29a-4c03-8ec3-49e914f849fb",
+      "kind": "removal"
+    },
+    {
+      "name": "Nykthos, Shrine to Nyx",
+      "id": "834b27a0-dfd7-4f96-8cde-cacac4b24acc",
+      "kind": "land"
+    },
+    {
+      "name": "Nyx Lotus",
+      "id": "5bd6353f-d119-40e6-895c-030a11a7a2fe",
+      "kind": "ramp"
+    },
+    {
+      "name": "Oboro, Palace in the Clouds",
+      "id": "ffc2d68e-6543-43ec-b67a-afff1325a32f",
+      "kind": "land"
+    },
+    {
+      "name": "Observed Stasis",
+      "id": "6301c10c-8c27-4595-a0a7-30c621332b2c",
+      "kind": "removal"
+    },
+    {
+      "name": "Obsessive Pursuit",
+      "id": "e837e29c-d241-43c8-8f45-05056e082b60",
+      "kind": "draw"
+    },
+    {
+      "name": "Offer Immortality",
+      "id": "b0aac10a-6d47-4a6c-8a10-2b7c06f3ff32",
+      "kind": "protection"
+    },
+    {
+      "name": "Okiba-Gang Shinobi",
+      "id": "402bbbd8-b490-4a5c-9083-f0103c8712cb",
+      "kind": "discard"
+    },
+    {
+      "name": "Omniscience",
+      "id": "d33d91d0-1506-45e4-9def-975bf901815e",
+      "kind": "ramp"
+    },
+    {
+      "name": "One with the Machine",
+      "id": "17f2aaf5-6c1f-4663-865f-6cdd5640485a",
+      "kind": "draw"
+    },
+    {
+      "name": "One with the Multiverse",
+      "id": "1c85ae22-ccd0-4649-a736-1915043daae7",
+      "kind": "draw"
+    },
+    {
+      "name": "Open into Wonder",
+      "id": "a921ff16-2cd1-4080-80a9-dd73c4eda5c7",
+      "kind": "draw"
+    },
+    {
+      "name": "Ophidian Eye",
+      "id": "26836ff5-b3c3-4b10-af1e-df3658781cb2",
+      "kind": "draw"
+    },
+    {
+      "name": "Ophiomancer",
+      "id": "7da2511d-f5ae-4c51-a9b2-dffd581243b6",
+      "kind": "tokens"
+    },
+    {
+      "name": "Opposition",
+      "id": "ae14acde-8a5c-4f0e-8e68-b799a363b9f7",
+      "kind": "removal"
+    },
+    {
+      "name": "Ornithopter",
+      "id": "305078a5-ac18-4721-bba2-3434eba5b1cf",
+      "kind": "evasion"
+    },
+    {
+      "name": "Orochi Soul-Reaver",
+      "id": "ec8f372a-d8c7-4f5d-a91d-ec7e5eb17104",
+      "kind": "ramp"
+    },
+    {
+      "name": "Osteomancer Adept",
+      "id": "7d8238dd-858f-466c-96de-986bd66861d7",
+      "kind": "recursion"
+    },
+    {
+      "name": "Otawara, Soaring City",
+      "id": "486d7edc-d983-41f0-8b78-c99aecd72996",
+      "kind": "land"
+    },
+    {
+      "name": "Oubliette",
+      "id": "d4800a7d-c229-4ced-97ff-0e58645d58d6",
+      "kind": "removal"
+    },
+    {
+      "name": "Overkill",
+      "id": "ae075e71-d33d-4d6c-b4a5-0b47dd6fd196",
+      "kind": "removal"
+    },
+    {
+      "name": "Oversold Cemetery",
+      "id": "06b7312a-c775-4fa8-ba62-c84ff38459e8",
+      "kind": "recursion"
+    },
+    {
+      "name": "Pact Weapon",
+      "id": "20b0cf66-c6ec-4ff6-96a5-334e2c9c7818",
+      "kind": "draw"
+    },
+    {
+      "name": "Padeem, Consul of Innovation",
+      "id": "00a4aef8-64fc-4e9d-adac-ef4c85d40b4a",
+      "kind": "protection"
+    },
+    {
+      "name": "Painful Quandary",
+      "id": "05757669-e8a6-4a2f-8479-d4e2ade822ca",
+      "kind": "discard"
+    },
+    {
+      "name": "Painter's Servant",
+      "id": "be407a81-b25a-4e5d-845e-be0cc0d18db8",
+      "kind": "protection"
+    },
+    {
+      "name": "Panharmonicon",
+      "id": "998d0cc8-ca2a-41c3-ab65-d05c26ab8278",
+      "kind": "blink"
+    },
+    {
+      "name": "Patchwork Banner",
+      "id": "a8a982c8-bc08-44ba-b3ed-9e4b124615d6",
+      "kind": "ramp"
+    },
+    {
+      "name": "Patriar's Seal",
+      "id": "37f920f0-4dfc-477b-af7e-a17dfc9ba455",
+      "kind": "ramp"
+    },
+    {
+      "name": "Pelakka Predation // Pelakka Caverns",
+      "id": "e63f8b20-f45b-4293-9aac-cdc021939be6",
+      "kind": "discard"
+    },
+    {
+      "name": "Peregrine Drake",
+      "id": "611c8fa2-b53f-483b-9efa-759ac59dc30f",
+      "kind": "ramp"
+    },
+    {
+      "name": "Perish",
+      "id": "77192bdf-d89f-45a1-a30b-20107e990031",
+      "kind": "removal"
+    },
+    {
+      "name": "Perpetual Timepiece",
+      "id": "a2d41001-c6c5-4efd-825b-75c42cc88fbb",
+      "kind": "mill"
+    },
+    {
+      "name": "Persist",
+      "id": "b7a56356-91bf-42f5-ab21-af2c48e78fc3",
+      "kind": "recursion"
+    },
+    {
+      "name": "Personal Tutor",
+      "id": "2887fc25-22cd-48c9-ad2b-6539c8139e27",
+      "kind": "tutor"
+    },
+    {
+      "name": "Pestilent Spirit",
+      "id": "5f9a0387-5116-484b-bb2b-064bd42e7fff",
+      "kind": "removal"
+    },
+    {
+      "name": "Pestilent Syphoner",
+      "id": "947a1e44-3485-4e24-a34d-6c318584743c",
+      "kind": "infect"
+    },
+    {
+      "name": "Phantom Ninja",
+      "id": "a392b557-e809-4371-92d7-6e93caed4f1b",
+      "kind": "evasion"
+    },
+    {
+      "name": "Pharika's Chosen",
+      "id": "8119ce0c-d709-463c-9abc-f7025673ea72",
+      "kind": "removal"
+    },
+    {
+      "name": "Phoenix Fleet Airship",
+      "id": "b51d3259-c41c-4f64-9666-0a9e676c812f",
+      "kind": "tokens"
+    },
+    {
+      "name": "Phyresis Outbreak",
+      "id": "812498c8-974c-460c-b782-506f5f735346",
+      "kind": "removal"
+    },
+    {
+      "name": "Phyrexian Arena",
+      "id": "0784b6f0-9ebf-43d2-ba0f-a6bc93ba0c48",
+      "kind": "draw"
+    },
+    {
+      "name": "Phyrexian Metamorph",
+      "id": "a564c2e8-f49f-4ed7-850f-7c8bc92e4926",
+      "kind": "clones"
+    },
+    {
+      "name": "Phyrexian Reclamation",
+      "id": "10c09b68-1d92-42da-8d4d-0d60453a6aa7",
+      "kind": "recursion"
+    },
+    {
+      "name": "Phyrexian Tower",
+      "id": "0b47f6d2-9f65-47a4-bfc4-15619befe53d",
+      "kind": "land"
+    },
+    {
+      "name": "Phyrexian Walker",
+      "id": "9f8a3979-2947-4692-8b2f-d4c07c534777",
+      "kind": "ramp"
+    },
+    {
+      "name": "Pirate Peddlers",
+      "id": "5c998994-6c3b-4f34-9b31-babba2b17266",
+      "kind": "counters"
+    },
+    {
+      "name": "Plague Myr",
+      "id": "5cc8b864-c6db-4e4d-b9bc-ec84a4c3aa79",
+      "kind": "ramp"
+    },
+    {
+      "name": "Plague Stinger",
+      "id": "aae856bc-f65f-42ba-9344-1a30b356c041",
+      "kind": "infect"
+    },
+    {
+      "name": "Plaguecrafter",
+      "id": "97505837-e0e2-4f7b-8581-01942e886bb8",
+      "kind": "removal"
+    },
+    {
+      "name": "Planar Incision",
+      "id": "9163cb04-ee28-4127-b53a-89c546996d7d",
+      "kind": "blink"
+    },
+    {
+      "name": "Planetarium of Wan Shi Tong",
+      "id": "0ebaf0bf-7aa2-469d-bdbb-0fbf6741eede",
+      "kind": "draw"
+    },
+    {
+      "name": "Plumb the Forbidden",
+      "id": "5034227f-3b8a-45bf-917c-c2cbd98f2192",
+      "kind": "draw"
+    },
+    {
+      "name": "Ponder",
+      "id": "dc69f960-68ba-4315-8146-6a7a82047503",
+      "kind": "draw"
+    },
+    {
+      "name": "Pongify",
+      "id": "4131fa63-5afc-4b63-a4b4-f47b4bced87f",
+      "kind": "removal"
+    },
+    {
+      "name": "Possession Engine",
+      "id": "f206b0a1-50d8-4d53-850d-fb15fd328267",
+      "kind": "removal"
+    },
+    {
+      "name": "Preordain",
+      "id": "dd29a0e5-c1de-4e8a-8866-715e9f9cde1f",
+      "kind": "draw"
+    },
+    {
+      "name": "Price of Fame",
+      "id": "e9054114-6740-4e2d-ae40-ccfb5e497d67",
+      "kind": "removal"
+    },
+    {
+      "name": "Price of Knowledge",
+      "id": "97f536be-7836-4c9a-befc-94590e602f26",
+      "kind": "burn"
+    },
+    {
+      "name": "Primal Amulet // Primal Wellspring",
+      "id": "d4d379b5-7f56-4a7d-a4ac-131fc3d579c6",
+      "kind": "ramp"
+    },
+    {
+      "name": "Prismatic Lens",
+      "id": "74e8d3a8-5937-4108-b2fe-23e049379345",
+      "kind": "ramp"
+    },
+    {
+      "name": "Pristine Talisman",
+      "id": "6b6307f3-bc63-463c-8ffc-a8b8b829e5d7",
+      "kind": "ramp"
+    },
+    {
+      "name": "Proft's Eidetic Memory",
+      "id": "af5b29b3-974c-4200-8df8-b072c11e1600",
+      "kind": "draw"
+    },
+    {
+      "name": "Prologue to Phyresis",
+      "id": "ac625f30-ed91-4b21-ada8-aaa5b2ad79b8",
+      "kind": "draw"
+    },
+    {
+      "name": "Propaganda",
+      "id": "e175bba4-c131-48f4-8e31-16ec07a12e59",
+      "kind": "protection"
+    },
+    {
+      "name": "Prosperous Thief",
+      "id": "da3f683e-5a28-4ae7-b53b-851b957123ba",
+      "kind": "ramp"
+    },
+    {
+      "name": "Pull from Tomorrow",
+      "id": "12e1fecc-c9e4-401f-ac24-11822276c911",
+      "kind": "draw"
+    },
+    {
+      "name": "Qarsi Revenant",
+      "id": "8c93a0f6-5e50-4dda-9ff6-da741fb839ff",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Quantum Misalignment",
+      "id": "ceba3080-4e10-46b3-887c-e2d45581962b",
+      "kind": "copy"
+    },
+    {
+      "name": "Quick-Draw Katana",
+      "id": "69beec98-c89c-4673-953c-8b3ef3d81560",
+      "kind": "pump"
+    },
+    {
+      "name": "Quietus Spike",
+      "id": "7dc8e9cc-1aac-4709-9629-9f4318c86cb0",
+      "kind": "removal"
+    },
+    {
+      "name": "Rain of Daggers",
+      "id": "f48b345f-c814-4f89-9bff-078d0ec5acfc",
+      "kind": "removal"
+    },
+    {
+      "name": "Raise the Palisade",
+      "id": "7966eb7a-0ef7-470f-9769-0d5f45f0395b",
+      "kind": "removal"
+    },
+    {
+      "name": "Rapid Hybridization",
+      "id": "b6912638-b087-4754-9e7e-8bd76fbf095c",
+      "kind": "removal"
+    },
+    {
+      "name": "Ravenform",
+      "id": "f2d5e87b-1ee8-47db-9bc3-f5becfe79b37",
+      "kind": "removal"
+    },
+    {
+      "name": "Ravenous Chupacabra",
+      "id": "a4dfbac0-1849-41c5-853a-1fee108d0b01",
+      "kind": "removal"
+    },
+    {
+      "name": "Ray of Command",
+      "id": "7ca8a427-5c20-4650-bbb5-9895e4f2c009",
+      "kind": "theft"
+    },
+    {
+      "name": "Reality Shift",
+      "id": "459f0dd1-3a52-4642-8c3e-11de9467507a",
+      "kind": "removal"
+    },
+    {
+      "name": "Reaper's Scythe",
+      "id": "e1e53ff2-c321-4fc8-b4d7-eb253d670c5b",
+      "kind": "pump"
+    },
+    {
+      "name": "Reaper's Talisman",
+      "id": "93b68168-e77d-4745-9393-726ef9fb72ec",
+      "kind": "drain"
+    },
+    {
+      "name": "Reconnaissance Mission",
+      "id": "b2364119-d764-4ef1-86cf-a0b7a5ae1b38",
+      "kind": "draw"
+    },
+    {
+      "name": "Reflections of Littjara",
+      "id": "578a1846-8c1a-4013-b669-1d3f4ddbbaa3",
+      "kind": "copy"
+    },
+    {
+      "name": "Reign of Terror",
+      "id": "7bd83049-aec1-4911-bc70-39adba04b174",
+      "kind": "removal"
+    },
+    {
+      "name": "Reins of Power",
+      "id": "9b5730aa-c74a-4c74-bb1b-a133a3c353ec",
+      "kind": "protection"
+    },
+    {
+      "name": "Relic of Legends",
+      "id": "64a2809e-c441-416c-90ff-6fb1e246dff3",
+      "kind": "ramp"
+    },
+    {
+      "name": "Reliquary Tower",
+      "id": "6be3be55-7f9d-4a4c-b916-a1cb64f833c8",
+      "kind": "land"
+    },
+    {
+      "name": "Replicating Ring",
+      "id": "f1e6e3a2-5145-4898-990e-150e090f5206",
+      "kind": "ramp"
+    },
+    {
+      "name": "Repulse",
+      "id": "4dc7777b-6e9e-4889-91da-fb5283340fa1",
+      "kind": "removal"
+    },
+    {
+      "name": "Repurposing Bay",
+      "id": "0cf1ace1-b7f5-4bd9-a494-ee7cb6c1f854",
+      "kind": "tutor"
+    },
+    {
+      "name": "Requiem Monolith",
+      "id": "837d710a-652f-4c60-a52d-d786231160a4",
+      "kind": "draw"
+    },
+    {
+      "name": "Resculpt",
+      "id": "592c7819-7e53-4793-bc4f-3dd489a25d63",
+      "kind": "removal"
+    },
+    {
+      "name": "Restless Reef",
+      "id": "8a8121c9-2480-419c-aa9c-5b8b55f65014",
+      "kind": "land"
+    },
+    {
+      "name": "Retreat to Hagra",
+      "id": "c80046c2-021f-448c-9f54-2a1a100ec0aa",
+      "kind": "landfall"
+    },
+    {
+      "name": "Revel in Riches",
+      "id": "79b0e035-8716-469d-99ae-a530cd96ef09",
+      "kind": "ramp"
+    },
+    {
+      "name": "Revenge of Ravens",
+      "id": "3474289a-193e-452d-b248-e53ee99e22c0",
+      "kind": "protection"
+    },
+    {
+      "name": "Rewind",
+      "id": "b832abcc-9ffd-47bf-827a-01b303c610ee",
+      "kind": "removal"
+    },
+    {
+      "name": "Rhystic Study",
+      "id": "d6914dba-0d27-4055-ac34-b3ebf5802221",
+      "kind": "draw"
+    },
+    {
+      "name": "Rikku, Resourceful Guardian",
+      "id": "b62cd4af-7d7a-4b0b-b2d6-2086281c7b21",
+      "kind": "evasion"
+    },
+    {
+      "name": "Rilsa Rael, Kingpin",
+      "id": "54484439-6f8a-47f1-8d62-4689af7f00c2",
+      "kind": "evasion"
+    },
+    {
+      "name": "Rimefire Torque",
+      "id": "4f8931b2-ff3f-4167-8a40-f33460c2d27e",
+      "kind": "artifact"
+    },
+    {
+      "name": "Ring of Evos Isle",
+      "id": "a7c740a8-1bbc-4ec8-a72c-01aee9e48f3d",
+      "kind": "protection"
+    },
+    {
+      "name": "Ring of Xathrid",
+      "id": "47e2aa59-63dc-4e28-8cdc-2ca868ff8f59",
+      "kind": "protection"
+    },
+    {
+      "name": "Ripples of Potential",
+      "id": "8e724c6d-3922-406f-b9e6-e478e1039416",
+      "kind": "protection"
+    },
+    {
+      "name": "Rite of Replication",
+      "id": "f8cd4dcc-a731-4dd3-8b8e-88877bd98718",
+      "kind": "copy"
+    },
+    {
+      "name": "Rivendell",
+      "id": "bacd500c-1389-4314-a53e-0ad510d6fb79",
+      "kind": "land"
+    },
+    {
+      "name": "Roaming Throne",
+      "id": "32fd8b7c-baf3-4d3d-be6f-044a917b11a0",
+      "kind": "copy"
+    },
+    {
+      "name": "Robe of the Archmagi",
+      "id": "74feb29b-5169-44d7-bded-c2c94718e61f",
+      "kind": "draw"
+    },
+    {
+      "name": "Rogue's Passage",
+      "id": "a2a424ea-ef32-4ac5-8f8c-3ea1839f01d4",
+      "kind": "land"
+    },
+    {
+      "name": "Ruin Rat",
+      "id": "91652fe0-2064-4996-b484-a1f88e0023f7",
+      "kind": "removal"
+    },
+    {
+      "name": "Rune of Mortality",
+      "id": "6f75a5e5-70df-49c3-abe1-8cc6975f5171",
+      "kind": "draw"
+    },
+    {
+      "name": "Ruthless Ripper",
+      "id": "bc78993c-ca67-43b3-a64d-ce0c3bc415bc",
+      "kind": "removal"
+    },
+    {
+      "name": "Sage's Nouliths",
+      "id": "a12ff7c3-6ae0-4098-9240-ff3fd16a5288",
+      "kind": "tokens"
+    },
+    {
+      "name": "Sai, Master Thopterist",
+      "id": "ad0b5c09-5075-408e-84c5-1095354ac53e",
+      "kind": "tokens"
+    },
+    {
+      "name": "Saiba Cryptomancer",
+      "id": "3934d535-740d-471a-bbf1-c3b26b1cd596",
+      "kind": "protection"
+    },
+    {
+      "name": "Sakashima of a Thousand Faces",
+      "id": "714c3a1f-7b30-4ed8-8f38-6176758741fb",
+      "kind": "copy"
+    },
+    {
+      "name": "Sakashima's Student",
+      "id": "91b0a6cb-1c2e-4122-8874-a48e69e1c464",
+      "kind": "clones"
+    },
+    {
+      "name": "Sanguine Bond",
+      "id": "ad4de9f1-7a39-45af-828e-c59234d9e9b9",
+      "kind": "drain"
+    },
+    {
+      "name": "Sapphire Medallion",
+      "id": "a77850b2-6478-449e-bdb9-5b92650e3504",
+      "kind": "ramp"
+    },
+    {
+      "name": "Sarevok's Tome",
+      "id": "5a470690-a05d-4311-963c-50cbf779846d",
+      "kind": "ramp"
+    },
+    {
+      "name": "Satoru Umezawa",
+      "id": "8887f26d-b097-4fbc-9c48-bdc656409a32",
+      "kind": "draw"
+    },
+    {
+      "name": "Satoru, the Infiltrator",
+      "id": "acc9a5cc-2b3c-4c2f-8176-4a2d86265cc5",
+      "kind": "draw"
+    },
+    {
+      "name": "Sceptre of Eternal Glory",
+      "id": "bc7f3009-c852-41e7-8e62-d2ee637b3998",
+      "kind": "ramp"
+    },
+    {
+      "name": "Scheming Symmetry",
+      "id": "01acc50b-856d-442d-9880-1a892b40643b",
+      "kind": "tutor"
+    },
+    {
+      "name": "Scorched Ruins",
+      "id": "75a4e843-937c-47fb-8768-0f42c5cb4e4f",
+      "kind": "land"
+    },
+    {
+      "name": "Scroll Rack",
+      "id": "dfaaa58d-89bb-4cb3-96a6-b480e6f6954e",
+      "kind": "draw"
+    },
+    {
+      "name": "Sculpting Steel",
+      "id": "d1958f01-77e9-4976-b7f8-f9b62aa78edc",
+      "kind": "copy"
+    },
+    {
+      "name": "Sea Gate Restoration // Sea Gate, Reborn",
+      "id": "193071fe-180b-4d35-ba78-9c16675c29fc",
+      "kind": "draw"
+    },
+    {
+      "name": "Season of Weaving",
+      "id": "f5713bb4-bdd9-4253-b6b9-e590532ed773",
+      "kind": "draw"
+    },
+    {
+      "name": "Secluded Courtyard",
+      "id": "98563d19-fa5d-4395-ba6c-2bd724d9c410",
+      "kind": "land"
+    },
+    {
+      "name": "Secret of Bloodbending",
+      "id": "9bb928ae-f636-4aee-9146-a7885e6a8976",
+      "kind": "finisher"
+    },
+    {
+      "name": "Secret Tunnel",
+      "id": "2d39a0e1-6484-409c-ab05-5b276925a949",
+      "kind": "land"
+    },
+    {
+      "name": "Sensei's Divining Top",
+      "id": "e5142b7a-e580-4737-a4aa-2590f6610ceb",
+      "kind": "draw"
+    },
+    {
+      "name": "Serum Visions",
+      "id": "5b75eb6b-d76c-4b92-b042-13493f9ef164",
+      "kind": "draw"
+    },
+    {
+      "name": "Shadow of Mortality",
+      "id": "40cbb0db-94e9-4988-b900-ced4f9e6d4ed",
+      "kind": "burn"
+    },
+    {
+      "name": "Shadowspear",
+      "id": "939c6e19-4b27-4023-bb9c-ae440f91e21c",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Shark Shredder, Killer Clone",
+      "id": "8f946b3d-7d2a-4210-a909-d16078757e3b",
+      "kind": "creature"
+    },
+    {
+      "name": "Shatter the Oath",
+      "id": "cc79f0f7-0a09-4a74-b2b9-cc1ce608d89f",
+      "kind": "removal"
+    },
+    {
+      "name": "Shelob's Ambush",
+      "id": "25e69fa8-7339-4bfa-8e35-9cbfe0001d8b",
+      "kind": "removal"
+    },
+    {
+      "name": "Sheoldred, the Apocalypse",
+      "id": "d67be074-cdd4-41d9-ac89-0a0456c4e4b2",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Sheoldred, Whispering One",
+      "id": "8b207a4a-47d1-4905-81d3-455c59bfd7da",
+      "kind": "recursion"
+    },
+    {
+      "name": "Shield Broker",
+      "id": "a319afae-019c-408d-a57b-b7bf0b1598bd",
+      "kind": "removal"
+    },
+    {
+      "name": "Shipwreck Marsh",
+      "id": "156df6eb-1ac9-4954-bf93-b1668096b8bd",
+      "kind": "land"
+    },
+    {
+      "name": "Shizo, Death's Storehouse",
+      "id": "099352e2-38c8-4fb4-a25f-6d928aa20f9e",
+      "kind": "land"
+    },
+    {
+      "name": "Shriekmaw",
+      "id": "ed2d62c2-85c9-4fd4-8a7e-0017640606be",
+      "kind": "removal"
+    },
+    {
+      "name": "Sign in Blood",
+      "id": "b89d9372-8682-4a61-a003-8bccfbb6cbb4",
+      "kind": "draw"
+    },
+    {
+      "name": "Silas Renn, Seeker Adept",
+      "id": "4e3fe912-1374-47c7-b73f-89ef55c479c1",
+      "kind": "recursion"
+    },
+    {
+      "name": "Silent-Blade Oni",
+      "id": "7ae71886-9e93-4d1c-b8f7-da7aafa83cf9",
+      "kind": "theft"
+    },
+    {
+      "name": "Silver Myr",
+      "id": "3ebcc053-21c6-4708-b9fc-532e3749962f",
+      "kind": "ramp"
+    },
+    {
+      "name": "Silver Shroud Costume",
+      "id": "49c85e36-de89-4fc0-8058-1eb5bf319c2d",
+      "kind": "protection"
+    },
+    {
+      "name": "Silver-Fur Master",
+      "id": "cacc36d9-4c4b-43b2-a8b4-d265deb1e6b2",
+      "kind": "ramp"
+    },
+    {
+      "name": "Simulacrum Synthesizer",
+      "id": "aaa05ad1-5cda-4edd-b6bf-562ae3e5011a",
+      "kind": "tokens"
+    },
+    {
+      "name": "Sinister Monolith",
+      "id": "2a15e06c-2608-4e7a-a16c-d35417669d86",
+      "kind": "drain"
+    },
+    {
+      "name": "Sink into Stupor // Soporific Springs",
+      "id": "5358b87a-1a29-426d-b165-40c97da2c14d",
+      "kind": "removal"
+    },
+    {
+      "name": "Siren Stormtamer",
+      "id": "073c301e-5bb6-49fa-bf61-2f662030540f",
+      "kind": "protection"
+    },
+    {
+      "name": "Skeleton Key",
+      "id": "3168317b-b166-483e-9d9a-20cdfcdc255c",
+      "kind": "draw"
+    },
+    {
+      "name": "Skullclamp",
+      "id": "b5bb89dd-9d31-49d9-ba54-4a04798e515e",
+      "kind": "draw"
+    },
+    {
+      "name": "Skullsnatcher",
+      "id": "07a48566-47cd-4214-879d-13bc76d2c1d2",
+      "kind": "removal"
+    },
+    {
+      "name": "Sky Diamond",
+      "id": "d47abfb2-9bcf-485c-9bd4-2c09b714eb32",
+      "kind": "ramp"
+    },
+    {
+      "name": "Skyclave Relic",
+      "id": "a9740bce-4c89-4d98-8941-057515999bf9",
+      "kind": "ramp"
+    },
+    {
+      "name": "Slip Through Space",
+      "id": "2dee6dca-9c7e-4347-bea7-7fecc69e5827",
+      "kind": "evasion"
+    },
+    {
+      "name": "Slither Blade",
+      "id": "859e5ca5-c184-47ee-a2ea-8075847f46d9",
+      "kind": "evasion"
+    },
+    {
+      "name": "Smoke Bomb",
+      "id": "4330d8ce-3b82-4297-ad5f-c63b54b6665a",
+      "kind": "protection"
+    },
+    {
+      "name": "Smoke Shroud",
+      "id": "e07c876e-ae1c-4b54-8d8a-9f3fd76ca64c",
+      "kind": "evasion"
+    },
+    {
+      "name": "Snap",
+      "id": "f13406c6-f208-402a-94d3-a94a24f03563",
+      "kind": "removal"
+    },
+    {
+      "name": "Snapback",
+      "id": "367d46d1-fa7a-403d-8949-b478a1f83f46",
+      "kind": "removal"
+    },
+    {
+      "name": "Snuff Out",
+      "id": "75bbe89f-09af-494e-b58e-271f64bde4b5",
+      "kind": "removal"
+    },
+    {
+      "name": "Sol Ring",
+      "id": "04002706-2236-4b79-bdea-4f263e43cb9c",
+      "kind": "ramp"
+    },
+    {
+      "name": "Solemn Simulacrum",
+      "id": "cb1563a1-c8dc-4fcb-b9c8-e7432235d31e",
+      "kind": "ramp"
+    },
+    {
+      "name": "Songs of the Damned",
+      "id": "9133b267-295d-4987-b1d6-f32a85b66081",
+      "kind": "ramp"
+    },
+    {
+      "name": "Sonic Screwdriver",
+      "id": "f131027a-9776-41fa-8a5f-d9ef80e0dc2e",
+      "kind": "ramp"
+    },
+    {
+      "name": "Soul Shatter",
+      "id": "2c2fb07b-0f70-403b-be8b-b5217f12e671",
+      "kind": "removal"
+    },
+    {
+      "name": "Spark Double",
+      "id": "c41b9ba2-0006-4d8e-b600-efe81ff5e0cc",
+      "kind": "copy"
+    },
+    {
+      "name": "Spectral Sailor",
+      "id": "03a49535-c5f3-4a6f-b333-7ac7bffdc9ae",
+      "kind": "draw"
+    },
+    {
+      "name": "Spellbook",
+      "id": "26f4d2b1-31d7-40d8-bd4e-cdd128076d0f",
+      "kind": "draw"
+    },
+    {
+      "name": "Spellseeker",
+      "id": "a749c591-2fbe-41d8-ac5b-56ebce82d33e",
+      "kind": "tutor"
+    },
+    {
+      "name": "Spellskite",
+      "id": "72204934-f5aa-4559-8f7e-7b0b223580d0",
+      "kind": "protection"
+    },
+    {
+      "name": "Spider-Sense",
+      "id": "4499a25b-f4a5-4f2c-9ebd-bc68c7840b39",
+      "kind": "removal"
+    },
+    {
+      "name": "Spire of Industry",
+      "id": "35e9ec06-a848-4230-84a2-19cb8034e0f0",
+      "kind": "land"
+    },
+    {
+      "name": "Spirit Water Revival",
+      "id": "0c019e76-c88e-4d1b-a546-0f4e462ef44a",
+      "kind": "draw"
+    },
+    {
+      "name": "Splash Portal",
+      "id": "adbaa356-28ba-487f-930a-a957d9960ab0",
+      "kind": "blink"
+    },
+    {
+      "name": "Splinter, the Mentor",
+      "id": "06c595fa-55ff-46f3-afaf-17edae465864",
+      "kind": "tokens"
+    },
+    {
+      "name": "Staff of Compleation",
+      "id": "0c475639-1368-4e29-adeb-8973e343bca5",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Stasis Field",
+      "id": "38211d78-ebac-4150-ac11-7613a0e9e1bc",
+      "kind": "removal"
+    },
+    {
+      "name": "Stern Dismissal",
+      "id": "0aec4d0f-ba1e-45f8-9764-9bcc3fa50e51",
+      "kind": "removal"
+    },
+    {
+      "name": "Stitch Together",
+      "id": "8423c98d-4cb6-4a70-8bf2-3ac24c025c4e",
+      "kind": "recursion"
+    },
+    {
+      "name": "Stonespeaker Crystal",
+      "id": "8c99e6e1-3b88-4d2f-bc5d-70439585a063",
+      "kind": "ramp"
+    },
+    {
+      "name": "Strionic Resonator",
+      "id": "b9edb215-f967-4968-905e-d1dc3b5d3424",
+      "kind": "copy"
+    },
+    {
+      "name": "Strix Serenade",
+      "id": "42ac5ac7-b2f9-4e6f-af41-7e42ac816374",
+      "kind": "removal"
+    },
+    {
+      "name": "Submerge",
+      "id": "d2741fe4-37fe-427f-ae85-5107991d4eee",
+      "kind": "removal"
+    },
+    {
+      "name": "Submerged Boneyard",
+      "id": "8b949b06-210d-4658-97a6-43f54eb18b87",
+      "kind": "land"
+    },
+    {
+      "name": "Sultai Runemark",
+      "id": "98d73ae0-de01-4a70-a51c-b990687561a1",
+      "kind": "pump"
+    },
+    {
+      "name": "Sunken Hollow",
+      "id": "44f3e367-0dff-4cdb-b23a-52aa57fee946",
+      "kind": "land"
+    },
+    {
+      "name": "Sunken Ruins",
+      "id": "9181d30d-4f8e-421f-89b8-149ed8000fb2",
+      "kind": "land"
+    },
+    {
+      "name": "Super Shredder",
+      "id": "37a497b8-e908-4ddc-996e-a8470df72afb",
+      "kind": "counters"
+    },
+    {
+      "name": "Surveyor's Scope",
+      "id": "885aaf8f-648c-4709-ae63-714113ec2c8d",
+      "kind": "ramp"
+    },
+    {
+      "name": "Swamp",
+      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
+      "kind": "land"
+    },
+    {
+      "name": "Swamp",
+      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
+      "kind": "land"
+    },
+    {
+      "name": "Swamp",
+      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
+      "kind": "land"
+    },
+    {
+      "name": "Swamp",
+      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
+      "kind": "land"
+    },
+    {
+      "name": "Swamp",
+      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
+      "kind": "land"
+    },
+    {
+      "name": "Swamp Mosquito",
+      "id": "450800c5-28e0-4eeb-9164-db9fdebc595f",
+      "kind": "infect"
+    },
+    {
+      "name": "Swan Song",
+      "id": "83d0b761-d694-4232-9f40-5bd8c82a05f1",
+      "kind": "removal"
+    },
+    {
+      "name": "Swiftfoot Boots",
+      "id": "1969b151-3192-4d35-80ca-c4e180601ec8",
+      "kind": "protection"
+    },
+    {
+      "name": "Sword Coast Sailor",
+      "id": "704f8ab7-63fd-4963-bacd-0076fffb34a1",
+      "kind": "evasion"
+    },
+    {
+      "name": "Sword of Feast and Famine",
+      "id": "c7710eb5-c56a-437b-8847-2a829c404d47",
+      "kind": "ramp"
+    },
+    {
+      "name": "Sword of Hearth and Home",
+      "id": "a16fabbe-4557-4067-b882-f2e5dbd8b458",
+      "kind": "ramp"
+    },
+    {
+      "name": "Sword of Light and Shadow",
+      "id": "b378c8bf-85ed-4d28-aec9-4925d12bca4a",
+      "kind": "recursion"
+    },
+    {
+      "name": "Sword of the Animist",
+      "id": "64401acc-d080-4763-b67a-95164c11c69e",
+      "kind": "ramp"
+    },
+    {
+      "name": "Sword of Truth and Justice",
+      "id": "2be8d24e-1370-4e85-90f2-66b6d6e9c4a4",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Sword of Vengeance",
+      "id": "f21b5fc1-7611-44ac-ad8d-1f0c6d4fc9a3",
+      "kind": "evasion"
+    },
+    {
+      "name": "Sword of Wealth and Power",
+      "id": "ed9e5041-3c05-4a8a-9f00-081b01685d0c",
+      "kind": "protection"
+    },
+    {
+      "name": "Szat's Will",
+      "id": "9828be7b-1eae-4718-9e71-2f625121b00b",
+      "kind": "removal"
+    },
+    {
+      "name": "Taeko, the Patient Avalanche",
+      "id": "65b815a1-98d8-47b9-8d6b-b30e0a5f087c",
+      "kind": "evasion"
+    },
+    {
+      "name": "Tainted Isle",
+      "id": "70e8e7e2-e9ea-4358-805e-c5110c8d8443",
+      "kind": "land"
+    },
+    {
+      "name": "Tainted Pact",
+      "id": "c513f51b-a0db-4c08-8acc-1e91060b93b7",
+      "kind": "tutor"
+    },
+    {
+      "name": "Takenuma, Abandoned Mire",
+      "id": "499037cc-a577-41cb-8ca2-5e117945634f",
+      "kind": "land"
+    },
+    {
+      "name": "Talisman of Dominance",
+      "id": "f6c8e0b5-218e-41dd-8b09-2d4aaec2c979",
+      "kind": "ramp"
+    },
+    {
+      "name": "Tamiyo, the Moon Sage",
+      "id": "b9398926-13b9-47b8-b66b-1ab9d06bb704",
+      "kind": "draw"
+    },
+    {
+      "name": "Tarrian's Soulcleaver",
+      "id": "99413817-1218-4947-b12f-9a952b095a89",
+      "kind": "counters"
+    },
+    {
+      "name": "Teferi, Temporal Archmage",
+      "id": "368c6e60-804c-447c-bc2b-ac9dc4cab5e7",
+      "kind": "draw"
+    },
+    {
+      "name": "Teferi, Temporal Pilgrim",
+      "id": "23a4f1ec-eadf-4f1e-8821-f22293ad2580",
+      "kind": "draw"
+    },
+    {
+      "name": "Teferi's Ageless Insight",
+      "id": "b1a32b7c-9f26-4504-9f8d-379164d69346",
+      "kind": "draw"
+    },
+    {
+      "name": "Teferi's Isle",
+      "id": "b6ed7ca8-fd91-46e3-9149-a3de23c7078e",
+      "kind": "land"
+    },
+    {
+      "name": "Tegwyll, Duke of Splendor",
+      "id": "03fab911-7bd4-45fa-ba07-cd0e51b0cd95",
+      "kind": "draw"
+    },
+    {
+      "name": "Tekuthal, Inquiry Dominus",
+      "id": "2d389264-e2d2-4589-9636-faa11fe46710",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Temple of Deceit",
+      "id": "e18748ce-e52e-4cd1-89d4-cd2578a0d574",
+      "kind": "land"
+    },
+    {
+      "name": "Temple of the False God",
+      "id": "23d62c88-3a7a-4eef-8ec4-ff1243e6ce93",
+      "kind": "land"
+    },
+    {
+      "name": "Temporal Mastery",
+      "id": "0f46a800-b443-461d-87e0-5587249a42d8",
+      "kind": "burn"
+    },
+    {
+      "name": "Terror",
+      "id": "a3870eba-4e8f-414d-817c-14ec97f6a93c",
+      "kind": "removal"
+    },
+    {
+      "name": "Tetsuko Umezawa, Fugitive",
+      "id": "f3f03792-5d06-45f4-ab19-5a415abbc382",
+      "kind": "evasion"
+    },
+    {
+      "name": "Tezzeret, Betrayer of Flesh",
+      "id": "35f30004-13e0-42c1-9842-eea52793fcfc",
+      "kind": "draw"
+    },
+    {
+      "name": "Tezzeret's Gambit",
+      "id": "29ad5bb3-927d-41d0-a000-3826ea117e52",
+      "kind": "draw"
+    },
+    {
+      "name": "Thassa, Deep-Dwelling",
+      "id": "c83ed3e0-82d0-4410-a6ca-b0f923eadf83",
+      "kind": "blink"
+    },
+    {
+      "name": "The Aetherspark",
+      "id": "05690d52-06c4-40b1-8360-380418a83250",
+      "kind": "draw"
+    },
+    {
+      "name": "The Black Gate",
+      "id": "46418186-c215-47c4-9d0a-d15a1d8ca613",
+      "kind": "land"
+    },
+    {
+      "name": "The Darkness Crystal",
+      "id": "0f93b6ac-54ce-45d0-8549-19307406e6e5",
+      "kind": "ramp"
+    },
+    {
+      "name": "The Elderspell",
+      "id": "a3b16625-7faf-4de6-abf7-d397988e32fb",
+      "kind": "removal"
+    },
+    {
+      "name": "The Eternity Elevator",
+      "id": "1bb90ab9-43b9-4991-806a-0afc4d8caf5f",
+      "kind": "ramp"
+    },
+    {
+      "name": "The Falcon, Airship Restored",
+      "id": "080fc2be-d463-4e8e-ba42-8f3cb0c95ed3",
+      "kind": "recursion"
+    },
+    {
+      "name": "The Fire Nation Drill",
+      "id": "54d762f6-e131-480f-b294-10f5a63d9c98",
+      "kind": "removal"
+    },
+    {
+      "name": "The Indomitable",
+      "id": "e6456329-b521-474b-bfb5-bfcd7e52b5f8",
+      "kind": "draw"
+    },
+    {
+      "name": "The Key to the Vault",
+      "id": "166814af-a444-4a62-937e-7491673d9387",
+      "kind": "draw"
+    },
+    {
+      "name": "The Legend of Kuruk // Avatar Kuruk",
+      "id": "5e9a53d3-7f2f-4a9c-9516-0713da740478",
+      "kind": "draw"
+    },
+    {
+      "name": "The Meathook Massacre",
+      "id": "70d0540f-93c6-4af5-ab2d-65e6c03001c7",
+      "kind": "removal"
+    },
+    {
+      "name": "The Ozolith",
+      "id": "9341ed06-53db-4604-b60a-3ea9129afbc2",
+      "kind": "counters"
+    },
+    {
+      "name": "The Reality Chip",
+      "id": "d859de3a-0be1-4e66-b438-1c3d4ee756cd",
+      "kind": "draw"
+    },
+    {
+      "name": "The Soul Stone",
+      "id": "1982f910-a9bd-4e94-a187-84381b22aacc",
+      "kind": "ramp"
+    },
+    {
+      "name": "The Unagi of Kyoshi Island",
+      "id": "0ecd8b38-9ee5-41a5-9b93-21c33fc1a6ff",
+      "kind": "draw"
+    },
+    {
+      "name": "The Walls of Ba Sing Se",
+      "id": "24a14ac5-0b7e-4441-9963-782a7cda3f4a",
+      "kind": "protection"
+    },
+    {
+      "name": "The Water Crystal",
+      "id": "e0af8436-797b-4e1f-b21a-d8e93701c3c9",
+      "kind": "mill"
+    },
+    {
+      "name": "Thespian's Stage",
+      "id": "269a926d-7788-4668-8bd8-7572dbf5f5eb",
+      "kind": "land"
+    },
+    {
+      "name": "Thieves' Tools",
+      "id": "c3bf4ee1-b6a8-4a69-adab-6839c1786cc9",
+      "kind": "evasion"
+    },
+    {
+      "name": "Thopter Spy Network",
+      "id": "babc5799-31f3-452e-a61d-5c11f9f81bf9",
+      "kind": "draw"
+    },
+    {
+      "name": "Thought Vessel",
+      "id": "71b11bf4-35ab-4028-961f-5180a12dac82",
+      "kind": "ramp"
+    },
+    {
+      "name": "Thoughtcast",
+      "id": "466a0be8-31b9-4ea0-9a96-b09a76f4ec69",
+      "kind": "draw"
+    },
+    {
+      "name": "Thousand-Faced Shadow",
+      "id": "89a698a5-f4ac-4b04-96dc-32e1eeef6ac7",
+      "kind": "evasion"
+    },
+    {
+      "name": "Thran Dynamo",
+      "id": "7ce5f12e-fc02-42f8-a5ca-b523050d4650",
+      "kind": "ramp"
+    },
+    {
+      "name": "Three Tree City",
+      "id": "56f88a48-cced-4a9d-8c19-e4f105f0d8a2",
+      "kind": "land"
+    },
+    {
+      "name": "Three Tree Mascot",
+      "id": "40b8bf3a-1cb5-4ce2-ac25-9410f17130de",
+      "kind": "ramp"
+    },
+    {
+      "name": "Throat Slitter",
+      "id": "87126165-2cba-4a24-a3fc-3b5487e89d13",
+      "kind": "removal"
+    },
+    {
+      "name": "Throatseeker",
+      "id": "b07b3736-25e7-46f2-bea5-543ec13995b1",
+      "kind": "anthem"
+    },
+    {
+      "name": "Throne of Eldraine",
+      "id": "9076e13d-d16e-4528-aad0-8b8081b00e8d",
+      "kind": "ramp"
+    },
+    {
+      "name": "Thrummingbird",
+      "id": "f10db847-6598-49a5-8f10-67afd5187d32",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Tidehollow Strix",
+      "id": "17be4a4e-5f11-4c3e-b447-9feb5ccbc448",
+      "kind": "evasion"
+    },
+    {
+      "name": "Time Warp",
+      "id": "e7b3ddca-69ef-4743-897b-57c58077db24",
+      "kind": "finisher"
+    },
+    {
+      "name": "Tinybones, the Pickpocket",
+      "id": "3d3025a2-4a17-4137-ba0b-bd676c6f5f88",
+      "kind": "theft"
+    },
+    {
+      "name": "Tithing Blade // Consuming Sepulcher",
+      "id": "dbaa9a2d-e9fd-4746-a26c-f99ae731f024",
+      "kind": "removal"
+    },
+    {
+      "name": "Tomebound Lich",
+      "id": "5f305027-dfd2-4b17-a6af-6b0576389623",
+      "kind": "draw"
+    },
+    {
+      "name": "Torment of Hailfire",
+      "id": "f69d77d1-5980-436c-bf48-790939b069aa",
+      "kind": "finisher"
+    },
+    {
+      "name": "Tormented Soul",
+      "id": "63492d71-c891-4c70-b050-ceb361e0844d",
+      "kind": "evasion"
+    },
+    {
+      "name": "Tortured Existence",
+      "id": "1754b92b-d6f9-4503-af01-dee03f72a048",
+      "kind": "recursion"
+    },
+    {
+      "name": "Toxic Deluge",
+      "id": "5aa02b7d-db31-4924-b75e-eb02f332ca3a",
+      "kind": "removal"
+    },
+    {
+      "name": "Toxin Analysis",
+      "id": "0eda1aff-c1f4-4171-a800-605396cc8168",
+      "kind": "removal"
+    },
+    {
+      "name": "Tradewind Rider",
+      "id": "df626c4c-75f4-4250-9057-c8c383a5a93d",
+      "kind": "removal"
+    },
+    {
+      "name": "Tragic Slip",
+      "id": "132ccc20-cb42-4474-b747-7e41a661060e",
+      "kind": "removal"
+    },
+    {
+      "name": "Trailblazer's Boots",
+      "id": "aa05985b-e2cb-412f-a2ad-b8d723d9f451",
+      "kind": "evasion"
+    },
+    {
+      "name": "Training Grounds",
+      "id": "991c27ed-f53c-48c6-8c12-282f44b8d441",
+      "kind": "ramp"
+    },
+    {
+      "name": "Transmogrant Altar",
+      "id": "ca28d210-a35d-491e-beda-76b95d09dc2d",
+      "kind": "ramp"
+    },
+    {
+      "name": "Transmogrant's Crown",
+      "id": "dc913ed6-3032-4b45-a6c1-6a4208a7e00a",
+      "kind": "draw"
+    },
+    {
+      "name": "Transpose",
+      "id": "66392b0e-8691-42a4-bc84-03b017174a73",
+      "kind": "draw"
+    },
+    {
+      "name": "Treasure Chest",
+      "id": "6ecbeb07-0f45-49bf-9a12-f4ca09969122",
+      "kind": "draw"
+    },
+    {
+      "name": "Trickery Charm",
+      "id": "32a2ee45-7f1d-40a8-82b4-ab3b705417ea",
+      "kind": "evasion"
+    },
+    {
+      "name": "Triton Shorestalker",
+      "id": "511bff25-3213-42c4-8abd-9eda49f8dc96",
+      "kind": "evasion"
+    },
+    {
+      "name": "Trusty Boomerang",
+      "id": "df99a166-6d58-4d92-9037-2fdfbaf65629",
+      "kind": "removal"
+    },
+    {
+      "name": "Tui and La, Moon and Ocean",
+      "id": "edf0d06a-4eef-40cb-951c-74d7e0ffae13",
+      "kind": "draw"
+    },
+    {
+      "name": "Twilight Prophet",
+      "id": "050ca791-265a-4e7b-9640-4fd5a6d8cd3a",
+      "kind": "draw"
+    },
+    {
+      "name": "Ty Lee, Chi Blocker",
+      "id": "308cc687-9cb2-4e3a-98db-c5ba2a7da115",
+      "kind": "removal"
+    },
+    {
+      "name": "Typhoid Rats",
+      "id": "d13cb90b-50c3-46ef-83f8-812dfb7ff881",
+      "kind": "removal"
+    },
+    {
+      "name": "Ukkima, Stalking Shadow",
+      "id": "c66b452b-9c49-4c58-9966-6bafbfa34c36",
+      "kind": "evasion"
+    },
+    {
+      "name": "Ulcerate",
+      "id": "f78ab496-a19f-4c70-a56c-09a512d40c87",
+      "kind": "removal"
+    },
+    {
+      "name": "Unable to Scream",
+      "id": "7c59e0cd-10a8-4a32-9c0a-a2c6ef1ed9a6",
+      "kind": "removal"
+    },
+    {
+      "name": "Underground River",
+      "id": "5e50c8d5-6b22-4fc6-87ea-3d7d77ced17f",
+      "kind": "land"
+    },
+    {
+      "name": "Underworld Dreams",
+      "id": "03919c86-1c4a-43b0-a2db-54ca6ae1ac57",
+      "kind": "burn"
+    },
+    {
+      "name": "Undo",
+      "id": "12b944ea-add5-4806-a33e-264cc96a4a0e",
+      "kind": "removal"
+    },
+    {
+      "name": "Undying Malice",
+      "id": "97b3cf11-e352-4ee1-8c03-13898f576ef9",
+      "kind": "protection"
+    },
+    {
+      "name": "Unearth",
+      "id": "b1f73271-b70f-40ae-be64-f8de7805923a",
+      "kind": "recursion"
+    },
+    {
+      "name": "Universal Automaton",
+      "id": "53c682e2-c90f-4f4b-9010-00b099e85518",
+      "kind": "tokens"
+    },
+    {
+      "name": "Unstoppable Plan",
+      "id": "aaeb5981-7e6a-4ffd-bb02-4757b2e92f08",
+      "kind": "untap"
+    },
+    {
+      "name": "Unstoppable Slasher",
+      "id": "c78da035-6b5b-4136-9ab6-f622b64fdc54",
+      "kind": "finisher"
+    },
+    {
+      "name": "Unwind",
+      "id": "97da6607-9131-4f8b-8af3-63439a59b78b",
+      "kind": "removal"
+    },
+    {
+      "name": "Unwinding Clock",
+      "id": "c3fd1a59-4ade-459f-90d2-1fc67d6d1384",
+      "kind": "untap"
+    },
+    {
+      "name": "Urborg, Tomb of Yawgmoth",
+      "id": "9e1a9e38-6ffc-490f-b0be-23ba4e8204c6",
+      "kind": "land"
+    },
+    {
+      "name": "Urza's Incubator",
+      "id": "c4589226-6072-409b-b598-ebd87f675a6a",
+      "kind": "ramp"
+    },
+    {
+      "name": "Urza's Saga",
+      "id": "c1e0f201-42cb-46a1-901a-65bb4fc18f6c",
+      "kind": "land"
+    },
+    {
+      "name": "Uthros Research Craft",
+      "id": "6ade097b-349f-4876-bdc8-7bcd051e9952",
+      "kind": "draw"
+    },
+    {
+      "name": "Utter Insignificance",
+      "id": "3050ac06-4c16-4155-a97f-f6bc92709ee4",
+      "kind": "removal"
+    },
+    {
+      "name": "Vampire Nighthawk",
+      "id": "0a1934ab-3171-4fc6-8033-ad998899ba73",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Vampire of the Dire Moon",
+      "id": "b3c185b9-5d97-4a5a-af0b-8b9c44dcd235",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Vampiric Tutor",
+      "id": "34a0203f-9cce-43a4-9cb7-8ce6647895cd",
+      "kind": "tutor"
+    },
+    {
+      "name": "Vanquisher's Banner",
+      "id": "efa6944e-b5e2-4584-ae37-f5b59a8ec75e",
+      "kind": "draw"
+    },
+    {
+      "name": "Vat of Rebirth",
+      "id": "20a961ea-0639-4f5d-8cf4-f909c59a4ae1",
+      "kind": "recursion"
+    },
+    {
+      "name": "Vedalken Archmage",
+      "id": "508b3cb7-b434-4524-8ef0-7db7f7f22edd",
+      "kind": "draw"
+    },
+    {
+      "name": "Vela the Night-Clad",
+      "id": "610737cd-d1ef-49c0-8010-988320ed64d5",
+      "kind": "evasion"
+    },
+    {
+      "name": "Venser's Journal",
+      "id": "d2877f52-b46f-4039-a72b-f1fcd024f032",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Vesuva",
+      "id": "0726f70a-c1c4-4edb-86fb-9be280d9ea73",
+      "kind": "land"
+    },
+    {
+      "name": "Vexing Bauble",
+      "id": "29f11089-658f-42e6-aeb0-09b512ad2479",
+      "kind": "stax"
+    },
+    {
+      "name": "Vial of Poison",
+      "id": "7769159b-5a6a-45e5-b69b-8db2a6ef5418",
+      "kind": "removal"
+    },
+    {
+      "name": "Victim of Night",
+      "id": "c128272d-4611-477c-84b9-081bddcc7188",
+      "kind": "removal"
+    },
+    {
+      "name": "Victimize",
+      "id": "ee008d81-df28-49a8-917d-44f66527e469",
+      "kind": "recursion"
+    },
+    {
+      "name": "Vile Consumption",
+      "id": "7f7e5716-77f3-45d2-a40a-f5bf500f6ad7",
+      "kind": "stax"
+    },
+    {
+      "name": "Village Rites",
+      "id": "42ed35e9-51cd-468a-86a9-9412553cf50d",
+      "kind": "draw"
+    },
+    {
+      "name": "Virtue of Knowledge // Vantress Visions",
+      "id": "df606cf5-67dc-46f4-8c79-1d2f1d054391",
+      "kind": "copy"
+    },
+    {
+      "name": "Virtue of Persistence // Locthwain Scorn",
+      "id": "f1e5cafb-b0e6-4ee5-8c58-6f8e5ef2b9da",
+      "kind": "recursion"
+    },
+    {
+      "name": "Virulent Swipe",
+      "id": "d1d6ca74-70f5-44c6-82f7-dae8980bdd44",
+      "kind": "removal"
+    },
+    {
+      "name": "Vito, Thorn of the Dusk Rose",
+      "id": "0fe79ee4-c3f3-4a6b-a967-203ca3b70ee5",
+      "kind": "drain"
+    },
+    {
+      "name": "Vnwxt, Verbose Host",
+      "id": "893254c7-64cc-4cb9-b79f-2c41a8935ea0",
+      "kind": "draw"
+    },
+    {
+      "name": "Vodalian Illusionist",
+      "id": "9ce0e28b-9fd6-4763-8d6b-952b530358ab",
+      "kind": "protection"
+    },
+    {
+      "name": "Voidwing Hybrid",
+      "id": "8a48705f-bd8a-43f1-b1fe-14a5c9a83ccd",
+      "kind": "infect"
+    },
+    {
+      "name": "Volrath's Stronghold",
+      "id": "f465ae5f-61f0-42c4-978f-841ba1226f56",
+      "kind": "land"
+    },
+    {
+      "name": "Voltaic Key",
+      "id": "6dd61957-f3a2-4976-8f15-88258f71406a",
+      "kind": "untap"
+    },
+    {
+      "name": "Vorpal Sword",
+      "id": "7adbe69f-326d-4b4f-850f-c57a1860d17c",
+      "kind": "finisher"
+    },
+    {
+      "name": "Vraan, Executioner Thane",
+      "id": "4c4a3119-c70a-46ff-8ede-6356f2b7bc13",
+      "kind": "drain"
+    },
+    {
+      "name": "Vraska, Betrayal's Sting",
+      "id": "9f1fa1c5-ff87-4bbc-89aa-dbebc91eada0",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Vraska, Scheming Gorgon",
+      "id": "91685732-c118-4f52-ac77-f96866a687a3",
+      "kind": "removal"
+    },
+    {
+      "name": "Vraska's Contempt",
+      "id": "bd7550dd-dfc5-43cd-a117-1244ee3086a8",
+      "kind": "removal"
+    },
+    {
+      "name": "Vraska's Fall",
+      "id": "0173b7b4-2832-4943-ba45-8ba498d7a056",
+      "kind": "removal"
+    },
+    {
+      "name": "Walker of Secret Ways",
+      "id": "7c193b1b-2819-43c4-bda0-8c27ec6e5efa",
+      "kind": "bounce"
+    },
+    {
+      "name": "Wan Shi Tong, Librarian",
+      "id": "e20da6b5-1057-4a28-9e85-07de714e262f",
+      "kind": "draw"
+    },
+    {
+      "name": "Wand of Orcus",
+      "id": "510af4b7-289a-4de7-9a22-00fe1e8aaabf",
+      "kind": "tokens"
+    },
+    {
+      "name": "Warren Soultrader",
+      "id": "b334e4c6-d316-4141-8889-f95afcc04701",
+      "kind": "sac"
+    },
+    {
+      "name": "Wash Out",
+      "id": "dc468f97-08f7-4103-898f-b14fa61b99bc",
+      "kind": "removal"
+    },
+    {
+      "name": "Water Whip",
+      "id": "f8783863-699b-4362-a211-7db7ab8f36ad",
+      "kind": "removal"
+    },
+    {
+      "name": "Waterbender Ascension",
+      "id": "3f57e0f9-e232-489c-b991-d0d23f75d8dd",
+      "kind": "draw"
+    },
+    {
+      "name": "Waterbender's Restoration",
+      "id": "fe68e08e-8d84-4f87-b2e9-b552788d78e7",
+      "kind": "protection"
+    },
+    {
+      "name": "Watery Grasp",
+      "id": "26bcff57-428e-4f30-a153-a778fbfc437d",
+      "kind": "removal"
+    },
+    {
+      "name": "Watery Grave",
+      "id": "5b8170dc-6a90-46fc-9989-7575f3d402b5",
+      "kind": "land"
+    },
+    {
+      "name": "Wave Goodbye",
+      "id": "45803e98-5d99-4bd9-adac-37c854649167",
+      "kind": "removal"
+    },
+    {
+      "name": "Wayfarer's Bauble",
+      "id": "ac1960a1-9141-468c-b96c-6c8e6905084d",
+      "kind": "ramp"
+    },
+    {
+      "name": "Weathered Runestone",
+      "id": "0fc2478f-e624-46fb-85af-1254564cd4d2",
+      "kind": "stax"
+    },
+    {
+      "name": "Whelming Wave",
+      "id": "ddb863a0-3ff8-42a3-a151-4ea9aa433336",
+      "kind": "removal"
+    },
+    {
+      "name": "Whip of Erebos",
+      "id": "b738612f-4e78-4b19-9392-6c074956d6e4",
+      "kind": "recursion"
+    },
+    {
+      "name": "Whir of Invention",
+      "id": "0279fd3c-9252-4958-9d7a-5f33aa25907e",
+      "kind": "tutor"
+    },
+    {
+      "name": "Whisper of the Dross",
+      "id": "58d287e8-5297-415a-97d5-02002470c52b",
+      "kind": "proliferate"
+    },
+    {
+      "name": "Whispering Specter",
+      "id": "bcb1b486-e336-4e88-b635-b6ff18cb4841",
+      "kind": "infect"
+    },
+    {
+      "name": "Whispersilk Cloak",
+      "id": "5a12bfaf-7481-4e6a-98c8-6308d075382b",
+      "kind": "protection"
+    },
+    {
+      "name": "White Lotus Tile",
+      "id": "1d70f9ec-fdc1-4219-b89b-c030d712c1fc",
+      "kind": "ramp"
+    },
+    {
+      "name": "Windfall",
+      "id": "9ce7113b-08f7-4584-b65f-a7b5caa90c2f",
+      "kind": "draw"
+    },
+    {
+      "name": "Wingcrafter",
+      "id": "0b79a71b-568f-4700-9b1d-e7965159da0a",
+      "kind": "evasion"
+    },
+    {
+      "name": "Winged Boots",
+      "id": "116361c4-fddd-440a-ad02-8d71df733231",
+      "kind": "protection"
+    },
+    {
+      "name": "Witch's Cauldron",
+      "id": "51c15046-dd24-41aa-96f3-fb008a6988dd",
+      "kind": "draw"
+    },
+    {
+      "name": "Witch's Cottage",
+      "id": "b87891cd-b457-4dff-8d18-a7eaf6748fc6",
+      "kind": "land"
+    },
+    {
+      "name": "Withering Torment",
+      "id": "38048d14-3463-4157-951f-1d68ec78a64e",
+      "kind": "removal"
+    },
+    {
+      "name": "Witness Protection",
+      "id": "f231e981-0069-43ce-ac1c-c85ced613e93",
+      "kind": "removal"
+    },
+    {
+      "name": "Wizard Class",
+      "id": "d1f629fb-b097-4240-8560-ef47f5678f48",
+      "kind": "draw"
+    },
+    {
+      "name": "Wizard Mentor",
+      "id": "49805401-9bd9-48a3-9b99-0120a8bb1fb5",
+      "kind": "protection"
+    },
+    {
+      "name": "Wonder",
+      "id": "567abd78-d4a3-4a33-9b5b-b5ca361059cc",
+      "kind": "evasion"
+    },
+    {
+      "name": "Wonderscape Sage",
+      "id": "c949c600-cfb5-43e1-a410-e718cf36164a",
+      "kind": "draw"
+    },
+    {
+      "name": "Word of Undoing",
+      "id": "c1b5d79e-7b96-445f-a36d-264082a4c6af",
+      "kind": "bounce"
+    },
+    {
+      "name": "Worn Powerstone",
+      "id": "ace686ad-9e3f-41b3-b8eb-d1b6d45eb4e1",
+      "kind": "ramp"
+    },
+    {
+      "name": "Wound Reflection",
+      "id": "2b14a82c-877a-445f-8910-33aaa6fe3d15",
+      "kind": "drain"
+    },
+    {
+      "name": "Xenograft",
+      "id": "f52f08e1-b234-42e4-8f1f-485a4f6edb3b",
+      "kind": "tokens"
+    },
+    {
+      "name": "Y'shtola Rhul",
+      "id": "aef218fa-13a4-4653-95d6-6b3ef1b33a92",
+      "kind": "blink"
+    },
+    {
+      "name": "Yahenni, Undying Partisan",
+      "id": "396c5d77-f530-42f8-80b5-7cbfd562d1e2",
+      "kind": "sac"
+    },
+    {
+      "name": "Yoke of the Damned",
+      "id": "8786d461-0ea5-4224-82e4-bfbe4d0d8b9f",
+      "kind": "removal"
+    },
+    {
+      "name": "Yuriko, the Tiger's Shadow",
+      "id": "fe9be3e0-076c-4703-9750-2a6b0a178bc9",
+      "kind": "commander"
+    },
+    {
+      "name": "Zof Consumption // Zof Bloodbog",
+      "id": "98496d5b-1519-4f0c-8b46-0a43be643dfb",
+      "kind": "lifegain"
+    },
+    {
+      "name": "Zuko's Conviction",
+      "id": "ad8933d6-cdc7-4d60-a78e-b43ffecfb136",
+      "kind": "recursion"
+    },
+    {
+      "name": "Zuko's Exile",
+      "id": "9090b055-3406-4fed-a8c6-3f6353a9600e",
+      "kind": "removal"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+[!- extends "_wrappers/main.html" -!]
+
+[!- block main -!]
+  <hgroup>
+    <h1>Archidekt To JSON Converter</h1>
+  </hgroup>
+
+<h2>Intro</h2>
+  <p>
+    This is the tool I use to set up 
+    the back end for tools on this site.
+    It does two things:
+  </p>
+  <ol>
+  <li>
+    Parses a deck list exported from <a href="https://archidekt.com">Archidekt</a> 
+    and creates a JSON object from it 
+    that's easier to work with. 
+  </li>
+  <li>
+    Create lines for a bash script to 
+    pull down images from scryfall to 
+    use so I'm not hitting their servers
+    for my tools.
+  </li>
+</ol>
+
+<p>
+  I built these tools for my stuff.
+  There's no reason they couldn't be
+  used for other tools as well. 
+</p>
+
+<bitty-7-0 data-connect="/archidekt-converter/converter.js Converter">
+  <h2>Input</h2>
+  <div>
+    <textarea class="input-data" data-send="outputJSON" data-receive="showExample clearList"></textarea>
+  </div>
+  <div>
+    <button data-send="showExample">Show Example</button> 
+    <button data-send="clearList">Clear List</button>
+  </div>
+
+  <h2>JSON Output</h2>
+  <div>
+    <textarea data-receive="outputJSON clearList"></textarea>
+  </div>
+
+  <h2>Image Downloader</h2>
+  <div>
+    <textarea data-receive="curlCommands clearList"></textarea>
+  </div>
+
+</bitty-7-0>
+
+[!- endblock -!]
+
+
+[!- block head -!]
+<link rel="stylesheet" href="/archidekt-converter/styles.css" />
+[!- endblock -!]
+
+

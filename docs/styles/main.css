@@ -53,6 +53,10 @@ bitty-7-0 {
   display: block;
 }
 
+bitty-7-0 > :where(:not(:first-child)) {
+  margin-top: var(--flow-space, var(--default-flow));
+}
+
 blockquote {
   margin: var(--large-margin);
   padding: var(--default-padding);
@@ -176,7 +180,7 @@ h1 {
 h2 {
   --flow-space: var(--xxxlarge-margin);
   color: var(--heading-color);
-  border-bottom: var(--accent-border);
+  border-bottom: var(--faded-accent-border);
   font-size: var(--xlarge-font-size);
   font-weight: var(--font-weight-900);
   line-height: var(--xxsmall-line-height);

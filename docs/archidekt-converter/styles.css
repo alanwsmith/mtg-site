@@ -1,0 +1,6 @@
+textarea {
+  min-height: 14rem;
+  font-size: var(--xxsmall-font-size);
+  min-width: 84%;
+}
+
