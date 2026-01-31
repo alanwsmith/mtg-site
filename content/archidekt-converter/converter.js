@@ -1,3 +1,9 @@
+const t = {
+  // https://cards.scryfall.io/border_crop/front/8/3/83f510b7-4cbd-4883-9c26-c8824bc668ac.jpg
+  wget:
+    `[ ! -e "ID.jpg" ] && wget https://cards.scryfall.io/border_crop/front/PREFIX1/PREFIX2/ID.jpg\nsleep 1`,
+};
+
 export class Converter {
   #data = { cards: [] };
   #errors;
@@ -13,15 +19,13 @@ export class Converter {
 
   curlCommands(_, el) {
     el.value = this.#data.cards.map((card) => {
-      // console.log(card.scryfallId);
-      const prefix1 = card.id.substring(0, 1);
-      const prefix2 = card.id.substring(1, 2);
-      const url =
-        `https://cards.scryfall.io/border_crop/front/${prefix1}/${prefix2}/${card.id}.jpg`;
-      return `wget ${url}\nsleep 1`;
+      const subs = [
+        ["PREFIX1", card.id.substring(0, 1)],
+        ["PREFIX2", card.id.substring(1, 2)],
+        ["ID", card.id],
+      ];
+      return this.api.makeTXT(t.wget, subs);
     }).join("\n");
-
-    // https://cards.scryfall.io/border_crop/front/8/3/83f510b7-4cbd-4883-9c26-c8824bc668ac.jpg
   }
 
   async loadIdMap() {
