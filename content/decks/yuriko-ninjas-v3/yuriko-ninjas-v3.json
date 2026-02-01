@@ -631,15 +631,6 @@
       "char2": "d"
     },
     {
-      "name": "Lazav, Dimir Mastermind",
-      "id": "003dc436-a3af-4e65-b4f8-387155fbcb85",
-      "count": "1",
-      "kind": "copy",
-      "line": "1x Lazav, Dimir Mastermind (znc) 92 [Copy]",
-      "char1": "0",
-      "char2": "0"
-    },
-    {
       "name": "Lightning Greaves",
       "id": "8b59b12c-fde5-4f19-a357-e09f06f490cc",
       "count": "1",
@@ -1331,6 +1322,15 @@
       "line": "1x Wizard Class (blc) 112 [Draw]",
       "char1": "d",
       "char2": "1"
+    },
+    {
+      "name": "Wonder",
+      "id": "567abd78-d4a3-4a33-9b5b-b5ca361059cc",
+      "count": "1",
+      "kind": "evasion",
+      "line": "1x Wonder (tdc) 170 [Evasion]",
+      "char1": "5",
+      "char2": "6"
     },
     {
       "name": "Worn Powerstone",

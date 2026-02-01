@@ -1,11 +1,24 @@
+.deck-section-wrapper {
+  height: calc(13rem + calc(1.75rem * var(--wrapper-bump)));
+}
 
 .card {
-  min-width: 8rem;
-  max-width: 8rem;
+  min-width: 9rem;
+  max-width: 9rem;
+  transform: translateY(calc(var(--card-index) * -11rem));
 }
 
-.deck-section {
+.deck {
+  background-color: rebeccapurple;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  justify-content: space-between;
+  gap: 0.7rem;
 }
+
+.deck-wrapper {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+}
+
+
