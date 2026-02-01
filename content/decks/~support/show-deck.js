@@ -8,7 +8,9 @@ const t = {
   card: `<div class="card" data-send="showCard" data-id="ID">
   <img 
     alt="The NAME card from Magic: The Gathering" 
-    src="/images/cards/ID.jpg">
+    src="/images/cards/ID.jpg"
+    data-id="ID"
+  />
 </div>
 `,
   displayCard: `<img src="/images/cards/ID.jpg" alt="Current Display Card" />`,
@@ -16,6 +18,30 @@ const t = {
 
 export class ShowDeck {
   #cards;
+  #currentEl;
+
+  bittyReady() {
+    document.addEventListener("mousemove", (event) => {
+      window.requestAnimationFrame(() => {
+        this.update(event);
+      });
+    });
+  }
+
+  update(event) {
+    const el = document.elementFromPoint(event.clientX, event.clientY);
+    if (el.dataset.id) {
+      if (this.#currentEl !== el) {
+        this.#currentEl = el;
+        this.api.trigger("showCard");
+      }
+    } else {
+      document.documentElement.style.setProperty(
+        "--card-state",
+        `hidden`,
+      );
+    }
+  }
 
   deck(_, el) {
     el.replaceChildren(this.getCards("commander"));
@@ -45,13 +71,6 @@ export class ShowDeck {
     return deckSectionWrapper;
   }
 
-  hideCard(_, __) {
-    document.documentElement.style.setProperty(
-      "--card-state",
-      `hidden`,
-    );
-  }
-
   async loadDeck(ev, el) {
     const resp = await this.api.getJSON(el.prop("deck"));
     if (resp.value) {
@@ -74,38 +93,40 @@ export class ShowDeck {
     ].sort();
   }
 
-  showCard(ev, el) {
-    console.log(ev.target);
+  showCard(_, el) {
+    const rect = this.#currentEl.getBoundingClientRect();
+
     const subs = [
-      ["ID", ev.prop("id")],
+      ["ID", this.#currentEl.dataset.id],
     ];
 
-    if (ev.target.x < 400) {
+    if (rect.x < 400) {
       document.documentElement.style.setProperty(
         "--card-x",
-        `${ev.target.x + 138}px`,
+        `${rect.x + 130}px`,
       );
     } else {
       document.documentElement.style.setProperty(
         "--card-x",
-        `${ev.target.x - 210}px`,
+        `${rect.x - 200}px`,
       );
     }
 
     document.documentElement.style.setProperty(
       "--card-y",
-      `${ev.target.offsetTop}px`,
+      `${this.#currentEl.offsetTop}px`,
     );
 
     document.documentElement.style.setProperty(
       "--card-state",
       `visible`,
     );
+    console.log(rect);
 
-    // el.innerHTML = `<pre>
-    // x: ${ev.target.x};
-    // y: ${ev.target.y};
-    // </pre>`;
+    el.innerHTML = `<pre>
+    x: ${rect.x};
+    y: ${rect.y};
+    </pre>`;
 
     el.replaceChildren(this.api.makeHTML(t.displayCard, subs));
   }
