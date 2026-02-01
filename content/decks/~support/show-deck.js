@@ -1,7 +1,7 @@
 const t = {
-  commander: `
-<div class="commander">
-  <div class="deck-section-title">Commander</div>
+  section: `
+<div class="deck-section-wrapper KIND-section">
+  <div class="deck-section-title">KIND</div>
   <div class="deck-section">CARDS</div>
 </div>`,
 
@@ -18,6 +18,9 @@ export class ShowDeck {
 
   deck(_, el) {
     el.replaceChildren(this.getCards("commander"));
+    this.sectionKinds().forEach((section) =>
+      el.appendChild(this.getCards(section))
+    );
   }
 
   getCards(kind) {
@@ -31,9 +34,20 @@ export class ShowDeck {
         return this.api.makeHTML(t.card, cardSubs);
       });
     const subs = [
+      ["KIND", kind],
       ["CARDS", cards],
     ];
-    return this.api.makeHTML(t[kind], subs);
+    return this.api.makeHTML(t.section, subs);
+  }
+
+  sectionKinds() {
+    return [
+      ...new Set(
+        this.#cards.filter((card) => card.kind !== "commander").map((card) =>
+          card.kind
+        ),
+      ),
+    ].sort();
   }
 
   async loadDeck(ev, el) {

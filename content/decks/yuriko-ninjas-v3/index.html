@@ -1,4 +1,4 @@
-[!- extends "_wrappers/main.html" -!]
+[!- extends "decks/~support/template.html" -!]
 
 [!- block main -!]
   <hgroup>
@@ -7,9 +7,9 @@
 
 <p>The third iteration of my Yuriko Ninja deck</p>
 
-<bitty-7-0 data-connect="/bits/show-deck.js ShowDeck">
+<bitty-7-0 data-connect="/decks/~support/show-deck.js ShowDeck">
   <div 
-    class="cards"
+    class="deck"
     data-init="loadDeck"
     data-receive="deck"
     data-deck="/decks/yuriko-ninjas-v3/yuriko-ninjas-v3.json">
@@ -17,9 +17,6 @@
 </bitty-7-0>
 [!- endblock -!]
 
-[! block head !]
-<link rel="stylesheet" href="/decks/styles.css" />
-[! endblock !]
 
 
 

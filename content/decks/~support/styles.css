@@ -1,0 +1,11 @@
+
+.card {
+  min-width: 8rem;
+  max-width: 8rem;
+}
+
+.deck-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}

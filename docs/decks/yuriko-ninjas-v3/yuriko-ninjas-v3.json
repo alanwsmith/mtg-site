@@ -337,8 +337,8 @@
       "name": "Damnation",
       "id": "d3c0aac5-b9f1-4446-bfea-3e1dd1cf1f2f",
       "count": "1",
-      "kind": "maybeboard",
-      "line": "1x Damnation (2x2) 73 [Maybeboard{noDeck}{noPrice}]",
+      "kind": "removal",
+      "line": "1x Damnation (2x2) 73 [Removal]",
       "char1": "d",
       "char2": "3"
     },
@@ -622,123 +622,6 @@
       "char2": "0"
     },
     {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
-      "name": "Island",
-      "id": "b0da67fb-1cb2-4105-ab5c-b7c680b8116c",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Island (ecl) 270 [Land]",
-      "char1": "b",
-      "char2": "0"
-    },
-    {
       "name": "Kaito, Dancing Shadow",
       "id": "0d97f59a-07b8-47ef-aa88-d94f8c3feae4",
       "count": "1",
@@ -746,6 +629,15 @@
       "line": "1x Kaito, Dancing Shadow (one) 204 [Maybeboard{noDeck}{noPrice}]",
       "char1": "0",
       "char2": "d"
+    },
+    {
+      "name": "Lazav, Dimir Mastermind",
+      "id": "003dc436-a3af-4e65-b4f8-387155fbcb85",
+      "count": "1",
+      "kind": "copy",
+      "line": "1x Lazav, Dimir Mastermind (znc) 92 [Copy]",
+      "char1": "0",
+      "char2": "0"
     },
     {
       "name": "Lightning Greaves",
@@ -955,15 +847,6 @@
       "char2": "d"
     },
     {
-      "name": "Perish",
-      "id": "77192bdf-d89f-45a1-a30b-20107e990031",
-      "count": "1",
-      "kind": "removal",
-      "line": "1x Perish (plst) TMP-147 [Removal]",
-      "char1": "7",
-      "char2": "7"
-    },
-    {
       "name": "Phantom Ninja",
       "id": "a392b557-e809-4371-92d7-6e93caed4f1b",
       "count": "1",
@@ -1169,123 +1052,6 @@
       "line": "1x Sunken Ruins (fic) 430 [Land]",
       "char1": "9",
       "char2": "1"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
-    },
-    {
-      "name": "Swamp",
-      "id": "1dd4d605-02a2-4183-b191-0bca8dfbf962",
-      "count": "14",
-      "kind": "land",
-      "line": "14x Swamp (ecl) 271 [Land]",
-      "char1": "1",
-      "char2": "d"
     },
     {
       "name": "Swamp",
@@ -1565,15 +1331,6 @@
       "line": "1x Wizard Class (blc) 112 [Draw]",
       "char1": "d",
       "char2": "1"
-    },
-    {
-      "name": "Wonder",
-      "id": "567abd78-d4a3-4a33-9b5b-b5ca361059cc",
-      "count": "1",
-      "kind": "evasion",
-      "line": "1x Wonder (tdc) 170 [Evasion]",
-      "char1": "5",
-      "char2": "6"
     },
     {
       "name": "Worn Powerstone",
