@@ -5,6 +5,9 @@
 .card {
   min-width: 9rem;
   max-width: 9rem;
+  position: absolute;
+  top: calc(var(--card-index) * 1.72rem);
+
 }
 
 .deck {
@@ -16,6 +19,14 @@
 }
 
 .deck-section-wrapper {
+  min-width: 9rem;
+  max-width: 9rem;
+}
+
+.deck-section-cards{
+  position: relative;
+  top: 10px;
+  left: 0px;
 }
 
 .deck-wrapper {

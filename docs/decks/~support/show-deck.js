@@ -75,7 +75,7 @@ export class ShowDeck {
     const resp = await this.api.getJSON(el.prop("deck"));
     if (resp.value) {
       this.#cards = resp.value.cards;
-      console.log(this.#cards);
+      //console.log(this.#cards);
     } else {
       el.innerHTML = "Error fetching JSON";
     }
@@ -121,7 +121,7 @@ export class ShowDeck {
       "--card-state",
       `visible`,
     );
-    console.log(rect);
+    //console.log(rect);
 
     el.innerHTML = `<pre>
     x: ${rect.x};
