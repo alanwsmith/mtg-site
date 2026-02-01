@@ -5,7 +5,6 @@
 .card {
   min-width: 9rem;
   max-width: 9rem;
-  transform: translateY(calc(var(--card-index) * -11rem));
 }
 
 .deck {
@@ -16,9 +15,24 @@
   gap: 0.7rem;
 }
 
-.deck-wrapper {
-  display: grid;
-  grid-template-columns: 12rem 1fr;
+.deck-section-wrapper {
 }
 
+.deck-wrapper {
+  position: relative;
+}
 
+:root {
+  --card-x: 50px;
+  --card-y: 50px;
+  --card-state: hidden;
+}
+
+#display-card {
+  position: absolute;
+  top: var(--card-y);
+  left: var(--card-x);
+  width: 12rem;
+  background-color: blue;
+  visibility: var(--card-state);
+}

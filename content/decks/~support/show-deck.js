@@ -45,6 +45,13 @@ export class ShowDeck {
     return deckSectionWrapper;
   }
 
+  hideCard(_, __) {
+    document.documentElement.style.setProperty(
+      "--card-state",
+      `hidden`,
+    );
+  }
+
   async loadDeck(ev, el) {
     const resp = await this.api.getJSON(el.prop("deck"));
     if (resp.value) {
@@ -68,9 +75,38 @@ export class ShowDeck {
   }
 
   showCard(ev, el) {
+    console.log(ev.target);
     const subs = [
       ["ID", ev.prop("id")],
     ];
+
+    if (ev.target.x < 400) {
+      document.documentElement.style.setProperty(
+        "--card-x",
+        `${ev.target.x + 138}px`,
+      );
+    } else {
+      document.documentElement.style.setProperty(
+        "--card-x",
+        `${ev.target.x - 210}px`,
+      );
+    }
+
+    document.documentElement.style.setProperty(
+      "--card-y",
+      `${ev.target.offsetTop}px`,
+    );
+
+    document.documentElement.style.setProperty(
+      "--card-state",
+      `visible`,
+    );
+
+    // el.innerHTML = `<pre>
+    // x: ${ev.target.x};
+    // y: ${ev.target.y};
+    // </pre>`;
+
     el.replaceChildren(this.api.makeHTML(t.displayCard, subs));
   }
 }
