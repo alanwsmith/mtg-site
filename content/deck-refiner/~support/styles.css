@@ -1,4 +1,21 @@
+.card {
+  width: 11rem;
+  height: 1.4rem;
+  overflow-y: hidden;
+}
+
 .card img {
-  width: clamp(10rem, 11rem, 13rem);
   border-radius: var(--large-border-radius);
+}
+
+.card-buttons button {
+  border: var(--faded-info-border);
+  font-size: var(--xsmall-font-size);
+  padding-block: var(--xxxsmall-padding);
+}
+
+.card-wrapper {
+  display: inline-block;
+  border: var(--faded-default-border);
+  border-radius: var(--default-border-radius);
 }

@@ -1,28 +1,31 @@
 const t = {
-  card: `<div class="card" data-send="showCard" data-id="ID">
-<div>
-<img 
-src="/images/cards/ID.jpg"
-alt="The NAME Magic: The Gather card."
-data-id="ID" />
-<!--
-<img 
-src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
-alt="The NAME Magic: The Gather card."
-data-id="ID" />
--->
-</div>
+  card: `<div class="card-wrapper" data-send="showCard" data-id="ID">
+  <div class="card">
+  <img 
+  src="/images/cards/ID.jpg"
+  alt="The NAME Magic: The Gather card."
+  data-id="ID" />
+  <!--
+  <img 
+  src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
+  alt="The NAME Magic: The Gather card."
+  data-id="ID" />
+  -->
+  </div>
+
+  <div class="card-buttons">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>x</button>
+  </div>
 </div>`,
 
   category: `
 <div class="category">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
 <div class="category-cards">CATEGORY_CARDS</div>
 `,
-
-  section: `<div class="deck-section-wrapper KIND-section">
-  <div class="deck-section-title">KIND</div>
-  <div class="deck-section-cards">CARDS</div>
-</div>`,
 };
 
 class Card {
@@ -104,9 +107,6 @@ class Deck {
   }
 
   downloadCommands() {
-    //  return "asdf";
-    // src = "https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH";
-
     return this.cards()
       .map((card) => {
         const url = [
@@ -163,7 +163,6 @@ export class DeckRefiner {
               ],
             ],
           );
-          console.log(subs);
           return this.api.makeHTML(
             t.category,
             subs,
@@ -173,13 +172,16 @@ export class DeckRefiner {
   }
 
   imageDownloadCommands(_, el) {
-    el.value = `#!/bin/bash
+    if (el) {
+      el.value = `#!/bin/bash
 ${this.#objectDeck.downloadCommands()}
     `;
+    }
   }
 
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
+    //const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
     if (resp.value) {
       this.#objectDeck = new Deck(resp.value);
       el.value = JSON.stringify(resp.value);
