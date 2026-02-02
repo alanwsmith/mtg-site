@@ -167,7 +167,6 @@ body {
 <link rel="mask-icon" href="&#x2f;favicons/safari-pinned-tab.svg" color="#5bbad5" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg">
-<link rel="stylesheet" href="/deck-runner/styles.css">
   </head>
   <body>
     <noscript>
@@ -199,62 +198,14 @@ body {
       data-init="themeSwitcher"></bitty-7-0>
   </div>
 </header>
-<main class="xxxlarge-width default-flow">
-
+      <main class="default-wrapper default-flow">
 <hgroup>
-  <h1>Deck Runner</h1>
-</hgroup>
+    <h1>Tooling</h1>
+  </hgroup>
 
-<p>
-  This is a work in progress. The idea is to 
-  generate hands from a deck so you can 
-  get a sense of how they'll play. 
-  I'll add stats at some point. For now, 
-  I just want to see examples of how 
-  cards will come off the draws will go.
-</p>
-
-<h2>Configure</h2>
-
-
-<bitty-7-0 data-connect="/deck-runner/deck-runner.js DeckRunner" class="default-flow">
-  <details>
-    <summary>Change Deck</summary>
-
-    <p>Copy and paste your deck in here from 
-      <a href="https://archidekt.com/">Archidekt</a></p>
-    <textarea 
-      class="deck-list" 
-      data-send="shuffleDeck" 
-      data-receive="loadDeckList"></textarea>
-  </details>
-
-  <h2>Land Check Deck Run</h2>
-    <h3>Commander</h3>
-    <div class="default-padding">
-      <div data-receive="commanderCard"></div>
-    </div>
-
-
-  <h4>Opening Hand</h4>
-    <div class="opening-stats faded-accent-border default-border-radius default-padding">
-      <div class="default-padding faded-default-block-border">
-        <span data-receive="handLandCount">-</span> Land(s) in Opening Hand
-      </div>
-    </div>
-
-    <div class="opening-stats faded-accent-border default-border-radius default-padding">
-      <div class="opening-hand-cards" data-receive="openingHandCards"></div>
-    </div>
-
-
-
-  <div class="two-columns">
-    <h4>Land Draw Details</h4>
-    <div class="text-align-right default-padding"><button data-send="shuffleDeck">Shuffle and Redraw Deck</button></div>
-  </div>
-  <div class="draw-cards" data-receive="cardDraws"></div>
-</bitty-7-0>      </main>
+<ul>
+  <li><a href="/tooling/archidekt-parser/">Archidekt Parser</a></li> 
+</ul>      </main>
 
 <footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
   <div class="small-font-size">

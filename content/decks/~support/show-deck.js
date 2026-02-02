@@ -112,9 +112,14 @@ export class ShowDeck {
       );
     }
 
+    const offset = this.#currentEl.parentNode.parentNode.offsetTop +
+      this.#currentEl.parentNode.offsetTop;
+
     document.documentElement.style.setProperty(
       "--card-y",
-      `${this.#currentEl.offsetTop}px`,
+      //`${rect.top}px`,
+      //`${this.#currentEl.parentNode.parentNode.offsetTop}px`,
+      `${offset}px`,
     );
 
     document.documentElement.style.setProperty(

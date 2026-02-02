@@ -1,5 +1,9 @@
 [!- extends "_wrappers/main.html" -!]
 
+[! block main_tag !]
+<main class="xxxlarge-width default-flow">
+[! endblock !]
+
 [! block main !]
 
 <hgroup>
@@ -31,23 +35,23 @@
   </details>
 
   <h2>Land Check Deck Run</h2>
+    <h3>Commander</h3>
+    <div class="default-padding">
+      <div data-receive="commanderCard"></div>
+    </div>
+
 
   <h4>Opening Hand</h4>
-  <div class="opening">
     <div class="opening-stats faded-accent-border default-border-radius default-padding">
-      <div class="default-padding center">
-        <div data-receive="commanderCard"></div>
-      </div>
       <div class="default-padding faded-default-block-border">
         <span data-receive="handLandCount">-</span> Land(s) in Opening Hand
       </div>
-      <div class="text-align-right default-padding"><button data-send="shuffleDeck">Shuffle and Redraw Deck</button></div>
     </div>
 
     <div class="opening-stats faded-accent-border default-border-radius default-padding">
       <div class="opening-hand-cards" data-receive="openingHandCards"></div>
     </div>
-  </div>
+
 
 
   <div class="two-columns">
