@@ -1,6 +1,8 @@
 const t = {
   card: `<div class="card" data-send="showCard" data-id="ID">IMAGE_TAG</div>`,
 
+  category: `<div class="categor">CATEGORY</div>`,
+
   scryfallImageURL: `<img 
 src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
 alt="ALT"
@@ -35,6 +37,8 @@ export class DeckRefiner {
   categoriesWithCards() {
     return this.#deck.categories.filter((category) => {
       return this.categoryHasCards(category);
+    }).sort((a, b) => {
+      return a.name.toLowerCase() > b.name.toLowerCase();
     });
   }
 
@@ -44,23 +48,26 @@ export class DeckRefiner {
     }).length > 0;
   }
 
-  commander(_, el) {
-    // currently only handle single commanders.
-    const card = this.cardsInCategory("Commander")[0];
-    el.replaceChildren(
-      this.api.makeHTML(
-        t.card,
-        [
-          ["NAME", this.cardName(card)],
-          ["IMAGE_TAG", this.scryfallImageTag(card)],
-        ],
-      ),
-    );
-  }
+  // commander(_, el) {
+  //   // currently only handle single commanders.
+  //   const card = this.cardsInCategory("Commander")[0];
+  //   el.replaceChildren(
+  //     this.api.makeHTML(
+  //       t.card,
+  //       [
+  //         ["NAME", this.cardName(card)],
+  //         ["IMAGE_TAG", this.scryfallImageTag(card)],
+  //       ],
+  //     ),
+  //   );
+  // }
 
   deck(_, el) {
-    console.log(this.categoriesWithCards());
-    el.innerHTML = "deck";
+    el.replaceChildren(
+      ...this.categoriesWithCards().map((category) => {
+        return this.api.makeHTML(t.category, [["CATEGORY", category.name]]);
+      }),
+    );
   }
 
   async loadJSON(_, el) {
