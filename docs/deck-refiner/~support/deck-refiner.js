@@ -1,6 +1,10 @@
 const t = {
   card: `<div class="card" data-send="showCard" data-id="ID">
 NAME - ID
+<div><!-- img 
+src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
+alt="ALT"
+data-id="ID" / --></div>
 </div>`,
 
   category: `
@@ -28,12 +32,19 @@ class Card {
     return this._data.categories[0];
   }
 
+  id() {
+    return this._data.card.uid;
+  }
+
   name() {
     return this._data.card.oracleCard.name;
   }
 
   subs() {
-    return [["NAME", "asdf"]];
+    return [
+      ["NAME", this.name()],
+      ["ID", this.id()],
+    ];
   }
 }
 
@@ -100,9 +111,6 @@ export class DeckRefiner {
 
   cardName(card) {
     return card.card.oracleCard.name;
-  }
-
-  categorySubs(category) {
   }
 
   deck(_, el) {
