@@ -1,7 +1,12 @@
 const t = {
-  card: `<div class="card" data-send="showCard" data-id="ID">IMAGE_TAG</div>`,
+  card: `<div class="card" data-send="showCard" data-id="ID">
+NAME - ID
+</div>`,
 
-  category: `<div class="categor">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>`,
+  category: `
+<div class="category">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
+<div class="category-cards">CATEGORY_CARDS</div>
+`,
 
   scryfallImageURL: `<img 
 src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
@@ -26,6 +31,10 @@ class Card {
   name() {
     return this._data.card.oracleCard.name;
   }
+
+  subs() {
+    return [["NAME", "asdf"]];
+  }
 }
 
 class Deck {
@@ -46,14 +55,14 @@ class Deck {
         return categoryObj.name;
       })
       .filter((category) => {
-        return this.cardsInCategory(category).length > 0;
+        return this.categoryCards(category).length > 0;
       })
       .sort((a, b) => {
         return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
       });
   }
 
-  cardsInCategory(category) {
+  categoryCards(category) {
     return this.cards().filter((card) => {
       return card.category() === category;
     });
@@ -62,7 +71,7 @@ class Deck {
   categorySubs(category) {
     return [
       ["CATEGORY_NAME", category],
-      ["CARDS_IN_CATEGORY", this.cardsInCategory(category).length],
+      ["CARDS_IN_CATEGORY", this.categoryCards(category).length],
     ];
   }
 
@@ -84,7 +93,7 @@ export class DeckRefiner {
     });
   }
 
-  cardsInCategory(category) {
+  categoryCards(category) {
     return this.#deck.cards
       .filter((card) => card.categories[0] === category.name);
   }
@@ -93,40 +102,36 @@ export class DeckRefiner {
     return card.card.oracleCard.name;
   }
 
-  // categoriesWithCards() {
-  //   return this.#deck.categories.filter((category) => {
-  //     return this.cardsInCategory(category).length > 0;
-  //   }).sort((a, b) => {
-  //     return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
-  //   });
-  // }
+  categorySubs(category) {
+  }
 
   deck(_, el) {
     el.replaceChildren(
       ...this.#objectDeck.categories()
         .map((category) => {
+          const subs = this.#objectDeck.categorySubs(category).concat(
+            [
+              [
+                "CATEGORY_CARDS",
+                this.#objectDeck.categoryCards(category).map((card) =>
+                  this.api.makeHTML(t.card, card.subs())
+                ),
+              ],
+            ],
+          );
+          console.log(subs);
           return this.api.makeHTML(
             t.category,
-            this.#objectDeck.categorySubs(category),
+            subs,
           );
         }),
     );
-
-    //   ...this.categoriesWithCards().map((category) => {
-    //     return this.api.makeHTML(t.category, [
-    //       ["CATEGORY_NAME", category.name],
-    //       ["CARDS_IN_CATEGORY", this.cardsInCategory(category).length],
-    //     ]);
-    //   }),
   }
 
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
     if (resp.value) {
       this.#objectDeck = new Deck(resp.value);
-      console.log(this.#objectDeck.categories());
-
-      //this.#deck = resp.value;
       el.value = JSON.stringify(resp.value);
       this.api.trigger("deck");
     } else {
@@ -134,19 +139,19 @@ export class DeckRefiner {
     }
   }
 
-  scryfallImageTag(card) {
-    // `https://cards.scryfall.io/normal/front/f/e/fe9be3e0-076c-4703-9750-2a6b0a178bc9.jpg?1761053654`;
-    return this.api.makeTXT(
-      t.scryfallImageURL,
-      [
-        ["ID", card.card.uid],
-        ["CHAR1", card.card.uid.substring(0, 1)],
-        ["CHAR2", card.card.uid.substring(1, 2)],
-        ["HASH", card.card.scryfallImageHash],
-        ["NAME", this.cardName(card)],
-      ],
-    );
-  }
+  // scryfallImageTag(card) {
+  //   // `https://cards.scryfall.io/normal/front/f/e/fe9be3e0-076c-4703-9750-2a6b0a178bc9.jpg?1761053654`;
+  //   return this.api.makeTXT(
+  //     t.scryfallImageURL,
+  //     [
+  //       ["ID", card.card.uid],
+  //       ["CHAR1", card.card.uid.substring(0, 1)],
+  //       ["CHAR2", card.card.uid.substring(1, 2)],
+  //       ["HASH", card.card.scryfallImageHash],
+  //       ["NAME", this.cardName(card)],
+  //     ],
+  //   );
+  // }
 
   update(event) {}
 }
