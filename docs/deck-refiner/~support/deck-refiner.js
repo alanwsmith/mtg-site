@@ -48,20 +48,6 @@ export class DeckRefiner {
     }).length > 0;
   }
 
-  // commander(_, el) {
-  //   // currently only handle single commanders.
-  //   const card = this.cardsInCategory("Commander")[0];
-  //   el.replaceChildren(
-  //     this.api.makeHTML(
-  //       t.card,
-  //       [
-  //         ["NAME", this.cardName(card)],
-  //         ["IMAGE_TAG", this.scryfallImageTag(card)],
-  //       ],
-  //     ),
-  //   );
-  // }
-
   deck(_, el) {
     el.replaceChildren(
       ...this.categoriesWithCards().map((category) => {
@@ -75,7 +61,6 @@ export class DeckRefiner {
     if (resp.value) {
       this.#deck = resp.value;
       el.value = JSON.stringify(resp.value);
-      this.api.trigger("commander");
       this.api.trigger("deck");
     } else {
       console.log(resp.error);
