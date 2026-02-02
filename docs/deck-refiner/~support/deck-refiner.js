@@ -1,7 +1,7 @@
 const t = {
   card: `<div class="card" data-send="showCard" data-id="ID">IMAGE_TAG</div>`,
 
-  category: `<div class="categor">CATEGORY</div>`,
+  category: `<div class="categor">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>`,
 
   scryfallImageURL: `<img 
 src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
@@ -27,7 +27,7 @@ export class DeckRefiner {
 
   cardsInCategory(category) {
     return this.#deck.cards
-      .filter((card) => card.categories[0] === category);
+      .filter((card) => card.categories[0] === category.name);
   }
 
   cardName(card) {
@@ -36,22 +36,19 @@ export class DeckRefiner {
 
   categoriesWithCards() {
     return this.#deck.categories.filter((category) => {
-      return this.categoryHasCards(category);
+      return this.cardsInCategory(category).length > 0;
     }).sort((a, b) => {
-      return a.name.toLowerCase() > b.name.toLowerCase();
+      return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
     });
-  }
-
-  categoryHasCards(category) {
-    return this.#deck.cards.filter((card) => {
-      return card.categories.includes(category.name);
-    }).length > 0;
   }
 
   deck(_, el) {
     el.replaceChildren(
       ...this.categoriesWithCards().map((category) => {
-        return this.api.makeHTML(t.category, [["CATEGORY", category.name]]);
+        return this.api.makeHTML(t.category, [
+          ["CATEGORY_NAME", category.name],
+          ["CARDS_IN_CATEGORY", this.cardsInCategory(category).length],
+        ]);
       }),
     );
   }
