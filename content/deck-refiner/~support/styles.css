@@ -1,0 +1,4 @@
+.card img {
+  width: clamp(10rem, 11rem, 13rem);
+  border-radius: var(--large-border-radius);
+}
