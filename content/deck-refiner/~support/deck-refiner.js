@@ -43,33 +43,22 @@ class Deck {
   categories() {
     return this._data.categories
       .map((categoryObj) => {
-        return {
-          name: () => {
-            return categoryObj.name;
-          },
-        };
+        return categoryObj.name;
       })
-      .map((category) => {
-        category.cards = () => {
-          return this.cards().filter((card) => {
-            return card.category() === category.name();
-          });
-        };
-        return category;
+      .filter((category) => {
+        return this.cards().filter((card) => {
+          return card.category() === category;
+        }).length > 0;
       })
-      .filter((category) => category.cards().length > 0)
       .sort((a, b) => {
-        return a.name().toLowerCase() > b.name().toLowerCase() ? 1 : -1;
+        return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
       });
+  }
 
-    // .filter((category) => {
-    //   return this.cards().filter((card) => {
-    //     return card.category() === category.name;
-    //   })
-    //     .length > 0;
-    // }).sort((a, b) => {
-    //   return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
-    // });
+  categorySubs(category) {
+    return [
+      ["CATEGORY_NAME", category],
+    ];
   }
 
   initCards() {
@@ -99,23 +88,31 @@ export class DeckRefiner {
     return card.card.oracleCard.name;
   }
 
-  categoriesWithCards() {
-    return this.#deck.categories.filter((category) => {
-      return this.cardsInCategory(category).length > 0;
-    }).sort((a, b) => {
-      return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
-    });
-  }
+  // categoriesWithCards() {
+  //   return this.#deck.categories.filter((category) => {
+  //     return this.cardsInCategory(category).length > 0;
+  //   }).sort((a, b) => {
+  //     return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
+  //   });
+  // }
 
   deck(_, el) {
-    // el.replaceChildren(
+    el.replaceChildren(
+      ...this.#objectDeck.categories()
+        .map((category) => {
+          return this.api.makeHTML(
+            t.category,
+            this.#objectDeck.categorySubs(category),
+          );
+        }),
+    );
+
     //   ...this.categoriesWithCards().map((category) => {
     //     return this.api.makeHTML(t.category, [
     //       ["CATEGORY_NAME", category.name],
     //       ["CARDS_IN_CATEGORY", this.cardsInCategory(category).length],
     //     ]);
     //   }),
-    // );
   }
 
   async loadJSON(_, el) {
@@ -124,7 +121,7 @@ export class DeckRefiner {
       this.#objectDeck = new Deck(resp.value);
       console.log(this.#objectDeck.categories());
 
-      this.#deck = resp.value;
+      //this.#deck = resp.value;
       el.value = JSON.stringify(resp.value);
       this.api.trigger("deck");
     } else {
