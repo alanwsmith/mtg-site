@@ -1,10 +1,9 @@
 const t = {
   card: `<div class="card" data-send="showCard" data-id="ID">
-NAME - ID
-<div><!-- img 
+<div><img 
 src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
-alt="ALT"
-data-id="ID" / --></div>
+alt="The NAME Magic: The Gather card."
+data-id="ID" /></div>
 </div>`,
 
   category: `
@@ -32,6 +31,14 @@ class Card {
     return this._data.categories[0];
   }
 
+  charNum(num) {
+    return this.id().substring(num - 1, num);
+  }
+
+  hash() {
+    return this._data.card.scryfallImageHash;
+  }
+
   id() {
     return this._data.card.uid;
   }
@@ -42,8 +49,11 @@ class Card {
 
   subs() {
     return [
-      ["NAME", this.name()],
+      ["CHAR1", this.charNum(1)],
+      ["CHAR2", this.charNum(2)],
+      ["HASH", this.hash()],
       ["ID", this.id()],
+      ["NAME", this.name()],
     ];
   }
 }
