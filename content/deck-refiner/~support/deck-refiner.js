@@ -14,7 +14,48 @@ data-id="ID" />`,
 </div>`,
 };
 
+class Card {
+  constructor(data) {
+    this._data = data;
+    console.log(this.name());
+  }
+
+  name() {
+    return this._data.card.oracleCard.name;
+  }
+}
+
+class Category {
+  constructor(data) {
+    this._data = data;
+  }
+}
+
+class Deck {
+  constructor(data) {
+    this._data = data;
+    this.categories = this.initCategories();
+    this.cards = this.initCards();
+  }
+
+  initCards() {
+    return this._data.cards
+      .map((card) => new Card(card));
+  }
+
+  initCategories() {
+    return this._data.categories
+      .map((category) => new Category(category));
+  }
+
+  // filter((category) => {
+  // return this.cardsInCategory(category).length > 0;
+  // });
+  //.map((category)) => new Category(category)));
+}
+
 export class DeckRefiner {
+  #objectDeck;
   #deck;
 
   bittyReady() {
@@ -56,6 +97,8 @@ export class DeckRefiner {
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
     if (resp.value) {
+      this.#objectDeck = new Deck(resp.value);
+
       this.#deck = resp.value;
       el.value = JSON.stringify(resp.value);
       this.api.trigger("deck");
