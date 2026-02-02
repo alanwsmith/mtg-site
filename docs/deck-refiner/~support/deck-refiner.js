@@ -17,7 +17,10 @@ data-id="ID" />`,
 class Card {
   constructor(data) {
     this._data = data;
-    console.log(this.name());
+  }
+
+  category() {
+    return this._data.categories[0];
   }
 
   name() {
@@ -25,33 +28,54 @@ class Card {
   }
 }
 
-class Category {
-  constructor(data) {
-    this._data = data;
-  }
-}
-
 class Deck {
   constructor(data) {
     this._data = data;
-    this.categories = this.initCategories();
-    this.cards = this.initCards();
+    this._cards = this.initCards();
+  }
+
+  cards() {
+    return this._cards.sort((a, b) => {
+      return a.name() > b.name() ? 1 : -1;
+    });
+  }
+
+  categories() {
+    return this._data.categories
+      .map((categoryObj) => {
+        return {
+          name: () => {
+            return categoryObj.name;
+          },
+        };
+      })
+      .map((category) => {
+        category.cards = () => {
+          return this.cards().filter((card) => {
+            return card.category() === category.name();
+          });
+        };
+        return category;
+      })
+      .filter((category) => category.cards().length > 0)
+      .sort((a, b) => {
+        return a.name().toLowerCase() > b.name().toLowerCase() ? 1 : -1;
+      });
+
+    // .filter((category) => {
+    //   return this.cards().filter((card) => {
+    //     return card.category() === category.name;
+    //   })
+    //     .length > 0;
+    // }).sort((a, b) => {
+    //   return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
+    // });
   }
 
   initCards() {
     return this._data.cards
       .map((card) => new Card(card));
   }
-
-  initCategories() {
-    return this._data.categories
-      .map((category) => new Category(category));
-  }
-
-  // filter((category) => {
-  // return this.cardsInCategory(category).length > 0;
-  // });
-  //.map((category)) => new Category(category)));
 }
 
 export class DeckRefiner {
@@ -84,20 +108,21 @@ export class DeckRefiner {
   }
 
   deck(_, el) {
-    el.replaceChildren(
-      ...this.categoriesWithCards().map((category) => {
-        return this.api.makeHTML(t.category, [
-          ["CATEGORY_NAME", category.name],
-          ["CARDS_IN_CATEGORY", this.cardsInCategory(category).length],
-        ]);
-      }),
-    );
+    // el.replaceChildren(
+    //   ...this.categoriesWithCards().map((category) => {
+    //     return this.api.makeHTML(t.category, [
+    //       ["CATEGORY_NAME", category.name],
+    //       ["CARDS_IN_CATEGORY", this.cardsInCategory(category).length],
+    //     ]);
+    //   }),
+    // );
   }
 
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
     if (resp.value) {
       this.#objectDeck = new Deck(resp.value);
+      console.log(this.#objectDeck.categories());
 
       this.#deck = resp.value;
       el.value = JSON.stringify(resp.value);
