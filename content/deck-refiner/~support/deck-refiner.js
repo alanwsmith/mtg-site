@@ -32,52 +32,34 @@ export class DeckRefiner {
     return card.card.oracleCard.name;
   }
 
+  categoriesWithCards() {
+    return this.#deck.categories.filter((category) => {
+      return this.categoryHasCards(category);
+    });
+  }
+
+  categoryHasCards(category) {
+    return this.#deck.cards.filter((card) => {
+      return card.categories.includes(category.name);
+    }).length > 0;
+  }
+
   commander(_, el) {
-    //el.replaceChildren(this.api.makeHTML(t.displayCard))
-
-    // el.innerHTML = this.#deck.cards
-    //   .filter((card) => card.categories[0] === "Commander")
-    //   .map((card) => card.card.oracleCard.name);
-
-    // const subs = this.#deck.cards
-    //   .filter((card) => card.categories[0] === "Commander")
-    //   .map(
-    //     (card) => {
-    //       return [["NAME", card.card.oracleCard.name], ["ID", card.card.uid], [
-    //         "IMAGE_URL",
-    //         this.scryfallImageURL(card),
-    //       ]];
-    //     },
-    //   );
-
+    // currently only handle single commanders.
     const card = this.cardsInCategory("Commander")[0];
-    const subs = [
-      ["NAME", this.cardName(card)],
-      ["IMAGE_TAG", this.scryfallImageTag(card)],
-    ];
-
-    console.log(subs);
-
     el.replaceChildren(
       this.api.makeHTML(
         t.card,
-        subs,
+        [
+          ["NAME", this.cardName(card)],
+          ["IMAGE_TAG", this.scryfallImageTag(card)],
+        ],
       ),
     );
-
-    // const id = this.#deck.cards
-    //   .filter((card) => card.categories[0] === "Commander")
-    //   .map((card) => card.card.uid);
-    // const subs = [
-    //   ["ID", id],
-    // ];
-
-    //el.replaceChildren(this.api.makeHTML(t.displayCard, subs));
-
-    //el.innerHTML = id;
   }
 
   deck(_, el) {
+    console.log(this.categoriesWithCards());
     el.innerHTML = "deck";
   }
 
