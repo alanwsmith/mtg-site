@@ -46,18 +46,23 @@ class Deck {
         return categoryObj.name;
       })
       .filter((category) => {
-        return this.cards().filter((card) => {
-          return card.category() === category;
-        }).length > 0;
+        return this.cardsInCategory(category).length > 0;
       })
       .sort((a, b) => {
         return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
       });
   }
 
+  cardsInCategory(category) {
+    return this.cards().filter((card) => {
+      return card.category() === category;
+    });
+  }
+
   categorySubs(category) {
     return [
       ["CATEGORY_NAME", category],
+      ["CARDS_IN_CATEGORY", this.cardsInCategory(category).length],
     ];
   }
 
