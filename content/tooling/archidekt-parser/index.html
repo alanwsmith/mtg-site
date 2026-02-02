@@ -5,11 +5,32 @@
     <h1>Archidekt Parser</h1>
   </hgroup>
 
-<bitty-7-0 
-  data-connect="/tooling/archidekt-parser/~support/archidekt-parser.js ArchidektParser">
-  <div data-init="archidektInput"></div>
-  <div data-init="archidektExampleButton"></div>
+<bitty-7-0
+  data-connect="/tooling/archidekt-parser/~support/archidekt-parser.js ArchidektParserExampleWrapper">
+  <bitty-7-0 
+    data-connect="/tooling/archidekt-parser/~support/archidekt-parser.js ArchidektParser">
+    <div data-init="archidektInput"></div>
+    <div data-init="archidektExampleButton"></div>
+  </bitty-7-0>
 </bitty-7-0>
+
+
+<h2>Details</h2>
+
+<ul>
+  <li>This provides an input form that parses an Archidekt text list. </li>
+  <li>
+    The result of the parsing is an object 
+    that's sent as the data for a signal named 
+    <em>archidektData</em>.
+  </li>
+  <li>
+    The signal bubbles. So, this form can be added
+    inside any bitty element that needs to 
+    get the data. 
+  </li>
+</ul>
+
 
 [!- endblock -!]
 

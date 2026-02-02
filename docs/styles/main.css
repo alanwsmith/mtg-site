@@ -307,7 +307,13 @@ img {
 }
 
 input {
+  /*
   font: inherit;
+  */
+}
+
+input[type=text] {
+  width: 95%;
 }
 
 kbd {
@@ -393,4 +399,8 @@ th {
 
 ul > :where(:not(:first-child)) {
   margin-top: var(--flow-space, var(--default-flow));
+}
+
+.text-box {
+  width: clamp(4rem, 90vw, 30rem);
 }

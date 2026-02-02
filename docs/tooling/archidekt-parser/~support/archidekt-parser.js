@@ -5,7 +5,9 @@ const t = {
   class="archidekt-list" 
   data-send="archidektList"
   data-receive="archidektExampleList"
-></textarea>`,
+></textarea>
+<div class="fine-print">NOTE: The Archidekt List input doesn't have error handling yet</div>
+`,
   button: `
 <button 
   data-send="archidektExampleList"
@@ -27,7 +29,8 @@ export class ArchidektParser {
 
   archidektList(ev, _) {
     if (ev.value.trim() !== "") {
-      console.log(parse(ev.value));
+      this.sendData(ev.value);
+      //this.api.forward({ list: this.parse(ev.value) }, "archidektData");
     }
   }
 
@@ -37,8 +40,15 @@ export class ArchidektParser {
     );
   }
 
-  archidektExampleList(_, el) {
-    el.value = "asd";
+  async archidektExampleList(_, el) {
+    const url = "/tooling/archidekt-parser/~support/example-list.txt";
+    const response = await this.api.getTXT(url);
+    if (response.value) {
+      el.value = response.value;
+      this.sendData(response.value);
+    } else {
+      this.#errors.push(response.error);
+    }
   }
 
   async loadIdMap() {
@@ -72,5 +82,18 @@ export class ArchidektParser {
       });
   }
 
+  sendData(data) {
+    this.api.forward({ list: this.parse(data) }, "archidektData");
+  }
+
   //
+}
+
+export class ArchidektParserExampleWrapper {
+  // this class just shows how to receive the
+  // triggers from the child parser
+
+  archidektData(input, el) {
+    console.log(input.list);
+  }
 }
