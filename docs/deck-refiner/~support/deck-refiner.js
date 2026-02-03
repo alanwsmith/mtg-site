@@ -112,24 +112,24 @@ export class DeckRefiner {
     this.api.trigger("initPage");
   }
 
-  apiURL(_, el) {
-    const template =
-      `<a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a>`;
-    const parts = this.#state.deckURL.split("/");
-    const subs = [
-      ["ID", parts[4]],
-    ];
-    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-      const subs = [
-        ["ID", parts[4]],
-      ];
-      el.replaceChildren(this.api.makeHTML(template, subs));
-    } else {
-      el.replaceChildren(this.api.makeHTML(
-        `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
-      ));
-    }
-  }
+  // apiURL(_, el) {
+  //   const template =
+  //     `<a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a>`;
+  //   const parts = this.#state.deckURL.split("/");
+  //   const subs = [
+  //     ["ID", parts[4]],
+  //   ];
+  //   if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+  //     const subs = [
+  //       ["ID", parts[4]],
+  //     ];
+  //     el.replaceChildren(this.api.makeHTML(template, subs));
+  //   } else {
+  //     el.replaceChildren(this.api.makeHTML(
+  //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
+  //     ));
+  //   }
+  // }
 
   //  //https://archidekt.com/decks/19596185/refider_example
   //  const template = `<p>Click this link and copy the data from it:</p>
@@ -206,7 +206,6 @@ export class DeckRefiner {
       this.api.trigger(`
 loadState 
 deckURL
-jsonURL
 filter`);
     }
   }
@@ -252,9 +251,7 @@ filter`);
     }
   }
 
-  jsonURL(_, el) {
-    el.src = "https://www.example.com/";
-  }
+  openJSON() {}
 
   saveState() {
     localStorage.setItem("deckState", JSON.stringify(this.#state));

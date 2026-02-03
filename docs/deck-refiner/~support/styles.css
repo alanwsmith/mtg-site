@@ -52,10 +52,6 @@
   position: relative;
 }
 
-iframe {
-  width: clamp(4rem, 90vw, 30rem);
-}
-
 .open-card {
   height: 244px;
   border-end-start-radius: 0.6rem;
