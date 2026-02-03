@@ -15,7 +15,7 @@
 
 <bitty-7-0 
   data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
-  data-listeners="mouseover"
+  data-listeners="input mouseover"
 >
 
   <details>
@@ -23,29 +23,38 @@
     <div class="faded-default-border default-border-radius default-padding default-flow">
         <ol>
           <li>
-            <p>Copy the address of the deck you want to refine and past it here:</p>
+            <p>Copy the address of the deck you want to refine and past it here.</p>
             <div>
-              <label>Source Deck Address:
+              <label>Source Deck Address
                 <input type="text" data-send="sourceDeckURL" />
               </label>
             </div>
           </li>
-          <li>
-            <p data-receive="sourceDeckURL">Waiting for Source Deck Address</p>
+          <li data-receive="sourceDeckURL">
+            <p>Waiting for Source Deck Address from Step 1</p>
+            <p>---</p>
           </li>
-
-
+          <li>
+            <p>Paste the data here.</p>
+            <div>
+              <label>Source Deck Data
+                <div>
+                  <textarea class="text-box" data-init="loadJSON" data-send="archidektURL"></textarea>
+                </div>
+              </label>
+            </div>
+            <div><button data-send="loadExample">Load Example</button></div>
+          </li>
         </ol>
+        <!--
+
       <label>Archidekt JSON
-        <div>
-          <textarea class="text-box" data-init="loadJSON" data-send="archidektURL"></textarea>
-          <div><button data-send="loadExample">Load Example</button></div>
-        </div>
       </label>
       <p>Get the JSON from the API by using the ID of the deck:</p>
       <pre class="code-block no-numbers"><code>https://archidekt.com/api/decks/{ID}/</code></pre>
       <p>For example:</p>
       <p><a href="https://archidekt.com/api/decks/19345263/">https://archidekt.com/api/decks/19345263/</a></p>
+-->
     </div>
   </details>
 
@@ -53,6 +62,7 @@
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
 
+    [#
     <h2>Localhost Tools</h2>
     <h3>Image Downloader</h3>
     <p>
@@ -62,6 +72,7 @@
       working offline.
     </p>
     <textarea data-receive="imageDownloadCommands"></textarea>
+    #]
 
 
 </bitty-7-0>

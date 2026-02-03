@@ -10,13 +10,14 @@
 }
 
 .category-controls {
+  margin-top: 13px;
   position: absolute;
   border-block: var(--reverse-border);
   border-right: var(--reverse-border);
   background-color: var(--reverse-color);
   padding-block: var(--default-padding);
   padding-left: var(--xxsmall-padding);
-  height: 244px;
+  height: 207px;
   border-start-end-radius: var(--small-border-radius);
   border-end-end-radius: var(--small-border-radius);
 }
@@ -54,10 +55,6 @@
 
 .bordered-card {
   border: var(--reverse-border);
-  /*
-  border-block: var(--reverse-border);
-  border-left: var(--reverse-border);
-  */
 }
 
 

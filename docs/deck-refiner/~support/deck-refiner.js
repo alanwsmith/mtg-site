@@ -92,12 +92,6 @@ class Deck {
       }).join("\n");
   }
 
-  /*
-  imageFor(id) {
-    return `/images/cards/${id}.png`;
-  }
-  */
-
   initCards() {
     return this._data.cards
       .map((card) => new Card(card));
@@ -147,11 +141,6 @@ export class DeckRefiner {
   */
 
   /*
-  highlightImageSrc(_, el) {
-    el.src = this.#deck.imageFor(this.#highlightId);
-  }
-  */
-
   imageDownloadCommands(_, el) {
     if (el) {
       el.value = `#!/bin/bash
@@ -159,10 +148,11 @@ export class DeckRefiner {
 ${this.#deck.downloadCommands()}`;
     }
   }
+  */
 
   async loadJSON(_, el) {
-    // const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
-    const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
+    const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
+    // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
     if (resp.value) {
       this.#deck = new Deck(resp.value);
       el.value = JSON.stringify(resp.value);
@@ -222,5 +212,20 @@ ${this.#deck.downloadCommands()}`;
       ev.target.closest(".category-wrapper").dataset.category,
       ev.prop("id"),
     );
+  }
+
+  sourceDeckURL(ev, el) {
+    //https://archidekt.com/decks/19596185/refider_example
+    const template = `<p>Click this link and copy the data from it:</p>
+<p><a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a></p>`;
+    if (ev.value !== "") {
+      const parts = ev.value.split("/");
+      if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+        const subs = [
+          ["ID", parts[4]],
+        ];
+        el.replaceChildren(this.api.makeHTML(template, subs));
+      }
+    }
   }
 }
