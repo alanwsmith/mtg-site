@@ -178,6 +178,10 @@ export class DeckRefiner {
     this.api.trigger("jsonLink");
   }
 
+  exampleJSON(_, el) {
+    el.value = JSON.stringify(this.#state.json, null, 2);
+  }
+
   filter(ev, el) {
     if (ev.type === "click") {
       this.#state.filter = ev.prop("filter");
@@ -205,6 +209,7 @@ export class DeckRefiner {
       this.api.trigger(`
 loadState 
 deckURL
+loadJSON
 filter`);
     }
   }
