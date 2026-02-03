@@ -175,7 +175,7 @@ export class DeckRefiner {
     } else {
       el.value = this.#state.deckURL;
     }
-    this.api.trigger("apiURL");
+    this.api.trigger("jsonLink");
   }
 
   filter(ev, el) {
@@ -218,6 +218,10 @@ filter`);
     this.saveState();
   }
 
+  jsonLink(_, el) {
+    el.replaceChildren(this.api.makeHTML("asdf"));
+  }
+
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
     // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
@@ -251,7 +255,31 @@ filter`);
     }
   }
 
-  openJSON() {}
+  // openJSON(ev, _) {
+  //   //   const template =
+  //   //     `<a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a>`;
+  //   if (ev.type === "click") {
+  //     const parts = this.#state.deckURL.split("/");
+  //     if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+  //       const url = `https://archidekt.com/api/decks/${parts[4]}/`;
+  //       window.open(url, "_blank");
+  //     }
+  //     //     const subs = [
+  //     //       ["ID", parts[4]],
+  //     //     ];
+  //     //     el.replaceChildren(this.api.makeHTML(template, subs));
+  //     //   } else {
+  //     //     el.replaceChildren(this.api.makeHTML(
+  //     //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
+  //     //     ));
+  //     //   }
+  //     // }
+  //     // const subs = [
+  //     //   ["ID", parts[4]],
+  //     // ];
+  //     console.log("asdf");
+  //   }
+  // }
 
   saveState() {
     localStorage.setItem("deckState", JSON.stringify(this.#state));

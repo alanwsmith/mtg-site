@@ -27,12 +27,25 @@
     <div class="faded-default-border default-border-radius default-padding default-flow">
       <ol>
         <li>
-          <label>Replace this address with the one for the Archidekt deck you want to refine.
+            <label>
+              Replace this address with the one for 
+              the <a href="https://archidekt.com/">Archidekt</a> deck 
+              you want to refine.
             <input type="text" data-send="deckURL" data-receive="deckURL" />
           </label>
         </li>
-        <li data-receive="TODO-show-error-for-incorrect-url">
+        <li data-receive="jsonLink">Loading.
+
+            <!--
+            <a data-receive="jsonURL"></a>
+
+
+
+
           <button data-send="openJSON">Click this to open Archidekt's data for the deck in a new tab</button>
+            <div>(You may be asked to give permission to open pop-ups</div>
+            
+-->
         </li>
           <!--
         <li>Copy the contents of the page in the new tab.</li>
