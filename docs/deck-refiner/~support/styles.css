@@ -16,7 +16,7 @@
   background-color: var(--reverse-color);
   padding-block: var(--default-padding);
   padding-left: var(--xxsmall-padding);
-  height: 250px;
+  height: 248px;
   border-start-end-radius: var(--small-border-radius);
   border-end-end-radius: var(--small-border-radius);
 }
@@ -45,7 +45,7 @@
 }
 
 .open-card {
-  height: 250px;
+  height: 248px;
 }
 
 .bordered-card {

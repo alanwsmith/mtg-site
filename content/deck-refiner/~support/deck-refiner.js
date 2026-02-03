@@ -1,37 +1,36 @@
-const t = {
-  card:
-    `<div class="card-wrapper base-wrapper" data-send="showCard" data-id="ID">
-  <div class="card">
-  <img 
-  src="/images/cards/ID.jpg"
-  alt="The NAME Magic: The Gather card."
-  />
-  <!--
-  <img 
-  src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
-  alt="The NAME Magic: The Gather card."
-  />
-  -->
-  </div>
-</div>`,
-
-  category: `
-<div class="category-wrapper" data-category="CATEGORY_NAME">
-  <div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
-  <div class="category-column">
-    <div class="category-cards">CATEGORY_CARDS</div>
-    <div class="category-controls-wrapper">
-      <div class="category-controls">
-        <button>X</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-      <div>
-    </div>
-  </div>
-</div>`,
-};
+// const t = {
+//   card:
+//     `<div class="card-wrapper base-wrapper" data-send="showCard" data-id="ID">
+//   <div class="card">
+//   <img
+//   src="/images/cards/ID.png"
+//   alt="The NAME Magic: The Gather card."
+//   />
+//   <!--
+//   <img
+//   src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
+//   alt="The NAME Magic: The Gather card."
+//   />
+//   -->
+//   </div>
+// </div>`,
+//   category: `
+// <div class="category-wrapper" data-category="CATEGORY_NAME">
+//   <div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
+//   <div class="category-column">
+//     <div class="category-cards">CATEGORY_CARDS</div>
+//     <div class="category-controls-wrapper">
+//       <div class="category-controls">
+//         <button>X</button>
+//         <button>1</button>
+//         <button>2</button>
+//         <button>3</button>
+//         <button>4</button>
+//       <div>
+//     </div>
+//   </div>
+// </div>`,
+// };
 
 class Card {
   constructor(data) {
@@ -115,20 +114,20 @@ class Deck {
     return this.cards()
       .map((card) => {
         const url = [
-          "https://cards.scryfall.io/normal/front/",
+          "https://cards.scryfall.io/png/front/",
           card.charNum(1),
           "/",
           card.charNum(2),
           "/",
           card.id(),
-          `.jpg`,
+          `.png`,
         ].join("");
-        return `[ ! -f "${card.id()}.jpg" ] && wget ${url} && sleep 1`;
+        return `[ ! -f "${card.id()}.png" ] && wget ${url} && sleep 1`;
       }).join("\n");
   }
 
   imageFor(id) {
-    return `/images/cards/${id}.jpg`;
+    return `/images/cards/${id}.png`;
   }
 
   initCards() {
@@ -140,7 +139,11 @@ class Deck {
 export class DeckRefiner {
   #deck;
   #highlightId;
-  #currentCategory;
+  #templates = {};
+
+  async bittyInit() {
+    await this.loadTemplates();
+  }
 
   deck(_, el) {
     el.replaceChildren(
@@ -151,13 +154,13 @@ export class DeckRefiner {
               [
                 "CATEGORY_CARDS",
                 this.#deck.categoryCards(category).map((card) =>
-                  this.api.makeHTML(t.card, card.subs())
+                  this.api.makeHTML(this.#templates.card, card.subs())
                 ),
               ],
             ],
           );
           return this.api.makeHTML(
-            t.category,
+            this.#templates.category,
             subs,
           );
         }),
@@ -165,6 +168,7 @@ export class DeckRefiner {
     this.setPositions(null, null);
   }
 
+  /*
   hideHighlight(_, __) {
     document.documentElement.style.setProperty(
       "--highlight-visibility",
@@ -172,20 +176,21 @@ export class DeckRefiner {
     );
     this.#highlightId = null;
   }
+  */
 
   highlightImageSrc(_, el) {
     el.src = this.#deck.imageFor(this.#highlightId);
-
-    //el.src = "/images/cards/fe9be3e0-076c-4703-9750-2a6b0a178bc9.jpg";
   }
 
-  // imageDownloadCommands(_, el) {
-  //   if (el) {
-  //     el.value = `#!/bin/bash
-  // ${this.#deck.downloadCommands()}
-  //   `;
-  //   }
-  // }
+  /*
+  imageDownloadCommands(_, el) {
+    if (el) {
+      el.value = `#!/bin/bash
+
+${this.#deck.downloadCommands()}`;
+    }
+  }
+  */
 
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
@@ -196,6 +201,18 @@ export class DeckRefiner {
       this.api.trigger("deck imageDownloadCommands");
     } else {
       console.log(resp.error);
+    }
+  }
+
+  async loadTemplates() {
+    for (const key of ["card", "category"]) {
+      const url = `/deck-refiner/templates/${key}/`;
+      const resp = await this.api.getTXT(url);
+      if (resp.value) {
+        this.#templates[key] = resp.value;
+      } else {
+        console.error(resp.error);
+      }
     }
   }
 
