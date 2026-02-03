@@ -18,13 +18,16 @@ const t = {
   <button>2</button>
   <button>3</button>
   <button>4</button>
-  <button>x</button>
+  <button>X</button>
   </div>
 </div>`,
 
   category: `
-<div class="category">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
+<div class="category-wrapper">
+<div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
 <div class="category-cards">CATEGORY_CARDS</div>
+</div>
+
 `,
 };
 
@@ -189,6 +192,10 @@ ${this.#objectDeck.downloadCommands()}
     } else {
       console.log(resp.error);
     }
+  }
+
+  showCard(ev, el) {
+    console.log("x");
   }
 
   update(event) {}

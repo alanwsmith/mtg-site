@@ -1,6 +1,6 @@
 .card {
   width: 11rem;
-  height: 1.4rem;
+  height: 1.6rem;
   overflow-y: hidden;
 }
 
@@ -8,14 +8,29 @@
   border-radius: var(--large-border-radius);
 }
 
+.card-buttons {
+  display: flex;
+}
+
 .card-buttons button {
-  border: var(--faded-info-border);
+  border: none;
   font-size: var(--xsmall-font-size);
-  padding-block: var(--xxxsmall-padding);
+  padding-block: var(--xxsmall-padding);
+  padding-inline: var(--xsmall-padding);
+  margin: 0;
 }
 
 .card-wrapper {
-  display: inline-block;
   border: var(--faded-default-border);
   border-radius: var(--default-border-radius);
+  background-color: var(--faded-match-color);
 }
+
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+
