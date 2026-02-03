@@ -13,45 +13,23 @@ const t = {
   />
   -->
   </div>
-<!--
-  <div class="card-buttons">
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4</button>
-  <button>X</button>
-  </div>
--->
-</div>`,
-
-  card_old_v1: `<div class="card-wrapper" data-send="showCard" data-id="ID">
-  <div class="card">
-  <img 
-  src="/images/cards/ID.jpg"
-  alt="The NAME Magic: The Gather card."
-  />
-  <!--
-  <img 
-  src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
-  alt="The NAME Magic: The Gather card."
-  />
-  -->
-  </div>
-<!--
-  <div class="card-buttons">
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4</button>
-  <button>X</button>
-  </div>
--->
 </div>`,
 
   category: `
 <div class="category-wrapper" data-category="CATEGORY_NAME">
   <div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
-  <div class="category-cards">CATEGORY_CARDS</div>
+  <div class="category-column">
+    <div class="category-cards">CATEGORY_CARDS</div>
+    <div class="category-controls-wrapper">
+      <div class="category-controls blue">
+        <button>X</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+      <div>
+    </div>
+  </div>
 </div>`,
 };
 
@@ -223,21 +201,59 @@ export class DeckRefiner {
 
   setPositions(activeCategory, cardId) {
     this.#deck.categories().forEach((category) => {
+      const controlsWrapper = document.querySelector(
+        `[data-category=${category}] .category-controls-wrapper`,
+      );
+      const controlWrapperBounds = controlsWrapper.getBoundingClientRect();
+      const controls = document.querySelector(
+        `[data-category=${category}] .category-controls`,
+      );
+      const controlBounds = controls.getBoundingClientRect();
       const cardWrappers = document.querySelectorAll(
         `[data-category=${category}] .card-wrapper`,
       );
       cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
         if (activeCategory === category) {
+          controls.style.visibility = "visible";
           if (cardId === cardWrapper.dataset.id) {
+            console.log(cardWrapper.offsetTop);
+            controls.style.top = `${cardWrapper.offsetTop}px`;
+
+            // console.log(controlBounds);
+            // const bounds = cardWrapper.getBoundingClientRect();
+            // console.log(bounds);
+            // controls.style.top = `${controlWrapperBounds.top}px`;
+
+            // console.log(controlBounds.top);
+            // const bounds = cardWrapper.getBoundingClientRect();
+            // console.log(bounds.top);
+            // controls.style.top = `${controlBounds.top + bounds.top}px`;
+
             cardWrapper.classList.add("open-card");
+            cardWrapper.classList.add("bordered-card");
+
+            // controls.classList.add("blue");
+
+            // document.documentElement.style.setProperty(
+            //   "--highlight-left",
+            //   `${bounds.x}px`,
+            // );
+            // document.documentElement.style.setProperty(
+            //   "--highlight-top",
+            //   `${wrapper.offsetTop + 40}px`,
+            // );
           } else {
             cardWrapper.classList.remove("open-card");
+            cardWrapper.classList.remove("bordered-card");
           }
         } else {
+          controls.style.visibility = "hidden";
           if (cardWrapperIndex === cardWrappers.length - 1) {
             cardWrapper.classList.add("open-card");
+            cardWrapper.classList.remove("bordered-card");
           } else {
             cardWrapper.classList.remove("open-card");
+            cardWrapper.classList.remove("bordered-card");
           }
         }
       });
@@ -262,7 +278,7 @@ export class DeckRefiner {
     //   console.log(el);
     // });
 
-    console.log(this.#highlightId);
+    // console.log(this.#highlightId);
 
     // document.querySelectorAll(".card-wrapper").forEach((el) => {
     //   if (el.dataset.id === this.#highlightId) {
