@@ -205,7 +205,7 @@ body {
 
 <bitty-7-0 
   data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
-  data-listeners="input mouseover"
+  data-listeners="click input mouseover"
 >
 
   <details>
@@ -238,6 +238,20 @@ body {
       </ol>
     </div>
   </details>
+
+    <div class="filters-wrapper faded-accent-block-border">
+      <h3>Filters</h3>
+      <div>
+        <button data-send="setFilter" data-filter="x">x</button>
+        <button data-send="setFilter" data-filter="base">base</button>
+        <button data-send="setFilter" data-filter="1">1</button>
+        <button data-send="setFilter" data-filter="2">2</button>
+        <button data-send="setFilter" data-filter="3">3</button>
+        <button data-send="setFilter" data-filter="4">4</button>
+      </div>
+    </div>
+
+
 
   <div class="deck-wrapper">
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>

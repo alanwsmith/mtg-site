@@ -174,6 +174,12 @@ ${this.#deck.downloadCommands()}`;
     }
   }
 
+  setFilter(ev, _) {
+    if (ev.type === "click") {
+      console.log(`setFilter ${ev.prop("filter")}`);
+    }
+  }
+
   setPositions(activeCategory, cardId) {
     this.#deck.categories().forEach((category) => {
       const cardWrappers = document.querySelectorAll(
