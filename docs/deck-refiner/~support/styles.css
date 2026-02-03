@@ -3,108 +3,53 @@
   overflow-y: hidden;
 }
 
-.card {
-  width: 11rem;
-  /*
-  height: 1.6rem;
-*/
-  overflow-y: hidden;
-}
-
-.card img {
-  border-radius: var(--large-border-radius);
-}
-
 .category-column {
   position: relative;
   display: grid;
-  grid-template-columns: 11rem 2rem;
+  grid-template-columns: 11rem 2.5rem;
 }
-
 
 .category-controls {
   position: absolute;
+  border-block: var(--reverse-border);
+  border-right: var(--reverse-border);
+  background-color: var(--reverse-color);
+  padding-block: var(--default-padding);
+  padding-left: var(--xxsmall-padding);
+  height: 250px;
+  border-start-end-radius: var(--small-border-radius);
+  border-end-end-radius: var(--small-border-radius);
 }
 
 .category-wrapper {
   position: relative;
 }
 
-
-/*
-:root {
-  --button-top: 100px;
-  --button-left: 100px;
-}
-
-.card-buttons {
-  position: absolute;
-  display: flex;
-  top: var(--button-top);
-  left: var(--button-left);
-}
-
-.card-buttons button {
-  border: none;
-  font-size: var(--xsmall-font-size);
-  padding-block: var(--xxsmall-padding);
-  padding-inline: var(--xsmall-padding);
-  margin: 0;
-}
-
-*/
 .category-cards {
-  background-color: var(--info-color);
+  background-color: var(--match-color);
 }
 
 .card-wrapper {
-  border: var(--info-border);
+  border: var(--match-border);
   border-start-start-radius: 0.6rem;
-  border-start-end-radius: 0.6rem;
-  background-color: var(--faded-match-color);
-
 }
 
 .categories {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 1.0rem;
 }
 
 .deck-wrapper {
   position: relative;
 }
 
-:root {
-  --highlight-top: 100px;
-  --highlight-left: 100px;
-  --highlight-visibility: hidden;
-}
-
-.highlight-card {
-  position: absolute;
-  width: 10rem;
-  /*
-  max-height: 100px;
-  top: var(--highlight-top);
-  left: var(--highlight-left);
-*/
-  visibility: var(--highlight-visibility);
-  background-color: var(--info-color);
-  overflow: hidden;
-}
-
 .open-card {
-  height: 260px;
+  height: 250px;
 }
 
 .bordered-card {
-  border-block: 1px solid white;
-  border-left: 1px solid white;
+  border-block: var(--reverse-border);
+  border-left: var(--reverse-border);
 }
-
-.tmp-current {
-  height: 260px;
-}
-
 

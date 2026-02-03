@@ -21,7 +21,7 @@ const t = {
   <div class="category-column">
     <div class="category-cards">CATEGORY_CARDS</div>
     <div class="category-controls-wrapper">
-      <div class="category-controls blue">
+      <div class="category-controls">
         <button>X</button>
         <button>1</button>
         <button>2</button>
@@ -201,47 +201,19 @@ export class DeckRefiner {
 
   setPositions(activeCategory, cardId) {
     this.#deck.categories().forEach((category) => {
-      const controlsWrapper = document.querySelector(
-        `[data-category=${category}] .category-controls-wrapper`,
-      );
-      const controlWrapperBounds = controlsWrapper.getBoundingClientRect();
-      const controls = document.querySelector(
-        `[data-category=${category}] .category-controls`,
-      );
-      const controlBounds = controls.getBoundingClientRect();
       const cardWrappers = document.querySelectorAll(
         `[data-category=${category}] .card-wrapper`,
+      );
+      const controls = document.querySelector(
+        `[data-category=${category}] .category-controls`,
       );
       cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
         if (activeCategory === category) {
           controls.style.visibility = "visible";
           if (cardId === cardWrapper.dataset.id) {
-            console.log(cardWrapper.offsetTop);
             controls.style.top = `${cardWrapper.offsetTop}px`;
-
-            // console.log(controlBounds);
-            // const bounds = cardWrapper.getBoundingClientRect();
-            // console.log(bounds);
-            // controls.style.top = `${controlWrapperBounds.top}px`;
-
-            // console.log(controlBounds.top);
-            // const bounds = cardWrapper.getBoundingClientRect();
-            // console.log(bounds.top);
-            // controls.style.top = `${controlBounds.top + bounds.top}px`;
-
             cardWrapper.classList.add("open-card");
             cardWrapper.classList.add("bordered-card");
-
-            // controls.classList.add("blue");
-
-            // document.documentElement.style.setProperty(
-            //   "--highlight-left",
-            //   `${bounds.x}px`,
-            // );
-            // document.documentElement.style.setProperty(
-            //   "--highlight-top",
-            //   `${wrapper.offsetTop + 40}px`,
-            // );
           } else {
             cardWrapper.classList.remove("open-card");
             cardWrapper.classList.remove("bordered-card");
@@ -261,82 +233,9 @@ export class DeckRefiner {
   }
 
   showCard(ev, el) {
-    //this.#highlightId = ev.prop("id");
     this.setPositions(
       ev.target.closest(".category-wrapper").dataset.category,
       ev.prop("id"),
     );
-
-    //categoryWrapper.classList.add("tmp-blue");
-
-    // categoryWrapper.querySelectorAll(".card-wrapper").forEach((el) => {
-    //   if (el.dataset.id === this.#highlightId) {
-    //     el.classList.add("tmp-current");
-    //   } else {
-    //     el.classList.remove("tmp-current");
-    //   }
-    //   console.log(el);
-    // });
-
-    // console.log(this.#highlightId);
-
-    // document.querySelectorAll(".card-wrapper").forEach((el) => {
-    //   if (el.dataset.id === this.#highlightId) {
-    //     el.classList.add("tmp-current");
-    //   } else {
-    //     el.classList.remove("tmp-current");
-    //   }
-    //   console.log(el);
-    // });
-
-    //const wrapper = ev.target.closest(".card-wrapper");
-    //wrapper.classList.add("tmp-current");
-  }
-
-  showCard_oldV1(ev, el) {
-    if (this.#highlightId !== ev.prop("id")) {
-      this.#highlightId = ev.prop("id");
-      const wrapper = ev.target.closest(".card-wrapper");
-      const bounds = wrapper.getBoundingClientRect();
-
-      document.documentElement.style.setProperty(
-        "--highlight-left",
-        `${bounds.x}px`,
-      );
-      document.documentElement.style.setProperty(
-        "--highlight-top",
-        `${wrapper.offsetTop + 40}px`,
-      );
-      document.documentElement.style.setProperty(
-        "--highlight-visibility",
-        `visible`,
-      );
-
-      // if (bounds.x < 300) {
-      //   document.documentElement.style.setProperty(
-      //     "--highlight-left",
-      //     `${bounds.x + 50}px`,
-      //   );
-      // } else {
-      //   document.documentElement.style.setProperty(
-      //     "--highlight-top",
-      //     `${bounds.y + 40}px`,
-      //   );
-      // }
-
-      // if (bounds.x < 300) {
-      //   document.documentElement.style.setProperty(
-      //     "--highlight-left",
-      //     `${bounds.x + 170}px`,
-      //   );
-      // } else {
-      //   document.documentElement.style.setProperty(
-      //     "--highlight-left",
-      //     `${bounds.x - 200}px`,
-      //   );
-      // }
-
-      this.api.trigger("highlightImageSrc");
-    }
   }
 }
