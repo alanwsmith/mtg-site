@@ -210,7 +210,9 @@ export class DeckRefiner {
 loadState 
 deckURL
 loadJSON
-filter`);
+filter
+deck
+`);
     }
   }
 
@@ -269,6 +271,7 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
     } else {
       await this.initState();
     }
+    this.#deck = new Deck(this.#state.json);
   }
 
   async loadTemplates() {
