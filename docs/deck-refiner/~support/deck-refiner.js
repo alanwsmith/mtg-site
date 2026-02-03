@@ -112,6 +112,39 @@ export class DeckRefiner {
     this.api.trigger("initPage");
   }
 
+  apiURL(_, el) {
+    const template =
+      `<a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a>`;
+    const parts = this.#state.deckURL.split("/");
+    const subs = [
+      ["ID", parts[4]],
+    ];
+    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+      const subs = [
+        ["ID", parts[4]],
+      ];
+      el.replaceChildren(this.api.makeHTML(template, subs));
+    } else {
+      el.replaceChildren(this.api.makeHTML(
+        `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
+      ));
+    }
+  }
+
+  //  //https://archidekt.com/decks/19596185/refider_example
+  //  const template = `<p>Click this link and copy the data from it:</p>
+  //<p><a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a></p>`;
+  //  if (ev.value !== "") {
+  //    const parts = ev.value.split("/");
+  //    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+  //      const subs = [
+  //        ["ID", parts[4]],
+  //      ];
+  //      el.replaceChildren(this.api.makeHTML(template, subs));
+  //    }
+  //  }
+  //}
+
   deck(_, el) {
     el.replaceChildren(
       ...this.#deck.categories()
@@ -135,13 +168,20 @@ export class DeckRefiner {
     this.setPositions(null, null);
   }
 
-  deckURL(_, el) {
-    el.value = this.#state.deckURL;
+  deckURL(ev, el) {
+    if (ev.type === "input") {
+      this.#state.deckURL = ev.value;
+      this.saveState();
+    } else {
+      el.value = this.#state.deckURL;
+    }
+    this.api.trigger("apiURL");
   }
 
   filter(ev, el) {
     if (ev.type === "click") {
       this.#state.filter = ev.prop("filter");
+      this.saveState();
     }
     if (el.prop("filter") === this.#state.filter) {
       el.classList.add("active-filter");
@@ -166,6 +206,7 @@ export class DeckRefiner {
       this.api.trigger(`
 loadState 
 deckURL
+jsonURL
 filter`);
     }
   }
@@ -173,7 +214,7 @@ filter`);
   initState() {
     this.#state = {
       filter: "base",
-      deckURL: "https://archidekt.com/decks/19596185/refider_example",
+      deckURL: "https://archidekt.com/decks/19596185/refiner_example",
     };
     this.saveState();
   }
@@ -209,6 +250,10 @@ filter`);
         console.error(resp.error);
       }
     }
+  }
+
+  jsonURL(_, el) {
+    el.src = "https://www.example.com/";
   }
 
   saveState() {
@@ -262,20 +307,20 @@ filter`);
     );
   }
 
-  sourceDeckURL(ev, el) {
-    //https://archidekt.com/decks/19596185/refider_example
-    const template = `<p>Click this link and copy the data from it:</p>
-<p><a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a></p>`;
-    if (ev.value !== "") {
-      const parts = ev.value.split("/");
-      if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-        const subs = [
-          ["ID", parts[4]],
-        ];
-        el.replaceChildren(this.api.makeHTML(template, subs));
-      }
-    }
-  }
+  //sourceDeckURL(ev, el) {
+  //  //https://archidekt.com/decks/19596185/refider_example
+  //  const template = `<p>Click this link and copy the data from it:</p>
+  //<p><a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a></p>`;
+  //  if (ev.value !== "") {
+  //    const parts = ev.value.split("/");
+  //    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+  //      const subs = [
+  //        ["ID", parts[4]],
+  //      ];
+  //      el.replaceChildren(this.api.makeHTML(template, subs));
+  //    }
+  //  }
+  //}
 
   /*
   debugImageDownloadCommands(_, el) {

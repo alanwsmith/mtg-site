@@ -213,31 +213,25 @@ body {
     </div>
 
   <details>
-    <summary>Change Source Deck</summary>
+    <summary>Change Deck</summary>
     <div class="faded-default-border default-border-radius default-padding default-flow">
       <ol>
         <li>
-          <p>Copy the address of the deck you want to refine and past it here.</p>
-          <div>
-            <label>Source Deck Address
-              <input type="text" data-send="sourceDeckURL" data-receive="deckURL" />
-            </label>
-          </div>
-        </li>
-        <li data-receive="sourceDeckURL">
-          <p>Waiting for Source Deck Address from Step 1</p>
-          <p>---</p>
+          <label>Replace this with the address for the Archidekt deck you want to refine.
+            <input type="text" data-send="deckURL" data-receive="deckURL" />
+          </label>
         </li>
         <li>
-          <p>Paste the data here.</p>
-          <div>
-            <label>Source Deck Data
-              <div>
-                <textarea class="text-box" data-send="loadJSON"></textarea>
-              </div>
-            </label>
-          </div>
+          <div>Copy the Archidekt data from this box.</div>
+          <iframe data-receive="jsonURL"></iframe>
         </li>
+        <li>
+            <p data-receive="updateStep3"><button>Click this to clear the data for the current deck</button></p>
+            <div>
+              <textarea class="text-box" data-send="loadJSON"></textarea>
+            </div>
+        </li>
+          <li>[STATUS: Waiting for deck data to be cleared in step 3]</li>
       </ol>
     </div>
   </details>

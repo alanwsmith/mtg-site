@@ -403,4 +403,5 @@ ul > :where(:not(:first-child)) {
 
 .text-box {
   width: clamp(4rem, 90vw, 30rem);
+  height: 9rem;
 }
