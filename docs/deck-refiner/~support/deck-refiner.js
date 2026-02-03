@@ -132,17 +132,17 @@ class Deck {
 }
 
 export class DeckRefiner {
-  #objectDeck;
+  #deck;
 
   deck(_, el) {
     el.replaceChildren(
-      ...this.#objectDeck.categories()
+      ...this.#deck.categories()
         .map((category) => {
-          const subs = this.#objectDeck.categorySubs(category).concat(
+          const subs = this.#deck.categorySubs(category).concat(
             [
               [
                 "CATEGORY_CARDS",
-                this.#objectDeck.categoryCards(category).map((card) =>
+                this.#deck.categoryCards(category).map((card) =>
                   this.api.makeHTML(t.card, card.subs())
                 ),
               ],
@@ -159,7 +159,7 @@ export class DeckRefiner {
   // imageDownloadCommands(_, el) {
   //   if (el) {
   //     el.value = `#!/bin/bash
-  // ${this.#objectDeck.downloadCommands()}
+  // ${this.#deck.downloadCommands()}
   //   `;
   //   }
   // }
@@ -168,7 +168,7 @@ export class DeckRefiner {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
     //const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
     if (resp.value) {
-      this.#objectDeck = new Deck(resp.value);
+      this.#deck = new Deck(resp.value);
       el.value = JSON.stringify(resp.value);
       this.api.trigger("deck imageDownloadCommands");
     } else {
