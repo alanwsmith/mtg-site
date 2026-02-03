@@ -161,8 +161,8 @@ ${this.#deck.downloadCommands()}`;
   }
 
   async loadJSON(_, el) {
-    const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
-    // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
+    // const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
+    const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
     if (resp.value) {
       this.#deck = new Deck(resp.value);
       el.value = JSON.stringify(resp.value);
