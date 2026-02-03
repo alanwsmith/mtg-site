@@ -123,39 +123,6 @@ export class DeckRefiner {
     console.log(msg);
   }
 
-  // apiURL(_, el) {
-  //   const template =
-  //     `<a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a>`;
-  //   const parts = this.#state.deckURL.split("/");
-  //   const subs = [
-  //     ["ID", parts[4]],
-  //   ];
-  //   if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-  //     const subs = [
-  //       ["ID", parts[4]],
-  //     ];
-  //     el.replaceChildren(this.api.makeHTML(template, subs));
-  //   } else {
-  //     el.replaceChildren(this.api.makeHTML(
-  //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
-  //     ));
-  //   }
-  // }
-
-  //  //https://archidekt.com/decks/19596185/refider_example
-  //  const template = `<p>Click this link and copy the data from it:</p>
-  //<p><a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a></p>`;
-  //  if (ev.value !== "") {
-  //    const parts = ev.value.split("/");
-  //    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-  //      const subs = [
-  //        ["ID", parts[4]],
-  //      ];
-  //      el.replaceChildren(this.api.makeHTML(template, subs));
-  //    }
-  //  }
-  //}
-
   deck(_, el) {
     el.replaceChildren(
       ...this.#deck.categories()
@@ -258,21 +225,7 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
         `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
       ));
     }
-
-    //el.replaceChildren(this.api.makeHTML("asdf"));
   }
-
-  // async loadJSON(_, el) {
-  //   const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
-  //   // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
-  //   if (resp.value) {
-  //     this.#deck = new Deck(resp.value);
-  //     el.value = JSON.stringify(resp.value);
-  //     this.api.trigger("deck imageDownloadCommands");
-  //   } else {
-  //     console.log(resp.error);
-  //   }
-  // }
 
   async loadState(_, __) {
     const loader = localStorage.getItem("deckState");
@@ -298,32 +251,6 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
     }
   }
 
-  // openJSON(ev, _) {
-  //   //   const template =
-  //   //     `<a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a>`;
-  //   if (ev.type === "click") {
-  //     const parts = this.#state.deckURL.split("/");
-  //     if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-  //       const url = `https://archidekt.com/api/decks/${parts[4]}/`;
-  //       window.open(url, "_blank");
-  //     }
-  //     //     const subs = [
-  //     //       ["ID", parts[4]],
-  //     //     ];
-  //     //     el.replaceChildren(this.api.makeHTML(template, subs));
-  //     //   } else {
-  //     //     el.replaceChildren(this.api.makeHTML(
-  //     //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
-  //     //     ));
-  //     //   }
-  //     // }
-  //     // const subs = [
-  //     //   ["ID", parts[4]],
-  //     // ];
-  //     console.log("asdf");
-  //   }
-  // }
-
   saveState() {
     localStorage.setItem("deckState", JSON.stringify(this.#state));
     this.debug("Saved State");
@@ -343,13 +270,6 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
       }
     }
   }
-
-  // setFilter(ev, el) {
-  //   if (ev.type === "click") {
-  //     this.#state.filter = ev.prop("filter");
-  //     this.api.trigger("highlightFilter");
-  //   }
-  // }
 
   setPositions(activeCategory, cardId) {
     this.#deck.categories().forEach((category) => {
@@ -390,31 +310,6 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
       ev.prop("id"),
     );
   }
-
-  //sourceDeckURL(ev, el) {
-  //  //https://archidekt.com/decks/19596185/refider_example
-  //  const template = `<p>Click this link and copy the data from it:</p>
-  //<p><a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a></p>`;
-  //  if (ev.value !== "") {
-  //    const parts = ev.value.split("/");
-  //    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-  //      const subs = [
-  //        ["ID", parts[4]],
-  //      ];
-  //      el.replaceChildren(this.api.makeHTML(template, subs));
-  //    }
-  //  }
-  //}
-
-  /*
-  hideHighlight(_, __) {
-    document.documentElement.style.setProperty(
-      "--highlight-visibility",
-      `hidden`,
-    );
-    this.#highlightId = null;
-  }
-  */
 
   /*
   debugImageDownloadCommands(_, el) {
