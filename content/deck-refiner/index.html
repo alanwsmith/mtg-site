@@ -30,36 +30,19 @@
             <label>
               Replace this address with the one for 
               the <a href="https://archidekt.com/">Archidekt</a> deck 
-              you want to refine.
+              you want to refine
             <input type="text" data-send="deckURL" data-receive="deckURL" />
           </label>
         </li>
-        <li data-receive="jsonLink">Loading.
-
-            <!--
-            <a data-receive="jsonURL"></a>
-
-
-
-
-          <button data-send="openJSON">Click this to open Archidekt's data for the deck in a new tab</button>
-            <div>(You may be asked to give permission to open pop-ups</div>
-            
--->
-        </li>
-          <!--
-        <li>Copy the contents of the page in the new tab.</li>
+        <li data-receive="jsonLink">Loading.</li>
+        <li>Copy the content from the tab you just opened</li>
         <li>
-            <p><button>Clear this data</button> Then, paste the Archidekt data here.</p>
+          <button data-send="clearExistingJSON">Click this to clear the data from the existing deck from this box</button>
           <div>
-            <label>Archidekt Data
-              <div>
-                <textarea class="text-box" data-send="loadJSON"></textarea>
-              </div>
-            </label>
+            <textarea class="text-box" data-receive="clearExistingJSON"></textarea>
           </div>
         </li>
--->
+          <li class="info-color" data-receive="updateStep5">[Status: waiting for step 4 to clear the data]</li>
       </ol>
     </div>
   </details>

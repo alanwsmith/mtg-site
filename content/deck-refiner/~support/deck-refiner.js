@@ -202,7 +202,6 @@ export class DeckRefiner {
 
   initPage(ev, _) {
     if (!ev || ev.type !== "mouseover") {
-      console.log("initializing page");
       this.api.trigger(`
 loadState 
 deckURL
@@ -210,19 +209,24 @@ filter`);
     }
   }
 
-  initState() {
+  async initState() {
     this.#state = {
       filter: "base",
       deckURL: "https://archidekt.com/decks/19596185/refiner_example",
     };
+    const resp = await this.api.getJSON(`/deck-refiner/~support/example.json`);
+    if (resp.value) {
+      this.#state.json = resp.value;
+    } else {
+      console.log(resp.error);
+    }
     this.saveState();
   }
 
   jsonLink(_, el) {
     const template =
       `<a class="link-button" target="_blank" href="https://archidekt.com/api/decks/ID/">
-Click this to open Archidekt data for the deck in a new tab. 
-</a>`;
+Click this to open Archidekt data for the deck in a new tab</a>`;
     const parts = this.#state.deckURL.split("/");
     const subs = [
       ["ID", parts[4]],
@@ -241,24 +245,24 @@ Click this to open Archidekt data for the deck in a new tab.
     //el.replaceChildren(this.api.makeHTML("asdf"));
   }
 
-  async loadJSON(_, el) {
-    const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
-    // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
-    if (resp.value) {
-      this.#deck = new Deck(resp.value);
-      el.value = JSON.stringify(resp.value);
-      this.api.trigger("deck imageDownloadCommands");
-    } else {
-      console.log(resp.error);
-    }
-  }
+  // async loadJSON(_, el) {
+  //   const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
+  //   // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
+  //   if (resp.value) {
+  //     this.#deck = new Deck(resp.value);
+  //     el.value = JSON.stringify(resp.value);
+  //     this.api.trigger("deck imageDownloadCommands");
+  //   } else {
+  //     console.log(resp.error);
+  //   }
+  // }
 
-  loadState(_, __) {
+  async loadState(_, __) {
     const loader = localStorage.getItem("deckState");
     if (loader !== null) {
       this.#state = JSON.parse(loader);
     } else {
-      this.initState();
+      await this.initState();
     }
   }
 
