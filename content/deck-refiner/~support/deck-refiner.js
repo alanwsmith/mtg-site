@@ -13,12 +13,12 @@ const t = {
   -->
   </div>
 
-  <div class="card-buttons">
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4</button>
-  <button>X</button>
+  <div class="card-buttons" data-id="ID">
+  <button data-id="ID">1</button>
+  <button data-id="ID">2</button>
+  <button data-id="ID">3</button>
+  <button data-id="ID">4</button>
+  <button data-id="ID">X</button>
   </div>
 </div>`,
 
@@ -135,22 +135,22 @@ export class DeckRefiner {
   #objectDeck;
   #deck;
 
-  bittyReady() {
-    document.addEventListener("mousemove", (event) => {
-      window.requestAnimationFrame(() => {
-        this.update(event);
-      });
-    });
-  }
+  // bittyReady() {
+  //   document.addEventListener("mousemove", (event) => {
+  //     window.requestAnimationFrame(() => {
+  //       this.update(event);
+  //     });
+  //   });
+  // }
 
-  categoryCards(category) {
-    return this.#deck.cards
-      .filter((card) => card.categories[0] === category.name);
-  }
+  // categoryCards(category) {
+  //   return this.#deck.cards
+  //     .filter((card) => card.categories[0] === category.name);
+  // }
 
-  cardName(card) {
-    return card.card.oracleCard.name;
-  }
+  // cardName(card) {
+  //   return card.card.oracleCard.name;
+  // }
 
   deck(_, el) {
     el.replaceChildren(
@@ -195,8 +195,8 @@ ${this.#objectDeck.downloadCommands()}
   }
 
   showCard(ev, el) {
-    console.log("x");
+    console.log(ev.target.dataset.id);
   }
 
-  update(event) {}
+  //  update(event) {}
 }

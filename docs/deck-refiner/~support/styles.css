@@ -34,3 +34,20 @@
 }
 
 
+.deck-wrapper {
+  position: relative;
+}
+
+:root {
+  --highlight-top: 100px;
+  --highlight-left: 100px;
+  --highlight-visibility: hidden;
+}
+
+.highlight-card {
+  position: absolute;
+  top: var(--highlight-top);
+  left: var(--highlight-left);
+  visibility: var(--highlight-visibility);
+}
+
