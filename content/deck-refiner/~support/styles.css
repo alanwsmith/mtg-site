@@ -22,7 +22,6 @@
 
 .card-wrapper {
   border: var(--faded-default-border);
-  border-radius: var(--default-border-radius);
   background-color: var(--faded-match-color);
 }
 
@@ -41,7 +40,9 @@
 :root {
   --highlight-top: 100px;
   --highlight-left: 100px;
+  /*
   --highlight-visibility: hidden;
+  */
 }
 
 .highlight-card {
@@ -49,5 +50,6 @@
   top: var(--highlight-top);
   left: var(--highlight-left);
   visibility: var(--highlight-visibility);
+  background-color: var(--faded-info-color);
 }
 

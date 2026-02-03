@@ -4,21 +4,21 @@ const t = {
   <img 
   src="/images/cards/ID.jpg"
   alt="The NAME Magic: The Gather card."
-  data-id="ID" />
+  />
   <!--
   <img 
   src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
   alt="The NAME Magic: The Gather card."
-  data-id="ID" />
+  />
   -->
   </div>
 
-  <div class="card-buttons" data-id="ID">
-  <button data-id="ID">1</button>
-  <button data-id="ID">2</button>
-  <button data-id="ID">3</button>
-  <button data-id="ID">4</button>
-  <button data-id="ID">X</button>
+  <div class="card-buttons">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>X</button>
   </div>
 </div>`,
 
@@ -133,6 +133,7 @@ class Deck {
 
 export class DeckRefiner {
   #deck;
+  #highlightId;
 
   deck(_, el) {
     el.replaceChildren(
@@ -177,6 +178,30 @@ export class DeckRefiner {
   }
 
   showCard(ev, el) {
-    console.log(ev.target.dataset.id);
+    if (this.#highlightId !== ev.prop("id")) {
+      this.#highlightId = ev.prop("id");
+      const wrapper = ev.target.closest(".card-wrapper");
+      const bounds = wrapper.getBoundingClientRect();
+
+      if (bounds.x < 400) {
+        document.documentElement.style.setProperty(
+          "--highlight-left",
+          `${bounds.x + 130}px`,
+        );
+      } else {
+        document.documentElement.style.setProperty(
+          "--highlight-left",
+          `${bounds.x - 200}px`,
+        );
+      }
+
+      document.documentElement.style.setProperty(
+        "--highlight-top",
+        `${wrapper.offsetTop}px`,
+      );
+
+      console.log(ev.prop("id"));
+      console.log(wrapper);
+    }
   }
 }
