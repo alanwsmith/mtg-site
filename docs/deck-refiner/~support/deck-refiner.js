@@ -216,18 +216,23 @@ deck
     }
   }
 
-  async initState() {
-    this.#state = {
-      filter: "base",
-      deckURL: "https://archidekt.com/decks/19596185/refiner_example",
-    };
-    const resp = await this.api.getJSON(`/deck-refiner/~support/example.json`);
-    if (resp.value) {
-      this.#state.json = resp.value;
-    } else {
-      console.log(resp.error);
+  async initState(ev, _) {
+    if (!ev || ev.type === "click") {
+      this.#state = {
+        filter: "base",
+        deckURL: "https://archidekt.com/decks/19596185/refiner_example",
+      };
+      const resp = await this.api.getJSON(
+        `/deck-refiner/~support/example.json`,
+      );
+      if (resp.value) {
+        this.#state.json = resp.value;
+      } else {
+        console.log(resp.error);
+      }
+      this.saveState();
+      console.log("Reinitialized state");
     }
-    this.saveState();
   }
 
   jsonLink(_, el) {
@@ -268,6 +273,7 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
     const loader = localStorage.getItem("deckState");
     if (loader !== null) {
       this.#state = JSON.parse(loader);
+      console.log("Loaded state from localStorage");
     } else {
       await this.initState();
     }
