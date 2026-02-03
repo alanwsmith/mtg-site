@@ -219,7 +219,26 @@ filter`);
   }
 
   jsonLink(_, el) {
-    el.replaceChildren(this.api.makeHTML("asdf"));
+    const template =
+      `<a class="link-button" target="_blank" href="https://archidekt.com/api/decks/ID/">
+Click this to open Archidekt data for the deck in a new tab. 
+</a>`;
+    const parts = this.#state.deckURL.split("/");
+    const subs = [
+      ["ID", parts[4]],
+    ];
+    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+      const subs = [
+        ["ID", parts[4]],
+      ];
+      el.replaceChildren(this.api.makeHTML(template, subs));
+    } else {
+      el.replaceChildren(this.api.makeHTML(
+        `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
+      ));
+    }
+
+    //el.replaceChildren(this.api.makeHTML("asdf"));
   }
 
   async loadJSON(_, el) {

@@ -52,6 +52,19 @@
   position: relative;
 }
 
+.link-button {
+  background: none;
+  border: var(--accent-border);
+  border-radius: var(--default-border-radius);
+  color: var(--link-color);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--small-font-size);
+  outline: inherit;
+  padding-block: var(--xxsmall-padding);
+  padding-inline: var(--xsmall-padding);
+}
+
 .open-card {
   height: 244px;
   border-end-start-radius: 0.6rem;
