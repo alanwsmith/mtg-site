@@ -139,12 +139,11 @@ export class DeckRefiner {
     el.value = this.#state.deckURL;
   }
 
-  filter() {
-    return this.#state.filter;
-  }
-
-  highlightFilter(_, el) {
-    if (this.filter() === el.prop("filter")) {
+  filter(ev, el) {
+    if (ev.type === "click") {
+      this.#state.filter = ev.prop("filter");
+    }
+    if (el.prop("filter") === this.#state.filter) {
       el.classList.add("active-filter");
     } else {
       el.classList.remove("active-filter");
@@ -161,23 +160,13 @@ export class DeckRefiner {
   }
   */
 
-  /*
-  imageDownloadCommands(_, el) {
-    if (el) {
-      el.value = `#!/bin/bash
-
-${this.#deck.downloadCommands()}`;
-    }
-  }
-  */
-
   initPage(ev, _) {
     if (!ev || ev.type !== "mouseover") {
       console.log("initializing page");
       this.api.trigger(`
 loadState 
-initDeckURL
-highlightFilter`);
+deckURL
+filter`);
     }
   }
 
@@ -210,10 +199,6 @@ highlightFilter`);
     }
   }
 
-  saveState() {
-    localStorage.setItem("deckState", JSON.stringify(this.#state));
-  }
-
   async loadTemplates() {
     for (const key of ["card", "category"]) {
       const url = `/deck-refiner/templates/${key}/`;
@@ -226,12 +211,16 @@ highlightFilter`);
     }
   }
 
-  setFilter(ev, el) {
-    if (ev.type === "click") {
-      this.#state.filter = ev.prop("filter");
-      this.api.trigger("highlightFilter");
-    }
+  saveState() {
+    localStorage.setItem("deckState", JSON.stringify(this.#state));
   }
+
+  // setFilter(ev, el) {
+  //   if (ev.type === "click") {
+  //     this.#state.filter = ev.prop("filter");
+  //     this.api.trigger("highlightFilter");
+  //   }
+  // }
 
   setPositions(activeCategory, cardId) {
     this.#deck.categories().forEach((category) => {
@@ -287,4 +276,14 @@ highlightFilter`);
       }
     }
   }
+
+  /*
+  debugImageDownloadCommands(_, el) {
+    if (el) {
+      el.value = `#!/bin/bash
+
+${this.#deck.downloadCommands()}`;
+    }
+  }
+  */
 }
