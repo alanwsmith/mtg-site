@@ -332,9 +332,10 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
   setJSON(ev, _) {
     if (ev.type === "input") {
       if (ev.value !== "") {
-        this.debug("Saving state");
         this.#state.json = JSON.parse(ev.value);
         this.saveState();
+        this.#deck = new Deck(this.#state.json);
+        this.api.trigger("deck");
       }
     }
   }
