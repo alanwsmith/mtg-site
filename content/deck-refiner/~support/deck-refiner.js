@@ -98,24 +98,6 @@ class Deck {
   }
 }
 
-class State {
-  constructor() {
-    this.loadState();
-  }
-
-  deckURL() {
-    return this._data.deckURL;
-  }
-
-  filter() {
-    return this._data.filter;
-  }
-  setFilter(filter) {
-    this._data.filter = filter;
-    this.saveState();
-  }
-}
-
 export class DeckRefiner {
   #deck;
   #highlightId;
@@ -127,7 +109,7 @@ export class DeckRefiner {
   }
 
   bittyReady() {
-    this.api.trigger("loadState highlightFilter");
+    this.api.trigger("initPage");
   }
 
   deck(_, el) {
@@ -154,7 +136,7 @@ export class DeckRefiner {
   }
 
   deckURL(_, el) {
-    el.value = this.#state.deckURL();
+    el.value = this.#state.deckURL;
   }
 
   filter() {
@@ -189,6 +171,24 @@ ${this.#deck.downloadCommands()}`;
   }
   */
 
+  initPage(ev, _) {
+    if (!ev || ev.type !== "mouseover") {
+      console.log("initializing page");
+      this.api.trigger(`
+loadState 
+initDeckURL
+highlightFilter`);
+    }
+  }
+
+  initState() {
+    this.#state = {
+      filter: "base",
+      deckURL: "https://archidekt.com/decks/19596185/refider_example",
+    };
+    this.saveState();
+  }
+
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
     // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
@@ -206,10 +206,7 @@ ${this.#deck.downloadCommands()}`;
     if (loader !== null) {
       this.#state = JSON.parse(loader);
     } else {
-      this.#state = {
-        filter: "base",
-        deckURL: "https://archidekt.com/decks/19596185/refider_example",
-      };
+      this.initState();
     }
   }
 
