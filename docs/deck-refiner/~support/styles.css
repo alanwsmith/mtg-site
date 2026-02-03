@@ -65,6 +65,16 @@
   padding-inline: var(--xsmall-padding);
 }
 
+.link-button:active, .link-button:visited {
+  color: var(--link-color);
+}
+
+.link-button:hover {
+  color: var(--accent-color);
+}
+
+
+
 .open-card {
   height: 244px;
   border-end-start-radius: 0.6rem;
