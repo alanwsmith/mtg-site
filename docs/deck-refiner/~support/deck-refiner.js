@@ -133,24 +133,6 @@ class Deck {
 
 export class DeckRefiner {
   #objectDeck;
-  #deck;
-
-  // bittyReady() {
-  //   document.addEventListener("mousemove", (event) => {
-  //     window.requestAnimationFrame(() => {
-  //       this.update(event);
-  //     });
-  //   });
-  // }
-
-  // categoryCards(category) {
-  //   return this.#deck.cards
-  //     .filter((card) => card.categories[0] === category.name);
-  // }
-
-  // cardName(card) {
-  //   return card.card.oracleCard.name;
-  // }
 
   deck(_, el) {
     el.replaceChildren(
@@ -174,13 +156,13 @@ export class DeckRefiner {
     );
   }
 
-  imageDownloadCommands(_, el) {
-    if (el) {
-      el.value = `#!/bin/bash
-${this.#objectDeck.downloadCommands()}
-    `;
-    }
-  }
+  // imageDownloadCommands(_, el) {
+  //   if (el) {
+  //     el.value = `#!/bin/bash
+  // ${this.#objectDeck.downloadCommands()}
+  //   `;
+  //   }
+  // }
 
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
@@ -197,6 +179,4 @@ ${this.#objectDeck.downloadCommands()}
   showCard(ev, el) {
     console.log(ev.target.dataset.id);
   }
-
-  //  update(event) {}
 }
