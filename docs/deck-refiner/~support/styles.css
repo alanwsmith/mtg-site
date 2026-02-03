@@ -40,13 +40,12 @@
 :root {
   --highlight-top: 100px;
   --highlight-left: 100px;
-  /*
   --highlight-visibility: hidden;
-  */
 }
 
 .highlight-card {
   position: absolute;
+  width: 12rem;
   top: var(--highlight-top);
   left: var(--highlight-left);
   visibility: var(--highlight-visibility);

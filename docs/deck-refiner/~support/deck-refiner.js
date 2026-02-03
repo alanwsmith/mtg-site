@@ -125,6 +125,10 @@ class Deck {
       }).join("\n");
   }
 
+  imageFor(id) {
+    return `/images/cards/${id}.jpg`;
+  }
+
   initCards() {
     return this._data.cards
       .map((card) => new Card(card));
@@ -157,6 +161,20 @@ export class DeckRefiner {
     );
   }
 
+  hideHighlight(_, __) {
+    document.documentElement.style.setProperty(
+      "--highlight-visibility",
+      `hidden`,
+    );
+    this.#highlightId = null;
+  }
+
+  highlightImageSrc(_, el) {
+    el.src = this.#deck.imageFor(this.#highlightId);
+
+    //el.src = "/images/cards/fe9be3e0-076c-4703-9750-2a6b0a178bc9.jpg";
+  }
+
   // imageDownloadCommands(_, el) {
   //   if (el) {
   //     el.value = `#!/bin/bash
@@ -183,25 +201,46 @@ export class DeckRefiner {
       const wrapper = ev.target.closest(".card-wrapper");
       const bounds = wrapper.getBoundingClientRect();
 
-      if (bounds.x < 400) {
-        document.documentElement.style.setProperty(
-          "--highlight-left",
-          `${bounds.x + 130}px`,
-        );
-      } else {
-        document.documentElement.style.setProperty(
-          "--highlight-left",
-          `${bounds.x - 200}px`,
-        );
-      }
-
       document.documentElement.style.setProperty(
-        "--highlight-top",
-        `${wrapper.offsetTop}px`,
+        "--highlight-left",
+        `${bounds.x}px`,
       );
 
-      console.log(ev.prop("id"));
-      console.log(wrapper);
+      // if (bounds.x < 300) {
+      //   document.documentElement.style.setProperty(
+      //     "--highlight-left",
+      //     `${bounds.x + 50}px`,
+      //   );
+      // } else {
+      //   document.documentElement.style.setProperty(
+      //     "--highlight-top",
+      //     `${bounds.y + 40}px`,
+      //   );
+      // }
+
+      // if (bounds.x < 300) {
+      //   document.documentElement.style.setProperty(
+      //     "--highlight-left",
+      //     `${bounds.x + 170}px`,
+      //   );
+      // } else {
+      //   document.documentElement.style.setProperty(
+      //     "--highlight-left",
+      //     `${bounds.x - 200}px`,
+      //   );
+      // }
+
+      // TODO: Shift up if the card would hit the bottom
+      document.documentElement.style.setProperty(
+        "--highlight-top",
+        `${wrapper.offsetTop + 40}px`,
+      );
+
+      document.documentElement.style.setProperty(
+        "--highlight-visibility",
+        `visible`,
+      );
+      this.api.trigger("highlightImageSrc");
     }
   }
 }
