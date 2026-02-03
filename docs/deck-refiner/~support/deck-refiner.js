@@ -112,6 +112,17 @@ export class DeckRefiner {
     this.api.trigger("initPage");
   }
 
+  clearExistingJSON(ev, el) {
+    if (ev.type === "click") {
+      this.debug("Clearing existing JSON");
+      el.value = "";
+    }
+  }
+
+  debug(msg) {
+    console.log(msg);
+  }
+
   // apiURL(_, el) {
   //   const template =
   //     `<a target="_blank" href="https://archidekt.com/api/decks/ID/">https://archidekt.com/api/decks/ID/</a>`;
@@ -194,22 +205,16 @@ export class DeckRefiner {
     }
   }
 
-  /*
-  hideHighlight(_, __) {
-    document.documentElement.style.setProperty(
-      "--highlight-visibility",
-      `hidden`,
-    );
-    this.#highlightId = null;
+  initJSON(_, el) {
+    el.value = JSON.stringify(this.#state.json);
   }
-  */
 
   initPage(ev, _) {
     if (!ev || ev.type !== "mouseover") {
       this.api.trigger(`
 loadState 
 deckURL
-loadJSON
+initJSON
 filter
 deck
 `);
@@ -278,6 +283,7 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
       await this.initState();
     }
     this.#deck = new Deck(this.#state.json);
+    this.api.trigger("debugImageDownloadCommands");
   }
 
   async loadTemplates() {
@@ -320,6 +326,17 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
 
   saveState() {
     localStorage.setItem("deckState", JSON.stringify(this.#state));
+    this.debug("Saved State");
+  }
+
+  setJSON(ev, _) {
+    if (ev.type === "input") {
+      if (ev.value !== "") {
+        this.debug("Saving state");
+        this.#state.json = JSON.parse(ev.value);
+        this.saveState();
+      }
+    }
   }
 
   // setFilter(ev, el) {
@@ -385,11 +402,20 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
   //}
 
   /*
-  debugImageDownloadCommands(_, el) {
-    if (el) {
-      el.value = `#!/bin/bash
+  hideHighlight(_, __) {
+    document.documentElement.style.setProperty(
+      "--highlight-visibility",
+      `hidden`,
+    );
+    this.#highlightId = null;
+  }
+  */
 
-${this.#deck.downloadCommands()}`;
+  /*
+  debugImageDownloadCommands(_, el) {
+    console.log("Output debug image download script");
+    if (el) {
+      el.value = `#!/bin/bash\n\n${this.#deck.downloadCommands()}`;
     }
   }
   */

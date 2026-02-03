@@ -27,22 +27,28 @@
     <div class="faded-default-border default-border-radius default-padding default-flow">
       <ol>
         <li>
-            <label>
-              Replace this address with the one for 
-              the <a href="https://archidekt.com/">Archidekt</a> deck 
-              you want to refine
+          <label>
+            Replace this address with the one for 
+            the <a href="https://archidekt.com/">Archidekt</a> deck 
+            you want to refine
             <input type="text" data-send="deckURL" data-receive="deckURL" />
           </label>
         </li>
         <li data-receive="jsonLink">Loading.</li>
         <li>Copy the content from the tab you just opened</li>
         <li>
+            <p>
           <button data-send="clearExistingJSON">Click this to clear the data from the existing deck from this box</button>
+            </p>
+            <p>Then, paste the data you just copied in this box to pull in your deck.</p>
           <div>
-            <textarea class="text-box xxsmall-font-size" data-receive="clearExistingJSON loadJSON"></textarea>
+            <textarea 
+                class="text-box xxsmall-font-size" 
+                data-send="setJSON"
+                data-receive="clearExistingJSON initJSON"
+              ></textarea>
           </div>
         </li>
-          <li class="info-color" data-receive="updateStep5">[Status: waiting for step 4 to clear the data]</li>
       </ol>
     </div>
   </details>
@@ -65,7 +71,7 @@
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
 
-    [#
+[#
     <h2>Localhost Tools</h2>
     <h3>Image Downloader</h3>
     <p>
@@ -74,7 +80,7 @@
       requests during dev and allows for
       working offline.
     </p>
-    <textarea data-receive="imageDownloadCommands"></textarea>
+    <textarea class="text-box xxsmall-font-size" data-receive="debugImageDownloadCommands"></textarea>
     #]
 
 
