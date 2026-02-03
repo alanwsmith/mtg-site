@@ -1,6 +1,13 @@
+.base-wrapper {
+  height: 1.7rem;
+  overflow-y: hidden;
+}
+
 .card {
   width: 11rem;
+  /*
   height: 1.6rem;
+*/
   overflow-y: hidden;
 }
 
@@ -33,13 +40,11 @@
   background-color: var(--faded-match-color);
 }
 
-
 .categories {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
 }
-
 
 .deck-wrapper {
   position: relative;
@@ -54,7 +59,9 @@
 .highlight-card {
   position: absolute;
   width: 10rem;
+  /*
   max-height: 100px;
+*/
   top: var(--highlight-top);
   left: var(--highlight-left);
   visibility: var(--highlight-visibility);
@@ -62,6 +69,14 @@
   overflow: hidden;
 }
 
-.highlight-card img {
-  transform: translateY(-100px);
+.open-card {
+  height: 260px;
+}
+
+.tmp-current {
+  height: 260px;
+}
+
+.tmp-blue {
+  outline: 1px solid blue;
 }

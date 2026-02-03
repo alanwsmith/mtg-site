@@ -204,9 +204,9 @@ body {
   </hgroup>
 
 <bitty-7-0 
-    data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
-    data-listeners="mouseover"
-  >
+  data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
+  data-listeners="mouseover"
+>
   <details>
       <summary>Change Source Deck</summary>
       <div class="faded-default-border default-border-radius default-padding default-flow">
@@ -224,12 +224,14 @@ body {
   </details>
 
   <div class="deck-wrapper">
+    <div class="categories" data-receive="deck"></div>
+
+<!--
     <div class="categories" data-receive="deck" data-send="hideHighlight"></div>
       <div class="card-buttons">CARD BUTTONS</div>
     <div class="highlight-card" data-send="hideHighlight"><img data-receive="highlightImageSrc" /></div>
+-->
   </div>
-
-
 
 
 </bitty-7-0>      </main>

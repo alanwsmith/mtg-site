@@ -1,5 +1,30 @@
 const t = {
-  card: `<div class="card-wrapper" data-send="showCard" data-id="ID">
+  card:
+    `<div class="card-wrapper base-wrapper" data-send="showCard" data-id="ID">
+  <div class="card">
+  <img 
+  src="/images/cards/ID.jpg"
+  alt="The NAME Magic: The Gather card."
+  />
+  <!--
+  <img 
+  src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
+  alt="The NAME Magic: The Gather card."
+  />
+  -->
+  </div>
+<!--
+  <div class="card-buttons">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>X</button>
+  </div>
+-->
+</div>`,
+
+  card_old_v1: `<div class="card-wrapper" data-send="showCard" data-id="ID">
   <div class="card">
   <img 
   src="/images/cards/ID.jpg"
@@ -24,12 +49,10 @@ const t = {
 </div>`,
 
   category: `
-<div class="category-wrapper">
-<div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
-<div class="category-cards">CATEGORY_CARDS</div>
-</div>
-
-`,
+<div class="category-wrapper" data-category="CATEGORY_NAME">
+  <div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
+  <div class="category-cards">CATEGORY_CARDS</div>
+</div>`,
 };
 
 class Card {
@@ -139,6 +162,7 @@ class Deck {
 export class DeckRefiner {
   #deck;
   #highlightId;
+  #currentCategory;
 
   deck(_, el) {
     el.replaceChildren(
@@ -160,6 +184,7 @@ export class DeckRefiner {
           );
         }),
     );
+    this.setPositions(null, null);
   }
 
   hideHighlight(_, __) {
@@ -196,7 +221,63 @@ export class DeckRefiner {
     }
   }
 
+  setPositions(activeCategory, cardId) {
+    this.#deck.categories().forEach((category) => {
+      const cardWrappers = document.querySelectorAll(
+        `[data-category=${category}] .card-wrapper`,
+      );
+      cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
+        if (activeCategory === category) {
+          if (cardId === cardWrapper.dataset.id) {
+            cardWrapper.classList.add("open-card");
+          } else {
+            cardWrapper.classList.remove("open-card");
+          }
+        } else {
+          if (cardWrapperIndex === cardWrappers.length - 1) {
+            cardWrapper.classList.add("open-card");
+          } else {
+            cardWrapper.classList.remove("open-card");
+          }
+        }
+      });
+    });
+  }
+
   showCard(ev, el) {
+    //this.#highlightId = ev.prop("id");
+    this.setPositions(
+      ev.target.closest(".category-wrapper").dataset.category,
+      ev.prop("id"),
+    );
+
+    //categoryWrapper.classList.add("tmp-blue");
+
+    // categoryWrapper.querySelectorAll(".card-wrapper").forEach((el) => {
+    //   if (el.dataset.id === this.#highlightId) {
+    //     el.classList.add("tmp-current");
+    //   } else {
+    //     el.classList.remove("tmp-current");
+    //   }
+    //   console.log(el);
+    // });
+
+    console.log(this.#highlightId);
+
+    // document.querySelectorAll(".card-wrapper").forEach((el) => {
+    //   if (el.dataset.id === this.#highlightId) {
+    //     el.classList.add("tmp-current");
+    //   } else {
+    //     el.classList.remove("tmp-current");
+    //   }
+    //   console.log(el);
+    // });
+
+    //const wrapper = ev.target.closest(".card-wrapper");
+    //wrapper.classList.add("tmp-current");
+  }
+
+  showCard_oldV1(ev, el) {
     if (this.#highlightId !== ev.prop("id")) {
       this.#highlightId = ev.prop("id");
       const wrapper = ev.target.closest(".card-wrapper");
