@@ -21,40 +21,31 @@
   <details>
     <summary>Change Source Deck</summary>
     <div class="faded-default-border default-border-radius default-padding default-flow">
-        <ol>
-          <li>
-            <p>Copy the address of the deck you want to refine and past it here.</p>
-            <div>
-              <label>Source Deck Address
-                <input type="text" data-send="sourceDeckURL" />
-              </label>
-            </div>
-          </li>
-          <li data-receive="sourceDeckURL">
-            <p>Waiting for Source Deck Address from Step 1</p>
-            <p>---</p>
-          </li>
-          <li>
-            <p>Paste the data here.</p>
-            <div>
-              <label>Source Deck Data
-                <div>
-                  <textarea class="text-box" data-init="loadJSON" data-send="archidektURL"></textarea>
-                </div>
-              </label>
-            </div>
-            <div><button data-send="loadExample">Load Example</button></div>
-          </li>
-        </ol>
-        <!--
-
-      <label>Archidekt JSON
-      </label>
-      <p>Get the JSON from the API by using the ID of the deck:</p>
-      <pre class="code-block no-numbers"><code>https://archidekt.com/api/decks/{ID}/</code></pre>
-      <p>For example:</p>
-      <p><a href="https://archidekt.com/api/decks/19345263/">https://archidekt.com/api/decks/19345263/</a></p>
--->
+      <ol>
+        <li>
+          <p>Copy the address of the deck you want to refine and past it here.</p>
+          <div>
+            <label>Source Deck Address
+              <input type="text" data-send="sourceDeckURL" />
+            </label>
+          </div>
+        </li>
+        <li data-receive="sourceDeckURL">
+          <p>Waiting for Source Deck Address from Step 1</p>
+          <p>---</p>
+        </li>
+        <li>
+          <p>Paste the data here.</p>
+          <div>
+            <label>Source Deck Data
+              <div>
+                <textarea class="text-box" data-init="loadJSON" data-send="archidektURL"></textarea>
+              </div>
+            </label>
+          </div>
+          <div><button data-send="loadExample">Load Example</button></div>
+        </li>
+      </ol>
     </div>
   </details>
 

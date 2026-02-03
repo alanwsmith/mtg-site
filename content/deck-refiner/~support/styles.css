@@ -4,22 +4,22 @@
 }
 
 .category-column {
-  position: relative;
   display: grid;
   grid-template-columns: 11rem 2.5rem;
+  position: relative;
 }
 
 .category-controls {
-  margin-top: 13px;
-  position: absolute;
+  background-color: var(--reverse-color);
   border-block: var(--reverse-border);
   border-right: var(--reverse-border);
-  background-color: var(--reverse-color);
-  padding-block: var(--default-padding);
-  padding-left: var(--xxsmall-padding);
-  height: 207px;
   border-start-end-radius: var(--small-border-radius);
   border-end-end-radius: var(--small-border-radius);
+  height: 207px;
+  margin-top: 13px;
+  padding-block: var(--default-padding);
+  padding-left: var(--xxsmall-padding);
+  position: absolute;
 }
 
 .category-wrapper {
@@ -32,11 +32,8 @@
 
 .card-wrapper {
   border: var(--match-border);
-  border-radius: 0.6rem;
-  /*
   border-start-start-radius: 0.6rem;
   border-start-end-radius: 0.6rem;
-  */
 }
 
 .categories {
@@ -51,6 +48,8 @@
 
 .open-card {
   height: 244px;
+  border-end-start-radius: 0.6rem;
+  border-end-end-radius: 0.6rem;
 }
 
 .bordered-card {
