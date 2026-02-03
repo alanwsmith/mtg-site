@@ -12,7 +12,7 @@ const t = {
   />
   -->
   </div>
-
+<!--
   <div class="card-buttons">
   <button>1</button>
   <button>2</button>
@@ -20,6 +20,7 @@ const t = {
   <button>4</button>
   <button>X</button>
   </div>
+-->
 </div>`,
 
   category: `
@@ -205,6 +206,14 @@ export class DeckRefiner {
         "--highlight-left",
         `${bounds.x}px`,
       );
+      document.documentElement.style.setProperty(
+        "--highlight-top",
+        `${wrapper.offsetTop + 40}px`,
+      );
+      document.documentElement.style.setProperty(
+        "--highlight-visibility",
+        `visible`,
+      );
 
       // if (bounds.x < 300) {
       //   document.documentElement.style.setProperty(
@@ -230,16 +239,6 @@ export class DeckRefiner {
       //   );
       // }
 
-      // TODO: Shift up if the card would hit the bottom
-      document.documentElement.style.setProperty(
-        "--highlight-top",
-        `${wrapper.offsetTop + 40}px`,
-      );
-
-      document.documentElement.style.setProperty(
-        "--highlight-visibility",
-        `visible`,
-      );
       this.api.trigger("highlightImageSrc");
     }
   }

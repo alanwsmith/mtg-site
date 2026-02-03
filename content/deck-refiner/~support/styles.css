@@ -8,8 +8,16 @@
   border-radius: var(--large-border-radius);
 }
 
+:root {
+  --button-top: 100px;
+  --button-left: 100px;
+}
+
 .card-buttons {
+  position: absolute;
   display: flex;
+  top: var(--button-top);
+  left: var(--button-left);
 }
 
 .card-buttons button {
@@ -45,10 +53,15 @@
 
 .highlight-card {
   position: absolute;
-  width: 12rem;
+  width: 10rem;
+  max-height: 100px;
   top: var(--highlight-top);
   left: var(--highlight-left);
   visibility: var(--highlight-visibility);
   background-color: var(--faded-info-color);
+  overflow: hidden;
 }
 
+.highlight-card img {
+  transform: translateY(-100px);
+}
