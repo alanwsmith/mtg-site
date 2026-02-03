@@ -1,5 +1,5 @@
 .base-wrapper {
-  height: 1.7rem;
+  height: 1.9rem;
   overflow-y: hidden;
 }
 
@@ -16,7 +16,7 @@
   background-color: var(--reverse-color);
   padding-block: var(--default-padding);
   padding-left: var(--xxsmall-padding);
-  height: 248px;
+  height: 244px;
   border-start-end-radius: var(--small-border-radius);
   border-end-end-radius: var(--small-border-radius);
 }
@@ -31,7 +31,11 @@
 
 .card-wrapper {
   border: var(--match-border);
+  border-radius: 0.6rem;
+  /*
   border-start-start-radius: 0.6rem;
+  border-start-end-radius: 0.6rem;
+  */
 }
 
 .categories {
@@ -45,11 +49,15 @@
 }
 
 .open-card {
-  height: 248px;
+  height: 244px;
 }
 
 .bordered-card {
+  border: var(--reverse-border);
+  /*
   border-block: var(--reverse-border);
   border-left: var(--reverse-border);
+  */
 }
+
 

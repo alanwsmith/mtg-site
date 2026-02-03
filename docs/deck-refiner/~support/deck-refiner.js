@@ -1,37 +1,3 @@
-// const t = {
-//   card:
-//     `<div class="card-wrapper base-wrapper" data-send="showCard" data-id="ID">
-//   <div class="card">
-//   <img
-//   src="/images/cards/ID.png"
-//   alt="The NAME Magic: The Gather card."
-//   />
-//   <!--
-//   <img
-//   src="https://cards.scryfall.io/normal/front/CHAR1/CHAR2/ID.jpg?HASH"
-//   alt="The NAME Magic: The Gather card."
-//   />
-//   -->
-//   </div>
-// </div>`,
-//   category: `
-// <div class="category-wrapper" data-category="CATEGORY_NAME">
-//   <div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
-//   <div class="category-column">
-//     <div class="category-cards">CATEGORY_CARDS</div>
-//     <div class="category-controls-wrapper">
-//       <div class="category-controls">
-//         <button>X</button>
-//         <button>1</button>
-//         <button>2</button>
-//         <button>3</button>
-//         <button>4</button>
-//       <div>
-//     </div>
-//   </div>
-// </div>`,
-// };
-
 class Card {
   constructor(data) {
     this._data = data;
@@ -87,7 +53,7 @@ class Deck {
   categories() {
     return this._data.categories
       .map((categoryObj) => {
-        return categoryObj.name;
+        return categoryObj.name.replace(" ", "_");
       })
       .filter((category) => {
         return this.categoryCards(category).length > 0;
@@ -114,21 +80,23 @@ class Deck {
     return this.cards()
       .map((card) => {
         const url = [
-          "https://cards.scryfall.io/png/front/",
+          "https://cards.scryfall.io/large/front/",
           card.charNum(1),
           "/",
           card.charNum(2),
           "/",
           card.id(),
-          `.png`,
+          `.jpg`,
         ].join("");
-        return `[ ! -f "${card.id()}.png" ] && wget ${url} && sleep 1`;
+        return `[ ! -f "${card.id()}.jpg" ] && wget ${url} && sleep 1`;
       }).join("\n");
   }
 
+  /*
   imageFor(id) {
     return `/images/cards/${id}.png`;
   }
+  */
 
   initCards() {
     return this._data.cards
@@ -178,11 +146,12 @@ export class DeckRefiner {
   }
   */
 
+  /*
   highlightImageSrc(_, el) {
     el.src = this.#deck.imageFor(this.#highlightId);
   }
+  */
 
-  /*
   imageDownloadCommands(_, el) {
     if (el) {
       el.value = `#!/bin/bash
@@ -190,11 +159,10 @@ export class DeckRefiner {
 ${this.#deck.downloadCommands()}`;
     }
   }
-  */
 
   async loadJSON(_, el) {
     const resp = await this.api.getJSON("/deck-refiner/~support/example.json");
-    //const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
+    // const resp = await this.api.getJSON("/deck-refiner/~support/big-deck.json");
     if (resp.value) {
       this.#deck = new Deck(resp.value);
       el.value = JSON.stringify(resp.value);

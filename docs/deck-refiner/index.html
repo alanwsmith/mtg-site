@@ -211,6 +211,21 @@ body {
   <details>
     <summary>Change Source Deck</summary>
     <div class="faded-default-border default-border-radius default-padding default-flow">
+        <ol>
+          <li>
+            <p>Copy the address of the deck you want to refine and past it here:</p>
+            <div>
+              <label>Source Deck Address:
+                <input type="text" data-send="sourceDeckURL" />
+              </label>
+            </div>
+          </li>
+          <li>
+            <p data-receive="sourceDeckURL">Waiting for Source Deck Address</p>
+          </li>
+
+
+        </ol>
       <label>Archidekt JSON
         <div>
           <textarea class="text-box" data-init="loadJSON" data-send="archidektURL"></textarea>
