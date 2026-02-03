@@ -216,7 +216,7 @@ body {
           <p>Copy the address of the deck you want to refine and past it here.</p>
           <div>
             <label>Source Deck Address
-              <input type="text" data-send="sourceDeckURL" />
+              <input type="text" data-send="sourceDeckURL" data-receive="deckURL" />
             </label>
           </div>
         </li>
@@ -229,25 +229,24 @@ body {
           <div>
             <label>Source Deck Data
               <div>
-                <textarea class="text-box" data-init="loadJSON" data-send="archidektURL"></textarea>
+                <textarea class="text-box" data-send="loadJSON"></textarea>
               </div>
             </label>
           </div>
-          <div><button data-send="loadExample">Load Example</button></div>
         </li>
       </ol>
     </div>
   </details>
 
     <div class="filters-wrapper faded-accent-block-border">
-      <h3>Filters</h3>
+      <h3>Filter</h3>
       <div>
-        <button data-send="setFilter" data-filter="x">x</button>
-        <button data-send="setFilter" data-filter="base">base</button>
-        <button data-send="setFilter" data-filter="1">1</button>
-        <button data-send="setFilter" data-filter="2">2</button>
-        <button data-send="setFilter" data-filter="3">3</button>
-        <button data-send="setFilter" data-filter="4">4</button>
+        <button data-send="setFilter" data-receive="highlightFilter" data-filter="x">x</button>
+        <button data-send="setFilter" data-receive="highlightFilter" data-filter="base">base</button>
+        <button data-send="setFilter" data-receive="highlightFilter" data-filter="1">1</button>
+        <button data-send="setFilter" data-receive="highlightFilter" data-filter="2">2</button>
+        <button data-send="setFilter" data-receive="highlightFilter" data-filter="3">3</button>
+        <button data-send="setFilter" data-receive="highlightFilter" data-filter="4">4</button>
       </div>
     </div>
 

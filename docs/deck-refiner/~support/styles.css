@@ -1,3 +1,9 @@
+.active-filter {
+  border: var(--heading-border);
+  background-color: var(--faded-heading-color);
+  color: var(--heading-color);
+}
+
 .base-wrapper {
   height: 1.9rem;
   overflow-y: hidden;
@@ -54,6 +60,11 @@
 
 .bordered-card {
   border: var(--reverse-border);
+  /*
+* TODO: add padding with this
+* but make it look nice. 
+  margin-bottom: 30px;
+  */
 }
 
 
