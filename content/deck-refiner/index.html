@@ -18,38 +18,26 @@
   data-listeners="click input mouseover"
 >
 
+    <!--
     <div>
       <button data-send="await:initState initPage">Debug Reset Page</button>
     </div>
+-->
 
   <details>
     <summary>Change Deck</summary>
     <div class="faded-default-border default-border-radius default-padding default-flow">
-      <ol>
-        <li>
-          <label>
-            Replace this address with the one for 
-            the <a href="https://archidekt.com/">Archidekt</a> deck 
-            you want to refine
-            <input type="text" data-send="deckURLV2" data-receive="initDeckURLV2" />
-          </label>
-        </li>
-        <li data-receive="jsonLink">Loading.</li>
-        <li>Copy the content from the tab you just opened</li>
-        <li>
-            <p>
-          <button data-send="clearExistingJSON">Click this to clear the data from the existing deck from this box</button>
-            </p>
-            <p>Then, paste the data you just copied in this box to pull in your deck.</p>
-          <div>
-            <textarea 
-                class="text-box xxsmall-font-size" 
-                data-send="setJSON"
-                data-receive="clearExistingJSON initJSON"
-              ></textarea>
-          </div>
-        </li>
-      </ol>
+      <p>Follow these prompts to start refining a new deck:</p>
+      <div class="default-padding info-border default-border-radius default-flow" data-receive="changeDeckStep2 changeDeckStep3 changeDeckComplete">
+        Copy the address of an  
+        <a href="https://archidekt.com/">Archidekt</a> deck 
+        you want to refine and paste it here:
+        <input type="text" data-send="changeDeckURL" />
+        <div class="faded-accent-border default-border-radius default-padding">
+          <div>It'll look something like:</div>
+          <pre>https://archidekt.com/decks/19207437/giada_angels</pre>
+        </div>
+      </div>
     </div>
   </details>
 

@@ -38,7 +38,7 @@ class Card {
   }
 }
 
-class Deck {
+class DeckV1 {
   constructor(data) {
     this._data = data;
     this._cards = this.initCards();
@@ -98,18 +98,24 @@ class Deck {
   }
 }
 
-class DeckV2 {
+class Deck {
   constructor(data) {
     this._data = data;
   }
+
+  url() {
+    return this._data.url;
+  }
+}
+
+function sleep(sec) {
+  return new Promise((resolve) => setTimeout(resolve, sec * 1000));
 }
 
 export class DeckRefiner {
   #deck;
-  #deckV2;
-  #highlightId;
-  #state;
   #templates = {};
+  #tmpHoldingURL;
 
   async bittyInit() {
     await this.loadTemplates();
@@ -117,13 +123,90 @@ export class DeckRefiner {
 
   bittyReady() {
     //this.api.trigger("initPage");
-    this.api.trigger("initPageV2");
+    this.api.trigger("initPage");
   }
 
   // clearExistingJSON(ev, el) {
   //   if (ev.type === "click") {
   //     this.debug("Clearing existing JSON");
   //     el.value = "";
+  //   }
+  // }
+
+  changeDeckURL(ev, _) {
+    if (ev.type === "input") {
+      if (ev.value !== "") {
+        this.debug(`Switched hoding URL to: ${ev.value}`);
+        this.#tmpHoldingURL = ev.value;
+        this.api.trigger("changeDeckStep2");
+      }
+    }
+  }
+
+  async changeDeckStep2(_, el) {
+    await sleep(0.4);
+    const parts = this.#tmpHoldingURL.split("/");
+    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+      const subs = [
+        ["ID", parts[4]],
+      ];
+      el.replaceChildren(
+        this.api.makeHTML(this.#templates["change-deck-step-2"], subs),
+      );
+    }
+  }
+
+  async changeDeckStep3(ev, el) {
+    if (ev.type === "click") {
+      await sleep(0.4);
+      el.replaceChildren(
+        this.api.makeHTML(this.#templates["change-deck-step-3"]),
+      );
+    }
+  }
+
+  async changeDeckStep4(ev, el) {
+    if (ev.type === "input" && ev.value !== "") {
+      await sleep(0.4);
+      try {
+        this.#deck = new Deck(
+          {
+            json: ev.value,
+            tweaks: {},
+          },
+        );
+        this.debug("Deck switch complete");
+        this.api.trigger("changeDeckComplete deck");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  async changeDeckComplete(_, el) {
+    await sleep(0.4);
+    el.replaceChildren(
+      this.api.makeHTML(this.#templates["change-deck-complete"]),
+    );
+  }
+
+  // jsonLink(_, el) {
+  //   const template =
+  //     `<a class="link-button" target="_blank" href="https://archidekt.com/api/decks/ID/">
+  // Click this to open Archidekt data for the deck in a new tab</a>`;
+  //   const parts = this.#state.deckURL.split("/");
+  //   const subs = [
+  //     ["ID", parts[4]],
+  //   ];
+  //   if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+  //     const subs = [
+  //       ["ID", parts[4]],
+  //     ];
+  //     el.replaceChildren(this.api.makeHTML(template, subs));
+  //   } else {
+  //     el.replaceChildren(this.api.makeHTML(
+  //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
+  //     ));
   //   }
   // }
 
@@ -166,9 +249,6 @@ export class DeckRefiner {
   //   */
   // }
 
-  // deckURLV2(ev, _) {
-  // }
-
   // exampleJSON(_, el) {
   //   el.value = JSON.stringify(this.#state.json, null, 2);
   // }
@@ -193,6 +273,7 @@ export class DeckRefiner {
   //   if (!ev || ev.type !== "mouseover") {
   //     this.api.trigger(`
   // loadState
+  //
   // deckURL
   // initJSON
   // filter
@@ -201,10 +282,9 @@ export class DeckRefiner {
   //   }
   // }
 
-  initPageV2() {
+  initPage() {
     this.api.trigger(`
-await:loadDeckV2
-initURLField
+await:loadDeck
 `);
   }
 
@@ -247,20 +327,20 @@ initURLField
   //   }
   // }
 
-  async loadDeckV2() {
-    this.debug("Loading DeckV2");
+  async loadDeck() {
+    this.debug("Loading Deck");
     const storage = localStorage.getItem("refinerDeck");
     if (storage !== null) {
-      this.#deckV2 = new DeckV2(JSON.parse(storage));
+      this.#deck = new Deck(JSON.parse(storage));
     } else {
       const resp = await this.api.getJSON(
         `/deck-refiner/~support/example.json`,
       );
       if (resp.value) {
-        this.#deckV2 = new DeckV2({
+        this.#deck = new Deck({
           adjustments: {},
           json: resp.value,
-          url: "https://archidekt.com/decks/19207437/giadaangels_v1",
+          url: "https://archidekt.com/decks/19207437/giada_angels",
         });
       }
     }
@@ -279,7 +359,15 @@ initURLField
   // }
 
   async loadTemplates() {
-    for (const key of ["card", "category"]) {
+    for (
+      const key of [
+        "card",
+        "category",
+        "change-deck-step-2",
+        "change-deck-step-3",
+        "change-deck-complete",
+      ]
+    ) {
       const url = `/deck-refiner/templates/${key}/`;
       const resp = await this.api.getTXT(url);
       if (resp.value) {
