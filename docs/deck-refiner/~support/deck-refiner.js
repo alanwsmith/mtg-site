@@ -42,7 +42,7 @@ class Card {
   }
 }
 
-class DeckV1 {
+class Deck {
   constructor(data) {
     this._data = data;
     this._cards = this.initCards();
@@ -55,7 +55,7 @@ class DeckV1 {
   }
 
   categories() {
-    return this._data.categories
+    return this._data.json.categories
       .map((categoryObj) => {
         return categoryObj.name.replace(" ", "_");
       })
@@ -97,23 +97,14 @@ class DeckV1 {
   }
 
   initCards() {
-    return this._data.cards
+    //console.log(this._data.json);
+    return this._data.json.cards
       .map((card) => new Card(card));
-  }
-}
-
-class Deck {
-  constructor(data) {
-    this._data = data;
   }
 
   save() {
     localStorage.setItem("refinerDeck", JSON.stringify(this._data));
     debug("Saved deck to storage.");
-  }
-
-  url() {
-    return this._data.url;
   }
 }
 
@@ -131,7 +122,6 @@ export class DeckRefiner {
   }
 
   bittyReady() {
-    //this.api.trigger("initPage");
     this.api.trigger("initPage");
   }
 
@@ -180,7 +170,7 @@ export class DeckRefiner {
       try {
         this.#deck = new Deck(
           {
-            json: ev.value,
+            json: JSON.parse(ev.value),
             tweaks: {},
           },
         );
@@ -220,28 +210,28 @@ export class DeckRefiner {
   //   }
   // }
 
-  // deck(_, el) {
-  //   el.replaceChildren(
-  //     ...this.#deck.categories()
-  //       .map((category) => {
-  //         const subs = this.#deck.categorySubs(category).concat(
-  //           [
-  //             [
-  //               "CATEGORY_CARDS",
-  //               this.#deck.categoryCards(category).map((card) =>
-  //                 this.api.makeHTML(this.#templates.card, card.subs())
-  //               ),
-  //             ],
-  //           ],
-  //         );
-  //         return this.api.makeHTML(
-  //           this.#templates.category,
-  //           subs,
-  //         );
-  //       }),
-  //   );
-  //   this.setPositions(null, null);
-  // }
+  deck(_, el) {
+    el.replaceChildren(
+      ...this.#deck.categories()
+        .map((category) => {
+          const subs = this.#deck.categorySubs(category).concat(
+            [
+              [
+                "CATEGORY_CARDS",
+                this.#deck.categoryCards(category).map((card) =>
+                  this.api.makeHTML(this.#templates.card, card.subs())
+                ),
+              ],
+            ],
+          );
+          return this.api.makeHTML(
+            this.#templates.category,
+            subs,
+          );
+        }),
+    );
+    this.setPositions(null, null);
+  }
 
   // deckURL(ev, el) {
   //   /*
@@ -291,6 +281,7 @@ export class DeckRefiner {
   initPage() {
     this.api.trigger(`
 await:loadDeck
+deck
 `);
   }
 
@@ -406,38 +397,38 @@ await:loadDeck
   //   }
   // }
 
-  // setPositions(activeCategory, cardId) {
-  //   this.#deck.categories().forEach((category) => {
-  //     const cardWrappers = document.querySelectorAll(
-  //       `[data-category=${category}] .card-wrapper`,
-  //     );
-  //     const controls = document.querySelector(
-  //       `[data-category=${category}] .category-controls`,
-  //     );
-  //     cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
-  //       if (activeCategory === category) {
-  //         controls.style.visibility = "visible";
-  //         if (cardId === cardWrapper.dataset.id) {
-  //           controls.style.top = `${cardWrapper.offsetTop}px`;
-  //           cardWrapper.classList.add("open-card");
-  //           cardWrapper.classList.add("bordered-card");
-  //         } else {
-  //           cardWrapper.classList.remove("open-card");
-  //           cardWrapper.classList.remove("bordered-card");
-  //         }
-  //       } else {
-  //         controls.style.visibility = "hidden";
-  //         if (cardWrapperIndex === cardWrappers.length - 1) {
-  //           cardWrapper.classList.add("open-card");
-  //           cardWrapper.classList.remove("bordered-card");
-  //         } else {
-  //           cardWrapper.classList.remove("open-card");
-  //           cardWrapper.classList.remove("bordered-card");
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
+  setPositions(activeCategory, cardId) {
+    this.#deck.categories().forEach((category) => {
+      const cardWrappers = document.querySelectorAll(
+        `[data-category=${category}] .card-wrapper`,
+      );
+      const controls = document.querySelector(
+        `[data-category=${category}] .category-controls`,
+      );
+      cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
+        if (activeCategory === category) {
+          controls.style.visibility = "visible";
+          if (cardId === cardWrapper.dataset.id) {
+            controls.style.top = `${cardWrapper.offsetTop}px`;
+            cardWrapper.classList.add("open-card");
+            cardWrapper.classList.add("bordered-card");
+          } else {
+            cardWrapper.classList.remove("open-card");
+            cardWrapper.classList.remove("bordered-card");
+          }
+        } else {
+          controls.style.visibility = "hidden";
+          if (cardWrapperIndex === cardWrappers.length - 1) {
+            cardWrapper.classList.add("open-card");
+            cardWrapper.classList.remove("bordered-card");
+          } else {
+            cardWrapper.classList.remove("open-card");
+            cardWrapper.classList.remove("bordered-card");
+          }
+        }
+      });
+    });
+  }
 
   // showCard(ev, el) {
   //   this.setPositions(
