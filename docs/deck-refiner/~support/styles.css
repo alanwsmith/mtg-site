@@ -1,17 +1,25 @@
-.active-filter {
+.active-card {
+  height: 200px;
   border: var(--heading-border);
-  background-color: var(--faded-heading-color);
-  color: var(--heading-color);
 }
 
+/* .active-filter { */
+/*   border: var(--heading-border); */
+/*   background-color: var(--faded-heading-color); */
+/*   color: var(--heading-color); */
+/* } */
+
+/*
 .base-wrapper {
   height: 1.9rem;
   overflow-y: hidden;
 }
+*/
 
-.card-background {
-  background-color: var(--match-color);
-}
+
+/* .card-background { */
+/*   background-color: var(--match-color); */
+/* } */
 
 .category-column {
   display: grid;
@@ -19,30 +27,35 @@
   position: relative;
 }
 
-.category-controls {
-  background-color: var(--match-color);
-  border-block: var(--reverse-border);
-  border-inline: var(--reverse-border);
-  border-start-end-radius: var(--small-border-radius);
-  border-end-end-radius: var(--small-border-radius);
-  height: 244px;
-  padding-block: var(--default-padding);
-  padding-left: var(--xxsmall-padding);
-  position: absolute;
-}
+/* .category-controls { */
+/*   background-color: var(--match-color); */
+/*   border-block: var(--reverse-border); */
+/*   border-inline: var(--reverse-border); */
+/*   border-start-end-radius: var(--small-border-radius); */
+/*   border-end-end-radius: var(--small-border-radius); */
+/*   height: 244px; */
+/*   padding-block: var(--default-padding); */
+/*   padding-left: var(--xxsmall-padding); */
+/*   position: absolute; */
+/* } */
 
-.category-wrapper {
-  position: relative;
-}
+/* .category-wrapper { */
+/*   position: relative; */
+/* } */
 
-.category-cards {
-  background-color: var(--match-color);
-}
+/* .category-cards { */
+/*   background-color: var(--match-color); */
+/* } */
+
+/* .card-wrapper { */
+/*   border: var(--match-border); */
+/*   border-start-start-radius: 0.6rem; */
+/*   border-start-end-radius: 0.6rem; */
+/* } */
+
 
 .card-wrapper {
-  border: var(--match-border);
-  border-start-start-radius: 0.6rem;
-  border-start-end-radius: 0.6rem;
+  overflow-y: hidden;
 }
 
 .categories {
@@ -51,54 +64,54 @@
   gap: 1.0rem;
 }
 
-.current-card-filter {
-  background-color: red;
-}
+.inactive-card {
+  height: 1.9rem;
 
-.deck-wrapper {
-  position: relative;
-}
-
-.link-button {
-  background: none;
-  border: var(--accent-border);
-  border-radius: var(--default-border-radius);
-  color: var(--link-color);
-  cursor: pointer;
-  font-family: inherit;
-  font-size: var(--small-font-size);
-  outline: inherit;
-  padding-block: var(--xxsmall-padding);
-  padding-inline: var(--xsmall-padding);
-}
-
-.link-button:active, .link-button:visited {
-  color: var(--link-color);
-}
-
-.link-button:hover {
-  color: var(--accent-color);
-}
-
-.open-card {
-  height: 244px;
-  border-end-start-radius: 0.6rem;
-  /*
-  border-right: var(--reverse-border);
-*/
-  border-end-end-radius: 0.6rem;
 }
 
 
-.bordered-card {
-  border-block: var(--reverse-border);
-  border-left: var(--reverse-border);
+/* .current-card-filter { */
+/*   background-color: red; */
+/* } */
 
-  /*
-* TODO: add padding with this
-* but make it look nice. 
-  margin-bottom: 30px;
-  */
-}
+/* .deck-wrapper { */
+/*   position: relative; */
+/* } */
+
+/* .link-button { */
+/*   background: none; */
+/*   border: var(--accent-border); */
+/*   border-radius: var(--default-border-radius); */
+/*   color: var(--link-color); */
+/*   cursor: pointer; */
+/*   font-family: inherit; */
+/*   font-size: var(--small-font-size); */
+/*   outline: inherit; */
+/*   padding-block: var(--xxsmall-padding); */
+/*   padding-inline: var(--xsmall-padding); */
+/* } */
+
+/* .link-button:active, .link-button:visited { */
+/*   color: var(--link-color); */
+/* } */
+
+/* .link-button:hover { */
+/*   color: var(--accent-color); */
+/* } */
+
+/* .open-card { */
+/*   height: 244px; */
+/*   border-end-start-radius: 0.6rem; */
+/*   border-right: var(--reverse-border); */
+/*   border-end-end-radius: 0.6rem; */
+/* } */
+
+
+/* .bordered-card { */
+/*   border-block: var(--reverse-border); */
+/*   border-left: var(--reverse-border); */
+/*   margin-bottom: 30px; */
+/* } */
+
 
 
