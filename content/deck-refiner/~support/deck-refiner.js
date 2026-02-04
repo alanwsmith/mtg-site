@@ -134,8 +134,13 @@ class Deck {
   setCardFilter(id, filter) {
     this._data.cards.forEach((card) => {
       if (id === card.card.uid) {
-        debug(`Set card filter to ${filter} for ${id}`);
-        card.filter = filter;
+        if (card.filter === filter) {
+          debug(`Set card filter to 0 for ${id}`);
+          card.filter = 0;
+        } else {
+          debug(`Set card filter to ${filter} for ${id}`);
+          card.filter = filter;
+        }
       }
     });
     this.save();
@@ -166,6 +171,7 @@ export class DeckRefiner {
     this.api.trigger("initPage");
   }
 
+  // TODO: Deprecate in favor of calling API
   changeDeckURL(ev, el) {
     if (ev.type === "input") {
       if (ev.value !== "") {
@@ -176,6 +182,7 @@ export class DeckRefiner {
     }
   }
 
+  // TODO: Deprecate in favor of calling API
   async changeDeckStep2(_, el) {
     await sleep(0.4);
     const parts = this.#tmpHoldingURL.split("/");
@@ -189,6 +196,7 @@ export class DeckRefiner {
     }
   }
 
+  // TODO: Deprecate in favor of calling API
   async changeDeckStep3(ev, el) {
     if (ev.type === "click") {
       await sleep(0.4);
@@ -198,6 +206,7 @@ export class DeckRefiner {
     }
   }
 
+  // TODO: Deprecate in favor of calling API
   async changeDeckStep4(ev, el) {
     if (ev.type === "input" && ev.value !== "") {
       await sleep(0.4);
@@ -211,6 +220,7 @@ export class DeckRefiner {
     }
   }
 
+  // TODO: Deprecate in favor of calling API
   async changeDeckComplete(_, el) {
     await sleep(0.4);
     el.replaceChildren(
@@ -248,13 +258,6 @@ export class DeckRefiner {
     this.api.trigger("deckFilterButton deckFilterWrapper");
   }
 
-  setDeckFilter(ev, _) {
-    if (ev.type === "click") {
-      this.#deck.setDeckFilter(ev.propToInt("filter"));
-      this.api.trigger("deckFilterButton deckFilterWrapper");
-    }
-  }
-
   deckFilterButton(_, el) {
     if (el.propToInt("filter") === this.#deck.deckFilter()) {
       el.classList.add("active-filter");
@@ -268,7 +271,7 @@ export class DeckRefiner {
   }
 
   initPage() {
-    this.api.trigger(`await:loadDeck deck`);
+    this.api.trigger(`await:loadDeck deck updateCardFilterButton`);
   }
 
   async loadDeck() {
@@ -308,11 +311,42 @@ export class DeckRefiner {
     }
   }
 
-  setCardFilter(ev, el) {
+  setCardFilter(ev, _) {
     if (ev.type === "click") {
-      if (ev.prop("bittyid") === el.prop("bittyid")) {
-        console.log(".");
-      }
+      this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("filter"));
+      this.api.trigger("updateCardFilterButton");
+    }
+  }
+
+  setDeckFilter(ev, _) {
+    if (ev.type === "click") {
+      this.#deck.setDeckFilter(ev.propToInt("filter"));
+      this.api.trigger("deckFilterButton deckFilterWrapper");
+    }
+  }
+
+  showCard(ev, el) {
+    if (ev.prop("id") === el.prop("id")) {
+      el.classList.add("active-card");
+      el.classList.remove("inactive-card");
+    } else {
+      el.classList.add("inactive-card");
+      el.classList.remove("active-card");
+    }
+    // if (ev.target.dataset.id === el.dataset.id) {
+    //   console.log(el);
+    // }
+    // this.setPositions(
+    //   ev.target.closest(".category-wrapper").dataset.category,
+    //   ev.prop("id"),
+    // );
+  }
+
+  updateCardFilterButton(_, el) {
+    if (this.#deck.cardFilter(el.prop("id")) === el.propToInt("filter")) {
+      el.classList.add("active-card-filter-button");
+    } else {
+      el.classList.remove("active-card-filter-button");
     }
   }
 
@@ -361,24 +395,6 @@ export class DeckRefiner {
   //   //    });
   //   //  });
   // }
-
-  showCard(ev, el) {
-    if (ev.prop("id") === el.prop("id")) {
-      el.classList.add("active-card");
-      el.classList.remove("inactive-card");
-    } else {
-      el.classList.add("inactive-card");
-      el.classList.remove("active-card");
-    }
-
-    // if (ev.target.dataset.id === el.dataset.id) {
-    //   console.log(el);
-    // }
-    // this.setPositions(
-    //   ev.target.closest(".category-wrapper").dataset.category,
-    //   ev.prop("id"),
-    // );
-  }
 
   // updateCardFilter(_, el) {
   //   console.log(el);

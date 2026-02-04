@@ -13,6 +13,10 @@
   border-left: var(--info-border);
 }
 
+.active-card-filter-button {
+  background: var(--accent-color);
+}
+
 .card-image-wrapper {
   border-start-radius: var(--xlarge-border-radius);
   background: var(--info-color);
