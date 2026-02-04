@@ -115,6 +115,18 @@ class Deck {
     debug("Saved deck to storage.");
   }
 
+  setCardFilter(id, filter) {
+    this._data.json.cards.forEach((card) => {
+      if (id === card.card.uid) {
+        debug(`Set filter to ${filter} for ${id}`);
+        card.refinerFilter = filter;
+      }
+    });
+    this.save();
+  }
+
+  // TODO: Change setFilter() to
+  // setPageFilter() for clarity
   setFilter(filter) {
     this._data.filter = filter;
     this.save();
@@ -126,6 +138,7 @@ function sleep(sec) {
 }
 
 export class DeckRefiner {
+  #activeCardId;
   #deck;
   #templates = {};
   #tmpHoldingURL;
@@ -237,6 +250,10 @@ export class DeckRefiner {
     }
   }
 
+  filterCardId(_, el) {
+    el.dataset.id = this.#activeCardId;
+  }
+
   initPage() {
     this.api.trigger(`await:loadDeck deck`);
   }
@@ -282,6 +299,15 @@ export class DeckRefiner {
     }
   }
 
+  setCardFilter(ev, el) {
+    if (ev.type === "click") {
+      this.#deck.setCardFilter(
+        ev.prop("id"),
+        ev.prop("filter"),
+      );
+    }
+  }
+
   setPositions(activeCategory, cardId) {
     this.#deck.categories().forEach((category) => {
       const cardWrappers = document.querySelectorAll(
@@ -297,6 +323,8 @@ export class DeckRefiner {
             controls.style.top = `${cardWrapper.offsetTop}px`;
             cardWrapper.classList.add("open-card");
             cardWrapper.classList.add("bordered-card");
+            this.#activeCardId = cardId;
+            this.api.trigger("filterCardId");
           } else {
             cardWrapper.classList.remove("open-card");
             cardWrapper.classList.remove("bordered-card");
