@@ -44,8 +44,10 @@ class Card {
 
 class Deck {
   constructor(data) {
+    debug("Initializing deck.");
     this._data = data;
     this._cards = this.initCards();
+    this.save();
   }
 
   cards() {
@@ -96,6 +98,10 @@ class Deck {
       }).join("\n");
   }
 
+  filter() {
+    return this._data.filter;
+  }
+
   initCards() {
     //console.log(this._data.json);
     return this._data.json.cards
@@ -105,6 +111,11 @@ class Deck {
   save() {
     localStorage.setItem("refinerDeck", JSON.stringify(this._data));
     debug("Saved deck to storage.");
+  }
+
+  setFilter(filter) {
+    this._data.filter = filter;
+    this.save();
   }
 }
 
@@ -161,14 +172,14 @@ export class DeckRefiner {
     if (ev.type === "input" && ev.value !== "") {
       await sleep(0.4);
       try {
+        debug("Loading new deck.");
         this.#deck = new Deck(
           {
             json: JSON.parse(ev.value),
             tweaks: {},
+            filter: "base",
           },
         );
-        debug("Loaded new deck.");
-        this.#deck.save();
         this.api.trigger("changeDeckComplete deck");
       } catch (error) {
         console.log(error);
@@ -246,24 +257,23 @@ export class DeckRefiner {
   //   el.value = JSON.stringify(this.#state.json, null, 2);
   // }
 
-  // filter(ev, el) {
-  //   if (ev.type === "click") {
-  //     this.#state.filter = ev.prop("filter");
-  //     this.saveState();
-  //   }
-  //   if (el.prop("filter") === this.#state.filter) {
-  //     el.classList.add("active-filter");
-  //   } else {
-  //     el.classList.remove("active-filter");
-  //   }
-  // }
+  filter(ev, el) {
+    if (ev.type === "click") {
+      this.#deck.setFilter = ev.prop("filter");
+    }
+    if (el.prop("filter") === this.#deck.filter()) {
+      el.classList.add("active-filter");
+    } else {
+      el.classList.remove("active-filter");
+    }
+  }
 
   // initJSON(_, el) {
   //   el.value = JSON.stringify(this.#state.json);
   // }
 
   initPage() {
-    this.api.trigger(`await:loadDeck deck`);
+    this.api.trigger(`await:loadDeck filter deck`);
   }
 
   // async initState(ev, _) {
@@ -309,8 +319,8 @@ export class DeckRefiner {
     debug("Checking for a deck in storage.");
     const storage = localStorage.getItem("refinerDeck");
     if (storage !== null) {
+      debug("Found a deck in storage.");
       this.#deck = new Deck(JSON.parse(storage));
-      debug("Found a deck in storage and loaded it.");
     } else {
       const resp = await this.api.getJSON(
         `/deck-refiner/~support/example.json`,
@@ -320,8 +330,8 @@ export class DeckRefiner {
         this.#deck = new Deck({
           tweaks: {},
           json: resp.value,
+          filter: "base",
         });
-        this.#deck.save();
       }
     }
   }
