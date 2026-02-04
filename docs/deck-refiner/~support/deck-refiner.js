@@ -259,7 +259,7 @@ export class DeckRefiner {
 
   filter(ev, el) {
     if (ev.type === "click") {
-      this.#deck.setFilter = ev.prop("filter");
+      this.#deck.setFilter(ev.prop("filter"));
     }
     if (el.prop("filter") === this.#deck.filter()) {
       el.classList.add("active-filter");
