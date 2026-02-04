@@ -264,32 +264,23 @@ export class DeckRefiner {
           );
         }),
     );
-    // this.setPositions(null, null);
-    this.api.trigger("deckFilterButton deckFilterWrapper");
   }
 
   deckFilter(_, el) {
     el.dataset.deckfilter = this.#deck.deckFilter();
   }
 
-  highlightDeckFilterButton(_, el) {
-    if (el.propToInt("filter") === this.#deck.deckFilter()) {
-      el.classList.add("active-deck-filter");
+  deckFilterButtonStatus(_, el) {
+    if (el.propToInt("deckfilter") === this.#deck.deckFilter()) {
+      el.dataset.buttonstatus = "active";
     } else {
-      el.classList.remove("active-deck-filter");
+      el.dataset.buttonstatus = "inactive";
     }
-  }
-
-  // deckFilterWrapper(_, el) {
-  //   el.dataset.filter = this.#deck.deckFilter();
-  // }
-
-  highlightDeckFilter(_, el) {
   }
 
   initPage() {
     this.api.trigger(
-      `await:loadDeck deck cardFilter deckFilter`,
+      `await:loadDeck deck cardFilter deckFilter deckFilterButtonStatus`,
     );
   }
 
@@ -339,12 +330,13 @@ export class DeckRefiner {
 
   setDeckFilter(ev, el) {
     if (ev.type === "click") {
-      this.#deck.setDeckFilter(ev.propToInt("filter"));
-      this.api.trigger("highlightDeckFilterButton deckFilter");
+      this.#deck.setDeckFilter(ev.propToInt("deckfilter"));
+      this.api.trigger("deckFilter deckFilterButtonStatus");
     }
   }
 
   showCard(ev, el) {
+    // TODO: use data-cardstate for a single switch.
     if (ev.prop("id") === el.prop("id")) {
       el.classList.add("active-card");
       el.classList.remove("inactive-card");

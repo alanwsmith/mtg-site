@@ -21,6 +21,10 @@
   background: var(--accent-color);
 }
 
+[data-buttonstatus="active"] {
+  background-color: var(--accent-color);
+}
+
 .card-image-wrapper {
   border-start-radius: var(--xlarge-border-radius);
   background: var(--info-color);
@@ -47,11 +51,12 @@
 }
 
 
+/*
 [data-deckfilter="0"]  {
   background: var(--accent-color);
 }
 
-[data-deckfilter="0"]  {
+[data-deckfilter="2"] button[data-deck] {
   background: var(--accent-color);
 }
 
@@ -61,8 +66,7 @@
   padding: var(--default-padding);
 }
 
-
-
+*/
 
 
 .inactive-card {

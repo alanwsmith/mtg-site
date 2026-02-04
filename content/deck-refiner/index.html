@@ -41,20 +41,17 @@
     </div>
   </details>
 
-  <div data-receive="deckFilter">
+  <div class="deck-wrapper" data-receive="deckFilter">
     <div class="filters-wrapper faded-accent-block-border">
       <h3>Filter</h3>
       <div>
-        <button data-send="setDeckFilter" data-filter="-1">x</button>
-        <button data-send="setDeckFilter" data-filter="0">base</button>
-        <button data-send="setDeckFilter" data-filter="1">1</button>
-        <button data-send="setDeckFilter" data-filter="2">2</button>
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="-1">x</button>
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="0">base</button>
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="1">1</button>
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="2">2</button>
       </div>
     </div>
-
-    <div class="deck-wrapper">
-      <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
-    </div>
+    <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
 
 [#
