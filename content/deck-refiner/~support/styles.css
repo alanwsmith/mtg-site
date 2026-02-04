@@ -17,6 +17,10 @@
   background: var(--accent-color);
 }
 
+.active-deck-filter {
+  background: var(--accent-color);
+}
+
 .card-image-wrapper {
   border-start-radius: var(--xlarge-border-radius);
   background: var(--info-color);

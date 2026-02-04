@@ -44,14 +44,14 @@
   <div class="filters-wrapper faded-accent-block-border">
     <h3>Filter</h3>
     <div>
-      <button data-send="setDeckFilter" data-receive="deckFilterButton" data-filter="-1">x</button>
-      <button data-send="setDeckFilter" data-receive="deckFilterButton" data-filter="0">base</button>
-      <button data-send="setDeckFilter" data-receive="deckFilterButton" data-filter="1">1</button>
-      <button data-send="setDeckFilter" data-receive="deckFilterButton" data-filter="2">2</button>
+      <button data-send="setDeckFilter" data-receive="highlightDeckFilterButton" data-filter="-1">x</button>
+      <button data-send="setDeckFilter" data-receive="highlightDeckFilterButton" data-filter="0">base</button>
+      <button data-send="setDeckFilter" data-receive="highlightDeckFilterButton" data-filter="1">1</button>
+      <button data-send="setDeckFilter" data-receive="highlightDeckFilterButton" data-filter="2">2</button>
     </div>
   </div>
 
-  <div class="deck-wrapper" data-receive="deckFilterWrapper">
+  <div class="deck-wrapper" data-receive="updateDeckFilter">
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
 

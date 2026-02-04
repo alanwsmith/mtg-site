@@ -258,20 +258,25 @@ export class DeckRefiner {
     this.api.trigger("deckFilterButton deckFilterWrapper");
   }
 
-  deckFilterButton(_, el) {
+  highlightDeckFilterButton(_, el) {
     if (el.propToInt("filter") === this.#deck.deckFilter()) {
-      el.classList.add("active-filter");
+      el.classList.add("active-deck-filter");
     } else {
-      el.classList.remove("active-filter");
+      el.classList.remove("active-deck-filter");
     }
   }
 
-  deckFilterWrapper(_, el) {
-    el.dataset.filter = this.#deck.deckFilter();
+  // deckFilterWrapper(_, el) {
+  //   el.dataset.filter = this.#deck.deckFilter();
+  // }
+
+  highlightDeckFilter(_, el) {
   }
 
   initPage() {
-    this.api.trigger(`await:loadDeck deck updateCardFilterButton`);
+    this.api.trigger(
+      `await:loadDeck deck updateCardFilterButton highlightDeckFilterButton`,
+    );
   }
 
   async loadDeck() {
@@ -318,10 +323,10 @@ export class DeckRefiner {
     }
   }
 
-  setDeckFilter(ev, _) {
+  setDeckFilter(ev, el) {
     if (ev.type === "click") {
       this.#deck.setDeckFilter(ev.propToInt("filter"));
-      this.api.trigger("deckFilterButton deckFilterWrapper");
+      this.api.trigger("highlightDeckFilterButton updateDeckFilter");
     }
   }
 
@@ -348,6 +353,10 @@ export class DeckRefiner {
     } else {
       el.classList.remove("active-card-filter-button");
     }
+  }
+
+  updateDeckFilter(_, el) {
+    console.log(el);
   }
 
   // setCardFilter(ev, el) {
