@@ -265,19 +265,6 @@ export class DeckRefiner {
   //   el.value = JSON.stringify(this.#state.json);
   // }
 
-  // initPage(ev, _) {
-  //   if (!ev || ev.type !== "mouseover") {
-  //     this.api.trigger(`
-  // loadState
-  //
-  // deckURL
-  // initJSON
-  // filter
-  // deck
-  // `);
-  //   }
-  // }
-
   initPage() {
     this.api.trigger(`
 await:loadDeck
@@ -345,18 +332,6 @@ deck
     }
   }
 
-  // async loadState(_, __) {
-  //   const loader = localStorage.getItem("deckState");
-  //   if (loader !== null) {
-  //     this.#state = JSON.parse(loader);
-  //     console.log("Loaded state from localStorage");
-  //   } else {
-  //     await this.initState();
-  //   }
-  //   this.#deck = new Deck(this.#state.json);
-  //   this.api.trigger("debugImageDownloadCommands");
-  // }
-
   async loadTemplates() {
     for (
       const key of [
@@ -376,11 +351,6 @@ deck
       }
     }
   }
-
-  // saveState() {
-  //   localStorage.setItem("deckState", JSON.stringify(this.#state));
-  //   this.debug("Saved State");
-  // }
 
   // setJSON(ev, _) {
   //   if (ev.type === "input") {
