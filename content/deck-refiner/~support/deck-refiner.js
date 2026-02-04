@@ -132,9 +132,11 @@ export class DeckRefiner {
   //   }
   // }
 
-  changeDeckURL(ev, _) {
+  async changeDeckURL(ev, el) {
     if (ev.type === "input") {
       if (ev.value !== "") {
+        await sleep(0.4);
+        el.value = ""; // Stop browser from using old version
         debug(`Switched hoding URL to: ${ev.value}`);
         this.#tmpHoldingURL = ev.value;
         this.api.trigger("changeDeckStep2");
@@ -143,7 +145,6 @@ export class DeckRefiner {
   }
 
   async changeDeckStep2(_, el) {
-    await sleep(0.4);
     const parts = this.#tmpHoldingURL.split("/");
     if (parts[2] === "archidekt.com" && parts[3] === "decks") {
       const subs = [
