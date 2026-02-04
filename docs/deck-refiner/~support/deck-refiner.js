@@ -287,13 +287,13 @@ export class DeckRefiner {
               [
                 "CATEGORY_CARDS",
                 this.#deck.categoryCards(category).map((card) =>
-                  this.api.makeHTML(this.#templates.card, card.subs())
+                  this.api.makeHTML(this.api.template("card"), card.subs())
                 ),
               ],
             ],
           );
           return this.api.makeHTML(
-            this.#templates.category,
+            this.api.template("category"),
             subs,
           );
         }),

@@ -9,6 +9,57 @@
 [!- endblock -!]
 
 [!- block main -!]
+
+<template id="card">
+  <div 
+    class="card-wrapper inactive-card" 
+    data-send="showCard" 
+    data-receive="showCard cardFilter cardStatus" 
+    data-id="ID">
+      <div class="card-image-wrapper">
+        <img 
+          src="/images/large-cards/ID.jpg"
+          alt="The NAME card from Magic: The Gathering." />
+      </div>
+      <div class="card-controls">
+        <button data-id="ID" data-send="setCardFilter" data-cardfilter="2">2</button>
+        <button data-id="ID" data-send="setCardFilter" data-cardfilter="1">1</button>
+        <button data-id="ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
+      </div>
+  </div>
+</template>
+
+<template id="category">
+  <div class="category-wrapper" data-category="CATEGORY_NAME">
+    <div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
+    <div class="category-cards">CATEGORY_CARDS</div>
+  <!--
+      <div class="category-controls-wrapper">
+        <div class="category-controls">
+          <button 
+            data-send="setCardFilter"
+            data-receive="updateControlButtons"
+            data-filter="2"
+          >2</button>
+          <button 
+            data-send="setCardFilter"
+            data-receive="updateControlButtons"
+            data-filter="1"
+          >1</button>
+          <button 
+            data-send="setCardFilter"
+            data-receive="updateControlButtons"
+            data-filter="-1"
+          >x</button>
+        <div>
+      </div>
+  -->
+  </div>
+
+</template>
+
+
+
   <hgroup>
     <h1>Deck Refiner</h1>
   </hgroup>
