@@ -308,6 +308,14 @@ export class DeckRefiner {
     }
   }
 
+  setCardFilter(ev, el) {
+    if (ev.type === "click") {
+      if (ev.prop("bittyid") === el.prop("bittyid")) {
+        console.log(".");
+      }
+    }
+  }
+
   // setCardFilter(ev, el) {
   //   if (ev.type === "click") {
   //     // console.log(ev);
