@@ -308,77 +308,78 @@ export class DeckRefiner {
     }
   }
 
-  setCardFilter(ev, el) {
-    if (ev.type === "click") {
-      this.#deck.setCardFilter(
-        ev.prop("id"),
-        ev.propToInt("filter"),
-      );
-    }
-    this.api.trigger("updateCardFilter");
-  }
+  // setCardFilter(ev, el) {
+  //   if (ev.type === "click") {
+  //     // console.log(ev);
+  //     this.#deck.setCardFilter(
+  //       ev.prop("id"),
+  //       ev.propToInt("filter"),
+  //     );
+  //     // this.api.trigger("updateCardFilter");
+  //   }
+  // }
 
   setPositions(activeCategory, cardId) {
-    this.#deck.categories().forEach((category) => {
-      const cardWrappers = document.querySelectorAll(
-        `[data-category=${category}] .card-wrapper`,
-      );
-      const controls = document.querySelector(
-        `[data-category=${category}] .category-controls`,
-      );
-      cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
-        if (activeCategory === category) {
-          controls.style.visibility = "visible";
-          if (cardId === cardWrapper.dataset.id) {
-            controls.style.top = `${cardWrapper.offsetTop}px`;
-            cardWrapper.classList.add("open-card");
-            cardWrapper.classList.add("bordered-card");
-            this.#activeCardId = cardId;
-            this.api.trigger("updateControlButtons");
-          } else {
-            cardWrapper.classList.remove("open-card");
-            cardWrapper.classList.remove("bordered-card");
-          }
-        } else {
-          controls.style.visibility = "hidden";
-          if (cardWrapperIndex === cardWrappers.length - 1) {
-            cardWrapper.classList.add("open-card");
-            cardWrapper.classList.remove("bordered-card");
-          } else {
-            cardWrapper.classList.remove("open-card");
-            cardWrapper.classList.remove("bordered-card");
-          }
-        }
-      });
-    });
+    //  this.#deck.categories().forEach((category) => {
+    //    const cardWrappers = document.querySelectorAll(
+    //      `[data-category=${category}] .card-wrapper`,
+    //    );
+    //    const controls = document.querySelector(
+    //      `[data-category=${category}] .category-controls`,
+    //    );
+    //    cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
+    //      if (activeCategory === category) {
+    //        controls.style.visibility = "visible";
+    //        if (cardId === cardWrapper.dataset.id) {
+    //          controls.style.top = `${cardWrapper.offsetTop}px`;
+    //          cardWrapper.classList.add("open-card");
+    //          cardWrapper.classList.add("bordered-card");
+    //          //this.#activeCardId = cardId;
+    //          //this.api.trigger("updateControlButtons");
+    //        } else {
+    //          cardWrapper.classList.remove("open-card");
+    //          cardWrapper.classList.remove("bordered-card");
+    //        }
+    //      } else {
+    //        controls.style.visibility = "hidden";
+    //        if (cardWrapperIndex === cardWrappers.length - 1) {
+    //          cardWrapper.classList.add("open-card");
+    //          cardWrapper.classList.remove("bordered-card");
+    //        } else {
+    //          cardWrapper.classList.remove("open-card");
+    //          cardWrapper.classList.remove("bordered-card");
+    //        }
+    //      }
+    //    });
+    //  });
   }
 
-  showCard(ev, el) {
-    this.setPositions(
-      ev.target.closest(".category-wrapper").dataset.category,
-      ev.prop("id"),
-    );
-  }
+  // showCard(ev, el) {
+  //   this.setPositions(
+  //     ev.target.closest(".category-wrapper").dataset.category,
+  //     ev.prop("id"),
+  //   );
+  // }
 
-  updateCardFilter(_, el) {
-    console.log(el);
-    el.dataset.filter = this.#deck.cardFilter(
-      el.prop("id"),
-    );
-  }
+  // updateCardFilter(_, el) {
+  //   console.log(el);
+  //   el.dataset.filter = this.#deck.cardFilter(
+  //     el.prop("id"),
+  //   );
+  // }
 
-  updateControlButtons(_, el) {
-    el.dataset.id = this.#activeCardId;
-    // console.log(el.propToInt("filter"));
-    //console.log(this.#deck.cardFilter(this.#activeCardId));
-    if (el.propToInt("filter") === this.#deck.cardFilter(this.#activeCardId)) {
-      el.classList.add("current-card-filter");
-      //console.log("x");
-    } else {
-      el.classList.remove("current-card-filter");
-      //console.log("y");
-    }
-  }
+  //updateControlButtons(_, el) {
+  //  el.dataset.id = this.#activeCardId;
+  //  // console.log(el.propToInt("filter"));
+  //  //console.log(this.#deck.cardFilter(this.#activeCardId));
+  //  if (el.propToInt("filter") === this.#deck.cardFilter(this.#activeCardId)) {
+  //    el.classList.add("current-card-filter");
+  //    //console.log("x");
+  //  } else {
+  //    el.classList.remove("current-card-filter");
+  //    //console.log("y");
+  //  }
+  //}
 
   /*
   debugImageDownloadCommands(_, el) {
