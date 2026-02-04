@@ -258,8 +258,9 @@ initURLField
       );
       if (resp.value) {
         this.#deckV2 = new DeckV2({
-          json: resp.value,
           adjustments: {},
+          json: resp.value,
+          url: "https://archidekt.com/decks/19207437/giadaangels_v1",
         });
       }
     }
