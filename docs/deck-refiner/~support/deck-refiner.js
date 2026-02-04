@@ -2,6 +2,9 @@ function debug(msg) {
   console.log(msg);
 }
 
+// TODO: Deprecate Card and move
+// all the functionality directly
+// into Deck.
 class Card {
   constructor(data) {
     this._data = data;
@@ -57,7 +60,7 @@ class Deck {
   }
 
   categories() {
-    return this._data.json.categories
+    return this._data.categories
       .map((categoryObj) => {
         return categoryObj.name.replace(" ", "_");
       })
@@ -101,12 +104,30 @@ class Deck {
       }).join("\n");
   }
 
-  filter() {
-    return this._data.filter;
+  // TODO: Change filter() to deckFilter()
+  // for clarity.
+  deckFilter() {
+    if (!this._data.deckFilter) {
+      return "base";
+    } else {
+      return this._data.deckFilter;
+    }
+  }
+
+  cardFilter(id) {
+    if (this.getCard(id).filter) {
+      return this.getCard(id).filter;
+    } else {
+      return "base";
+    }
+  }
+
+  getCard(id) {
+    return this._data.cards.filter((card) => card.card.uid === id);
   }
 
   initCards() {
-    return this._data.json.cards
+    return this._data.cards
       .map((card) => new Card(card));
   }
 
@@ -116,19 +137,17 @@ class Deck {
   }
 
   setCardFilter(id, filter) {
-    this._data.json.cards.forEach((card) => {
+    this._data.cards.forEach((card) => {
       if (id === card.card.uid) {
-        debug(`Set filter to ${filter} for ${id}`);
-        card.refinerFilter = filter;
+        debug(`Set card filter to ${filter} for ${id}`);
+        card.filter = filter;
       }
     });
     this.save();
   }
 
-  // TODO: Change setFilter() to
-  // setPageFilter() for clarity
-  setFilter(filter) {
-    this._data.filter = filter;
+  setDeckFilter(filter) {
+    this._data.deckFilter = filter;
     this.save();
   }
 }
@@ -188,13 +207,7 @@ export class DeckRefiner {
       await sleep(0.4);
       try {
         debug("Loading new deck.");
-        this.#deck = new Deck(
-          {
-            json: JSON.parse(ev.value),
-            tweaks: {},
-            filter: "base",
-          },
-        );
+        this.#deck = new Deck(JSON.parse(ev.value));
         this.api.trigger("changeDeckComplete deck");
       } catch (error) {
         console.log(error);
@@ -236,14 +249,14 @@ export class DeckRefiner {
         }),
     );
     this.setPositions(null, null);
-    this.api.trigger("filter");
+    this.api.trigger("deckFilter");
   }
 
-  filter(ev, el) {
+  deckFilter(ev, el) {
     if (ev.type === "click") {
-      this.#deck.setFilter(ev.prop("filter"));
+      this.#deck.setDeckFilter(ev.prop("filter"));
     }
-    if (el.prop("filter") === this.#deck.filter()) {
+    if (el.prop("filter") === this.#deck.deckFilter()) {
       el.classList.add("active-filter");
     } else {
       el.classList.remove("active-filter");
@@ -270,11 +283,7 @@ export class DeckRefiner {
       );
       if (resp.value) {
         debug("No deck in storage. Making a new one.");
-        this.#deck = new Deck({
-          tweaks: {},
-          json: resp.value,
-          filter: "base",
-        });
+        this.#deck = new Deck(resp.value);
       }
     }
   }
@@ -306,6 +315,7 @@ export class DeckRefiner {
         ev.prop("filter"),
       );
     }
+    this.api.trigger("updateCardFilter");
   }
 
   setPositions(activeCategory, cardId) {
@@ -347,6 +357,12 @@ export class DeckRefiner {
     this.setPositions(
       ev.target.closest(".category-wrapper").dataset.category,
       ev.prop("id"),
+    );
+  }
+
+  updateCardFilter(_, el) {
+    el.dataset.filter = this.#deck.cardFilter(
+      el.prop("id"),
     );
   }
 
