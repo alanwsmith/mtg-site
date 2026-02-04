@@ -171,6 +171,16 @@ export class DeckRefiner {
     this.api.trigger("initPage");
   }
 
+  cardFilter(_, el) {
+    el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
+    console.log(el);
+    // if (this.#deck.cardFilter(el.prop("id")) === el.propToInt("filter")) {
+    //   el.dataset.cardfilter = ;
+    // } else {
+    //   el.classList.remove("active-card-filter-button");
+    // }
+  }
+
   // TODO: Deprecate in favor of calling API
   changeDeckURL(ev, el) {
     if (ev.type === "input") {
@@ -258,6 +268,10 @@ export class DeckRefiner {
     this.api.trigger("deckFilterButton deckFilterWrapper");
   }
 
+  deckFilter(_, el) {
+    el.dataset.deckfilter = this.#deck.deckFilter();
+  }
+
   highlightDeckFilterButton(_, el) {
     if (el.propToInt("filter") === this.#deck.deckFilter()) {
       el.classList.add("active-deck-filter");
@@ -275,7 +289,7 @@ export class DeckRefiner {
 
   initPage() {
     this.api.trigger(
-      `await:loadDeck deck updateCardButtonFilter highlightDeckFilterButton`,
+      `await:loadDeck deck cardFilter deckFilter`,
     );
   }
 
@@ -319,14 +333,14 @@ export class DeckRefiner {
   setCardFilter(ev, _) {
     if (ev.type === "click") {
       this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("filter"));
-      this.api.trigger("updateCardButtonFilter");
+      this.api.trigger("cardFilter");
     }
   }
 
   setDeckFilter(ev, el) {
     if (ev.type === "click") {
       this.#deck.setDeckFilter(ev.propToInt("filter"));
-      this.api.trigger("highlightDeckFilterButton updateDeckFilter");
+      this.api.trigger("highlightDeckFilterButton deckFilter");
     }
   }
 
@@ -345,19 +359,6 @@ export class DeckRefiner {
     //   ev.target.closest(".category-wrapper").dataset.category,
     //   ev.prop("id"),
     // );
-  }
-
-  updateCardButtonFilter(_, el) {
-    if (this.#deck.cardFilter(el.prop("id")) === el.propToInt("filter")) {
-      el.classList.add("active-card-filter-button");
-    } else {
-      el.classList.remove("active-card-filter-button");
-    }
-  }
-
-  updateDeckFilter(_, el) {
-    el.dataset.filter = this.#deck.deckFilter();
-    console.log(el);
   }
 
   // setCardFilter(ev, el) {

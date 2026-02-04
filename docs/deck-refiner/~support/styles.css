@@ -46,6 +46,25 @@
   min-width: calc(0.8rem + var(--card-image-width) + var(--card-controls-width));
 }
 
+
+[data-deckfilter="0"]  {
+  background: var(--accent-color);
+}
+
+[data-deckfilter="0"]  {
+  background: var(--accent-color);
+}
+
+
+
+[data-cardfilter="0"] {
+  padding: var(--default-padding);
+}
+
+
+
+
+
 .inactive-card {
   height: 1.9rem;
 }
