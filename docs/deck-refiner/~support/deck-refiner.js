@@ -147,6 +147,7 @@ class Deck {
   }
 
   setDeckFilter(filter) {
+    debug(`Set Deck Filter to ${filter}`);
     this._data.deckFilter = filter;
     this.save();
   }
@@ -249,18 +250,26 @@ export class DeckRefiner {
         }),
     );
     this.setPositions(null, null);
-    this.api.trigger("deckFilter");
+    this.api.trigger("deckFilterButton deckFilterWrapper");
   }
 
-  deckFilter(ev, el) {
+  setDeckFilter(ev, _) {
     if (ev.type === "click") {
       this.#deck.setDeckFilter(ev.prop("filter"));
+      this.api.trigger("deckFilterButton deckFilterWrapper");
     }
+  }
+
+  deckFilterButton(_, el) {
     if (el.prop("filter") === this.#deck.deckFilter()) {
       el.classList.add("active-filter");
     } else {
       el.classList.remove("active-filter");
     }
+  }
+
+  deckFilterWrapper(_, el) {
+    el.dataset.filter = this.#deck.deckFilter();
   }
 
   filterCardId(_, el) {
