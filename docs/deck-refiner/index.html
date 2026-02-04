@@ -196,7 +196,45 @@ body {
       data-location="top"
       data-init="themeSwitcher"></bitty-8-0>
   </div>
-</header><main class="default-flow xxxlarge-wrapper"><template id="card">
+</header><main class="default-flow xxxlarge-wrapper"><!-- note: the change-deck-... templates
+will be removed when the data is being queried 
+directly from the api -->
+
+<template id="change-deck-step-2">
+<p>
+  The next step is to copy data from the Archidekt site.
+</p>
+<p>
+  Use the button below to open a new tab with the data. 
+  Copy it, then come back here. 
+</p>
+<p>
+  <a 
+    class="link-button" 
+    target="_blank" 
+    href="https://archidekt.com/api/decks/ID/" 
+    data-send="changeDeckStep3"
+  >Open Archidekt Data Page</a></p>
+</template>
+
+<template id="change-deck-step-3">
+  <p>Paste the data you copied here:</p>
+  <div>
+    <textarea 
+      class="text-box"
+      data-send="changeDeckStep4"
+    ></textarea>
+  </div>
+</template>
+
+<template id="change-deck-complete">
+  <p>Deck switch complete. </p>
+  <p>You can close the Archidekt data tab now.</p>
+  <p>Refresh the page if you'd like to switch to another one.</p>
+</template>
+
+
+<template id="card">
   <div 
     class="card-wrapper inactive-card" 
     data-send="showCard" 

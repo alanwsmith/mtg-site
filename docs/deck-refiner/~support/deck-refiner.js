@@ -195,9 +195,11 @@ export class DeckRefiner {
   #templates = {};
   #tmpHoldingURL;
 
+  /*
   async bittyInit() {
     await this.loadTemplates();
   }
+  */
 
   bittyReady() {
     this.api.trigger("initPage");
@@ -235,7 +237,7 @@ export class DeckRefiner {
         ["ID", parts[4]],
       ];
       el.replaceChildren(
-        this.api.makeHTML(this.#templates["change-deck-step-2"], subs),
+        this.api.makeHTML(this.api.template("change-deck-step-2"), subs),
       );
     }
   }
@@ -245,7 +247,7 @@ export class DeckRefiner {
     if (ev.type === "click") {
       await sleep(0.4);
       el.replaceChildren(
-        this.api.makeHTML(this.#templates["change-deck-step-3"]),
+        this.api.makeHTML(this.api.template("change-deck-step-3")),
       );
     }
   }
@@ -268,7 +270,7 @@ export class DeckRefiner {
   async changeDeckComplete(_, el) {
     await sleep(0.4);
     el.replaceChildren(
-      this.api.makeHTML(this.#templates["change-deck-complete"]),
+      this.api.makeHTML(this.api.template("change-deck-complete")),
     );
   }
 
@@ -339,8 +341,6 @@ export class DeckRefiner {
   async loadTemplates() {
     for (
       const key of [
-        "card",
-        "category",
         "change-deck-step-2",
         "change-deck-step-3",
         "change-deck-complete",
