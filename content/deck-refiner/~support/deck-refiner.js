@@ -195,12 +195,6 @@ export class DeckRefiner {
   #templates = {};
   #tmpHoldingURL;
 
-  /*
-  async bittyInit() {
-    await this.loadTemplates();
-  }
-  */
-
   bittyReady() {
     this.api.trigger("initPage");
   }
@@ -334,24 +328,6 @@ export class DeckRefiner {
       if (resp.value) {
         debug("No deck in storage. Making a new one.");
         this.#deck = new Deck(resp.value);
-      }
-    }
-  }
-
-  async loadTemplates() {
-    for (
-      const key of [
-        "change-deck-step-2",
-        "change-deck-step-3",
-        "change-deck-complete",
-      ]
-    ) {
-      const url = `/deck-refiner/templates/${key}/`;
-      const resp = await this.api.getTXT(url);
-      if (resp.value) {
-        this.#templates[key] = resp.value;
-      } else {
-        console.error(resp.error);
       }
     }
   }
