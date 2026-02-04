@@ -275,7 +275,7 @@ export class DeckRefiner {
 
   initPage() {
     this.api.trigger(
-      `await:loadDeck deck updateCardFilterButton highlightDeckFilterButton`,
+      `await:loadDeck deck updateCardButtonFilter highlightDeckFilterButton`,
     );
   }
 
@@ -319,7 +319,7 @@ export class DeckRefiner {
   setCardFilter(ev, _) {
     if (ev.type === "click") {
       this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("filter"));
-      this.api.trigger("updateCardFilterButton");
+      this.api.trigger("updateCardButtonFilter");
     }
   }
 
@@ -347,7 +347,7 @@ export class DeckRefiner {
     // );
   }
 
-  updateCardFilterButton(_, el) {
+  updateCardButtonFilter(_, el) {
     if (this.#deck.cardFilter(el.prop("id")) === el.propToInt("filter")) {
       el.classList.add("active-card-filter-button");
     } else {
