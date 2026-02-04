@@ -34,11 +34,17 @@
   border-radius: var(--xlarge-border-radius);
 }
 
-.card-wrapper {
+.card-wrapper[data-cardstatus="invisible"] {
+  display: none;
+}
+
+.card-wrapper[data-cardstatus="visible"] {
   display: grid;
   grid-template-columns: var(--card-image-width) var(--card-controls-width);
   overflow-y: hidden;
 }
+
+
 
 .card-wrapper[data-cardfilter="-1"] button[data-cardfilter="-1"] {
   background: var(--accent-color);

@@ -175,6 +175,14 @@ export class DeckRefiner {
     el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
   }
 
+  cardStatus(_, el) {
+    if (el.propToInt("cardfilter") === this.#deck.deckFilter()) {
+      el.dataset.cardstatus = "visible";
+    } else {
+      el.dataset.cardstatus = "invisible";
+    }
+  }
+
   // TODO: Deprecate in favor of calling API
   changeDeckURL(ev, el) {
     if (ev.type === "input") {
@@ -325,7 +333,7 @@ export class DeckRefiner {
   setDeckFilter(ev, el) {
     if (ev.type === "click") {
       this.#deck.setDeckFilter(ev.propToInt("deckfilter"));
-      this.api.trigger("deckFilter");
+      this.api.trigger("deckFilter cardStatus");
     }
   }
 
