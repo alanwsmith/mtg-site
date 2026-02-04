@@ -198,26 +198,6 @@ export class DeckRefiner {
     this.setPositions(null, null);
   }
 
-  // jsonLink(_, el) {
-  //   const template =
-  //     `<a class="link-button" target="_blank" href="https://archidekt.com/api/decks/ID/">
-  // Click this to open Archidekt data for the deck in a new tab</a>`;
-  //   const parts = this.#state.deckURL.split("/");
-  //   const subs = [
-  //     ["ID", parts[4]],
-  //   ];
-  //   if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-  //     const subs = [
-  //       ["ID", parts[4]],
-  //     ];
-  //     el.replaceChildren(this.api.makeHTML(template, subs));
-  //   } else {
-  //     el.replaceChildren(this.api.makeHTML(
-  //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
-  //     ));
-  //   }
-  // }
-
   deck(_, el) {
     el.replaceChildren(
       ...this.#deck.categories()
@@ -239,23 +219,8 @@ export class DeckRefiner {
         }),
     );
     this.setPositions(null, null);
+    this.api.trigger("filter");
   }
-
-  // deckURL(ev, el) {
-  //   /*
-  //   if (ev.type === "input") {
-  //     this.#state.deckURL = ev.value;
-  //     this.saveState();
-  //   } else {
-  //     el.value = this.#state.deckURL;
-  //   }
-  //   this.api.trigger("jsonLink");
-  //   */
-  // }
-
-  // exampleJSON(_, el) {
-  //   el.value = JSON.stringify(this.#state.json, null, 2);
-  // }
 
   filter(ev, el) {
     if (ev.type === "click") {
@@ -268,52 +233,9 @@ export class DeckRefiner {
     }
   }
 
-  // initJSON(_, el) {
-  //   el.value = JSON.stringify(this.#state.json);
-  // }
-
   initPage() {
-    this.api.trigger(`await:loadDeck filter deck`);
+    this.api.trigger(`await:loadDeck deck`);
   }
-
-  // async initState(ev, _) {
-  //   if (!ev || ev.type === "click") {
-  //     this.#state = {
-  //       filter: "base",
-  //       deckURL: "https://archidekt.com/decks/19596185/refiner_example",
-  //     };
-  //     const resp = await this.api.getJSON(
-  //       `/deck-refiner/~support/example.json`,
-  //     );
-  //     if (resp.value) {
-  //       this.#state.json = resp.value;
-  //     } else {
-  //       console.log(resp.error);
-  //     }
-  //     this.saveState();
-  //     console.log("Reinitialized state");
-  //   }
-  // }
-
-  // jsonLink(_, el) {
-  //   const template =
-  //     `<a class="link-button" target="_blank" href="https://archidekt.com/api/decks/ID/">
-  // Click this to open Archidekt data for the deck in a new tab</a>`;
-  //   const parts = this.#state.deckURL.split("/");
-  //   const subs = [
-  //     ["ID", parts[4]],
-  //   ];
-  //   if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-  //     const subs = [
-  //       ["ID", parts[4]],
-  //     ];
-  //     el.replaceChildren(this.api.makeHTML(template, subs));
-  //   } else {
-  //     el.replaceChildren(this.api.makeHTML(
-  //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
-  //     ));
-  //   }
-  // }
 
   async loadDeck() {
     debug("Checking for a deck in storage.");
@@ -355,21 +277,6 @@ export class DeckRefiner {
       }
     }
   }
-
-  // setJSON(ev, _) {
-  //   if (ev.type === "input") {
-  //     if (ev.value !== "") {
-  //       try {
-  //         this.#state.json = JSON.parse(ev.value);
-  //         this.saveState();
-  //         this.#deck = new Deck(this.#state.json);
-  //         this.api.trigger("deck");
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     }
-  //   }
-  // }
 
   setPositions(activeCategory, cardId) {
     this.#deck.categories().forEach((category) => {
