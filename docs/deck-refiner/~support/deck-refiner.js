@@ -50,10 +50,23 @@ class Deck {
     this.save();
   }
 
+  cardIds() {
+    return this._data.cards.map((card) => card.card.uid);
+  }
+
+  // TODO: Deprecate this.
   cards() {
     return this._cards.sort((a, b) => {
       return a.name() > b.name() ? 1 : -1;
     });
+  }
+
+  cardCategory(id) {
+    return this.getCard(id).categories[0];
+  }
+
+  cardName(id) {
+    return this.getCard(id).card.oracleCard.name;
   }
 
   categories() {
@@ -70,8 +83,27 @@ class Deck {
   }
 
   categoryCards(category) {
+    console.log(
+      this.cardIds().filter((id) => {
+        if (this.cardCategory(id) === category) {
+          return true;
+        }
+      }),
+    );
+
     return this.cards().filter((card) => {
-      return card.category() === category;
+      if (this.cardFilter(card.id()) === -1) {
+        //    console.log(this.cardName(card.id()));
+        if (this.deckFilter() === -1) {
+          return card.category() === category;
+        } else {
+          return false;
+        }
+      } else if (this.cardFilter(card.id()) >= this.deckFilter()) {
+        return card.category() === category;
+      } else {
+        return false;
+      }
     });
   }
 
@@ -266,6 +298,7 @@ export class DeckRefiner {
           );
         }),
     );
+    this.api.trigger("deckFilter");
   }
 
   deckFilter(_, el) {
@@ -282,7 +315,7 @@ export class DeckRefiner {
 
   initPage() {
     this.api.trigger(
-      `await:loadDeck deck cardFilter deckFilter`,
+      `await:loadDeck deck cardFilter cardStatus deckFilter`,
     );
   }
 
@@ -333,7 +366,8 @@ export class DeckRefiner {
   setDeckFilter(ev, el) {
     if (ev.type === "click") {
       this.#deck.setDeckFilter(ev.propToInt("deckfilter"));
-      this.api.trigger("deckFilter cardStatus");
+      // this.api.trigger("deckFilter cardStatus");
+      this.api.trigger("deck");
     }
   }
 
