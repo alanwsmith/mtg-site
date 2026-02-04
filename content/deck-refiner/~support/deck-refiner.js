@@ -82,6 +82,9 @@ class Deck {
     ];
   }
 
+  // downloadCommands() is for pulling images for local dev
+  // so you can work offline and without constantly
+  // hitting the network
   downloadCommands() {
     return this.cards()
       .map((card) => {
@@ -103,7 +106,6 @@ class Deck {
   }
 
   initCards() {
-    //console.log(this._data.json);
     return this._data.json.cards
       .map((card) => new Card(card));
   }
@@ -194,8 +196,10 @@ export class DeckRefiner {
     );
   }
 
-  closeHighlight(_, __) {
-    this.setPositions(null, null);
+  closeHighlight(ev, __) {
+    if (!ev.target.classList.contains("category-controls")) {
+      this.setPositions(null, null);
+    }
   }
 
   deck(_, el) {
