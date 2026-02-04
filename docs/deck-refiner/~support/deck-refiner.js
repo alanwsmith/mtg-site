@@ -173,12 +173,6 @@ export class DeckRefiner {
 
   cardFilter(_, el) {
     el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
-    console.log(el);
-    // if (this.#deck.cardFilter(el.prop("id")) === el.propToInt("filter")) {
-    //   el.dataset.cardfilter = ;
-    // } else {
-    //   el.classList.remove("active-card-filter-button");
-    // }
   }
 
   // TODO: Deprecate in favor of calling API
@@ -270,17 +264,17 @@ export class DeckRefiner {
     el.dataset.deckfilter = this.#deck.deckFilter();
   }
 
-  deckFilterButtonStatus(_, el) {
-    if (el.propToInt("deckfilter") === this.#deck.deckFilter()) {
-      el.dataset.buttonstatus = "active";
-    } else {
-      el.dataset.buttonstatus = "inactive";
-    }
-  }
+  // deckFilterButtonStatus(_, el) {
+  //   if (el.propToInt("deckfilter") === this.#deck.deckFilter()) {
+  //     el.dataset.buttonstatus = "active";
+  //   } else {
+  //     el.dataset.buttonstatus = "inactive";
+  //   }
+  // }
 
   initPage() {
     this.api.trigger(
-      `await:loadDeck deck cardFilter deckFilter deckFilterButtonStatus`,
+      `await:loadDeck deck cardFilter deckFilter`,
     );
   }
 
@@ -323,7 +317,7 @@ export class DeckRefiner {
 
   setCardFilter(ev, _) {
     if (ev.type === "click") {
-      this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("filter"));
+      this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("cardfilter"));
       this.api.trigger("cardFilter");
     }
   }
@@ -331,7 +325,7 @@ export class DeckRefiner {
   setDeckFilter(ev, el) {
     if (ev.type === "click") {
       this.#deck.setDeckFilter(ev.propToInt("deckfilter"));
-      this.api.trigger("deckFilter deckFilterButtonStatus");
+      this.api.trigger("deckFilter");
     }
   }
 

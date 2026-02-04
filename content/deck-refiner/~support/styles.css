@@ -40,6 +40,19 @@
   overflow-y: hidden;
 }
 
+.card-wrapper[data-cardfilter="-1"] button[data-cardfilter="-1"] {
+  background: var(--accent-color);
+}
+
+.card-wrapper[data-cardfilter="1"] button[data-cardfilter="1"] {
+  background: var(--accent-color);
+}
+
+.card-wrapper[data-cardfilter="2"] button[data-cardfilter="2"] {
+  background: var(--accent-color);
+}
+
+
 .categories {
   display: flex;
   flex-wrap: wrap;
@@ -48,6 +61,22 @@
 
 .category-cards {
   min-width: calc(0.8rem + var(--card-image-width) + var(--card-controls-width));
+}
+
+.deck-wrapper[data-deckfilter="-1"] button[data-deckfilter="-1"] {
+  background: var(--accent-color);
+}
+
+.deck-wrapper[data-deckfilter="0"] button[data-deckfilter="0"] {
+  background: var(--accent-color);
+}
+
+.deck-wrapper[data-deckfilter="1"] button[data-deckfilter="1"] {
+  background: var(--accent-color);
+}
+
+.deck-wrapper[data-deckfilter="2"] button[data-deckfilter="2"] {
+  background: var(--accent-color);
 }
 
 
