@@ -1,3 +1,7 @@
+function debug(msg) {
+  console.log(msg);
+}
+
 class Card {
   constructor(data) {
     this._data = data;
@@ -103,6 +107,11 @@ class Deck {
     this._data = data;
   }
 
+  save() {
+    localStorage.setItem("refinerDeck", JSON.stringify(this._data));
+    debug("Saved deck to storage.");
+  }
+
   url() {
     return this._data.url;
   }
@@ -136,7 +145,7 @@ export class DeckRefiner {
   changeDeckURL(ev, _) {
     if (ev.type === "input") {
       if (ev.value !== "") {
-        this.debug(`Switched hoding URL to: ${ev.value}`);
+        debug(`Switched hoding URL to: ${ev.value}`);
         this.#tmpHoldingURL = ev.value;
         this.api.trigger("changeDeckStep2");
       }
@@ -175,7 +184,8 @@ export class DeckRefiner {
             tweaks: {},
           },
         );
-        this.debug("Deck switch complete");
+        debug("Loaded new deck.");
+        this.#deck.save();
         this.api.trigger("changeDeckComplete deck");
       } catch (error) {
         console.log(error);
@@ -209,10 +219,6 @@ export class DeckRefiner {
   //     ));
   //   }
   // }
-
-  debug(msg) {
-    console.log(msg);
-  }
 
   // deck(_, el) {
   //   el.replaceChildren(
@@ -328,20 +334,22 @@ await:loadDeck
   // }
 
   async loadDeck() {
-    this.debug("Loading Deck");
+    debug("Checking for a deck in storage.");
     const storage = localStorage.getItem("refinerDeck");
     if (storage !== null) {
       this.#deck = new Deck(JSON.parse(storage));
+      debug("Found a deck in storage and loaded it.");
     } else {
       const resp = await this.api.getJSON(
         `/deck-refiner/~support/example.json`,
       );
       if (resp.value) {
+        debug("No deck in storage. Making a new one.");
         this.#deck = new Deck({
-          adjustments: {},
+          tweaks: {},
           json: resp.value,
-          url: "https://archidekt.com/decks/19207437/giada_angels",
         });
+        this.#deck.save();
       }
     }
   }
