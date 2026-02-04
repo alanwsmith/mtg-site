@@ -400,12 +400,12 @@ deck
     });
   }
 
-  // showCard(ev, el) {
-  //   this.setPositions(
-  //     ev.target.closest(".category-wrapper").dataset.category,
-  //     ev.prop("id"),
-  //   );
-  // }
+  showCard(ev, el) {
+    this.setPositions(
+      ev.target.closest(".category-wrapper").dataset.category,
+      ev.prop("id"),
+    );
+  }
 
   /*
   debugImageDownloadCommands(_, el) {
