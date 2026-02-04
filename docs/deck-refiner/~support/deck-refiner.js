@@ -108,7 +108,7 @@ class Deck {
   // for clarity.
   deckFilter() {
     if (!this._data.deckFilter) {
-      return "base";
+      return 0;
     } else {
       return this._data.deckFilter;
     }
@@ -118,7 +118,7 @@ class Deck {
     if (this.getCard(id).filter) {
       return this.getCard(id).filter;
     } else {
-      return "base";
+      return 0;
     }
   }
 
@@ -255,13 +255,13 @@ export class DeckRefiner {
 
   setDeckFilter(ev, _) {
     if (ev.type === "click") {
-      this.#deck.setDeckFilter(ev.prop("filter"));
+      this.#deck.setDeckFilter(ev.propToInt("filter"));
       this.api.trigger("deckFilterButton deckFilterWrapper");
     }
   }
 
   deckFilterButton(_, el) {
-    if (el.prop("filter") === this.#deck.deckFilter()) {
+    if (el.propToInt("filter") === this.#deck.deckFilter()) {
       el.classList.add("active-filter");
     } else {
       el.classList.remove("active-filter");
