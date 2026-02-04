@@ -98,8 +98,15 @@ class Deck {
   }
 }
 
+class DeckV2 {
+  constructor(data) {
+    this._data = data;
+  }
+}
+
 export class DeckRefiner {
   #deck;
+  #deckV2;
   #highlightId;
   #state;
   #templates = {};
@@ -109,135 +116,166 @@ export class DeckRefiner {
   }
 
   bittyReady() {
-    this.api.trigger("initPage");
+    //this.api.trigger("initPage");
+    this.api.trigger("initPageV2");
   }
 
-  clearExistingJSON(ev, el) {
-    if (ev.type === "click") {
-      this.debug("Clearing existing JSON");
-      el.value = "";
-    }
-  }
+  // clearExistingJSON(ev, el) {
+  //   if (ev.type === "click") {
+  //     this.debug("Clearing existing JSON");
+  //     el.value = "";
+  //   }
+  // }
 
   debug(msg) {
     console.log(msg);
   }
 
-  deck(_, el) {
-    el.replaceChildren(
-      ...this.#deck.categories()
-        .map((category) => {
-          const subs = this.#deck.categorySubs(category).concat(
-            [
-              [
-                "CATEGORY_CARDS",
-                this.#deck.categoryCards(category).map((card) =>
-                  this.api.makeHTML(this.#templates.card, card.subs())
-                ),
-              ],
-            ],
-          );
-          return this.api.makeHTML(
-            this.#templates.category,
-            subs,
-          );
-        }),
-    );
-    this.setPositions(null, null);
-  }
+  // deck(_, el) {
+  //   el.replaceChildren(
+  //     ...this.#deck.categories()
+  //       .map((category) => {
+  //         const subs = this.#deck.categorySubs(category).concat(
+  //           [
+  //             [
+  //               "CATEGORY_CARDS",
+  //               this.#deck.categoryCards(category).map((card) =>
+  //                 this.api.makeHTML(this.#templates.card, card.subs())
+  //               ),
+  //             ],
+  //           ],
+  //         );
+  //         return this.api.makeHTML(
+  //           this.#templates.category,
+  //           subs,
+  //         );
+  //       }),
+  //   );
+  //   this.setPositions(null, null);
+  // }
 
-  deckURL(ev, el) {
-    if (ev.type === "input") {
-      this.#state.deckURL = ev.value;
-      this.saveState();
-    } else {
-      el.value = this.#state.deckURL;
-    }
-    this.api.trigger("jsonLink");
-  }
+  // deckURL(ev, el) {
+  //   /*
+  //   if (ev.type === "input") {
+  //     this.#state.deckURL = ev.value;
+  //     this.saveState();
+  //   } else {
+  //     el.value = this.#state.deckURL;
+  //   }
+  //   this.api.trigger("jsonLink");
+  //   */
+  // }
 
-  exampleJSON(_, el) {
-    el.value = JSON.stringify(this.#state.json, null, 2);
-  }
+  // deckURLV2(ev, _) {
+  // }
 
-  filter(ev, el) {
-    if (ev.type === "click") {
-      this.#state.filter = ev.prop("filter");
-      this.saveState();
-    }
-    if (el.prop("filter") === this.#state.filter) {
-      el.classList.add("active-filter");
-    } else {
-      el.classList.remove("active-filter");
-    }
-  }
+  // exampleJSON(_, el) {
+  //   el.value = JSON.stringify(this.#state.json, null, 2);
+  // }
 
-  initJSON(_, el) {
-    el.value = JSON.stringify(this.#state.json);
-  }
+  // filter(ev, el) {
+  //   if (ev.type === "click") {
+  //     this.#state.filter = ev.prop("filter");
+  //     this.saveState();
+  //   }
+  //   if (el.prop("filter") === this.#state.filter) {
+  //     el.classList.add("active-filter");
+  //   } else {
+  //     el.classList.remove("active-filter");
+  //   }
+  // }
 
-  initPage(ev, _) {
-    if (!ev || ev.type !== "mouseover") {
-      this.api.trigger(`
-loadState 
-deckURL
-initJSON
-filter
-deck
+  // initJSON(_, el) {
+  //   el.value = JSON.stringify(this.#state.json);
+  // }
+
+  // initPage(ev, _) {
+  //   if (!ev || ev.type !== "mouseover") {
+  //     this.api.trigger(`
+  // loadState
+  // deckURL
+  // initJSON
+  // filter
+  // deck
+  // `);
+  //   }
+  // }
+
+  initPageV2() {
+    this.api.trigger(`
+await:loadDeckV2
+initURLField
 `);
-    }
   }
 
-  async initState(ev, _) {
-    if (!ev || ev.type === "click") {
-      this.#state = {
-        filter: "base",
-        deckURL: "https://archidekt.com/decks/19596185/refiner_example",
-      };
+  // async initState(ev, _) {
+  //   if (!ev || ev.type === "click") {
+  //     this.#state = {
+  //       filter: "base",
+  //       deckURL: "https://archidekt.com/decks/19596185/refiner_example",
+  //     };
+  //     const resp = await this.api.getJSON(
+  //       `/deck-refiner/~support/example.json`,
+  //     );
+  //     if (resp.value) {
+  //       this.#state.json = resp.value;
+  //     } else {
+  //       console.log(resp.error);
+  //     }
+  //     this.saveState();
+  //     console.log("Reinitialized state");
+  //   }
+  // }
+
+  // jsonLink(_, el) {
+  //   const template =
+  //     `<a class="link-button" target="_blank" href="https://archidekt.com/api/decks/ID/">
+  // Click this to open Archidekt data for the deck in a new tab</a>`;
+  //   const parts = this.#state.deckURL.split("/");
+  //   const subs = [
+  //     ["ID", parts[4]],
+  //   ];
+  //   if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+  //     const subs = [
+  //       ["ID", parts[4]],
+  //     ];
+  //     el.replaceChildren(this.api.makeHTML(template, subs));
+  //   } else {
+  //     el.replaceChildren(this.api.makeHTML(
+  //       `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
+  //     ));
+  //   }
+  // }
+
+  async loadDeckV2() {
+    this.debug("Loading DeckV2");
+    const storage = localStorage.getItem("refinerDeck");
+    if (storage !== null) {
+      this.#deckV2 = new DeckV2(JSON.parse(storage));
+    } else {
       const resp = await this.api.getJSON(
         `/deck-refiner/~support/example.json`,
       );
       if (resp.value) {
-        this.#state.json = resp.value;
-      } else {
-        console.log(resp.error);
+        this.#deckV2 = new DeckV2({
+          json: resp.value,
+          adjustments: {},
+        });
       }
-      this.saveState();
-      console.log("Reinitialized state");
     }
   }
 
-  jsonLink(_, el) {
-    const template =
-      `<a class="link-button" target="_blank" href="https://archidekt.com/api/decks/ID/">
-Click this to open Archidekt data for the deck in a new tab</a>`;
-    const parts = this.#state.deckURL.split("/");
-    const subs = [
-      ["ID", parts[4]],
-    ];
-    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-      const subs = [
-        ["ID", parts[4]],
-      ];
-      el.replaceChildren(this.api.makeHTML(template, subs));
-    } else {
-      el.replaceChildren(this.api.makeHTML(
-        `<p>Invalid Archidekt address. It should look like:</p><p>https://archidekt.com/api/decks/19596185/</p>`,
-      ));
-    }
-  }
-
-  async loadState(_, __) {
-    const loader = localStorage.getItem("deckState");
-    if (loader !== null) {
-      this.#state = JSON.parse(loader);
-      console.log("Loaded state from localStorage");
-    } else {
-      await this.initState();
-    }
-    this.#deck = new Deck(this.#state.json);
-    this.api.trigger("debugImageDownloadCommands");
-  }
+  // async loadState(_, __) {
+  //   const loader = localStorage.getItem("deckState");
+  //   if (loader !== null) {
+  //     this.#state = JSON.parse(loader);
+  //     console.log("Loaded state from localStorage");
+  //   } else {
+  //     await this.initState();
+  //   }
+  //   this.#deck = new Deck(this.#state.json);
+  //   this.api.trigger("debugImageDownloadCommands");
+  // }
 
   async loadTemplates() {
     for (const key of ["card", "category"]) {
@@ -251,65 +289,65 @@ Click this to open Archidekt data for the deck in a new tab</a>`;
     }
   }
 
-  saveState() {
-    localStorage.setItem("deckState", JSON.stringify(this.#state));
-    this.debug("Saved State");
-  }
+  // saveState() {
+  //   localStorage.setItem("deckState", JSON.stringify(this.#state));
+  //   this.debug("Saved State");
+  // }
 
-  setJSON(ev, _) {
-    if (ev.type === "input") {
-      if (ev.value !== "") {
-        try {
-          this.#state.json = JSON.parse(ev.value);
-          this.saveState();
-          this.#deck = new Deck(this.#state.json);
-          this.api.trigger("deck");
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    }
-  }
+  // setJSON(ev, _) {
+  //   if (ev.type === "input") {
+  //     if (ev.value !== "") {
+  //       try {
+  //         this.#state.json = JSON.parse(ev.value);
+  //         this.saveState();
+  //         this.#deck = new Deck(this.#state.json);
+  //         this.api.trigger("deck");
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   }
+  // }
 
-  setPositions(activeCategory, cardId) {
-    this.#deck.categories().forEach((category) => {
-      const cardWrappers = document.querySelectorAll(
-        `[data-category=${category}] .card-wrapper`,
-      );
-      const controls = document.querySelector(
-        `[data-category=${category}] .category-controls`,
-      );
-      cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
-        if (activeCategory === category) {
-          controls.style.visibility = "visible";
-          if (cardId === cardWrapper.dataset.id) {
-            controls.style.top = `${cardWrapper.offsetTop}px`;
-            cardWrapper.classList.add("open-card");
-            cardWrapper.classList.add("bordered-card");
-          } else {
-            cardWrapper.classList.remove("open-card");
-            cardWrapper.classList.remove("bordered-card");
-          }
-        } else {
-          controls.style.visibility = "hidden";
-          if (cardWrapperIndex === cardWrappers.length - 1) {
-            cardWrapper.classList.add("open-card");
-            cardWrapper.classList.remove("bordered-card");
-          } else {
-            cardWrapper.classList.remove("open-card");
-            cardWrapper.classList.remove("bordered-card");
-          }
-        }
-      });
-    });
-  }
+  // setPositions(activeCategory, cardId) {
+  //   this.#deck.categories().forEach((category) => {
+  //     const cardWrappers = document.querySelectorAll(
+  //       `[data-category=${category}] .card-wrapper`,
+  //     );
+  //     const controls = document.querySelector(
+  //       `[data-category=${category}] .category-controls`,
+  //     );
+  //     cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
+  //       if (activeCategory === category) {
+  //         controls.style.visibility = "visible";
+  //         if (cardId === cardWrapper.dataset.id) {
+  //           controls.style.top = `${cardWrapper.offsetTop}px`;
+  //           cardWrapper.classList.add("open-card");
+  //           cardWrapper.classList.add("bordered-card");
+  //         } else {
+  //           cardWrapper.classList.remove("open-card");
+  //           cardWrapper.classList.remove("bordered-card");
+  //         }
+  //       } else {
+  //         controls.style.visibility = "hidden";
+  //         if (cardWrapperIndex === cardWrappers.length - 1) {
+  //           cardWrapper.classList.add("open-card");
+  //           cardWrapper.classList.remove("bordered-card");
+  //         } else {
+  //           cardWrapper.classList.remove("open-card");
+  //           cardWrapper.classList.remove("bordered-card");
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
 
-  showCard(ev, el) {
-    this.setPositions(
-      ev.target.closest(".category-wrapper").dataset.category,
-      ev.prop("id"),
-    );
-  }
+  // showCard(ev, el) {
+  //   this.setPositions(
+  //     ev.target.closest(".category-wrapper").dataset.category,
+  //     ev.prop("id"),
+  //   );
+  // }
 
   /*
   debugImageDownloadCommands(_, el) {
