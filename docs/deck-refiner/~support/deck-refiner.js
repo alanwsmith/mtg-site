@@ -356,6 +356,7 @@ export class DeckRefiner {
   }
 
   updateDeckFilter(_, el) {
+    el.dataset.filter = this.#deck.deckFilter();
     console.log(el);
   }
 
