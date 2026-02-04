@@ -125,13 +125,6 @@ export class DeckRefiner {
     this.api.trigger("initPage");
   }
 
-  // clearExistingJSON(ev, el) {
-  //   if (ev.type === "click") {
-  //     this.debug("Clearing existing JSON");
-  //     el.value = "";
-  //   }
-  // }
-
   changeDeckURL(ev, el) {
     if (ev.type === "input") {
       if (ev.value !== "") {
@@ -188,6 +181,10 @@ export class DeckRefiner {
     el.replaceChildren(
       this.api.makeHTML(this.#templates["change-deck-complete"]),
     );
+  }
+
+  closeHighlight(_, __) {
+    this.setPositions(null, null);
   }
 
   // jsonLink(_, el) {
@@ -266,10 +263,7 @@ export class DeckRefiner {
   // }
 
   initPage() {
-    this.api.trigger(`
-await:loadDeck
-deck
-`);
+    this.api.trigger(`await:loadDeck deck`);
   }
 
   // async initState(ev, _) {
