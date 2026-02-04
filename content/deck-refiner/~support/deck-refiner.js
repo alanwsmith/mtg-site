@@ -2,9 +2,6 @@ function debug(msg) {
   console.log(msg);
 }
 
-// TODO: Deprecate Card and move
-// all the functionality directly
-// into Deck.
 class Card {
   constructor(data) {
     this._data = data;
@@ -104,8 +101,6 @@ class Deck {
       }).join("\n");
   }
 
-  // TODO: Change filter() to deckFilter()
-  // for clarity.
   deckFilter() {
     if (!this._data.deckFilter) {
       return 0;
@@ -123,7 +118,7 @@ class Deck {
   }
 
   getCard(id) {
-    return this._data.cards.filter((card) => card.card.uid === id);
+    return this._data.cards.find((card) => card.card.uid === id);
   }
 
   initCards() {
@@ -272,10 +267,6 @@ export class DeckRefiner {
     el.dataset.filter = this.#deck.deckFilter();
   }
 
-  filterCardId(_, el) {
-    el.dataset.id = this.#activeCardId;
-  }
-
   initPage() {
     this.api.trigger(`await:loadDeck deck`);
   }
@@ -321,7 +312,7 @@ export class DeckRefiner {
     if (ev.type === "click") {
       this.#deck.setCardFilter(
         ev.prop("id"),
-        ev.prop("filter"),
+        ev.propToInt("filter"),
       );
     }
     this.api.trigger("updateCardFilter");
@@ -343,7 +334,7 @@ export class DeckRefiner {
             cardWrapper.classList.add("open-card");
             cardWrapper.classList.add("bordered-card");
             this.#activeCardId = cardId;
-            this.api.trigger("filterCardId");
+            this.api.trigger("updateControlButtons");
           } else {
             cardWrapper.classList.remove("open-card");
             cardWrapper.classList.remove("bordered-card");
@@ -370,9 +361,23 @@ export class DeckRefiner {
   }
 
   updateCardFilter(_, el) {
+    console.log(el);
     el.dataset.filter = this.#deck.cardFilter(
       el.prop("id"),
     );
+  }
+
+  updateControlButtons(_, el) {
+    el.dataset.id = this.#activeCardId;
+    // console.log(el.propToInt("filter"));
+    //console.log(this.#deck.cardFilter(this.#activeCardId));
+    if (el.propToInt("filter") === this.#deck.cardFilter(this.#activeCardId)) {
+      el.classList.add("current-card-filter");
+      //console.log("x");
+    } else {
+      el.classList.remove("current-card-filter");
+      //console.log("y");
+    }
   }
 
   /*
