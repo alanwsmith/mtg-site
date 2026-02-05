@@ -26,7 +26,7 @@ class Deck {
       to: to,
     });
     this.getCard(id).filter = to;
-    debug(this._data.changes[this._data.changes.length - 1]);
+    // debug(this._data.changes[this._data.changes.length - 1]);
     this.save();
   }
 
@@ -210,7 +210,7 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
 
   setActiveCard(id) {
     this._data.activeCard = id;
-    debug(`Active card: ${id}`);
+    // debug(`Active card: ${id}`);
   }
 }
 
@@ -297,9 +297,9 @@ export class DeckRefiner {
         ["CARD_CATEGORY", this.#deck.cardCategory(id)],
         ["CARD_QUANTITY", this.#deck.cardQuantity(id)],
         ["CARD_ID", id],
-        ["CARD_IMAGE", this.#deck.cardImage(id)],
         ["CARD_NAME", this.#deck.cardName(id)],
         ["CARD_POSITION", this.#deck.cardPosition(id)],
+        ["CARD_IMAGE", this.#deck.cardImage(id)],
       ]);
     });
   }
@@ -334,6 +334,7 @@ export class DeckRefiner {
   }
 
   async loadDeck() {
+    const t0 = performance.now();
     debug("Checking for a deck in storage.");
     const storage = localStorage.getItem("refinerDeck");
     if (storage !== null) {
@@ -348,6 +349,10 @@ export class DeckRefiner {
         this.#deck = new Deck(resp.value);
       }
     }
+    const t1 = performance.now();
+    const time = t1 - t0;
+    console.log(`Load time: ${time}`);
+
     this.api.trigger("deck");
   }
 
@@ -383,6 +388,7 @@ export class DeckRefiner {
   }
 
   showCard(_, el) {
+    const t0 = performance.now();
     if (el) {
       const id = el.prop("id");
       const ds = el.dataset;
@@ -391,6 +397,9 @@ export class DeckRefiner {
       ds.index = this.#deck.cardIndex(id);
       ds.state = this.#deck.cardState(id);
     }
+    const t1 = performance.now();
+    const time = t1 - t0;
+    console.log(`showCard time ${time}`);
 
     // const evCategory = ev.target.closest(".card-wrapper").dataset.category;
     // const elCategory = el.closest(".card-wrapper").dataset.category;
