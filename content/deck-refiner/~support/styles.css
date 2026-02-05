@@ -1,8 +1,8 @@
 :root {
-  --card-count-width: 1.3rem;
+  --card-count-width: 1.6rem;
   --card-image-width: 11rem;
-  --card-controls-width: 1.9rem;
-  --open-card-height: 15.5rem;
+  --card-controls-width: 2rem;
+  --open-card-height: 18.5rem;
 }
 
 .card-controls {
@@ -17,7 +17,8 @@
   border-radius: var(--large-border-radius);
 }
 
-.card-wrapper {
+
+.card-wrapper .main {
   background-color: black;
   color: var(--faded-white-color);
   display: grid;
@@ -54,6 +55,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.0rem;
+  padding: var(--default-padding);
 }
 
 .category-cards {
@@ -93,3 +95,10 @@
   background: var(--accent-color);
 }
 
+
+.filter-wrapper {
+  padding: var(--default-padding);
+  background-color: var(--background-color);
+  position: sticky;
+  top: 0;
+}

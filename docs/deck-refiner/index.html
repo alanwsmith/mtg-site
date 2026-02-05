@@ -208,16 +208,33 @@ body {
     data-state="CARD_INITIAL_STATE"
     data-controls="hidden"
     >
-      <div class="card-quantity">CARD_QUANTITY</div>
-      <div class="card-image-wrapper">CARD_IMAGE</div>
-      <div class="card-right-sidebar">
-        <div class="card-stars">.</div>
-        <div class="card-controls">
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">2</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">1</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">0</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
+      <div class="main">
+        <div class="card-quantity-wrapper">
+          <div class="card-quantity">CARD_QUANTITY</div>
+          <div class="card-controls">
+            <button data-id="CARD_ID" data-send="increaseQuantity">+</button>
+            <button data-id="CARD_ID" data-send="decreaseQuantity">-</button>
+          </div>
         </div>
+        <div class="card-image-wrapper">CARD_IMAGE</div>
+        <div class="card-right-sidebar">
+          <div class="card-stars">.</div>
+
+          <div class="card-controls">
+            <!--
+            <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">2</button>
+            <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">1</button>
+            <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">0</button>
+            <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
+-->
+          </div>
+        </div>
+      </div>
+      <div class="footer card-controls text-align-center">
+        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
+        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">0</button>
+        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">1</button>
+        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">2</button>
       </div>
   </div>
 </template>
@@ -256,7 +273,7 @@ body {
   </details>
 
   <div class="deck-wrapper" data-receive="deckFilter">
-    <div class="filters-wrapper faded-accent-block-border">
+    <div class="filter-wrapper faded-accent-block-border">
       <h3>Filter</h3>
       <div>
         <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="-1">x</button>
