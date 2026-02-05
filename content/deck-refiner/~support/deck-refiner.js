@@ -35,6 +35,14 @@ src="/images/large-cards/${id}.jpg"
 alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
   }
 
+  cardIndex(id) {
+    return this.cardsInCategory(this.cardCategory(id))
+      .map((cid, index) => {
+        return { cid: cid, index: index };
+      })
+      .filter((card) => card.cid === id)[0].index;
+  }
+
   cardName(id) {
     return this.getCard(id).card.oracleCard.name;
   }
@@ -53,18 +61,28 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
   }
 
   categoryCardQuantity(category) {
-    return this.cards()
-      .filter((id) => this.deckFilter() >= 0)
-      .filter((id) => this.cardCategory(id) === category)
-      .filter((id) => this.cardFilter(id) >= this.deckFilter())
-      .map((id) => this.cardQuantity(id))
-      .reduce((acc, cur) => acc + cur, 0);
+    if (this.deckFilter() === -1) {
+      return "-";
+    } else {
+      return this.cards()
+        .filter((id) => this.deckFilter() >= 0)
+        .filter((id) => this.cardCategory(id) === category)
+        .filter((id) => this.cardFilter(id) >= this.deckFilter())
+        .map((id) => this.cardQuantity(id))
+        .reduce((acc, cur) => acc + cur, 0);
+    }
   }
 
   cardsInCategory(category) {
     return this.cards().filter((id) => {
       if (this.cardCategory(id) === category) {
         return this.cardIsVisible(id);
+      }
+    }).sort((a, b) => {
+      if (this.cardName(a) > this.cardName(b)) {
+        return 1;
+      } else {
+        return -1;
       }
     });
   }
@@ -112,9 +130,13 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
   }
 
   deckSize() {
-    return this.categories()
-      .map((category) => this.cardsInCategory(category).length)
-      .reduce((acc, cur) => acc + cur, 0);
+    if (this.deckFilter() === -1) {
+      return "-";
+    } else {
+      return this.categories()
+        .map((category) => this.cardsInCategory(category).length)
+        .reduce((acc, cur) => acc + cur, 0);
+    }
   }
 
   getCard(id) {
@@ -233,6 +255,7 @@ export class DeckRefiner {
         ["CARD_FILTER", this.#deck.cardFilter(id)],
         ["CARD_ID", id],
         ["CARD_IMAGE", this.#deck.cardImage(id)],
+        ["CARD_INDEX", this.#deck.cardIndex(id)],
         [
           "CARD_INITIAL_STATE",
           this.#deck.cardPosition(id) === "last" ? "open" : "closed",

@@ -10,6 +10,11 @@
   background-color: black;
 }
 
+.card-controls button {
+  min-width: 80%;
+  margin-bottom: var(--xxsmall-margin);
+}
+
 .card-image-wrapper {
   background-color: black;
 }
@@ -18,10 +23,22 @@
   border-radius: var(--large-border-radius);
 }
 
-.card-quantity-wrapper {
-  padding-block: var(--xsmall-padding);
-  padding-inline: var(--small-padding);
+.card-quantity {
+  padding-left: 0.3rem;
+  padding-block: 0.25rem;
+  text-align: center;
 }
+
+.card-quantity-buttons {
+  padding-left: 0.3rem;
+  text-align: center;
+}
+
+.card-quantity-buttons button {
+  width: 90%;
+  margin-bottom: 0.36rem;
+}
+
 
 .card-wrapper {
   background-color: black;

@@ -72,8 +72,10 @@ button {
   font-family: inherit;
   font-size: var(--small-font-size);
   outline: inherit;
+  /*
   padding-block: var(--xxsmall-padding);
   padding-inline: var(--xsmall-padding);
+*/
 }
 
 button:hover {
