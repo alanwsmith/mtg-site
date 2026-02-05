@@ -50,11 +50,12 @@ class Deck {
     this.save();
   }
 
-  cardIds() {
+  cardsV2() {
     return this._data.cards.map((card) => card.card.uid);
   }
 
-  // TODO: Deprecate this.
+  // TODO: Deprecate this in favor of
+  // cardsV2
   cards() {
     return this._cards.sort((a, b) => {
       return a.name() > b.name() ? 1 : -1;
@@ -63,6 +64,14 @@ class Deck {
 
   cardCategory(id) {
     return this.getCard(id).categories[0];
+  }
+
+  cardFilter(id) {
+    if (this.getCard(id).filter !== undefined) {
+      return this.getCard(id).filter;
+    } else {
+      return 0;
+    }
   }
 
   cardName(id) {
@@ -74,43 +83,65 @@ class Deck {
       .map((categoryObj) => {
         return categoryObj.name.replace(" ", "_");
       })
-      .filter((category) => {
-        return this.categoryCards(category).length > 0;
-      })
       .sort((a, b) => {
         return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
+      })
+      .filter((category) => {
+        return this.cardsInCategory(category).length > 0;
       });
   }
 
-  categoryCards(category) {
-    console.log(
-      this.cardIds().filter((id) => {
-        if (this.cardCategory(id) === category) {
-          return true;
-        }
-      }),
-    );
+  cardsInCategory(category) {
+    return this.cardsV2().filter((id) => {
+      if (this.cardCategory(id) === category) {
+        return this.cardIsVisible(id);
+      }
+    });
+  }
 
-    return this.cards().filter((card) => {
-      if (this.cardFilter(card.id()) === -1) {
-        //    console.log(this.cardName(card.id()));
-        if (this.deckFilter() === -1) {
-          return card.category() === category;
-        } else {
-          return false;
-        }
-      } else if (this.cardFilter(card.id()) >= this.deckFilter()) {
-        return card.category() === category;
+  cardIsVisible(id) {
+    if (this.deckFilter() === -1) {
+      if (this.cardFilter(id) === -1) {
+        return true;
       } else {
         return false;
       }
+    }
+    if (this.cardFilter(id) >= this.deckFilter()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // TODO: Deprecate this in favor of cardsInCategory
+  cardIdsForCategory(category) {
+    return this.cardsV2().filter((id) => {
+      if (this.cardCategory(id) === category) {
+        return true;
+      }
     });
+
+    // return this.cards().filter((card) => {
+    //   if (this.cardFilter(card.id()) === -1) {
+    //     //    console.log(this.cardName(card.id()));
+    //     if (this.deckFilter() === -1) {
+    //       return card.category() === category;
+    //     } else {
+    //       return false;
+    //     }
+    //   } else if (this.cardFilter(card.id()) >= this.deckFilter()) {
+    //     return card.category() === category;
+    //   } else {
+    //     return false;
+    //   }
+    // });
   }
 
   categorySubs(category) {
     return [
       ["CATEGORY_NAME", category],
-      ["CARDS_IN_CATEGORY", this.categoryCards(category).length],
+      ["CARDS_IN_CATEGORY", this.cardIdsForCategory(category).length],
     ];
   }
 
@@ -200,15 +231,17 @@ export class DeckRefiner {
   }
 
   cardFilter(_, el) {
-    el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
+    // el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
   }
 
+  // TODO: Deprecate this in favor of using CSS
+  // to check the filters directly
   cardStatus(_, el) {
-    if (el.propToInt("cardfilter") === this.#deck.deckFilter()) {
-      el.dataset.cardstatus = "visible";
-    } else {
-      el.dataset.cardstatus = "invisible";
-    }
+    // if (el.propToInt("cardfilter") === this.#deck.deckFilter()) {
+    //   el.dataset.cardstatus = "visible";
+    // } else {
+    //   el.dataset.cardstatus = "invisible";
+    // }
   }
 
   // TODO: Deprecate in favor of calling API
@@ -278,13 +311,15 @@ export class DeckRefiner {
     el.replaceChildren(
       ...this.#deck.categories()
         .map((category) => {
+          console.log(category);
           const subs = this.#deck.categorySubs(category).concat(
             [
               [
                 "CATEGORY_CARDS",
-                this.#deck.categoryCards(category).map((card) =>
-                  this.api.makeHTML(this.api.template("card"), card.subs())
-                ),
+                this.#deck.cardIdsForCategory(category).map((card) => {
+                  // TODO: Add card subs back here.
+                  this.api.makeHTML(this.api.template("card"));
+                }),
               ],
             ],
           );
