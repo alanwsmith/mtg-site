@@ -50,6 +50,10 @@
   background: var(--accent-color);
 }
 
+.card-wrapper[data-cardfilter="0"] button[data-cardfilter="0"] {
+  background: var(--accent-color);
+}
+
 .card-wrapper[data-cardfilter="1"] button[data-cardfilter="1"] {
   background: var(--accent-color);
 }

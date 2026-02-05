@@ -9,17 +9,9 @@ class Deck {
     this.save();
   }
 
-  cardsV2() {
+  cards() {
     return this._data.cards.map((card) => card.card.uid);
   }
-
-  // // TODO: Deprecate this in favor of
-  // // cardsV2
-  // cards() {
-  //   return this._cards.sort((a, b) => {
-  //     return a.name() > b.name() ? 1 : -1;
-  //   });
-  // }
 
   cardCategory(id) {
     return this.getCard(id).categories[0];
@@ -51,7 +43,7 @@ class Deck {
   }
 
   cardsInCategory(category) {
-    return this.cardsV2().filter((id) => {
+    return this.cards().filter((id) => {
       if (this.cardCategory(id) === category) {
         return this.cardIsVisible(id);
       }
@@ -71,56 +63,6 @@ class Deck {
     } else {
       return false;
     }
-  }
-
-  // TODO: Deprecate this in favor of cardsInCategory
-  cardIdsForCategory(category) {
-    return this.cardsV2().filter((id) => {
-      if (this.cardCategory(id) === category) {
-        return true;
-      }
-    });
-
-    // return this.cards().filter((card) => {
-    //   if (this.cardFilter(card.id()) === -1) {
-    //     //    console.log(this.cardName(card.id()));
-    //     if (this.deckFilter() === -1) {
-    //       return card.category() === category;
-    //     } else {
-    //       return false;
-    //     }
-    //   } else if (this.cardFilter(card.id()) >= this.deckFilter()) {
-    //     return card.category() === category;
-    //   } else {
-    //     return false;
-    //   }
-    // });
-  }
-
-  categorySubs(category) {
-    return [
-      ["CATEGORY_NAME", category],
-      ["CARDS_IN_CATEGORY", this.cardIdsForCategory(category).length],
-    ];
-  }
-
-  // downloadCommands() is for pulling images for local dev
-  // so you can work offline and without constantly
-  // hitting the network
-  downloadCommands() {
-    return this.cards()
-      .map((card) => {
-        const url = [
-          "https://cards.scryfall.io/large/front/",
-          card.charNum(1),
-          "/",
-          card.charNum(2),
-          "/",
-          card.id(),
-          `.jpg`,
-        ].join("");
-        return `[ ! -f "${card.id()}.jpg" ] && wget ${url} && sleep 1`;
-      }).join("\n");
   }
 
   deckFilter() {
@@ -180,23 +122,9 @@ export class DeckRefiner {
   // you're calling the API directly.
   #tmpHoldingURL;
 
-  bittyReady() {
-    this.api.trigger("initPage");
+  async bittyReady() {
+    this.api.trigger("await:loadDeck");
   }
-
-  // cardFilter(_, el) {
-  //   // el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
-  // }
-
-  // // TODO: Deprecate this in favor of using CSS
-  // // to check the filters directly
-  // cardStatus(_, el) {
-  //   // if (el.propToInt("cardfilter") === this.#deck.deckFilter()) {
-  //   //   el.dataset.cardstatus = "visible";
-  //   // } else {
-  //   //   el.dataset.cardstatus = "invisible";
-  //   // }
-  // }
 
   // TODO: Deprecate in favor of calling API
   changeDeckURL(ev, el) {
@@ -294,12 +222,6 @@ export class DeckRefiner {
     el.dataset.deckfilter = this.#deck.deckFilter();
   }
 
-  initPage() {
-    this.api.trigger(
-      `await:loadDeck deck cardFilter deckFilter`,
-    );
-  }
-
   async loadDeck() {
     debug("Checking for a deck in storage.");
     const storage = localStorage.getItem("refinerDeck");
@@ -315,6 +237,7 @@ export class DeckRefiner {
         this.#deck = new Deck(resp.value);
       }
     }
+    this.api.trigger("deck");
   }
 
   setCardFilter(ev, _) {
@@ -352,87 +275,5 @@ export class DeckRefiner {
       el.classList.add("inactive-card");
       el.classList.remove("active-card");
     }
-    // if (ev.target.dataset.id === el.dataset.id) {
-    //   console.log(el);
-    // }
-    // this.setPositions(
-    //   ev.target.closest(".category-wrapper").dataset.category,
-    //   ev.prop("id"),
-    // );
   }
-
-  // setCardFilter(ev, el) {
-  //   if (ev.type === "click") {
-  //     // console.log(ev);
-  //     this.#deck.setCardFilter(
-  //       ev.prop("id"),
-  //       ev.propToInt("filter"),
-  //     );
-  //     // this.api.trigger("updateCardFilter");
-  //   }
-  // }
-
-  // setPositions(activeCategory, cardId) {
-  //   //  this.#deck.categories().forEach((category) => {
-  //   //    const cardWrappers = document.querySelectorAll(
-  //   //      `[data-category=${category}] .card-wrapper`,
-  //   //    );
-  //   //    const controls = document.querySelector(
-  //   //      `[data-category=${category}] .category-controls`,
-  //   //    );
-  //   //    cardWrappers.forEach((cardWrapper, cardWrapperIndex) => {
-  //   //      if (activeCategory === category) {
-  //   //        controls.style.visibility = "visible";
-  //   //        if (cardId === cardWrapper.dataset.id) {
-  //   //          controls.style.top = `${cardWrapper.offsetTop}px`;
-  //   //          cardWrapper.classList.add("open-card");
-  //   //          cardWrapper.classList.add("bordered-card");
-  //   //          //this.#activeCardId = cardId;
-  //   //          //this.api.trigger("updateControlButtons");
-  //   //        } else {
-  //   //          cardWrapper.classList.remove("open-card");
-  //   //          cardWrapper.classList.remove("bordered-card");
-  //   //        }
-  //   //      } else {
-  //   //        controls.style.visibility = "hidden";
-  //   //        if (cardWrapperIndex === cardWrappers.length - 1) {
-  //   //          cardWrapper.classList.add("open-card");
-  //   //          cardWrapper.classList.remove("bordered-card");
-  //   //        } else {
-  //   //          cardWrapper.classList.remove("open-card");
-  //   //          cardWrapper.classList.remove("bordered-card");
-  //   //        }
-  //   //      }
-  //   //    });
-  //   //  });
-  // }
-
-  // updateCardFilter(_, el) {
-  //   console.log(el);
-  //   el.dataset.filter = this.#deck.cardFilter(
-  //     el.prop("id"),
-  //   );
-  // }
-
-  //updateControlButtons(_, el) {
-  //  el.dataset.id = this.#activeCardId;
-  //  // console.log(el.propToInt("filter"));
-  //  //console.log(this.#deck.cardFilter(this.#activeCardId));
-  //  if (el.propToInt("filter") === this.#deck.cardFilter(this.#activeCardId)) {
-  //    el.classList.add("current-card-filter");
-  //    //console.log("x");
-  //  } else {
-  //    el.classList.remove("current-card-filter");
-  //    //console.log("y");
-  //  }
-  //}
-
-  /*
-  debugImageDownloadCommands(_, el) {
-    console.log("Output debug image download script");
-    if (el) {
-      el.value = `#!/bin/bash\n\n${this.#deck.downloadCommands()}`;
-    }
-  }
-  */
 }
