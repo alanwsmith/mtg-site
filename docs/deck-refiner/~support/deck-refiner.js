@@ -319,8 +319,27 @@ export class DeckRefiner {
 
   setCardFilter(ev, _) {
     if (ev.type === "click") {
-      this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("cardfilter"));
-      this.api.trigger("deck");
+      const df = this.#deck.deckFilter();
+      const card = ev.prop("id");
+      const oldCf = this.#deck.cardFilter(card);
+      const newCf = ev.propToInt("cardfilter");
+      if (newCf !== oldCf) {
+        this.#deck.setCardFilter(card, newCf);
+        if (df === -1) {
+          this.api.trigger("deck");
+        }
+      }
+
+      // if (this.#deck.cardFilter(ev.prop("id")) !== ev.propToInt("cardfilter")) {
+      //   this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("cardfilter"));
+      //   if (ev.propToInt("cardfilter") < this.#deck.deckFilter()) {
+      //     this.api.trigger("deck");
+      //   } else {
+      //     ev.target.closest(".card-wrapper").dataset.cardfilter = ev.propToInt(
+      //       "cardfilter",
+      //     );
+      //   }
+      // }
     }
   }
 
