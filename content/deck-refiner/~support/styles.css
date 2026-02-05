@@ -2,7 +2,8 @@
   --card-count-width: 1.6rem;
   --card-image-width: 11rem;
   --card-controls-width: 2rem;
-  --open-card-height: 18.5rem;
+  --open-card-height: 17.5rem;
+  --filter-row-height: 2.7rem;
 }
 
 .card-controls {
@@ -16,7 +17,6 @@
 .card-image-wrapper img {
   border-radius: var(--large-border-radius);
 }
-
 
 .card-wrapper .main {
   background-color: black;
@@ -61,10 +61,12 @@
 .category-cards {
   background-color: black;
   border-radius: var(--large-border-radius);
+}
 
-  /*
-  min-width: calc(var(--card-image-width) + var(--card-controls-width));
-  */
+.category-title {
+  position: sticky;
+  top: var(--filter-row-height);
+  background-color: var(--background-color);
 }
 
 [data-state=open] {
@@ -97,7 +99,9 @@
 
 
 .filter-wrapper {
-  padding: var(--default-padding);
+  height: var(--filter-row-height);
+  padding-block: var(--xxsmall-padding);
+  padding-inline: var(--default-padding);
   background-color: var(--background-color);
   position: sticky;
   top: 0;

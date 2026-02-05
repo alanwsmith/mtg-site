@@ -84,14 +84,6 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
     }
   }
 
-  deckFilter() {
-    if (!this._data.deckFilter) {
-      return 0;
-    } else {
-      return this._data.deckFilter;
-    }
-  }
-
   cardFilter(id) {
     if (this.getCard(id).filter) {
       return this.getCard(id).filter;
@@ -110,6 +102,16 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
       return "not-last";
     }
   }
+
+  deckFilter() {
+    if (!this._data.deckFilter) {
+      return 0;
+    } else {
+      return this._data.deckFilter;
+    }
+  }
+
+  deckSize() {}
 
   getCard(id) {
     return this._data.cards.find((card) => card.card.uid === id);
