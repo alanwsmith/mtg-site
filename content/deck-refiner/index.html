@@ -12,15 +12,14 @@
 <template id="card">
   <div 
     class="card-wrapper" 
-    data-cardfilter="CARD_FILTER"
     data-category="CARD_CATEGORY"
     data-id="CARD_ID"
     data-position="CARD_POSITION"
     data-receive="showCard" 
     data-send="setActiveCard" 
     data-state="CARD_STATE"
-    data-controls="CARD_CONTROLS"
     data-index="CARD_INDEX"
+    data-controls="hidden"
     >
       <div class="card-quantity-wrapper">
         <div class="card-quantity">CARD_QUANTITY</div>
@@ -33,10 +32,9 @@
       <div class="card-right-sidebar">
         <div class="card-stars">.</div>
         <div class="card-controls">
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">2</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">1</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">b</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
+          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">i</button>
+          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">m</button>
+          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">o</button>
         </div>
       </div>
     </div>
@@ -79,11 +77,13 @@
     <div class="filter-wrapper faded-accent-block-border">
       <div>
           Filter:
+          <!--
         <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="-1">x</button>
           |
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="0">base</button>
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="1">1</button>
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="2">2</button>
+-->
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="0">out</button>
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="1">in+maybe</button>
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="2">in</button>
           Deck Size: <span class="deck-size" data-receive="deckSize">-</span>
       </div>
     </div>

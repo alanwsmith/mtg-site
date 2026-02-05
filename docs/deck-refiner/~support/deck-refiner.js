@@ -6,16 +6,15 @@ class Deck {
   constructor(data) {
     debug("Initializing deck.");
     this._data = data;
-    this._data.changes = [];
+    this._data.activeCard = null;
+    if (~this._data.changes) {
+      this._data.changes = [];
+    }
     this.save();
   }
 
   activeCard() {
-    if (this._data.activeCard) {
-      return this._data.activeCard;
-    } else {
-      return null;
-    }
+    return this._data.activeCard;
   }
 
   addCardFilterChange(id, from, to) {
@@ -55,7 +54,7 @@ class Deck {
     if (this.getCard(id).filter !== undefined) {
       return this.getCard(id).filter;
     } else {
-      return 0;
+      return 2;
     }
   }
 
@@ -74,8 +73,8 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
   }
 
   cardIsVisible(id) {
-    if (this.deckFilter() === -1) {
-      if (this.cardFilter(id) === -1) {
+    if (this.deckFilter() === 0) {
+      if (this.cardFilter(id) === 0) {
         return true;
       } else {
         return false;
@@ -171,7 +170,7 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
   }
 
   deckSize() {
-    if (this.deckFilter() === -1) {
+    if (this.deckFilter() === this.outIndex()) {
       return "-";
     } else {
       return this.categories()
@@ -182,6 +181,10 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
 
   getCard(id) {
     return this._data.cards.find((card) => card.card.uid === id);
+  }
+
+  outIndex() {
+    return 0;
   }
 
   save() {
@@ -292,13 +295,9 @@ export class DeckRefiner {
     return this.#deck.cardsInCategory(category).map((id) => {
       return this.api.makeHTML(this.api.template("card"), [
         ["CARD_CATEGORY", this.#deck.cardCategory(id)],
-        ["CARD_CONTROLS", this.#deck.cardControls(id)],
         ["CARD_QUANTITY", this.#deck.cardQuantity(id)],
-        ["CARD_FILTER", this.#deck.cardFilter(id)],
         ["CARD_ID", id],
         ["CARD_IMAGE", this.#deck.cardImage(id)],
-        ["CARD_INDEX", this.#deck.cardIndex(id)],
-        ["CARD_STATE", this.#deck.cardState(id)],
         ["CARD_NAME", this.#deck.cardName(id)],
         ["CARD_POSITION", this.#deck.cardPosition(id)],
       ]);
@@ -323,7 +322,7 @@ export class DeckRefiner {
           );
         }),
     );
-    this.api.trigger("deckSize deckFilter");
+    this.api.trigger("deckSize deckFilter showCard");
   }
 
   deckFilter(_, el) {
@@ -384,8 +383,14 @@ export class DeckRefiner {
   }
 
   showCard(_, el) {
-    el.dataset.state = this.#deck.cardState(el.prop("id"));
-    el.dataset.controls = this.#deck.cardControls(el.prop("id"));
+    if (el) {
+      const id = el.prop("id");
+      const ds = el.dataset;
+      ds.cardfilter = this.#deck.cardFilter(id);
+      ds.controls = this.#deck.cardControls(id);
+      ds.index = this.#deck.cardIndex(id);
+      ds.state = this.#deck.cardState(id);
+    }
 
     // const evCategory = ev.target.closest(".card-wrapper").dataset.category;
     // const elCategory = el.closest(".card-wrapper").dataset.category;
