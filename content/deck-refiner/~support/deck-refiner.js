@@ -40,7 +40,11 @@ class Deck {
   }
 
   cardControls(id) {
-    return "hidden";
+    if (id === this.activeCard()) {
+      return "visible";
+    } else {
+      return "hidden";
+    }
   }
 
   cardQuantity(id) {
@@ -171,7 +175,7 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
       return "-";
     } else {
       return this.categories()
-        .map((category) => this.cardsInCategory(category).length)
+        .map((category) => this.categoryCardQuantity(category))
         .reduce((acc, cur) => acc + cur, 0);
     }
   }
@@ -381,6 +385,7 @@ export class DeckRefiner {
 
   showCard(_, el) {
     el.dataset.state = this.#deck.cardState(el.prop("id"));
+    el.dataset.controls = this.#deck.cardControls(el.prop("id"));
 
     // const evCategory = ev.target.closest(".card-wrapper").dataset.category;
     // const elCategory = el.closest(".card-wrapper").dataset.category;
