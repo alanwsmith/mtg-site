@@ -10,6 +10,10 @@ class Deck {
     this.save();
   }
 
+  activeCard() {
+    return this._data.activeCard;
+  }
+
   addCardFilterChange(id, from, to) {
     this._data.changes.push({
       type: "cardFilterChange",
@@ -23,12 +27,20 @@ class Deck {
     this.save();
   }
 
+  addDeckFilterChange() {
+    // TODO
+  }
+
   cards() {
     return this._data.cards.map((card) => card.card.uid);
   }
 
   cardCategory(id) {
     return this.getCard(id).categories[0];
+  }
+
+  cardControls(id) {
+    return "hidden";
   }
 
   cardQuantity(id) {
@@ -55,10 +67,6 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
         return { cid: cid, index: index };
       })
       .filter((card) => card.cid === id)[0].index;
-  }
-
-  cardInitialState(id) {
-    return "closed";
   }
 
   cardIsVisible(id) {
@@ -103,6 +111,10 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
         return -1;
       }
     });
+  }
+
+  cardState(id) {
+    return "closed";
   }
 
   categories() {
@@ -172,6 +184,11 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
     debug(`Set Deck Filter to ${filter}`);
     this._data.deckFilter = filter;
     this.save();
+  }
+
+  setActiveCard(id) {
+    this._data.activeCard = id;
+    debug(`Active card: ${id}`);
   }
 }
 
@@ -256,12 +273,13 @@ export class DeckRefiner {
     return this.#deck.cardsInCategory(category).map((id) => {
       return this.api.makeHTML(this.api.template("card"), [
         ["CARD_CATEGORY", this.#deck.cardCategory(id)],
+        ["CARD_CONTROLS", this.#deck.cardControls(id)],
         ["CARD_QUANTITY", this.#deck.cardQuantity(id)],
         ["CARD_FILTER", this.#deck.cardFilter(id)],
         ["CARD_ID", id],
         ["CARD_IMAGE", this.#deck.cardImage(id)],
         ["CARD_INDEX", this.#deck.cardIndex(id)],
-        ["CARD_INITIAL_STATE", this.#deck.cardInitialState(id)],
+        ["CARD_STATE", this.#deck.cardState(id)],
         ["CARD_NAME", this.#deck.cardName(id)],
         ["CARD_POSITION", this.#deck.cardPosition(id)],
       ]);
@@ -341,23 +359,32 @@ export class DeckRefiner {
     }
   }
 
-  showCard(ev, el) {
-    const evCategory = ev.target.closest(".card-wrapper").dataset.category;
-    const elCategory = el.closest(".card-wrapper").dataset.category;
-    if (ev.prop("id") === el.prop("id")) {
-      el.dataset.state = "open";
-      el.dataset.controls = "visible";
-    } else if (evCategory !== elCategory) {
-      if (el.prop("position") === "last") {
-        el.dataset.state = "open";
-        el.dataset.controls = "hidden";
-      } else {
-        el.dataset.state = "closed";
-        el.dataset.controls = "hidden";
-      }
-    } else {
-      el.dataset.state = "closed";
-      el.dataset.controls = "hidden";
-    }
+  setActiveCard(ev, _) {
+    this.#deck.setActiveCard(ev.prop("id"));
+    this.api.trigger("showCard");
+  }
+
+  showCard(_, el) {
+    el.dataset.state = this.#deck.cardState(el.prop("id"));
+
+    // const evCategory = ev.target.closest(".card-wrapper").dataset.category;
+    // const elCategory = el.closest(".card-wrapper").dataset.category;
+    // if (ev.prop("id") === el.prop("id")) {
+    //   el.dataset.state = "open";
+    //   el.dataset.controls = "visible";
+    // } else if (evCategory !== elCategory) {
+    //   if (el.prop("position") === "last") {
+    //     el.dataset.state = "open";
+    //     el.dataset.controls = "hidden";
+    //   } else {
+    //     el.dataset.state = "closed";
+    //     el.dataset.controls = "hidden";
+    //   }
+    // } else {
+    //   el.dataset.state = "closed";
+    //   el.dataset.controls = "hidden";
+    // }
+
+    //
   }
 }
