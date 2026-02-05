@@ -196,45 +196,8 @@ body {
       data-location="top"
       data-init="themeSwitcher"></bitty-8-0>
   </div>
-</header><main class="default-flow xxxlarge-wrapper"><!-- note: the change-deck-... templates
-will be removed when the data is being queried 
-directly from the api -->
-
-<template id="change-deck-step-2">
-<p>
-  The next step is to copy data from the Archidekt site.
-</p>
-<p>
-  Use the button below to open a new tab with the data. 
-  Copy it, then come back here. 
-</p>
-<p>
-  <a 
-    class="link-button" 
-    target="_blank" 
-    href="https://archidekt.com/api/decks/ID/" 
-    data-send="changeDeckStep3"
-  >Open Archidekt Data Page</a></p>
-</template>
-
-<template id="change-deck-step-3">
-  <p>Paste the data you copied here:</p>
-  <div>
-    <textarea 
-      class="text-box"
-      data-send="changeDeckStep4"
-    ></textarea>
-  </div>
-</template>
-
-<template id="change-deck-complete">
-  <p>Deck switch complete. </p>
-  <p>You can close the Archidekt data tab now.</p>
-  <p>Refresh the page if you'd like to switch to another one.</p>
-</template>
-
-
-<template id="card">
+</header><main class="default-flow xxxlarge-wrapper"><template id="card">
+    CARD
   <div 
     class="card-wrapper inactive-card" 
     data-send="showCard" 
@@ -243,10 +206,11 @@ directly from the api -->
       <div class="card-image-wrapper">
         <!-- TODO: set the full source dynamically not
 just part of the path. if there's any source there it tries
-to call the image -->
+to call the image 
         <img 
           src="/images/large-cards/ID.jpg"
           alt="The NAME card from Magic: The Gathering." />
+-->
       </div>
       <div class="card-controls">
         <button data-id="ID" data-send="setCardFilter" data-cardfilter="2">2</button>
@@ -256,37 +220,12 @@ to call the image -->
   </div>
 </template>
 
-
-
 <template id="category">
-  <div class="category-wrapper" data-category="CATEGORY_NAME">
-    <div class="category-title">CATEGORY_NAME (CARDS_IN_CATEGORY)</div>
-    <div class="category-cards">CATEGORY_CARDS</div>
-  <!--
-      <div class="category-controls-wrapper">
-        <div class="category-controls">
-          <button 
-            data-send="setCardFilter"
-            data-receive="updateControlButtons"
-            data-filter="2"
-          >2</button>
-          <button 
-            data-send="setCardFilter"
-            data-receive="updateControlButtons"
-            data-filter="1"
-          >1</button>
-          <button 
-            data-send="setCardFilter"
-            data-receive="updateControlButtons"
-            data-filter="-1"
-          >x</button>
-        <div>
-      </div>
-  -->
+  <div class="category-wrapper">
+    <div class="category-title">CATEGORY_NAME (CATEGORY_CARD_COUNT)</div>
+    <div class="category-cards">CARDS_FOR_CATEGORY</div>
   </div>
-
 </template>
-
 
 
   <hgroup>
@@ -334,6 +273,47 @@ to call the image -->
     </div>
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
+
+
+
+
+  <!-- note: the change-deck-... templates
+will be removed when the data is being queried 
+directly from the api -->
+
+<template id="change-deck-step-2">
+<p>
+  The next step is to copy data from the Archidekt site.
+</p>
+<p>
+  Use the button below to open a new tab with the data. 
+  Copy it, then come back here. 
+</p>
+<p>
+  <a 
+    class="link-button" 
+    target="_blank" 
+    href="https://archidekt.com/api/decks/ID/" 
+    data-send="changeDeckStep3"
+  >Open Archidekt Data Page</a></p>
+</template>
+
+<template id="change-deck-step-3">
+  <p>Paste the data you copied here:</p>
+  <div>
+    <textarea 
+      class="text-box"
+      data-send="changeDeckStep4"
+    ></textarea>
+  </div>
+</template>
+
+<template id="change-deck-complete">
+  <p>Deck switch complete. </p>
+  <p>You can close the Archidekt data tab now.</p>
+  <p>Refresh the page if you'd like to switch to another one.</p>
+</template>
+
 
 
 

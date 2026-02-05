@@ -230,19 +230,19 @@ export class DeckRefiner {
     this.api.trigger("initPage");
   }
 
-  cardFilter(_, el) {
-    // el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
-  }
+  // cardFilter(_, el) {
+  //   // el.dataset.cardfilter = this.#deck.cardFilter(el.prop("id"));
+  // }
 
-  // TODO: Deprecate this in favor of using CSS
-  // to check the filters directly
-  cardStatus(_, el) {
-    // if (el.propToInt("cardfilter") === this.#deck.deckFilter()) {
-    //   el.dataset.cardstatus = "visible";
-    // } else {
-    //   el.dataset.cardstatus = "invisible";
-    // }
-  }
+  // // TODO: Deprecate this in favor of using CSS
+  // // to check the filters directly
+  // cardStatus(_, el) {
+  //   // if (el.propToInt("cardfilter") === this.#deck.deckFilter()) {
+  //   //   el.dataset.cardstatus = "visible";
+  //   // } else {
+  //   //   el.dataset.cardstatus = "invisible";
+  //   // }
+  // }
 
   // TODO: Deprecate in favor of calling API
   changeDeckURL(ev, el) {
@@ -307,25 +307,26 @@ export class DeckRefiner {
   //   }
   // }
 
+  cardsForCategory(category) {
+    return this.#deck.cardsInCategory(category).map((id) => {
+      return this.api.makeHTML(this.api.template("card"));
+    });
+  }
+
   deck(_, el) {
     el.replaceChildren(
       ...this.#deck.categories()
         .map((category) => {
-          console.log(category);
-          const subs = this.#deck.categorySubs(category).concat(
-            [
-              [
-                "CATEGORY_CARDS",
-                this.#deck.cardIdsForCategory(category).map((card) => {
-                  // TODO: Add card subs back here.
-                  this.api.makeHTML(this.api.template("card"));
-                }),
-              ],
-            ],
-          );
           return this.api.makeHTML(
             this.api.template("category"),
-            subs,
+            [
+              ["CATEGORY_NAME", category],
+              [
+                "CATEGORY_CARD_COUNT",
+                this.#deck.cardsInCategory(category).length,
+              ],
+              ["CARDS_FOR_CATEGORY", this.cardsForCategory(category)],
+            ],
           );
         }),
     );
@@ -346,7 +347,7 @@ export class DeckRefiner {
 
   initPage() {
     this.api.trigger(
-      `await:loadDeck deck cardFilter cardStatus deckFilter`,
+      `await:loadDeck deck cardFilter deckFilter`,
     );
   }
 
