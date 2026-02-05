@@ -17,6 +17,10 @@ class Deck {
     return this.getCard(id).categories[0];
   }
 
+  cardQuantity(id) {
+    return this.getCard(id).quantity;
+  }
+
   cardFilter(id) {
     if (this.getCard(id).filter !== undefined) {
       return this.getCard(id).filter;
@@ -46,6 +50,15 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
       .filter((category) => {
         return this.cardsInCategory(category).length > 0;
       });
+  }
+
+  categoryCardQuantity(category) {
+    return this.cards()
+      .filter((id) => this.deckFilter() >= 0)
+      .filter((id) => this.cardCategory(id) === category)
+      .filter((id) => this.cardFilter(id) >= this.deckFilter())
+      .map((id) => this.cardQuantity(id))
+      .reduce((acc, cur) => acc + cur, 0);
   }
 
   cardsInCategory(category) {
@@ -210,6 +223,7 @@ export class DeckRefiner {
     return this.#deck.cardsInCategory(category).map((id) => {
       return this.api.makeHTML(this.api.template("card"), [
         ["CARD_CATEGORY", this.#deck.cardCategory(id)],
+        ["CARD_QUANTITY", this.#deck.cardQuantity(id)],
         ["CARD_FILTER", this.#deck.cardFilter(id)],
         ["CARD_ID", id],
         ["CARD_IMAGE", this.#deck.cardImage(id)],
@@ -217,6 +231,7 @@ export class DeckRefiner {
           "CARD_INITIAL_STATE",
           this.#deck.cardPosition(id) === "last" ? "open" : "closed",
         ],
+        ["CARD_NAME", this.#deck.cardName(id)],
         ["CARD_POSITION", this.#deck.cardPosition(id)],
       ]);
     });
@@ -231,8 +246,8 @@ export class DeckRefiner {
             [
               ["CATEGORY_NAME", category],
               [
-                "CATEGORY_CARD_COUNT",
-                this.#deck.cardsInCategory(category).length,
+                "CATEGORY_CARD_QUANTITY",
+                this.#deck.categoryCardQuantity(category),
               ],
               ["CARDS_FOR_CATEGORY", this.cardsForCategory(category)],
             ],

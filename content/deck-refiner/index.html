@@ -21,19 +21,23 @@
     data-state="CARD_INITIAL_STATE"
     data-controls="hidden"
     >
+      <div class="card-quantity">CARD_QUANTITY</div>
       <div class="card-image-wrapper">CARD_IMAGE</div>
-      <div class="card-controls">
-        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">2</button>
-        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">1</button>
-        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">b</button>
-        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
+      <div class="card-right-sidebar">
+        <div class="card-stars">.</div>
+        <div class="card-controls">
+          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">2</button>
+          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">1</button>
+          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">0</button>
+          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
+        </div>
       </div>
   </div>
 </template>
 
 <template id="category">
   <div class="category-wrapper">
-    <div class="category-title">CATEGORY_NAME (CATEGORY_CARD_COUNT)</div>
+    <div class="category-title">CATEGORY_NAME (CATEGORY_CARD_QUANTITY)</div>
     <div class="category-cards">CARDS_FOR_CATEGORY</div>
   </div>
 </template>
@@ -70,7 +74,7 @@
       <div>
         <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="-1">x</button>
           |
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="0">base</button>
+        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="0">0</button>
         <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="1">1</button>
         <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="2">2</button>
       </div>

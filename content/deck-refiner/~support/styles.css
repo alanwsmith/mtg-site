@@ -1,4 +1,5 @@
 :root {
+  --card-count-width: 1.3rem;
   --card-image-width: 11rem;
   --card-controls-width: 1.9rem;
   --open-card-height: 15.5rem;
@@ -6,9 +7,6 @@
 
 .card-controls {
   background-color: black;
-  border-start-end-radius: var(--large-border-radius);
-  border-end-end-radius: var(--large-border-radius);
-  padding-top: var(--large-padding);
 }
 
 .card-image-wrapper {
@@ -20,9 +18,12 @@
 }
 
 .card-wrapper {
+  background-color: black;
+  color: var(--faded-white-color);
   display: grid;
-  grid-template-columns: var(--card-image-width) var(--card-controls-width);
+  grid-template-columns: var(--card-count-width) var(--card-image-width) var(--card-controls-width);
   overflow-y: hidden;
+  border-radius: var(--large-border-radius);
 }
 
 .card-wrapper[data-controls=hidden] {
@@ -56,6 +57,9 @@
 }
 
 .category-cards {
+  background-color: black;
+  border-radius: var(--large-border-radius);
+
   /*
   min-width: calc(var(--card-image-width) + var(--card-controls-width));
   */
