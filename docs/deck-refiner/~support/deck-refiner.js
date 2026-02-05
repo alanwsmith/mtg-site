@@ -6,6 +6,20 @@ class Deck {
   constructor(data) {
     debug("Initializing deck.");
     this._data = data;
+    this._data.changes = [];
+    this.save();
+  }
+
+  addCardFilterChange(id, from, to) {
+    this._data.changes.push({
+      type: "cardFilterChange",
+      from: from,
+      id: id,
+      index: this.cardIndex(id),
+      to: to,
+    });
+    this.getCard(id).filter = to;
+    debug(this._data.changes[this._data.changes.length - 1]);
     this.save();
   }
 
@@ -43,8 +57,52 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
       .filter((card) => card.cid === id)[0].index;
   }
 
+  cardInitialState(id) {
+    return "closed";
+  }
+
+  cardIsVisible(id) {
+    if (this.deckFilter() === -1) {
+      if (this.cardFilter(id) === -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    if (this.cardFilter(id) >= this.deckFilter()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   cardName(id) {
     return this.getCard(id).card.oracleCard.name;
+  }
+
+  cardPosition(id) {
+    if (
+      this.cardsInCategory(this.cardCategory(id)).indexOf(id) ===
+        this.cardsInCategory(this.cardCategory(id)).length - 1
+    ) {
+      return "last";
+    } else {
+      return "not-last";
+    }
+  }
+
+  cardsInCategory(category) {
+    return this.cards().filter((id) => {
+      if (this.cardCategory(id) === category) {
+        return this.cardIsVisible(id);
+      }
+    }).sort((a, b) => {
+      if (this.cardName(a) > this.cardName(b)) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
   }
 
   categories() {
@@ -70,54 +128,6 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
         .filter((id) => this.cardFilter(id) >= this.deckFilter())
         .map((id) => this.cardQuantity(id))
         .reduce((acc, cur) => acc + cur, 0);
-    }
-  }
-
-  cardsInCategory(category) {
-    return this.cards().filter((id) => {
-      if (this.cardCategory(id) === category) {
-        return this.cardIsVisible(id);
-      }
-    }).sort((a, b) => {
-      if (this.cardName(a) > this.cardName(b)) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
-  }
-
-  cardIsVisible(id) {
-    if (this.deckFilter() === -1) {
-      if (this.cardFilter(id) === -1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if (this.cardFilter(id) >= this.deckFilter()) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  cardFilter(id) {
-    if (this.getCard(id).filter) {
-      return this.getCard(id).filter;
-    } else {
-      return 0;
-    }
-  }
-
-  cardPosition(id) {
-    if (
-      this.cardsInCategory(this.cardCategory(id)).indexOf(id) ===
-        this.cardsInCategory(this.cardCategory(id)).length - 1
-    ) {
-      return "last";
-    } else {
-      return "not-last";
     }
   }
 
@@ -151,16 +161,11 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
   setCardFilter(id, filter) {
     this._data.cards.forEach((card) => {
       if (id === card.card.uid) {
-        if (card.filter === filter) {
-          debug(`Set card filter to 0 for ${id}`);
-          card.filter = 0;
-        } else {
-          debug(`Set card filter to ${filter} for ${id}`);
-          card.filter = filter;
+        if (card.filter !== filter) {
+          this.addCardFilterChange(id, card.filter, filter);
         }
       }
     });
-    this.save();
   }
 
   setDeckFilter(filter) {
@@ -256,10 +261,7 @@ export class DeckRefiner {
         ["CARD_ID", id],
         ["CARD_IMAGE", this.#deck.cardImage(id)],
         ["CARD_INDEX", this.#deck.cardIndex(id)],
-        [
-          "CARD_INITIAL_STATE",
-          this.#deck.cardPosition(id) === "last" ? "open" : "closed",
-        ],
+        ["CARD_INITIAL_STATE", this.#deck.cardInitialState(id)],
         ["CARD_NAME", this.#deck.cardName(id)],
         ["CARD_POSITION", this.#deck.cardPosition(id)],
       ]);
@@ -267,6 +269,7 @@ export class DeckRefiner {
   }
 
   deck(_, el) {
+    debug("Rendering deck");
     el.replaceChildren(
       ...this.#deck.categories()
         .map((category) => {
