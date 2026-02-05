@@ -1,11 +1,30 @@
 :root {
   --card-image-width: 11rem;
   --card-controls-width: 1.8rem;
-  --active-card-height: 15.5rem;
+  --open-card-height: 15.5rem;
 }
 
 [data-state=open] {
-  height: var(--active-card-height);
+  height: var(--open-card-height);
+}
+
+[data-state=closed] {
+  height: 1.9rem;
+}
+
+[data-controls=hidden] .card-controls {
+  display: none;
+}
+
+
+/*
+.inactive-card .card-image-wrapper {
+  border-left: 1px solid rgb(0 0 0 / 0);
+  border-block: 1px solid rgb(0 0 0 / 0);
+}
+
+.inactive-card .card-controls   {
+  display: none;
 }
 
 .active-card .card-image-wrapper {
@@ -33,12 +52,14 @@
 .card-image-wrapper img {
   border-radius: var(--xlarge-border-radius);
 }
+*/
 
 /*
 .card-wrapper[data-cardstatus="invisible"] {
   display: none;
 }
 */
+
 
 .card-wrapper {
   display: grid;
@@ -61,7 +82,6 @@
 .card-wrapper[data-cardfilter="2"] button[data-cardfilter="2"] {
   background: var(--accent-color);
 }
-
 
 .categories {
   display: flex;
@@ -108,18 +128,6 @@
 */
 
 
-[data-state=closed] {
-  height: 1.9rem;
-}
-
-.inactive-card .card-image-wrapper {
-  border-left: 1px solid rgb(0 0 0 / 0);
-  border-block: 1px solid rgb(0 0 0 / 0);
-}
-
-.inactive-card .card-controls   {
-  display: none;
-}
 
 
 

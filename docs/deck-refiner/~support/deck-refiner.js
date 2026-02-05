@@ -87,6 +87,17 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
     }
   }
 
+  cardPosition(id) {
+    if (
+      this.cardsInCategory(this.cardCategory(id)).indexOf(id) ===
+        this.cardsInCategory(this.cardCategory(id)).length - 1
+    ) {
+      return "last";
+    } else {
+      return "not-last";
+    }
+  }
+
   getCard(id) {
     return this._data.cards.find((card) => card.card.uid === id);
   }
@@ -198,9 +209,15 @@ export class DeckRefiner {
   cardsForCategory(category) {
     return this.#deck.cardsInCategory(category).map((id) => {
       return this.api.makeHTML(this.api.template("card"), [
-        ["ID", id],
+        ["CARD_CATEGORY", this.#deck.cardCategory(id)],
         ["CARD_FILTER", this.#deck.cardFilter(id)],
+        ["CARD_ID", id],
         ["CARD_IMAGE", this.#deck.cardImage(id)],
+        [
+          "CARD_INITIAL_STATE",
+          this.#deck.cardPosition(id) === "last" ? "open" : "closed",
+        ],
+        ["CARD_POSITION", this.#deck.cardPosition(id)],
       ]);
     });
   }
@@ -274,10 +291,22 @@ export class DeckRefiner {
   }
 
   showCard(ev, el) {
+    const evCategory = ev.target.closest(".card-wrapper").dataset.category;
+    const elCategory = el.closest(".card-wrapper").dataset.category;
     if (ev.prop("id") === el.prop("id")) {
       el.dataset.state = "open";
+      el.dataset.controls = "visible";
+    } else if (evCategory !== elCategory) {
+      if (el.prop("position") === "last") {
+        el.dataset.state = "open";
+        el.dataset.controls = "hidden";
+      } else {
+        el.dataset.state = "closed";
+        el.dataset.controls = "hidden";
+      }
     } else {
       el.dataset.state = "closed";
+      el.dataset.controls = "hidden";
     }
   }
 }

@@ -11,23 +11,17 @@
 [!- block main -!]
 <template id="card">
   <div 
-    class="card-wrapper inactive-card" 
-    data-send="showCard" 
-    data-receive="showCard cardFilter cardStatus" 
-    data-id="ID"
+    class="card-wrapper" 
     data-cardfilter="CARD_FILTER"
-    data-state="closed"
+    data-category="CARD_CATEGORY"
+    data-id="CARD_ID"
+    data-position="CARD_POSITION"
+    data-receive="showCard" 
+    data-send="showCard" 
+    data-state="CARD_INITIAL_STATE"
+    data-controls="hidden"
     >
-      <div class="card-image-wrapper">
-        CARD_IMAGE
-        <!-- TODO: set the full source dynamically not
-just part of the path. if there's any source there it tries
-to call the image 
-        <img 
-          src="/images/large-cards/ID.jpg"
-          alt="The NAME card from Magic: The Gathering." />
--->
-      </div>
+      <div class="card-image-wrapper">CARD_IMAGE</div>
       <div class="card-controls">
         <button data-id="ID" data-send="setCardFilter" data-cardfilter="2">2</button>
         <button data-id="ID" data-send="setCardFilter" data-cardfilter="1">1</button>
@@ -142,8 +136,6 @@ directly from the api -->
   <p>You can close the Archidekt data tab now.</p>
   <p>Refresh the page if you'd like to switch to another one.</p>
 </template>
-
-
 
 
 </bitty-8-0>
