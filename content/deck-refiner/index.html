@@ -15,7 +15,9 @@
     class="card-wrapper inactive-card" 
     data-send="showCard" 
     data-receive="showCard cardFilter cardStatus" 
-    data-id="ID">
+    data-id="ID"
+    data-cardfilter="CARD_FILTER"
+    >
       <div class="card-image-wrapper">
         <!-- TODO: set the full source dynamically not
 just part of the path. if there's any source there it tries
@@ -28,6 +30,7 @@ to call the image
       <div class="card-controls">
         <button data-id="ID" data-send="setCardFilter" data-cardfilter="2">2</button>
         <button data-id="ID" data-send="setCardFilter" data-cardfilter="1">1</button>
+        <button data-id="ID" data-send="setCardFilter" data-cardfilter="0">b</button>
         <button data-id="ID" data-send="setCardFilter" data-cardfilter="-1">x</button>
       </div>
   </div>

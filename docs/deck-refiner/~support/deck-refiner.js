@@ -2,44 +2,10 @@ function debug(msg) {
   console.log(msg);
 }
 
-// class Card {
-//   constructor(data) {
-//     this._data = data;
-//   }
-//   category() {
-//     return this._data.categories[0];
-//   }
-//   charNum(num) {
-//     return this.id().substring(num - 1, num);
-//   }
-//   hash() {
-//     return this._data.card.scryfallImageHash;
-//   }
-//   id() {
-//     return this._data.card.uid;
-//   }
-//   name() {
-//     return this._data.card.oracleCard.name;
-//   }
-//   scryfallImageHash() {
-//     return this._data.card.scryfallImageHash;
-//   }
-//   subs() {
-//     return [
-//       ["CHAR1", this.charNum(1)],
-//       ["CHAR2", this.charNum(2)],
-//       ["HASH", this.hash()],
-//       ["ID", this.id()],
-//       ["NAME", this.name()],
-//     ];
-//   }
-// }
-
 class Deck {
   constructor(data) {
     debug("Initializing deck.");
     this._data = data;
-    //this._cards = this.initCards();
     this.save();
   }
 
@@ -47,13 +13,13 @@ class Deck {
     return this._data.cards.map((card) => card.card.uid);
   }
 
-  // TODO: Deprecate this in favor of
-  // cardsV2
-  cards() {
-    return this._cards.sort((a, b) => {
-      return a.name() > b.name() ? 1 : -1;
-    });
-  }
+  // // TODO: Deprecate this in favor of
+  // // cardsV2
+  // cards() {
+  //   return this._cards.sort((a, b) => {
+  //     return a.name() > b.name() ? 1 : -1;
+  //   });
+  // }
 
   cardCategory(id) {
     return this.getCard(id).categories[0];
@@ -177,11 +143,6 @@ class Deck {
     return this._data.cards.find((card) => card.card.uid === id);
   }
 
-  // initCards() {
-  //   return this._data.cards
-  //     .map((card) => new Card(card));
-  // }
-
   save() {
     localStorage.setItem("refinerDeck", JSON.stringify(this._data));
     debug("Saved deck to storage.");
@@ -304,6 +265,7 @@ export class DeckRefiner {
     return this.#deck.cardsInCategory(category).map((id) => {
       return this.api.makeHTML(this.api.template("card"), [
         ["ID", id],
+        ["CARD_FILTER", this.#deck.cardFilter(id)],
       ]);
     });
   }
@@ -358,14 +320,13 @@ export class DeckRefiner {
   setCardFilter(ev, _) {
     if (ev.type === "click") {
       this.#deck.setCardFilter(ev.prop("id"), ev.propToInt("cardfilter"));
-      this.api.trigger("cardFilter");
+      this.api.trigger("deck");
     }
   }
 
   setDeckFilter(ev, el) {
     if (ev.type === "click") {
       this.#deck.setDeckFilter(ev.propToInt("deckfilter"));
-      // this.api.trigger("deckFilter cardStatus");
       this.api.trigger("deck");
     }
   }
