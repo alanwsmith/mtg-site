@@ -1,8 +1,8 @@
 :root {
   --card-count-width: 1.6rem;
-  --card-image-width: 11rem;
+  --card-image-width: 10.4rem;
   --card-controls-width: 2rem;
-  --open-card-height: 17.5rem;
+  --open-card-height: 14.6rem;
   --filter-row-height: 2.7rem;
 }
 
@@ -18,7 +18,12 @@
   border-radius: var(--large-border-radius);
 }
 
-.card-wrapper .main {
+.card-quantity-wrapper {
+  padding-block: var(--xsmall-padding);
+  padding-inline: var(--small-padding);
+}
+
+.card-wrapper {
   background-color: black;
   color: var(--faded-white-color);
   display: grid;
@@ -64,6 +69,7 @@
 }
 
 .category-title {
+  padding-block: var(--xxsmall-padding);
   position: sticky;
   top: var(--filter-row-height);
   background-color: var(--background-color);
@@ -105,4 +111,5 @@
   background-color: var(--background-color);
   position: sticky;
   top: 0;
+  z-index: 1;
 }

@@ -111,7 +111,11 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
     }
   }
 
-  deckSize() {}
+  deckSize() {
+    return this.categories()
+      .map((category) => this.cardsInCategory(category).length)
+      .reduce((acc, cur) => acc + cur, 0);
+  }
 
   getCard(id) {
     return this._data.cards.find((card) => card.card.uid === id);
@@ -256,11 +260,15 @@ export class DeckRefiner {
           );
         }),
     );
-    this.api.trigger("deckFilter");
+    this.api.trigger("deckSize deckFilter");
   }
 
   deckFilter(_, el) {
     el.dataset.deckfilter = this.#deck.deckFilter();
+  }
+
+  deckSize(_, el) {
+    el.innerHTML = this.#deck.deckSize();
   }
 
   async loadDeck() {
