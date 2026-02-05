@@ -4,7 +4,7 @@
   --active-card-height: 15.5rem;
 }
 
-.active-card {
+[data-state=open] {
   height: var(--active-card-height);
 }
 
@@ -108,7 +108,7 @@
 */
 
 
-.inactive-card {
+[data-state=closed] {
   height: 1.9rem;
 }
 

@@ -25,6 +25,12 @@ class Deck {
     }
   }
 
+  cardImage(id) {
+    return `<img 
+src="/images/large-cards/${id}.jpg"
+alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
+  }
+
   cardName(id) {
     return this.getCard(id).card.oracleCard.name;
   }
@@ -194,6 +200,7 @@ export class DeckRefiner {
       return this.api.makeHTML(this.api.template("card"), [
         ["ID", id],
         ["CARD_FILTER", this.#deck.cardFilter(id)],
+        ["CARD_IMAGE", this.#deck.cardImage(id)],
       ]);
     });
   }
@@ -267,13 +274,10 @@ export class DeckRefiner {
   }
 
   showCard(ev, el) {
-    // TODO: use data-cardstate for a single switch.
     if (ev.prop("id") === el.prop("id")) {
-      el.classList.add("active-card");
-      el.classList.remove("inactive-card");
+      el.dataset.state = "open";
     } else {
-      el.classList.add("inactive-card");
-      el.classList.remove("active-card");
+      el.dataset.state = "closed";
     }
   }
 }
