@@ -2,51 +2,44 @@ function debug(msg) {
   console.log(msg);
 }
 
-class Card {
-  constructor(data) {
-    this._data = data;
-  }
-
-  category() {
-    return this._data.categories[0];
-  }
-
-  charNum(num) {
-    return this.id().substring(num - 1, num);
-  }
-
-  hash() {
-    return this._data.card.scryfallImageHash;
-  }
-
-  id() {
-    return this._data.card.uid;
-  }
-
-  name() {
-    return this._data.card.oracleCard.name;
-  }
-
-  scryfallImageHash() {
-    return this._data.card.scryfallImageHash;
-  }
-
-  subs() {
-    return [
-      ["CHAR1", this.charNum(1)],
-      ["CHAR2", this.charNum(2)],
-      ["HASH", this.hash()],
-      ["ID", this.id()],
-      ["NAME", this.name()],
-    ];
-  }
-}
+// class Card {
+//   constructor(data) {
+//     this._data = data;
+//   }
+//   category() {
+//     return this._data.categories[0];
+//   }
+//   charNum(num) {
+//     return this.id().substring(num - 1, num);
+//   }
+//   hash() {
+//     return this._data.card.scryfallImageHash;
+//   }
+//   id() {
+//     return this._data.card.uid;
+//   }
+//   name() {
+//     return this._data.card.oracleCard.name;
+//   }
+//   scryfallImageHash() {
+//     return this._data.card.scryfallImageHash;
+//   }
+//   subs() {
+//     return [
+//       ["CHAR1", this.charNum(1)],
+//       ["CHAR2", this.charNum(2)],
+//       ["HASH", this.hash()],
+//       ["ID", this.id()],
+//       ["NAME", this.name()],
+//     ];
+//   }
+// }
 
 class Deck {
   constructor(data) {
     debug("Initializing deck.");
     this._data = data;
-    this._cards = this.initCards();
+    //this._cards = this.initCards();
     this.save();
   }
 
@@ -184,10 +177,10 @@ class Deck {
     return this._data.cards.find((card) => card.card.uid === id);
   }
 
-  initCards() {
-    return this._data.cards
-      .map((card) => new Card(card));
-  }
+  // initCards() {
+  //   return this._data.cards
+  //     .map((card) => new Card(card));
+  // }
 
   save() {
     localStorage.setItem("refinerDeck", JSON.stringify(this._data));
@@ -221,9 +214,9 @@ function sleep(sec) {
 }
 
 export class DeckRefiner {
-  #activeCardId;
   #deck;
-  #templates = {};
+  // TODO: Deprecate tmpHoldingURL when
+  // you're calling the API directly.
   #tmpHoldingURL;
 
   bittyReady() {
@@ -309,7 +302,9 @@ export class DeckRefiner {
 
   cardsForCategory(category) {
     return this.#deck.cardsInCategory(category).map((id) => {
-      return this.api.makeHTML(this.api.template("card"));
+      return this.api.makeHTML(this.api.template("card"), [
+        ["ID", id],
+      ]);
     });
   }
 
@@ -336,14 +331,6 @@ export class DeckRefiner {
   deckFilter(_, el) {
     el.dataset.deckfilter = this.#deck.deckFilter();
   }
-
-  // deckFilterButtonStatus(_, el) {
-  //   if (el.propToInt("deckfilter") === this.#deck.deckFilter()) {
-  //     el.dataset.buttonstatus = "active";
-  //   } else {
-  //     el.dataset.buttonstatus = "inactive";
-  //   }
-  // }
 
   initPage() {
     this.api.trigger(
