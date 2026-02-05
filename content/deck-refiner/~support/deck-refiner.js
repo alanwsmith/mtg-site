@@ -11,7 +11,11 @@ class Deck {
   }
 
   activeCard() {
-    return this._data.activeCard;
+    if (this._data.activeCard) {
+      return this._data.activeCard;
+    } else {
+      return null;
+    }
   }
 
   addCardFilterChange(id, from, to) {
@@ -25,10 +29,6 @@ class Deck {
     this.getCard(id).filter = to;
     debug(this._data.changes[this._data.changes.length - 1]);
     this.save();
-  }
-
-  addDeckFilterChange() {
-    // TODO
   }
 
   cards() {
@@ -114,7 +114,22 @@ alt="The ${this.cardName(id)} card from Magic: The Gathering" />`;
   }
 
   cardState(id) {
-    return "closed";
+    if (this.activeCard() === id) {
+      return "opened";
+    } else if (
+      this.activeCard() === null &&
+      this.cardPosition(id) === "last"
+    ) {
+      return "opened";
+    } else if (
+      this.activeCard() !== null &&
+      this.cardCategory(id) !== this.cardCategory(this.activeCard()) &&
+      this.cardPosition(id) === "last"
+    ) {
+      return "opened";
+    } else {
+      return "closed";
+    }
   }
 
   categories() {
