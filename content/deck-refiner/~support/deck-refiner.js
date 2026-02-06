@@ -13,71 +13,12 @@ export class DeckRefiner {
   // you're calling the API directly.
   #tmpHoldingURL;
 
-  async bittyInit() {
-    // init().then(() => {
-    //   console.log("here1");
-    // });
-  }
-
   async bittyReady() {
     this.api.trigger("await:loadDeck");
   }
 
-  // TODO: Deprecate in favor of calling API
-  changeDeckURL(ev, el) {
-    if (ev.type === "input") {
-      if (ev.value !== "") {
-        debug(`Switched hoding URL to: ${ev.value}`);
-        this.#tmpHoldingURL = ev.value;
-        this.api.trigger("changeDeckStep2");
-      }
-    }
-  }
-
-  // TODO: Deprecate in favor of calling API
-  async changeDeckStep2(_, el) {
-    await sleep(0.4);
-    const parts = this.#tmpHoldingURL.split("/");
-    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
-      const subs = [
-        ["ID", parts[4]],
-      ];
-      el.replaceChildren(
-        this.api.makeHTML(this.api.template("change-deck-step-2"), subs),
-      );
-    }
-  }
-
-  // TODO: Deprecate in favor of calling API
-  async changeDeckStep3(ev, el) {
-    if (ev.type === "click") {
-      await sleep(0.4);
-      el.replaceChildren(
-        this.api.makeHTML(this.api.template("change-deck-step-3")),
-      );
-    }
-  }
-
-  // TODO: Deprecate in favor of calling API
-  async changeDeckStep4(ev, el) {
-    if (ev.type === "input" && ev.value !== "") {
-      await sleep(0.4);
-      try {
-        debug("Loading new deck.");
-        this.#deck = new Deck(JSON.parse(ev.value));
-        this.api.trigger("changeDeckComplete deck");
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
-
-  // TODO: Deprecate in favor of calling API
-  async changeDeckComplete(_, el) {
-    await sleep(0.4);
-    el.replaceChildren(
-      this.api.makeHTML(this.api.template("change-deck-complete")),
-    );
+  activeFilter(_, el) {
+    el.dataset.activefilter = Deck.active_filter();
   }
 
   // closeHighlight(ev, __) {
@@ -85,19 +26,6 @@ export class DeckRefiner {
   //     this.setPositions(null, null);
   //   }
   // }
-
-  cardsForCategory(category) {
-    return this.#deck.cardsInCategory(category).map((id) => {
-      return this.api.makeHTML(this.api.template("card"), [
-        ["CARD_CATEGORY", this.#deck.cardCategory(id)],
-        ["CARD_QUANTITY", this.#deck.cardQuantity(id)],
-        ["CARD_ID", id],
-        ["CARD_NAME", this.#deck.cardName(id)],
-        ["CARD_POSITION", this.#deck.cardPosition(id)],
-        ["CARD_IMAGE", this.#deck.cardImage(id)],
-      ]);
-    });
-  }
 
   deck(_, el) {
     debug("Rendering deck");
@@ -122,10 +50,6 @@ export class DeckRefiner {
     */
   }
 
-  deckFilter(_, el) {
-    el.dataset.deckfilter = this.#deck.deckFilter();
-  }
-
   deckSize(_, el) {
     el.innerHTML = this.#deck.deckSize();
   }
@@ -141,7 +65,6 @@ export class DeckRefiner {
       console.log(Deck.categories());
       Deck.set_active_filter(0);
       console.log(Deck.categories());
-
       // console.log(Deck.categories());
       // console.log(JSON.parse(storage));
       //Deck.load_json(`{}`);
@@ -240,5 +163,42 @@ export class DeckRefiner {
     // }
 
     //
+  }
+
+  // TODO: Deprecate in favor of calling API
+  async changeDeckStep2(_, el) {
+    await sleep(0.4);
+    const parts = this.#tmpHoldingURL.split("/");
+    if (parts[2] === "archidekt.com" && parts[3] === "decks") {
+      const subs = [
+        ["ID", parts[4]],
+      ];
+      el.replaceChildren(
+        this.api.makeHTML(this.api.template("change-deck-step-2"), subs),
+      );
+    }
+  }
+
+  // TODO: Deprecate in favor of calling API
+  async changeDeckStep3(ev, el) {
+    if (ev.type === "click") {
+      await sleep(0.4);
+      el.replaceChildren(
+        this.api.makeHTML(this.api.template("change-deck-step-3")),
+      );
+    }
+  }
+
+  cardsForCategory(category) {
+    return this.#deck.cardsInCategory(category).map((id) => {
+      return this.api.makeHTML(this.api.template("card"), [
+        ["CARD_CATEGORY", this.#deck.cardCategory(id)],
+        ["CARD_QUANTITY", this.#deck.cardQuantity(id)],
+        ["CARD_ID", id],
+        ["CARD_NAME", this.#deck.cardName(id)],
+        ["CARD_POSITION", this.#deck.cardPosition(id)],
+        ["CARD_IMAGE", this.#deck.cardImage(id)],
+      ]);
+    });
   }
 }

@@ -93,27 +93,9 @@ impl Knowledge {
     }
   }
 
-  // pub fn change_item(&mut self) {
-  //   self.data.as_mut().unwrap().current_index += 1;
-  //   if self.data.as_ref().unwrap().current_index
-  //     >= self.data.as_ref().unwrap().items.len()
-  //   {
-  //     self.data.as_mut().unwrap().current_index = 0
-  //   }
-  // }
-
-  // pub fn current_index(&self) -> usize {
-  //   self.data.as_ref().unwrap().current_index
-  // }
-
-  // pub fn current_item(&self) -> String {
-  //   self.data.as_ref().unwrap().items[self.current_index()].clone()
-  // }
-
-  // pub fn dump_json(&self) -> String {
-  //   serde_json::to_string_pretty(self.data.as_ref().unwrap())
-  //     .unwrap()
-  // }
+  pub fn active_filter(&self) -> usize {
+    self.active_filter
+  }
 
   pub fn categories(&self) -> Vec<String> {
     self
@@ -122,7 +104,6 @@ impl Knowledge {
       .unwrap()
       .cards
       .iter()
-      .filter(|card| card.filter == self.active_filter)
       .map(|card| card.categories[0].clone())
       .unique()
       .sorted()
@@ -150,6 +131,15 @@ pub struct Deck;
 #[wasm_bindgen]
 impl Deck {
   //
+
+  pub fn active_filter() -> Result<usize, JsValue> {
+    Ok(
+      GLOBAL_KNOWLEDGE
+        .lock()
+        .map_err(|_| JsValue::from_str("could not get data lock"))?
+        .active_filter(),
+    )
+  }
 
   pub fn categories() -> Result<Vec<String>, JsValue> {
     Ok(
@@ -215,3 +205,25 @@ impl Deck {
 
   //
 }
+
+// pub fn change_item(&mut self) {
+//   self.data.as_mut().unwrap().current_index += 1;
+//   if self.data.as_ref().unwrap().current_index
+//     >= self.data.as_ref().unwrap().items.len()
+//   {
+//     self.data.as_mut().unwrap().current_index = 0
+//   }
+// }
+
+// pub fn current_index(&self) -> usize {
+//   self.data.as_ref().unwrap().current_index
+// }
+
+// pub fn current_item(&self) -> String {
+//   self.data.as_ref().unwrap().items[self.current_index()].clone()
+// }
+
+// pub fn dump_json(&self) -> String {
+//   serde_json::to_string_pretty(self.data.as_ref().unwrap())
+//     .unwrap()
+// }
