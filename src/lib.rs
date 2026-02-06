@@ -9,6 +9,7 @@ static GLOBAL_KNOWLEDGE: Lazy<Mutex<Knowledge>> =
 
 #[derive(Clone, Debug)]
 pub struct Knowledge {
+  active_card: Option<String>,
   data: Option<Data>,
 }
 
@@ -24,7 +25,13 @@ pub struct Card {
   card: CardCard,
   categories: Vec<String>,
   id: usize,
+  #[serde(default = "filter_default")]
+  filter: usize,
   quantity: usize,
+}
+
+fn filter_default() -> usize {
+  2
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -75,7 +82,10 @@ impl Default for Knowledge {
 
 impl Knowledge {
   pub fn new() -> Self {
-    Knowledge { data: None }
+    Knowledge {
+      data: None,
+      active_card: None,
+    }
   }
 
   // pub fn change_item(&mut self) {
@@ -115,6 +125,20 @@ pub struct Deck;
 impl Deck {
   //
 
+  pub fn categories() -> Result<Vec<String>, JsValue> {
+    Ok(vec![])
+  }
+
+  pub fn load_json(content: String) -> Result<(), JsValue> {
+    console::log_1(&"Loading JSON".into());
+    // console::log_1(&content.clone().into());
+    GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?
+      .load_json(content);
+    Ok(())
+  }
+
   // pub fn change_item() -> Result<(), JsValue> {
   //   GLOBAL_KNOWLEDGE
   //     .lock()
@@ -149,16 +173,6 @@ impl Deck {
   //       .dump_json(),
   //   )
   // }
-
-  pub fn load_json(content: String) -> Result<(), JsValue> {
-    console::log_1(&"Loading JSON".into());
-    // console::log_1(&content.clone().into());
-    GLOBAL_KNOWLEDGE
-      .lock()
-      .map_err(|_| JsValue::from_str("could not get data lock"))?
-      .load_json(content);
-    Ok(())
-  }
 
   //
 }

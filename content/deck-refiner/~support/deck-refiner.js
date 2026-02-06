@@ -137,10 +137,13 @@ export class DeckRefiner {
     if (storage !== null) {
       debug("Found a deck in storage.");
       await init();
+      Deck.load_json(storage);
+      console.log(Deck.categories());
+
+      // console.log(Deck.categories());
       // console.log(JSON.parse(storage));
       //Deck.load_json(`{}`);
       //Deck.load_json(JSON.parse(storage));
-      Deck.load_json(storage);
       //  this.#deck = new Deck(JSON.parse(storage));
     } else {
       const resp = await this.api.getJSON(
