@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, sync::Mutex};
@@ -115,7 +116,17 @@ impl Knowledge {
   // }
 
   pub fn categories(&self) -> Vec<String> {
-    vec!["asdf".to_string()]
+    self
+      .data
+      .as_ref()
+      .unwrap()
+      .cards
+      .iter()
+      .filter(|card| card.filter == self.active_filter)
+      .map(|card| card.categories[0].clone())
+      .unique()
+      .sorted()
+      .collect::<Vec<String>>()
   }
 
   pub fn load_json(
