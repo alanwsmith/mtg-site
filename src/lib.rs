@@ -9,6 +9,7 @@ static GLOBAL_KNOWLEDGE: Lazy<Mutex<Knowledge>> =
 
 #[derive(Clone, Debug)]
 pub struct Knowledge {
+  active_filter: usize,
   active_card: Option<String>,
   data: Option<Data>,
 }
@@ -34,6 +35,7 @@ fn filter_default() -> usize {
   2
 }
 
+#[allow(non_snake_case)]
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct CardCard {
   id: usize,
@@ -44,6 +46,7 @@ pub struct CardCard {
   globalCategories: Vec<String>,
 }
 
+#[allow(non_snake_case)]
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct OracleCard {
   id: usize,
@@ -83,8 +86,9 @@ impl Default for Knowledge {
 impl Knowledge {
   pub fn new() -> Self {
     Knowledge {
-      data: None,
       active_card: None,
+      active_filter: 2,
+      data: None,
     }
   }
 
