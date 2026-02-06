@@ -33,6 +33,8 @@ pub struct CardCard {
   uid: String,
   oracleCard: OracleCard,
   scryfallImageHash: String,
+  rarity: String,
+  globalCategories: Vec<String>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
@@ -56,6 +58,13 @@ pub struct OracleCard {
   types: Vec<String>,
   defaultCategory: Option<String>,
   gameChanger: bool,
+  extraTurns: bool,
+  tutor: bool,
+  massLandDenial: bool,
+  twoCardComboSingelton: bool,
+  twoCardComboIds: Vec<String>,
+  atomicCombos: Vec<String>,
+  potentialCombos: Vec<String>,
 }
 
 impl Default for Knowledge {
