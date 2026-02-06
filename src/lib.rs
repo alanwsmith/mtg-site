@@ -15,7 +15,28 @@ pub struct Knowledge {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Data {
   id: usize,
+  name: String,
+  cards: Vec<Card>,
 }
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct Card {
+  card: CardCard,
+  categories: Vec<String>,
+  id: usize,
+  quantity: usize,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct CardCard {
+  id: usize,
+  uid: String,
+  oracleCard: OracleCard,
+  scryfallImageHash: String,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct OracleCard {}
 
 impl Default for Knowledge {
   fn default() -> Self {
