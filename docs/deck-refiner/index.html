@@ -238,6 +238,13 @@ body {
     <h1>Deck Refiner</h1>
   </hgroup>
 
+  <div class="large-bottom-margin info-border default-padding default-border-radius accent-background-color info-color">
+    Head's Up: This is a work in progress. It doesn't
+    doesn't export decks yet. It also falls over if
+    when you send it more than 150 cards or so.
+    I'm working on all that. 
+  </div>
+
 <bitty-8-0 
   data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
   data-listeners="click input mouseover"
@@ -277,21 +284,19 @@ body {
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
 
-
   <!-- note: the change-deck-... templates
 will be removed when the data is being queried 
 directly from the api -->
 
 <template id="change-deck-step-2">
-<p>
-  The next step is to copy data from the Archidekt site.
-</p>
-<p>
-  Use the button below to open a new tab with the data. 
-  Copy it, then come back here. 
-</p>
-<p>
-  <a 
+  <p>
+    The next step is to copy data from the Archidekt site.
+  </p>
+  <p>
+    Use the button below to open a new tab with the data. 
+    Copy it, then come back here. 
+  </p>
+  <p><a 
     class="link-button" 
     target="_blank" 
     href="https://archidekt.com/api/decks/ID/" 
@@ -302,10 +307,7 @@ directly from the api -->
 <template id="change-deck-step-3">
   <p>Paste the data you copied here:</p>
   <div>
-    <textarea 
-      class="text-box"
-      data-send="changeDeckStep4"
-    ></textarea>
+    <textarea class="text-box" data-send="changeDeckStep4"></textarea>
   </div>
 </template>
 
@@ -314,7 +316,6 @@ directly from the api -->
   <p>You can close the Archidekt data tab now.</p>
   <p>Refresh the page if you'd like to switch to another one.</p>
 </template>
-
 
 </bitty-8-0>      </main>
 <footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
