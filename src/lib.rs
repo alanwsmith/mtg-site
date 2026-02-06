@@ -114,6 +114,10 @@ impl Knowledge {
   //     .unwrap()
   // }
 
+  pub fn categories(&self) -> Vec<String> {
+    vec!["asdf".to_string()]
+  }
+
   pub fn load_json(
     &mut self,
     content: String,
@@ -130,7 +134,12 @@ impl Deck {
   //
 
   pub fn categories() -> Result<Vec<String>, JsValue> {
-    Ok(vec![])
+    Ok(
+      GLOBAL_KNOWLEDGE
+        .lock()
+        .map_err(|_| JsValue::from_str("could not get data lock"))?
+        .categories(),
+    )
   }
 
   pub fn load_json(content: String) -> Result<(), JsValue> {
