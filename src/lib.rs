@@ -1,6 +1,6 @@
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
-use std::sync::Mutex;
+use std::{collections::HashMap, sync::Mutex};
 use wasm_bindgen::prelude::*;
 use web_sys::console;
 
@@ -36,7 +36,20 @@ pub struct CardCard {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
-pub struct OracleCard {}
+pub struct OracleCard {
+  id: usize,
+  cmc: usize,
+  colorIdentity: Vec<String>,
+  colors: Vec<String>,
+  layout: String,
+  uid: String,
+  legalities: HashMap<String, Option<String>>,
+  manaCost: String,
+  manaProduction: HashMap<String, Option<usize>>,
+  name: String,
+  power: String,
+  subTypes: Vec<String>,
+}
 
 impl Default for Knowledge {
   fn default() -> Self {
