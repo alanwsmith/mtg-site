@@ -49,6 +49,13 @@ pub struct OracleCard {
   name: String,
   power: String,
   subTypes: Vec<String>,
+  superTypes: Vec<String>,
+  keywords: Vec<String>,
+  text: String,
+  toughness: String,
+  types: Vec<String>,
+  defaultCategory: Option<String>,
+  gameChanger: bool,
 }
 
 impl Default for Knowledge {
