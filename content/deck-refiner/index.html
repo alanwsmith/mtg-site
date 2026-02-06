@@ -9,55 +9,17 @@
 [!- endblock -!]
 
 [!- block main -!]
-<template id="card">
-  <div 
-    class="card-wrapper" 
-    data-category="CARD_CATEGORY"
-    data-id="CARD_ID"
-    data-position="CARD_POSITION"
-    data-receive="showCard" 
-    data-send="setActiveCard" 
-    data-state="CARD_STATE"
-    data-index="CARD_INDEX"
-    data-controls="hidden"
-    >
-      <div class="card-quantity-wrapper">
-        <div class="card-quantity">CARD_QUANTITY</div>
-        <div class="card-controls card-quantity-buttons">
-          <button data-id="CARD_ID" data-send="increaseQuantity">+</button>
-          <button data-id="CARD_ID" data-send="decreaseQuantity">-</button>
-        </div>
-      </div>
-      <div class="card-image-wrapper">CARD_IMAGE</div>
-      <div class="card-right-sidebar">
-        <div class="card-stars">.</div>
-        <div class="card-controls">
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">i</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">m</button>
-          <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">o</button>
-        </div>
-      </div>
-    </div>
-</template>
 
-<template id="category">
-  <div class="category-wrapper">
-    <div class="category-title">CATEGORY_NAME (CATEGORY_CARD_QUANTITY)</div>
-    <div class="category-cards">CARDS_FOR_CATEGORY</div>
-  </div>
-</template>
 
   <hgroup>
     <h1>Deck Refiner</h1>
   </hgroup>
-
   <div class="large-bottom-margin info-border default-padding default-border-radius accent-background-color info-color">
     Head's Up: This is a work in progress. It doesn't
     doesn't export decks yet. It also falls over if
     when you send it more than 150 cards or so.
     I'm working on all that. 
   </div>
-
 <bitty-8-0 
   data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
   data-listeners="click input mouseover"
@@ -82,18 +44,53 @@
     <div class="filter-wrapper faded-accent-block-border">
       <div>
           Filter:
-          <!--
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="-1">x</button>
-          |
--->
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="0">out</button>
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="1">in+maybe</button>
-        <button data-send="setDeckFilter" data-receive="deckFilterButtonStatus" data-deckfilter="2">in</button>
+        <button data-send="setActiveFilter" data-deckfilter="0">out</button>
+        <button data-send="setActiveFilter" data-deckfilter="1">in+maybe</button>
+        <button data-send="setActiveFilter" data-deckfilter="2">in</button>
           Deck Size: <span class="deck-size" data-receive="deckSize">-</span>
       </div>
     </div>
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
+</bitty-8-0>
+
+<template id="category">
+  <div class="category-wrapper">
+    <div class="category-title">CATEGORY_NAME (CATEGORY_CARD_QUANTITY)</div>
+    <div class="category-cards">CARDS_FOR_CATEGORY</div>
+  </div>
+</template>
+
+<template id="card">
+  <div 
+    class="card-wrapper" 
+    data-category="CARD_CATEGORY"
+    data-id="CARD_ID"
+    data-position="CARD_POSITION"
+    data-receive="showCard" 
+    data-send="setActiveCard" 
+    data-state="CARD_STATE"
+    data-index="CARD_INDEX"
+    data-controls="hidden">
+    <div class="card-quantity-wrapper">
+      <div class="card-quantity">CARD_QUANTITY</div>
+      <div class="card-controls card-quantity-buttons">
+        <button data-id="CARD_ID" data-send="increaseQuantity">+</button>
+        <button data-id="CARD_ID" data-send="decreaseQuantity">-</button>
+      </div>
+    </div>
+    <div class="card-image-wrapper">CARD_IMAGE</div>
+    <div class="card-right-sidebar">
+      <div class="card-stars">.</div>
+      <div class="card-controls">
+        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="2">i</button>
+        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="1">m</button>
+        <button data-id="CARD_ID" data-send="setCardFilter" data-cardfilter="0">o</button>
+      </div>
+    </div>
+  </div>
+</template>
+
 
 
   <!-- note: the change-deck-... templates
@@ -128,7 +125,6 @@ directly from the api -->
   <p>Refresh the page if you'd like to switch to another one.</p>
 </template>
 
-</bitty-8-0>
 [!- endblock -!]
 
 

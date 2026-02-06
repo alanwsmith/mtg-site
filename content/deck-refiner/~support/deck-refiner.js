@@ -122,6 +122,7 @@ export class DeckRefiner {
   setActiveFilter(ev, el) {
     if (ev.type === "click") {
       Deck.set_active_filter(ev.propToInt("deckfilter"));
+      this.api.trigger("activeFilter");
       // this.api.trigger("deck");
     }
   }
