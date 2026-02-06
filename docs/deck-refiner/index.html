@@ -249,7 +249,6 @@ body {
   data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
   data-listeners="click input mouseover"
 >
-
   <details>
     <summary>Change Deck</summary>
     <div class="faded-default-border default-border-radius default-padding default-flow">
@@ -266,7 +265,6 @@ body {
       </div>
     </div>
   </details>
-
   <div class="deck-wrapper" data-receive="activeFilter">
     <div class="filter-wrapper faded-accent-block-border">
       <div>
@@ -284,10 +282,10 @@ body {
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
 
+
   <!-- note: the change-deck-... templates
 will be removed when the data is being queried 
 directly from the api -->
-
 <template id="change-deck-step-2">
   <p>
     The next step is to copy data from the Archidekt site.

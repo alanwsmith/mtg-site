@@ -104,19 +104,16 @@
   display: none;
 }
 
-.deck-wrapper[data-deckfilter="-1"] button[data-deckfilter="-1"] {
+
+.deck-wrapper[data-activefilter="0"] button[data-deckfilter="0"] {
   background: var(--accent-color);
 }
 
-.deck-wrapper[data-deckfilter="0"] button[data-deckfilter="0"] {
+.deck-wrapper[data-activefilter="1"] button[data-deckfilter="1"] {
   background: var(--accent-color);
 }
 
-.deck-wrapper[data-deckfilter="1"] button[data-deckfilter="1"] {
-  background: var(--accent-color);
-}
-
-.deck-wrapper[data-deckfilter="2"] button[data-deckfilter="2"] {
+.deck-wrapper[data-activefilter="2"] button[data-deckfilter="2"] {
   background: var(--accent-color);
 }
 

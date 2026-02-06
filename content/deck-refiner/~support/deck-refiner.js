@@ -82,6 +82,7 @@ export class DeckRefiner {
     const t1 = performance.now();
     const time = t1 - t0;
     console.log(`Load time: ${time}`);
+    this.api.trigger("activeFilter");
     //   this.api.trigger("deck");
   }
 
@@ -118,17 +119,17 @@ export class DeckRefiner {
     }
   }
 
-  setDeckFilter(ev, el) {
+  setActiveFilter(ev, el) {
     if (ev.type === "click") {
-      this.#deck.setDeckFilter(ev.propToInt("deckfilter"));
-      this.api.trigger("deck");
+      Deck.set_active_filter(ev.propToInt("deckfilter"));
+      // this.api.trigger("deck");
     }
   }
 
-  setActiveCard(ev, _) {
-    this.#deck.setActiveCard(ev.prop("id"));
-    this.api.trigger("showCard");
-  }
+  // setActiveCard(ev, _) {
+  //   this.#deck.setActiveCard(ev.prop("id"));
+  //   this.api.trigger("showCard");
+  // }
 
   showCard(_, el) {
     const t0 = performance.now();
