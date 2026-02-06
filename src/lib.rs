@@ -135,6 +135,13 @@ impl Knowledge {
   ) {
     self.data = Some(serde_json::from_str(&content).unwrap())
   }
+
+  pub fn set_active_filter(
+    &mut self,
+    filter: usize,
+  ) {
+    self.active_filter = filter
+  }
 }
 
 #[wasm_bindgen]
@@ -155,11 +162,19 @@ impl Deck {
 
   pub fn load_json(content: String) -> Result<(), JsValue> {
     console::log_1(&"Loading JSON".into());
-    // console::log_1(&content.clone().into());
     GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?
       .load_json(content);
+    Ok(())
+  }
+
+  pub fn set_active_filter(filter: usize) -> Result<(), JsValue> {
+    console::log_1(&"Setting active filter".into());
+    GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?
+      .set_active_filter(filter);
     Ok(())
   }
 

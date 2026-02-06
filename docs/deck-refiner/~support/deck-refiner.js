@@ -139,6 +139,8 @@ export class DeckRefiner {
       await init();
       Deck.load_json(storage);
       console.log(Deck.categories());
+      Deck.set_active_filter(0);
+      console.log(Deck.categories());
 
       // console.log(Deck.categories());
       // console.log(JSON.parse(storage));
