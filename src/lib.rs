@@ -128,6 +128,13 @@ pub struct Deck;
 
 #[wasm_bindgen]
 impl Deck {
+  pub fn active_card() -> Result<Option<String>, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    Ok(known.data.as_ref().unwrap().active_card.clone())
+  }
+
   pub fn active_filter() -> Result<usize, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
@@ -215,6 +222,17 @@ impl Deck {
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?
       .load_json(content);
+    Ok(())
+  }
+
+  pub fn set_active_card(uid: String) -> Result<(), JsValue> {
+    console::log_1(
+      &format!("Setting active card to {}", uid).into(),
+    );
+    let mut known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    known.data.as_mut().unwrap().active_card = Some(uid);
     Ok(())
   }
 

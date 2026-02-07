@@ -36,7 +36,18 @@ export class DeckRefiner {
   }
 
   cardStatus(_, el) {
-    el.dataset.cardstate = "closed";
+    // TODO: Look at adding an `updateData(el, key, value)`
+    // that looks at the value of a dataset key
+    // and only updates it if it needs to. (Hypothesis
+    // is that there will be less changes to the
+    // DOM. Need to do testing on there. If it
+    // turns out there's value to it, it's
+    // something to consider for bitty.
+    if (el.prop("id") === Deck.active_card()) {
+      el.dataset.cardstate = "opened";
+    } else {
+      el.dataset.cardstate = "closed";
+    }
   }
 
   cardsInCategory(category) {
@@ -85,6 +96,13 @@ export class DeckRefiner {
   // deckSize(_, el) {
   //   el.innerHTML = this.#deck.deckSize();
   // }
+
+  hitCard(ev, _) {
+    if (ev.type === "mouseover") {
+      Deck.set_active_card(ev.prop("id"));
+      this.api.trigger("cardStatus");
+    }
+  }
 
   idFor(el) {
     return el.closest(".card-wrapper").dataset.id;
