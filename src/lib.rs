@@ -104,6 +104,30 @@ impl Knowledge {
     4
   }
 
+  pub fn card_status(
+    &self,
+    uid: &str,
+  ) -> String {
+    if let Some(card) = self
+      .data
+      .as_ref()
+      .unwrap()
+      .cards
+      .iter()
+      .find(|card| card.card.uid == uid)
+    {
+      if card.filter == 2 {
+        "in".to_string()
+      } else if card.filter == 1 {
+        "maybe".to_string()
+      } else {
+        "out".to_string()
+      }
+    } else {
+      "out".to_string()
+    }
+  }
+
   pub fn cards_in_category(
     &self,
     category: &str,
@@ -173,6 +197,15 @@ impl Deck {
     )
   }
 
+  pub fn card_status(uid: String) -> Result<String, JsValue> {
+    Ok(
+      GLOBAL_KNOWLEDGE
+        .lock()
+        .map_err(|_| JsValue::from_str("could not get data lock"))?
+        .card_status(&uid),
+    )
+  }
+
   pub fn cards_in_category(
     category: String
   ) -> Result<Vec<String>, JsValue> {
@@ -194,7 +227,7 @@ impl Deck {
   }
 
   pub fn load_json(content: String) -> Result<(), JsValue> {
-    console::log_1(&"Loading JSON".into());
+    console::log_1(&"Loading JSON data".into());
     GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?
@@ -203,7 +236,9 @@ impl Deck {
   }
 
   pub fn set_active_filter(filter: usize) -> Result<(), JsValue> {
-    console::log_1(&"Setting active filter".into());
+    console::log_1(
+      &format!("Setting active filter to {}", filter).into(),
+    );
     GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?

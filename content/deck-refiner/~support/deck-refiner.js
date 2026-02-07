@@ -27,11 +27,15 @@ export class DeckRefiner {
   //   }
   // }
 
+  cardStatus(_, el) {
+    el.innerHTML = Deck.card_status(this.idFor(el));
+  }
+
   cardsInCategory(category) {
     return Deck.cards_in_category(category).map((uid) => {
       return this.api.makeHTML(this.api.template("card"), [
         ["CARD_ID", uid],
-        ["CARD_IMG", ` src="/images/large-cards/${uid}.jpg" `],
+        ["CARD_IMAGE_SRC", `/images/large-cards/${uid}.jpg`],
       ]);
     });
   }
@@ -74,6 +78,10 @@ export class DeckRefiner {
   //   el.innerHTML = this.#deck.deckSize();
   // }
 
+  idFor(el) {
+    return el.closest(".card-wrapper").dataset.id;
+  }
+
   async loadDeck() {
     const t0 = performance.now();
     debug("Checking for a deck in storage.");
@@ -82,7 +90,6 @@ export class DeckRefiner {
       debug("Found a deck in storage.");
       await init();
       Deck.load_json(storage);
-      console.log(Deck.categories());
       // console.log(Deck.categories());
       // console.log(JSON.parse(storage));
       //  this.#deck = new Deck(JSON.parse(storage));
@@ -98,7 +105,7 @@ export class DeckRefiner {
       //  //this.#deck = new Deck(resp.value);
       //}
     }
-    this.api.trigger("activeFilter deck");
+    this.api.trigger("activeFilter deck updateCards");
     const t1 = performance.now();
     const time = t1 - t0;
     console.log(`Load time: ${time}`);
@@ -182,8 +189,10 @@ export class DeckRefiner {
     //   el.dataset.state = "closed";
     //   el.dataset.controls = "hidden";
     // }
+  }
 
-    //
+  updateCards() {
+    this.api.trigger("cardStatus");
   }
 
   // TODO: Deprecate in favor of calling API
