@@ -99,9 +99,11 @@
   height: 1.9rem;
 }
 
-[data-controls=hidden] .card-controls {
+[data-cardvisibility=hidden] {
   display: none;
 }
+
+
 
 
 .deck-wrapper[data-activefilter="0"] button[data-deckfilter="0"] {

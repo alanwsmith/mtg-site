@@ -206,6 +206,29 @@ impl Deck {
     )
   }
 
+  pub fn card_visibility(uid: String) -> Result<String, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    let card_filter = known
+      .data
+      .as_ref()
+      .unwrap()
+      .cards
+      .iter()
+      .find(|card| card.card.uid == uid)
+      .unwrap()
+      .filter;
+    if (known.data.as_ref().unwrap().active_filter == 0
+      && card_filter == 0)
+      || (card_filter >= known.data.as_ref().unwrap().active_filter)
+    {
+      Ok("visible".to_string())
+    } else {
+      Ok("hidden".to_string())
+    }
+  }
+
   pub fn card_in_out_maybe(uid: String) -> Result<String, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()

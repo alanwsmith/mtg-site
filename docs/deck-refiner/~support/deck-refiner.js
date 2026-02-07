@@ -35,36 +35,20 @@ export class DeckRefiner {
     el.innerHTML = Deck.card_quantity(this.idFor(el));
   }
 
-  cardStatus(_, el) {
-    // TODO: Look at adding an `updateData(el, key, value)`
-    // that looks at the value of a dataset key
-    // and only updates it if it needs to. (Hypothesis
-    // is that there will be less changes to the
-    // DOM. Need to do testing on there. If it
-    // turns out there's value to it, it's
-    // something to consider for bitty.
-
-    // console.log(Deck.card_category(el.prop("id")));
-
+  cardState(_, el) {
     if (el.prop("id") === Deck.active_card()) {
       el.dataset.cardstate = "active";
     } else if (Deck.card_category(el.prop("id")) === Deck.active_category()) {
-      console.log("here3");
       el.dataset.cardstate = "closed";
     } else if (Deck.is_last_card_in_category(el.prop("id"))) {
       el.dataset.cardstate = "opened";
-      // console.log(el.prop("id"));
-      //console.log(Deck.is_last_card());
-      //console.log(Deck.active_category());
-
-      //} else if (Deck.cart)
-
-      // } else if (Deck.is_last_card(el.prop("id")), Deck.active_category()) {
-      //   el.dataset.cardstate = "opened";
     } else {
       el.dataset.cardstate = "closed";
-      // console.log(Deck.active_category());
     }
+  }
+
+  cardVisibility(_, el) {
+    // el.dataset.cardvisibility = Deck.card_visibility(el.prop("id"));
   }
 
   cardsInCategory(category) {
@@ -117,7 +101,7 @@ export class DeckRefiner {
   hitCard(ev, _) {
     if (ev.type === "mouseover") {
       Deck.set_active_card(ev.prop("id"));
-      this.api.trigger("cardStatus");
+      this.api.trigger("cardState");
     }
   }
 
@@ -195,14 +179,8 @@ export class DeckRefiner {
     }
   }
 
-  // setActiveCard(ev, _) {
-  //   this.#deck.setActiveCard(ev.prop("id"));
-  //   this.api.trigger("showCard");
-  // }
-
   showCard(_, el) {
     //
-
     // const t0 = performance.now();
     // if (el) {
     //   const id = el.prop("id");
@@ -215,7 +193,6 @@ export class DeckRefiner {
     // const t1 = performance.now();
     // const time = t1 - t0;
     // console.log(`showCard time ${time}`);
-
     // const evCategory = ev.target.closest(".card-wrapper").dataset.category;
     // const elCategory = el.closest(".card-wrapper").dataset.category;
     // if (ev.prop("id") === el.prop("id")) {
@@ -236,7 +213,7 @@ export class DeckRefiner {
   }
 
   updateCards() {
-    this.api.trigger("cardInOutMaybe cardQuantity cardStatus");
+    this.api.trigger("cardInOutMaybe cardQuantity cardState cardVisibility");
   }
 
   // TODO: Deprecate in favor of calling API
@@ -261,18 +238,5 @@ export class DeckRefiner {
         this.api.makeHTML(this.api.template("change-deck-step-3")),
       );
     }
-  }
-
-  cardsForCategory(category) {
-    // return this.#deck.cardsInCategory(category).map((id) => {
-    //   return this.api.makeHTML(this.api.template("card"), [
-    //     ["CARD_CATEGORY", this.#deck.cardCategory(id)],
-    //     ["CARD_QUANTITY", this.#deck.cardQuantity(id)],
-    //     ["CARD_ID", id],
-    //     ["CARD_NAME", this.#deck.cardName(id)],
-    //     ["CARD_POSITION", this.#deck.cardPosition(id)],
-    //     ["CARD_IMAGE", this.#deck.cardImage(id)],
-    //   ]);
-    // });
   }
 }

@@ -23,6 +23,7 @@ export class Deck {
     static card_category(uid: string): string;
     static card_in_out_maybe(uid: string): string;
     static card_quantity(uid: string): number;
+    static card_visibility(uid: string): string;
     static cards_in_category(category: string): string[];
     static categories(): string[];
     static is_last_card_in_category(uid: string): boolean;
@@ -51,6 +52,7 @@ export interface InitOutput {
     readonly deck_card_category: (a: number, b: number) => [number, number, number, number];
     readonly deck_card_in_out_maybe: (a: number, b: number) => [number, number, number, number];
     readonly deck_card_quantity: (a: number, b: number) => [number, number, number];
+    readonly deck_card_visibility: (a: number, b: number) => [number, number, number, number];
     readonly deck_cards_in_category: (a: number, b: number) => [number, number, number, number];
     readonly deck_categories: () => [number, number, number, number];
     readonly deck_is_last_card_in_category: (a: number, b: number) => [number, number, number];
