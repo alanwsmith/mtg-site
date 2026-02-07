@@ -31,6 +31,10 @@ export class DeckRefiner {
     el.innerHTML = Deck.card_in_out_maybe(this.idFor(el));
   }
 
+  cardQuantity(_, el) {
+    el.innerHTML = Deck.card_quantity(this.idFor(el));
+  }
+
   cardsInCategory(category) {
     return Deck.cards_in_category(category).map((uid) => {
       return this.api.makeHTML(this.api.template("card"), [
@@ -192,7 +196,7 @@ export class DeckRefiner {
   }
 
   updateCards() {
-    this.api.trigger("cardInOutMaybe");
+    this.api.trigger("cardInOutMaybe cardQuantity");
   }
 
   // TODO: Deprecate in favor of calling API

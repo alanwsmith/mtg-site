@@ -93,13 +93,6 @@ impl Knowledge {
     Knowledge { data: None }
   }
 
-  pub fn card_quantity(
-    &self,
-    uid: &str,
-  ) -> usize {
-    4
-  }
-
   pub fn categories(&self) -> Vec<String> {
     self
       .data
@@ -143,11 +136,19 @@ impl Deck {
   }
 
   pub fn card_quantity(uid: String) -> Result<usize, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
     Ok(
-      GLOBAL_KNOWLEDGE
-        .lock()
-        .map_err(|_| JsValue::from_str("could not get data lock"))?
-        .card_quantity(&uid),
+      known
+        .data
+        .as_ref()
+        .unwrap()
+        .cards
+        .iter()
+        .find(|card| card.card.uid == uid)
+        .unwrap()
+        .quantity,
     )
   }
 
