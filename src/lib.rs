@@ -1,7 +1,10 @@
 use itertools::Itertools;
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
-use std::{collections::HashMap, sync::Mutex};
+use std::{
+  collections::HashMap,
+  sync::{Mutex, MutexGuard},
+};
 use wasm_bindgen::prelude::*;
 use web_sys::console;
 
@@ -104,7 +107,7 @@ impl Knowledge {
     4
   }
 
-  pub fn card_status(
+  pub fn card_in_out_maybe(
     &self,
     uid: &str,
   ) -> String {
@@ -197,12 +200,48 @@ impl Deck {
     )
   }
 
-  pub fn card_status(uid: String) -> Result<String, JsValue> {
+  pub fn card_in_out_maybe(uid: String) -> Result<String, JsValue> {
+    // let known = GLOBAL_KNOWLEDGE
+    //   .lock()
+    //   .map_err(|_| JsValue::from_str("could not get data lock"))?;
+
+    // if let Some(known
+    //   .data
+    //   .as_ref()
+    //   .unwrap()
+    //   .cards
+    //   .iter()
+    //   .find(|card| card.card.uid == uid);
+
+    // pub fn card_in_out_maybe(
+    //   &self,
+    //   uid: &str,
+    // ) -> String {
+    //   if let Some(card) = self
+    //     .data
+    //     .as_ref()
+    //     .unwrap()
+    //     .cards
+    //     .iter()
+    //     .find(|card| card.card.uid == uid)
+    //   {
+    //     if card.filter == 2 {
+    //       "in".to_string()
+    //     } else if card.filter == 1 {
+    //       "maybe".to_string()
+    //     } else {
+    //       "out".to_string()
+    //     }
+    //   } else {
+    //     "out".to_string()
+    //   }
+    // }
+
     Ok(
       GLOBAL_KNOWLEDGE
         .lock()
         .map_err(|_| JsValue::from_str("could not get data lock"))?
-        .card_status(&uid),
+        .card_in_out_maybe(&uid),
     )
   }
 

@@ -27,8 +27,8 @@ export class DeckRefiner {
   //   }
   // }
 
-  cardStatus(_, el) {
-    el.innerHTML = Deck.card_status(this.idFor(el));
+  cardInOutMaybe(_, el) {
+    el.innerHTML = Deck.card_in_out_maybe(this.idFor(el));
   }
 
   cardsInCategory(category) {
@@ -192,7 +192,7 @@ export class DeckRefiner {
   }
 
   updateCards() {
-    this.api.trigger("cardStatus");
+    this.api.trigger("cardInOutMaybe");
   }
 
   // TODO: Deprecate in favor of calling API
