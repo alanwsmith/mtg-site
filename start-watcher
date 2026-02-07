@@ -4,4 +4,4 @@
 
 
 # for the deck-refinder wasm build
-watchexec -c -e rs.html "wasm-pack build --target web --out-dir content/deck-refiner/wasm"
+watchexec -c -e rs,html,js "wasm-pack build --target web --out-dir content/deck-refiner/wasm"

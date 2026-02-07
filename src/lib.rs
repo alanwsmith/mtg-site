@@ -140,7 +140,6 @@ impl Deck {
     let known = GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
-
     Ok(
       if let Some(card) =
         known.data.as_ref().unwrap().cards.iter().find(|card| {
@@ -169,6 +168,10 @@ impl Deck {
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
     Ok(known.data.as_ref().unwrap().active_filter)
+  }
+
+  pub fn card_category(uid: String) -> Result<String, JsValue> {
+    Ok("NONE".to_string())
   }
 
   pub fn card_quantity(uid: String) -> Result<usize, JsValue> {
@@ -246,47 +249,60 @@ impl Deck {
     )
   }
 
-  //pub fn is_last_card(
-  //  uid: String,
-  //  category: String,
-  //) -> Result<bool, JsValue> {
-  //  let known = GLOBAL_KNOWLEDGE
-  //    .lock()
-  //    .map_err(|_| JsValue::from_str("could not get data lock"))?;
-  //  if let Some(check_category) = known
-  //    .data
-  //    .as_ref()
-  //    .unwrap()
-  //    .cards
-  //    .iter()
-  //    .find(|card| card.card.uid == uid)
-  //    .map(|card| card.categories[0].clone())
-  //  {
-  //    //Ok(check_category == category)
-  //    Ok(true)
-  //    // if check_category == active_category {
-  //    //   console::log_1(&format!("yyyyy{}", check_category).into());
-  //    // } else {
-  //    //   console::log_1(&format!("----{}", check_category).into());
-  //    // }
-  //  } else {
-  //    Ok(false)
-  //  }
-  //  // if check_category == active_category {
-  //  //   console::log_1(&format!("yyyyy{}", check_category).into());
-  //  // } else {
-  //  //   console::log_1(&format!("xxx{}", check_category).into());
-  //  // }
-  //  // console::log_1(
-  //  //   &format!("{}", Deck::active_category()).into(),
-  //  // );
-  //  //if check_category !=
-  //  //if let Some(check_id) = known.data.as_ref().unwrap().cards
-  //  // if let Some(last_id) = known.data.as_ref().unwrap().cards.iter()
-  //  //    let response = uid == known
-  //  // console::log_1(&"Loading JSON data".into());
-  //  //Ok(false)
+  // pub fn is_last_card(
+  //   uid: String,
+  //   active_category_wrapper: Option<String>,
+  // ) -> Result<bool, JsValue> {
+  //   let known = GLOBAL_KNOWLEDGE
+  //     .lock()
+  //     .map_err(|_| JsValue::from_str("could not get data lock"))?;
+  //   if let Some(active_category) = active_category_wrapper {
+  //   } else {
+  //   }
+  //   if let Some(check_category) = known
+  //     .data
+  //     .as_ref()
+  //     .unwrap()
+  //     .cards
+  //     .iter()
+  //     .find(|card| card.card.uid == uid)
+  //   {
+  //     if check_category == active_category {
+  //       Ok(false)
+  //     } else {
+  //       Ok(true)
+  //     }
+  //   } else {
+  //     Ok(true)
+  //   }
+  // }
+
+  ////.map(|card| !card.categories.is_empty() { card.categories[0].clone() } else { "None".to_string()})
+  //{
+  ////Ok(check_category == category)
+  //Ok(true)
+  //// if check_category == active_category {
+  ////   console::log_1(&format!("yyyyy{}", check_category).into());
+  //// } else {
+  ////   console::log_1(&format!("----{}", check_category).into());
+  //// }
+  //} else {
+  //Ok(false)
   //}
+  //// if check_category == active_category {
+  ////   console::log_1(&format!("yyyyy{}", check_category).into());
+  //// } else {
+  ////   console::log_1(&format!("xxx{}", check_category).into());
+  //// }
+  //// console::log_1(
+  ////   &format!("{}", Deck::active_category()).into(),
+  //// );
+  ////if check_category !=
+  ////if let Some(check_id) = known.data.as_ref().unwrap().cards
+  //// if let Some(last_id) = known.data.as_ref().unwrap().cards.iter()
+  ////    let response = uid == known
+  //// console::log_1(&"Loading JSON data".into());
+  ////Ok(false)
 
   pub fn load_json(content: String) -> Result<(), JsValue> {
     console::log_1(&"Loading JSON data".into());

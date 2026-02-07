@@ -44,13 +44,21 @@ export class DeckRefiner {
     // turns out there's value to it, it's
     // something to consider for bitty.
     if (el.prop("id") === Deck.active_card()) {
-      console.log(Deck.active_category());
       el.dataset.cardstate = "active";
+    } else if (Deck.card_category(el.prop("id")) === Deck.active_category()) {
+      el.dataset.cardstate = "closed";
+
+      // console.log(el.prop("id"));
+      //console.log(Deck.is_last_card());
+      //console.log(Deck.active_category());
+
+      //} else if (Deck.cart)
+
       // } else if (Deck.is_last_card(el.prop("id")), Deck.active_category()) {
       //   el.dataset.cardstate = "opened";
     } else {
       el.dataset.cardstate = "closed";
-      console.log(Deck.active_category());
+      // console.log(Deck.active_category());
     }
   }
 

@@ -8,6 +8,7 @@ export const __wbg_oraclecard_free: (a: number, b: number) => void;
 export const deck_active_card: () => [number, number, number, number];
 export const deck_active_category: () => [number, number, number, number];
 export const deck_active_filter: () => [number, number, number];
+export const deck_card_category: (a: number, b: number) => [number, number, number, number];
 export const deck_card_in_out_maybe: (a: number, b: number) => [number, number, number, number];
 export const deck_card_quantity: (a: number, b: number) => [number, number, number];
 export const deck_cards_in_category: (a: number, b: number) => [number, number, number, number];
