@@ -239,32 +239,27 @@ body {
   </div>
 </bitty-8-0>
 
-<template id="category">
+
+<script type="text/template" id="category">
   <div class="category-wrapper">
     <div class="category-title">CATEGORY_NAME (CATEGORY_CARD_QUANTITY)</div>
-    <div class="category-cards">CARDS_FOR_CATEGORY</div>
+    <div class="category-cards">CARDS_IN_CATEGORY</div>
   </div>
-</template>
+</script>
 
-<template id="card">
+<script type="text/template" id="card">
   <div 
     class="card-wrapper" 
-    data-category="CARD_CATEGORY"
     data-id="CARD_ID"
-    data-position="CARD_POSITION"
-    data-receive="showCard" 
-    data-send="setActiveCard" 
-    data-state="CARD_STATE"
-    data-index="CARD_INDEX"
-    data-controls="hidden">
+    >
     <div class="card-quantity-wrapper">
-      <div class="card-quantity">CARD_QUANTITY</div>
+      <div class="card-quantity" data-receive="cardQuantity"></div>
       <div class="card-controls card-quantity-buttons">
         <button data-id="CARD_ID" data-send="increaseQuantity">+</button>
         <button data-id="CARD_ID" data-send="decreaseQuantity">-</button>
       </div>
     </div>
-    <div class="card-image-wrapper">CARD_IMAGE</div>
+    <div class="card-image-wrapper"><img CARD_IMG class="card-image" alt="The CARD_NAME card from Magic: The Gathering" /></div>
     <div class="card-right-sidebar">
       <div class="card-stars">.</div>
       <div class="card-controls">
@@ -274,14 +269,14 @@ body {
       </div>
     </div>
   </div>
-</template>
+</script>
 
 
 
   <!-- note: the change-deck-... templates
 will be removed when the data is being queried 
 directly from the api -->
-<template id="change-deck-step-2">
+<script type="text/template" id="change-deck-step-2">
   <p>
     The next step is to copy data from the Archidekt site.
   </p>
@@ -295,20 +290,20 @@ directly from the api -->
     href="https://archidekt.com/api/decks/ID/" 
     data-send="changeDeckStep3"
   >Open Archidekt Data Page</a></p>
-</template>
+</script>
 
-<template id="change-deck-step-3">
+<script type="text/template" id="change-deck-step-3">
   <p>Paste the data you copied here:</p>
   <div>
     <textarea class="text-box" data-send="changeDeckStep4"></textarea>
   </div>
-</template>
+</script>
 
-<template id="change-deck-complete">
+<script type="text/template" id="change-deck-complete">
   <p>Deck switch complete. </p>
   <p>You can close the Archidekt data tab now.</p>
   <p>Refresh the page if you'd like to switch to another one.</p>
-</template>      </main>
+</script>      </main>
 <footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
   <div class="small-font-size">
     <div class="text-align-center">

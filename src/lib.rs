@@ -10,19 +10,21 @@ static GLOBAL_KNOWLEDGE: Lazy<Mutex<Knowledge>> =
 
 #[derive(Clone, Debug)]
 pub struct Knowledge {
-  active_filter: usize,
-  active_card: Option<String>,
   data: Option<Data>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Data {
+  #[serde(default = "filter_default")]
+  active_filter: usize,
+  active_card: Option<String>,
   id: usize,
   name: String,
   cards: Vec<Card>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[wasm_bindgen]
 pub struct Card {
   card: CardCard,
   categories: Vec<String>,
@@ -38,6 +40,7 @@ fn filter_default() -> usize {
 
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[wasm_bindgen]
 pub struct CardCard {
   id: usize,
   uid: String,
@@ -49,6 +52,7 @@ pub struct CardCard {
 
 #[allow(non_snake_case)]
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[wasm_bindgen]
 pub struct OracleCard {
   id: usize,
   cmc: usize,
@@ -86,15 +90,34 @@ impl Default for Knowledge {
 
 impl Knowledge {
   pub fn new() -> Self {
-    Knowledge {
-      active_card: None,
-      active_filter: 2,
-      data: None,
-    }
+    Knowledge { data: None }
   }
 
   pub fn active_filter(&self) -> usize {
-    self.active_filter
+    self.data.as_ref().unwrap().active_filter
+  }
+
+  pub fn card_quantity(
+    &self,
+    uid: &str,
+  ) -> usize {
+    4
+  }
+
+  pub fn cards_in_category(
+    &self,
+    category: &str,
+  ) -> Vec<String> {
+    self
+      .data
+      .as_ref()
+      .unwrap()
+      .cards
+      .iter()
+      .filter(|card| card.categories[0] == category)
+      .filter(|card| card.filter == self.active_filter())
+      .map(|card| card.card.uid.clone())
+      .collect()
   }
 
   pub fn categories(&self) -> Vec<String> {
@@ -121,7 +144,7 @@ impl Knowledge {
     &mut self,
     filter: usize,
   ) {
-    self.active_filter = filter
+    self.data.as_mut().unwrap().active_filter = filter
   }
 }
 
@@ -138,6 +161,26 @@ impl Deck {
         .lock()
         .map_err(|_| JsValue::from_str("could not get data lock"))?
         .active_filter(),
+    )
+  }
+
+  pub fn card_quantity(uid: String) -> Result<usize, JsValue> {
+    Ok(
+      GLOBAL_KNOWLEDGE
+        .lock()
+        .map_err(|_| JsValue::from_str("could not get data lock"))?
+        .card_quantity(&uid),
+    )
+  }
+
+  pub fn cards_in_category(
+    category: String
+  ) -> Result<Vec<String>, JsValue> {
+    Ok(
+      GLOBAL_KNOWLEDGE
+        .lock()
+        .map_err(|_| JsValue::from_str("could not get data lock"))?
+        .cards_in_category(&category),
     )
   }
 
