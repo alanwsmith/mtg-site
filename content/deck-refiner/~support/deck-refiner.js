@@ -44,6 +44,9 @@ export class DeckRefiner {
     // turns out there's value to it, it's
     // something to consider for bitty.
     if (el.prop("id") === Deck.active_card()) {
+      console.log(Deck.active_category());
+      el.dataset.cardstate = "active";
+    } else if (Deck.is_last_card(el.prop("id"))) {
       el.dataset.cardstate = "opened";
     } else {
       el.dataset.cardstate = "closed";
@@ -116,6 +119,7 @@ export class DeckRefiner {
       debug("Found a deck in storage.");
       await init();
       Deck.load_json(storage);
+
       // console.log(Deck.categories());
       // console.log(JSON.parse(storage));
       //  this.#deck = new Deck(JSON.parse(storage));
