@@ -100,22 +100,6 @@ impl Knowledge {
     4
   }
 
-  // pub fn cards_in_category(
-  //   &self,
-  //   category: &str,
-  // ) -> Vec<String> {
-  //   self
-  //     .data
-  //     .as_ref()
-  //     .unwrap()
-  //     .cards
-  //     .iter()
-  //     .filter(|card| card.categories[0] == category)
-  //     .filter(|card| card.filter == self.active_filter())
-  //     .map(|card| card.card.uid.clone())
-  //     .collect()
-  // }
-
   pub fn categories(&self) -> Vec<String> {
     self
       .data
@@ -151,8 +135,6 @@ pub struct Deck;
 
 #[wasm_bindgen]
 impl Deck {
-  //
-
   pub fn active_filter() -> Result<usize, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
