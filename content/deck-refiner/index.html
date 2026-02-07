@@ -55,14 +55,19 @@
 </bitty-8-0>
 
 
-<script type="text/template" id="category">
+<script type="application/json" id="exampleData">
+{ "items": ["alfa", "bravo", "charlie"] }
+</script>
+
+<script type="text/html" id="category">
   <div class="category-wrapper">
     <div class="category-title">CATEGORY_NAME (CATEGORY_CARD_QUANTITY)</div>
     <div class="category-cards">CARDS_IN_CATEGORY</div>
   </div>
 </script>
 
-<script type="text/template" id="card">
+
+<script type="text/html" id="card">
   <div 
     class="card-wrapper" 
     data-id="CARD_ID"
@@ -87,11 +92,10 @@
 </script>
 
 
-
   <!-- note: the change-deck-... templates
 will be removed when the data is being queried 
 directly from the api -->
-<script type="text/template" id="change-deck-step-2">
+<script type="text/html" id="change-deck-step-2">
   <p>
     The next step is to copy data from the Archidekt site.
   </p>
@@ -107,14 +111,14 @@ directly from the api -->
   >Open Archidekt Data Page</a></p>
 </script>
 
-<script type="text/template" id="change-deck-step-3">
+<script type="text/html" id="change-deck-step-3">
   <p>Paste the data you copied here:</p>
   <div>
     <textarea class="text-box" data-send="changeDeckStep4"></textarea>
   </div>
 </script>
 
-<script type="text/template" id="change-deck-complete">
+<script type="text/html" id="change-deck-complete">
   <p>Deck switch complete. </p>
   <p>You can close the Archidekt data tab now.</p>
   <p>Refresh the page if you'd like to switch to another one.</p>
