@@ -39,7 +39,6 @@
   margin-bottom: 0.36rem;
 }
 
-
 .card-wrapper {
   background-color: black;
   color: var(--faded-white-color);
@@ -92,11 +91,11 @@
   background-color: var(--background-color);
 }
 
-[data-state=open] {
+[data-cardstate=open] {
   height: var(--open-card-height);
 }
 
-[data-state=closed] {
+[data-cardstate=closed] {
   height: 1.9rem;
 }
 

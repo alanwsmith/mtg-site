@@ -35,6 +35,10 @@ export class DeckRefiner {
     el.innerHTML = Deck.card_quantity(this.idFor(el));
   }
 
+  cardStatus(_, el) {
+    el.dataset.cardstate = "closed";
+  }
+
   cardsInCategory(category) {
     return Deck.cards_in_category(category).map((uid) => {
       return this.api.makeHTML(this.api.template("card"), [
@@ -196,7 +200,7 @@ export class DeckRefiner {
   }
 
   updateCards() {
-    this.api.trigger("cardInOutMaybe cardQuantity");
+    this.api.trigger("cardInOutMaybe cardQuantity cardStatus");
   }
 
   // TODO: Deprecate in favor of calling API
