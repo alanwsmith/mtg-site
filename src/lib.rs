@@ -93,10 +93,6 @@ impl Knowledge {
     Knowledge { data: None }
   }
 
-  pub fn active_filter(&self) -> usize {
-    self.data.as_ref().unwrap().active_filter
-  }
-
   pub fn card_quantity(
     &self,
     uid: &str,
@@ -104,45 +100,21 @@ impl Knowledge {
     4
   }
 
-  pub fn card_in_out_maybe(
-    &self,
-    uid: &str,
-  ) -> String {
-    if let Some(card) = self
-      .data
-      .as_ref()
-      .unwrap()
-      .cards
-      .iter()
-      .find(|card| card.card.uid == uid)
-    {
-      if card.filter == 2 {
-        "in".to_string()
-      } else if card.filter == 1 {
-        "maybe".to_string()
-      } else {
-        "out".to_string()
-      }
-    } else {
-      "out".to_string()
-    }
-  }
-
-  pub fn cards_in_category(
-    &self,
-    category: &str,
-  ) -> Vec<String> {
-    self
-      .data
-      .as_ref()
-      .unwrap()
-      .cards
-      .iter()
-      .filter(|card| card.categories[0] == category)
-      .filter(|card| card.filter == self.active_filter())
-      .map(|card| card.card.uid.clone())
-      .collect()
-  }
+  // pub fn cards_in_category(
+  //   &self,
+  //   category: &str,
+  // ) -> Vec<String> {
+  //   self
+  //     .data
+  //     .as_ref()
+  //     .unwrap()
+  //     .cards
+  //     .iter()
+  //     .filter(|card| card.categories[0] == category)
+  //     .filter(|card| card.filter == self.active_filter())
+  //     .map(|card| card.card.uid.clone())
+  //     .collect()
+  // }
 
   pub fn categories(&self) -> Vec<String> {
     self
@@ -170,6 +142,8 @@ impl Knowledge {
   ) {
     self.data.as_mut().unwrap().active_filter = filter
   }
+
+  //
 }
 
 #[wasm_bindgen]
@@ -180,12 +154,10 @@ impl Deck {
   //
 
   pub fn active_filter() -> Result<usize, JsValue> {
-    Ok(
-      GLOBAL_KNOWLEDGE
-        .lock()
-        .map_err(|_| JsValue::from_str("could not get data lock"))?
-        .active_filter(),
-    )
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    Ok(known.data.as_ref().unwrap().active_filter)
   }
 
   pub fn card_quantity(uid: String) -> Result<usize, JsValue> {
@@ -201,7 +173,6 @@ impl Deck {
     let known = GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
-
     Ok(
       if let Some(card) = known
         .data
@@ -222,55 +193,27 @@ impl Deck {
         "out".to_string()
       },
     )
-
-    // if let Some(known
-    //   .data
-    //   .as_ref()
-    //   .unwrap()
-    //   .cards
-    //   .iter()
-    //   .find(|card| card.card.uid == uid);
-
-    // pub fn card_in_out_maybe(
-    //   &self,
-    //   uid: &str,
-    // ) -> String {
-    //   if let Some(card) = self
-    //     .data
-    //     .as_ref()
-    //     .unwrap()
-    //     .cards
-    //     .iter()
-    //     .find(|card| card.card.uid == uid)
-    //   {
-    //     if card.filter == 2 {
-    //       "in".to_string()
-    //     } else if card.filter == 1 {
-    //       "maybe".to_string()
-    //     } else {
-    //       "out".to_string()
-    //     }
-    //   } else {
-    //     "out".to_string()
-    //   }
-    // }
-
-    // Ok(
-    //   GLOBAL_KNOWLEDGE
-    //     .lock()
-    //     .map_err(|_| JsValue::from_str("could not get data lock"))?
-    //     .card_in_out_maybe(&uid),
-    // )
   }
 
   pub fn cards_in_category(
     category: String
   ) -> Result<Vec<String>, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
     Ok(
-      GLOBAL_KNOWLEDGE
-        .lock()
-        .map_err(|_| JsValue::from_str("could not get data lock"))?
-        .cards_in_category(&category),
+      known
+        .data
+        .as_ref()
+        .unwrap()
+        .cards
+        .iter()
+        .filter(|card| card.categories[0] == category)
+        .filter(|card| {
+          card.filter == known.data.as_ref().unwrap().active_filter
+        })
+        .map(|card| card.card.uid.clone())
+        .collect(),
     )
   }
 
