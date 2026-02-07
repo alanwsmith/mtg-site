@@ -135,6 +135,30 @@ impl Deck {
     Ok(known.data.as_ref().unwrap().active_card.clone())
   }
 
+  pub fn active_category() -> Result<Option<String>, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    Ok(
+      known
+        .data
+        .as_ref()
+        .unwrap()
+        .cards
+        .iter()
+        .find(|card| {
+          if let Some(active_id) =
+            &known.data.as_ref().unwrap().active_card
+          {
+            *active_id == card.card.uid
+          } else {
+            false
+          }
+        })
+        .map(|card| card.categories[0].clone()),
+    )
+  }
+
   pub fn active_filter() -> Result<usize, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
