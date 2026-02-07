@@ -226,6 +226,7 @@ impl Deck {
         .filter(|card| {
           card.filter == known.data.as_ref().unwrap().active_filter
         })
+        .sorted_by_key(|card| card.card.oracleCard.name.clone())
         .map(|card| card.card.uid.clone())
         .collect(),
     )
