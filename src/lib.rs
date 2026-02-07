@@ -288,17 +288,14 @@ impl Deck {
           .filter(|card| {
             card.categories[0] == card_to_check.categories[0]
           })
+          .sorted_by_key(|card| card.card.oracleCard.name.clone())
           .map(|card| card.card.uid.clone())
           .next_back()
           == Some(uid),
       )
-      // console::log_1(&"asdf".into());
-      // Ok(true)
     } else {
       Ok(false)
     }
-
-    //known.data.as_ref().unwrap().cards.iter().filter(|card| card.)
   }
 
   // pub fn is_last_card(
