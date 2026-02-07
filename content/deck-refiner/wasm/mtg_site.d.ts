@@ -21,6 +21,7 @@ export class Deck {
     static active_category(): string;
     static active_filter(): number;
     static card_category(uid: string): string;
+    static card_filter(uid: string): number;
     static card_in_out_maybe(uid: string): string;
     static card_quantity(uid: string): number;
     static card_visibility(uid: string): string;
@@ -50,6 +51,7 @@ export interface InitOutput {
     readonly deck_active_category: () => [number, number, number, number];
     readonly deck_active_filter: () => [number, number, number];
     readonly deck_card_category: (a: number, b: number) => [number, number, number, number];
+    readonly deck_card_filter: (a: number, b: number) => [number, number, number];
     readonly deck_card_in_out_maybe: (a: number, b: number) => [number, number, number, number];
     readonly deck_card_quantity: (a: number, b: number) => [number, number, number];
     readonly deck_card_visibility: (a: number, b: number) => [number, number, number, number];

@@ -27,6 +27,10 @@ export class DeckRefiner {
   //   }
   // }
 
+  cardFilter(_, el) {
+    el.dataset.cardfilter = Deck.card_filter(el.prop("id"));
+  }
+
   cardInOutMaybe(_, el) {
     el.innerHTML = Deck.card_in_out_maybe(this.idFor(el));
   }
@@ -213,7 +217,9 @@ export class DeckRefiner {
   }
 
   updateCards() {
-    this.api.trigger("cardInOutMaybe cardQuantity cardState cardVisibility");
+    this.api.trigger(
+      "cardInOutMaybe cardQuantity cardState cardVisibility cardFilter",
+    );
   }
 
   // TODO: Deprecate in favor of calling API

@@ -189,6 +189,23 @@ impl Deck {
     }
   }
 
+  pub fn card_filter(uid: String) -> Result<usize, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    Ok(
+      known
+        .data
+        .as_ref()
+        .unwrap()
+        .cards
+        .iter()
+        .find(|card| card.card.uid == uid)
+        .unwrap()
+        .filter,
+    )
+  }
+
   pub fn card_quantity(uid: String) -> Result<usize, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
