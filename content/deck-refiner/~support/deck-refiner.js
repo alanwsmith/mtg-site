@@ -1,4 +1,4 @@
-import init, { Deck } from "/deck-refiner/~support/mtg_site.js";
+import init, { Deck } from "/deck-refiner/wasm/mtg_site.js";
 
 function debug(msg) {
   console.log(msg);

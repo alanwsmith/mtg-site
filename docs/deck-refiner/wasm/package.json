@@ -1,0 +1,15 @@
+{
+  "name": "mtg-site",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "mtg_site_bg.wasm",
+    "mtg_site.js",
+    "mtg_site.d.ts"
+  ],
+  "main": "mtg_site.js",
+  "types": "mtg_site.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

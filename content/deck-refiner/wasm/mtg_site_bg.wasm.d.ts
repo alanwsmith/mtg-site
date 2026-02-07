@@ -1,0 +1,24 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const __wbg_card_free: (a: number, b: number) => void;
+export const __wbg_cardcard_free: (a: number, b: number) => void;
+export const __wbg_deck_free: (a: number, b: number) => void;
+export const __wbg_oraclecard_free: (a: number, b: number) => void;
+export const deck_active_card: () => [number, number, number, number];
+export const deck_active_category: () => [number, number, number, number];
+export const deck_active_filter: () => [number, number, number];
+export const deck_card_in_out_maybe: (a: number, b: number) => [number, number, number, number];
+export const deck_card_quantity: (a: number, b: number) => [number, number, number];
+export const deck_cards_in_category: (a: number, b: number) => [number, number, number, number];
+export const deck_categories: () => [number, number, number, number];
+export const deck_load_json: (a: number, b: number) => [number, number];
+export const deck_set_active_card: (a: number, b: number) => [number, number];
+export const deck_set_active_filter: (a: number) => [number, number];
+export const __wbindgen_externrefs: WebAssembly.Table;
+export const __externref_table_dealloc: (a: number) => void;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __externref_drop_slice: (a: number, b: number) => void;
+export const __wbindgen_start: () => void;
