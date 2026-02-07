@@ -254,6 +254,18 @@ export class Deck {
             throw takeFromExternrefTable0(ret[0]);
         }
     }
+    /**
+     * @param {string} uid
+     * @param {number} filter
+     */
+    static set_card_filter(uid, filter) {
+        const ptr0 = passStringToWasm0(uid, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.deck_set_card_filter(ptr0, len0, filter);
+        if (ret[1]) {
+            throw takeFromExternrefTable0(ret[0]);
+        }
+    }
 }
 if (Symbol.dispose) Deck.prototype[Symbol.dispose] = Deck.prototype.free;
 

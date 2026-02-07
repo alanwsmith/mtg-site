@@ -31,6 +31,7 @@ export class Deck {
     static load_json(content: string): void;
     static set_active_card(uid: string): void;
     static set_active_filter(filter: number): void;
+    static set_card_filter(uid: string, filter: number): void;
 }
 
 export class OracleCard {
@@ -61,6 +62,7 @@ export interface InitOutput {
     readonly deck_load_json: (a: number, b: number) => [number, number];
     readonly deck_set_active_card: (a: number, b: number) => [number, number];
     readonly deck_set_active_filter: (a: number) => [number, number];
+    readonly deck_set_card_filter: (a: number, b: number, c: number) => [number, number];
     readonly __wbindgen_externrefs: WebAssembly.Table;
     readonly __externref_table_dealloc: (a: number) => void;
     readonly __wbindgen_free: (a: number, b: number, c: number) => void;

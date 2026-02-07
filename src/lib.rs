@@ -348,9 +348,9 @@ impl Deck {
   }
 
   pub fn set_active_card(uid: String) -> Result<(), JsValue> {
-    console::log_1(
-      &format!("Setting active card to {}", uid).into(),
-    );
+    // console::log_1(
+    //    &format!("Setting active card to {}", uid).into(),
+    // );
     let mut known = GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
@@ -359,13 +359,33 @@ impl Deck {
   }
 
   pub fn set_active_filter(filter: usize) -> Result<(), JsValue> {
-    console::log_1(
-      &format!("Setting active filter to {}", filter).into(),
-    );
+    // console::log_1(
+    //   &format!("Setting active filter to {}", filter).into(),
+    // );
     GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?
       .set_active_filter(filter);
+    Ok(())
+  }
+
+  pub fn set_card_filter(
+    uid: String,
+    filter: usize,
+  ) -> Result<(), JsValue> {
+    let mut known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    if let Some(card) = known
+      .data
+      .as_mut()
+      .unwrap()
+      .cards
+      .iter_mut()
+      .find(|mut card| card.card.uid == uid)
+    {
+      card.filter = filter;
+    }
     Ok(())
   }
 

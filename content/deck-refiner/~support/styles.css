@@ -104,8 +104,6 @@
 }
 
 
-
-
 .deck-wrapper[data-activefilter="0"] button[data-deckfilter="0"] {
   background: var(--accent-color);
 }

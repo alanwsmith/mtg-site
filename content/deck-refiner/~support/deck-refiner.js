@@ -158,22 +158,24 @@ export class DeckRefiner {
   //   }
 
   setCardFilter(ev, _) {
-    // if (ev.type === "click") {
-    //   const df = this.#deck.deckFilter();
-    //   const card = ev.prop("id");
-    //   const oldCf = this.#deck.cardFilter(card);
-    //   const newCf = ev.propToInt("cardfilter");
-    //   if (newCf !== oldCf) {
-    //     this.#deck.setCardFilter(card, newCf);
-    //     if (df === -1) {
-    //       this.api.trigger("deck");
-    //     } else if (newCf < df) {
-    //       this.api.trigger("deck");
-    //     } else {
-    //       ev.target.closest(".card-wrapper").dataset.cardfilter = newCf;
-    //     }
-    //   }
-    // }
+    if (ev.type === "click") {
+      Deck.set_card_filter(this.idFor(ev.target), ev.prop("cardfilter"));
+      this.updateCards();
+      //   const df = this.#deck.deckFilter();
+      //   const card = ev.prop("id");
+      //   const oldCf = this.#deck.cardFilter(card);
+      //   const newCf = ev.propToInt("cardfilter");
+      //   if (newCf !== oldCf) {
+      //     this.#deck.setCardFilter(card, newCf);
+      //     if (df === -1) {
+      //       this.api.trigger("deck");
+      //     } else if (newCf < df) {
+      //       this.api.trigger("deck");
+      //     } else {
+      //       ev.target.closest(".card-wrapper").dataset.cardfilter = newCf;
+      //     }
+      //   }
+    }
   }
 
   setActiveFilter(ev, el) {
