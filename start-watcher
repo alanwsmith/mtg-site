@@ -1,4 +1,7 @@
 #!/bin/bash
 
-cargo watch -c -x 'test solo -- --nocapture && cargo test -- --nocapture && cargo clippy && cargo run'
+# cargo watch -c -x 'test solo -- --nocapture && cargo test -- --nocapture && cargo clippy && cargo run'
 
+
+# for the deck-refinder wasm build
+watchexec -c -e rs.html "wasm-pack build --target web --out-dir content/deck-refiner/wasm"
