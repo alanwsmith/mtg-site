@@ -171,7 +171,22 @@ impl Deck {
   }
 
   pub fn card_category(uid: String) -> Result<String, JsValue> {
-    Ok("NONE".to_string())
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    if let Some(category) = known
+      .data
+      .as_ref()
+      .unwrap()
+      .cards
+      .iter()
+      .find(|card| card.card.uid == uid)
+      .map(|card| card.categories[0].clone())
+    {
+      Ok(category.clone())
+    } else {
+      Ok("None".to_string())
+    }
   }
 
   pub fn card_quantity(uid: String) -> Result<usize, JsValue> {
@@ -247,6 +262,43 @@ impl Deck {
         .map_err(|_| JsValue::from_str("could not get data lock"))?
         .categories(),
     )
+  }
+
+  pub fn is_last_card_in_category(
+    uid: String
+  ) -> Result<bool, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    if let Some(card_to_check) = known
+      .data
+      .as_ref()
+      .unwrap()
+      .cards
+      .iter()
+      .find(|card| card.card.uid == uid)
+    {
+      Ok(
+        known
+          .data
+          .as_ref()
+          .unwrap()
+          .cards
+          .iter()
+          .filter(|card| {
+            card.categories[0] == card_to_check.categories[0]
+          })
+          .map(|card| card.card.uid.clone())
+          .next_back()
+          == Some(uid),
+      )
+      // console::log_1(&"asdf".into());
+      // Ok(true)
+    } else {
+      Ok(false)
+    }
+
+    //known.data.as_ref().unwrap().cards.iter().filter(|card| card.)
   }
 
   // pub fn is_last_card(

@@ -43,11 +43,16 @@ export class DeckRefiner {
     // DOM. Need to do testing on there. If it
     // turns out there's value to it, it's
     // something to consider for bitty.
+
+    // console.log(Deck.card_category(el.prop("id")));
+
     if (el.prop("id") === Deck.active_card()) {
       el.dataset.cardstate = "active";
     } else if (Deck.card_category(el.prop("id")) === Deck.active_category()) {
+      console.log("here3");
       el.dataset.cardstate = "closed";
-
+    } else if (Deck.is_last_card_in_category(el.prop("id"))) {
+      el.dataset.cardstate = "opened";
       // console.log(el.prop("id"));
       //console.log(Deck.is_last_card());
       //console.log(Deck.active_category());
