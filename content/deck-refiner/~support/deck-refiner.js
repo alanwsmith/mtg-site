@@ -46,10 +46,11 @@ export class DeckRefiner {
     if (el.prop("id") === Deck.active_card()) {
       console.log(Deck.active_category());
       el.dataset.cardstate = "active";
-    } else if (Deck.is_last_card(el.prop("id"))) {
-      el.dataset.cardstate = "opened";
+      // } else if (Deck.is_last_card(el.prop("id")), Deck.active_category()) {
+      //   el.dataset.cardstate = "opened";
     } else {
       el.dataset.cardstate = "closed";
+      console.log(Deck.active_category());
     }
   }
 

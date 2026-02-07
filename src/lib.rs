@@ -135,18 +135,13 @@ impl Deck {
     Ok(known.data.as_ref().unwrap().active_card.clone())
   }
 
-  pub fn active_category() -> Result<Option<String>, JsValue> {
+  pub fn active_category() -> Result<String, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
     Ok(
-      known
-        .data
-        .as_ref()
-        .unwrap()
-        .cards
-        .iter()
-        .find(|card| {
+      if let Some(card) =
+        known.data.as_ref().unwrap().cards.iter().find(|card| {
           if let Some(active_id) =
             &known.data.as_ref().unwrap().active_card
           {
@@ -155,7 +150,11 @@ impl Deck {
             false
           }
         })
-        .map(|card| card.categories[0].clone()),
+      {
+        card.categories[0].to_string()
+      } else {
+        "None".to_string()
+      },
     )
   }
 
@@ -241,28 +240,35 @@ impl Deck {
     )
   }
 
-  pub fn is_last_card(uid: String) -> Result<bool, JsValue> {
+  pub fn is_last_card(
+    uid: String,
+    category: String,
+  ) -> Result<bool, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
-    Ok(false)
-    // if let (Some(check_category), Ok(Some(active_category))) = (
-    //   known
-    //     .data
-    //     .as_ref()
-    //     .unwrap()
-    //     .cards
-    //     .iter()
-    //     .find(|card| card.card.uid == uid)
-    //     .map(|card| card.categories[0].clone()),
-    //   Deck::active_category(),
-    // ) {
-    //   if check_category == active_category {
-    //     console::log_1(&format!("yyyyy{}", check_category).into());
-    //   } else {
-    //     console::log_1(&format!("----{}", check_category).into());
-    //   }
-    // };
+
+    if let Some(check_category) = known
+      .data
+      .as_ref()
+      .unwrap()
+      .cards
+      .iter()
+      .find(|card| card.card.uid == uid)
+      .map(|card| card.categories[0].clone())
+    {
+      //Ok(check_category == category)
+
+      Ok(true)
+
+      // if check_category == active_category {
+      //   console::log_1(&format!("yyyyy{}", check_category).into());
+      // } else {
+      //   console::log_1(&format!("----{}", check_category).into());
+      // }
+    } else {
+      Ok(false)
+    }
 
     // if check_category == active_category {
     //   console::log_1(&format!("yyyyy{}", check_category).into());
