@@ -41,8 +41,12 @@ class RequestResponse {
     }
   }
 
-  unwrap() {
-    return this.value;
+  unwrapOr(alt) {
+    if (this.value !== undefined) {
+      return this.value;
+    } else {
+      return alt;
+    }
   }
 }
 
@@ -242,6 +246,14 @@ class BittyJs extends HTMLElement {
         return false;
       }
       return evKey === elKey;
+    };
+
+    el.setProp = (key, value) => {
+      // TODO: scrub this input to make sure
+      // it's valid for an attribute.
+      if (el.dataset[key] === undefined || el.dataset[key] !== value) {
+        el.dataset[key] = value;
+      }
     };
   }
 
@@ -479,6 +491,7 @@ class BittyJs extends HTMLElement {
     }
   }
 
+  /** internal */
   loadPageData() {
     this._data = {};
     document.querySelectorAll("script").forEach((el) => {
@@ -494,6 +507,7 @@ class BittyJs extends HTMLElement {
     });
   }
 
+  /** internal */
   loadPageTemplates() {
     this._templates = {};
     document.querySelectorAll("script").forEach((el) => {
@@ -690,7 +704,7 @@ class BittyJs extends HTMLElement {
     }
   }
 
-  setProp(key, value) {
+  setCSS(key, value) {
     document.documentElement.style.setProperty(key, value);
   }
 

@@ -18,7 +18,7 @@ export class DeckRefiner {
   }
 
   activeFilter(_, el) {
-    el.dataset.activefilter = Deck.active_filter();
+    el.setProp("activefilter", Deck.active_filter());
   }
 
   // closeHighlight(ev, __) {
@@ -28,7 +28,7 @@ export class DeckRefiner {
   // }
 
   cardFilter(_, el) {
-    el.dataset.cardfilter = Deck.card_filter(el.prop("id"));
+    el.setProp("cardfilter", Deck.card_filter(el.prop("id")));
   }
 
   cardInOutMaybe(_, el) {
@@ -41,13 +41,13 @@ export class DeckRefiner {
 
   cardState(_, el) {
     if (el.prop("id") === Deck.active_card()) {
-      el.dataset.cardstate = "active";
+      el.setProp("cardstate", "active");
     } else if (Deck.card_category(el.prop("id")) === Deck.active_category()) {
-      el.dataset.cardstate = "closed";
+      el.setProp("cardstate", "closed");
     } else if (Deck.is_last_card_in_category(el.prop("id"))) {
-      el.dataset.cardstate = "opened";
+      el.setProp("cardstate", "opened");
     } else {
-      el.dataset.cardstate = "closed";
+      el.setProp("cardstate", "closed");
     }
   }
 
@@ -114,28 +114,22 @@ export class DeckRefiner {
   }
 
   async loadDeck() {
+    await init();
     const t0 = performance.now();
     debug("Checking for a deck in storage.");
-    const storage = localStorage.getItem("refinerDeck");
+    const storage = localStorage.getItem("refinerDec");
     if (storage !== null) {
       debug("Found a deck in storage.");
-      await init();
       Deck.load_json(storage);
-
-      // console.log(Deck.categories());
-      // console.log(JSON.parse(storage));
-      //  this.#deck = new Deck(JSON.parse(storage));
     } else {
-      // TODO: GET EXAMPLE DECK IF THERE'S
-      // NOT ONE IN STORAGE
-
-      //const resp = await this.api.getJSON(
-      //  `/deck-refiner/~support/example.json`,
-      //);
-      //if (resp.value) {
-      //  debug("No deck in storage. Making a new one.");
-      //  //this.#deck = new Deck(resp.value);
-      //}
+      const resp = await this.api.getTXT(
+        //`/deck-refiner/~support/example.json`,
+        `/deck-refiner/~support/big-deck.json`,
+      );
+      if (resp.value) {
+        debug("No deck in storage. Making a new one.");
+        Deck.load_json(resp.value);
+      }
     }
     this.api.trigger("activeFilter deck updateCards");
     const t1 = performance.now();
