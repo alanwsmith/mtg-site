@@ -123,8 +123,9 @@ export class DeckRefiner {
       Deck.load_json(storage);
     } else {
       const resp = await this.api.getTXT(
-        //`/deck-refiner/~support/example.json`,
-        `/deck-refiner/~support/big-deck.json`,
+        // `/deck-refiner/~support/example.json`,
+        // `/deck-refiner/~support/big-deck.json`,
+        `/deck-refiner/base-decks/yuriko-ninjas.json`,
       );
       if (resp.value) {
         debug("No deck in storage. Making a new one.");
@@ -216,6 +217,17 @@ export class DeckRefiner {
     this.api.trigger(
       "cardInOutMaybe cardQuantity cardState cardVisibility cardFilter",
     );
+  }
+
+  // TODO: Deprecate in favor of calling API
+  changeDeckURL(ev, el) {
+    if (ev.type === "input") {
+      if (ev.value !== "") {
+        debug(`Switched hoding URL to: ${ev.value}`);
+        this.#tmpHoldingURL = ev.value;
+        this.api.trigger("changeDeckStep2");
+      }
+    }
   }
 
   // TODO: Deprecate in favor of calling API

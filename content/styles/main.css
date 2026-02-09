@@ -49,11 +49,11 @@ b {
   font-weight: var(font-weight-900);
 }
 
-bitty-7-0 {
+bitty-8-0 {
   display: block;
 }
 
-bitty-7-0 > :where(:not(:first-child)) {
+bitty-8-0 > :where(:not(:first-child)) {
   margin-top: var(--flow-space, var(--default-flow));
 }
 

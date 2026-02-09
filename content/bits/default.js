@@ -1,6 +1,6 @@
 export class Main {
   bittyReady() {
-    this.api.setProp("--load-hider", "1");
+    this.api.setCSS("--load-hider", "1");
   }
 }
 
@@ -13,9 +13,13 @@ export class ThemeSwitcher {
 
   #extraStyles = new CSSStyleSheet();
 
+  bittyInit() {
+    // this.api.trigger("themeSwitcher");
+  }
+
   bittyReady() {
     document.adoptedStyleSheets.push(this.#extraStyles);
-    this.api.trigger("doUpdates");
+    this.api.trigger("themeSwitcher doUpdates");
   }
 
   doUpdates(_, __) {

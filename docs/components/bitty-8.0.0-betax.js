@@ -57,6 +57,7 @@ class TriggerEvent extends Event {
   }
 }
 
+/** @internal */
 function findDataKey(el, key) {
   if (el.dataset === undefined) {
     return undefined;
@@ -96,7 +97,6 @@ class BittyJs extends HTMLElement {
       this.loadPageData();
       this.loadPageTemplates();
       await this.runBittyInit();
-      await this.runDataInits();
       await this.runBittyReady();
     }
   }
@@ -129,6 +129,13 @@ class BittyJs extends HTMLElement {
   connectedMoveCallback() {
     // NOTE: this prevs connectedCallback() from firing
     // if a bitty component is moved.
+  }
+
+  copyText(selector) {
+    // NOTE: copyText is part of `this.api` so that
+    // things like `this.api.trigger()` can be called
+    // from it.
+    // TKTKTK
   }
 
   data(id) {
@@ -218,14 +225,24 @@ class BittyJs extends HTMLElement {
     };
 
     el.propToInt = (x) => {
-      return parseInt(findDataKey.call(null, el, x));
+      const finder = findDataKey.call(null, el, x);
+      if (finder !== undefined) {
+        return parseInt(finder, 10);
+      } else {
+        return finder;
+      }
     };
 
     el.propToFloat = (x) => {
-      return parseFloat(findDataKey.call(null, el, x));
+      const finder = findDataKey.call(null, el, x);
+      if (finder !== undefined) {
+        return parseFloat(finder);
+      } else {
+        return finder;
+      }
     };
 
-    if (el.value) {
+    if (el.value !== undefined) {
       el.valueToInt = parseInt(el.value, 10);
       el.valueToFloat = parseFloat(el.value);
     }
@@ -252,6 +269,7 @@ class BittyJs extends HTMLElement {
       // TODO: scrub this input to make sure
       // it's valid for an attribute.
       if (el.dataset[key] === undefined || el.dataset[key] !== value) {
+        /** internal */
         el.dataset[key] = value;
       }
     };
@@ -302,19 +320,27 @@ class BittyJs extends HTMLElement {
     };
 
     ev.propToInt = (x) => {
-      return parseInt(findDataKey.call(null, ev.target, x));
+      const finder = findDataKey.call(null, ev.target, x);
+      if (finder !== undefined) {
+        return parseInt(finder, 10);
+      } else {
+        return finder;
+      }
     };
 
     ev.propToFloat = (x) => {
-      return parseFloat(findDataKey.call(null, ev.target, x));
+      const finder = findDataKey.call(null, ev.target, x);
+      if (finder !== undefined) {
+        return parseFloat(finder);
+      } else {
+        return undefined;
+      }
     };
   }
 
   /** internal */
   findSender(evTarget) {
     if (evTarget.dataset && evTarget.dataset.send) {
-      return evTarget;
-    } else if (evTarget.dataset && evTarget.dataset.use) {
       return evTarget;
     } else if (evTarget.parentNode) {
       return this.findSender(evTarget.parentNode);
@@ -451,25 +477,8 @@ class BittyJs extends HTMLElement {
         ev.sendPayload = ev.signal;
         await this.processEvent(ev);
       } else {
-        if (ev.sender.dataset.use) {
-          const signals = this.trimInput(ev.sender.dataset.use);
-          for (let signal of signals) {
-            let doAwait = false;
-            const iSigParts = signal.split(":");
-            if (iSigParts.length === 2 && iSigParts[0] === "await") {
-              doAwait = true;
-              signal = iSigParts[1];
-            }
-            if (this.conn[signal]) {
-              this.expandElement(ev, ev.sender);
-              if (doAwait) {
-                await this.conn[signal](ev, ev.sender);
-              } else {
-                this.conn[signal](ev, ev.sender);
-              }
-            }
-          }
-        }
+        // NOTE data-use was remove from here, this
+        // can be collapsed when that work is finihed.
         if (ev.sender.dataset.send) {
           //** internal */
           ev.sendPayload = ev.sender.dataset.send;
@@ -513,6 +522,10 @@ class BittyJs extends HTMLElement {
     document.querySelectorAll("script").forEach((el) => {
       if (el.type === "text/html" && el.id !== undefined) {
         this._templates[el.id] = el.text;
+      }
+      if (el.type === "text/plain" && el.id !== undefined) {
+        // TODO: Note in docs that the text is trimmed.
+        this._templates[el.id] = el.text.trim();
       }
     });
   }
@@ -600,6 +613,10 @@ class BittyJs extends HTMLElement {
     return this.doSubs(template, subs);
   }
 
+  mapKeyToSignal(key, signal) {
+    // TODO: TKTKTK
+  }
+
   /** internal */
   async processEvent(ev) {
     // skip things flagged as local that aren't
@@ -673,37 +690,6 @@ class BittyJs extends HTMLElement {
     }
   }
 
-  /** internal */
-  async runDataInits() {
-    if (this.dataset.init) {
-      const signals = this.trimInput(this.dataset.init);
-      for (let signal of signals) {
-        if (typeof this.conn[signal] === "function") {
-          if (this.conn[signal][Symbol.toStringTag] === "AsyncFunction") {
-            await this.conn[signal](null, this);
-          } else {
-            this.conn[signal](null, this);
-          }
-        }
-      }
-    }
-    for (let el of this.querySelectorAll("[data-init]")) {
-      if (el.dataset.init) {
-        this.expandElement(null, el);
-        const signals = this.trimInput(el.dataset.init);
-        for (let signal of signals) {
-          if (typeof this.conn[signal] === "function") {
-            if (this.conn[signal][Symbol.toStringTag] === "AsyncFunction") {
-              await this.conn[signal](null, el);
-            } else {
-              this.conn[signal](null, el);
-            }
-          }
-        }
-      }
-    }
-  }
-
   setCSS(key, value) {
     document.documentElement.style.setProperty(key, value);
   }
@@ -718,6 +704,10 @@ class BittyJs extends HTMLElement {
         el.bittyId = el.dataset.bittyid;
       }
     });
+  }
+
+  async sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   template(id) {

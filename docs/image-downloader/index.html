@@ -175,9 +175,7 @@ body {
       browser/app. Some things won't work as a result.
     </noscript>
 
-    <bitty-8-0
-      data-connect="/bits/default.js Main" 
-      class="load-hider">
+    <bitty-8-0 data-connect="/bits/default.js Main" class="load-hider">
       <bitty-8-0 data-connect="/bits/default.js CodeBlockControls">
         <bitty-8-0 data-connect="/bits/default.js ImageUpdater">
           <bitty-8-0 data-connect="/bits/default.js DetailsOpener">
@@ -190,19 +188,59 @@ body {
 </noscript><header class="default-wrapper xxlarge-bottom-margin xxlarge-bottom-padding">
   <div class="top-nav">
     <a href="/">Home</a>
-    <bitty-8-0 
-      data-connect="/bits/default.js ThemeSwitcher"
-      data-location="top"
-      data-init="themeSwitcher"></bitty-8-0>
+    <bitty-8-0 data-connect="/bits/default.js ThemeSwitcher" data-location="top">
+    <div data-receive="themeSwitcher"></div>
+    </bitty-8-0>
   </div>
 </header>      <main class="default-wrapper default-flow">
 <hgroup>
-    <h1>Tooling</h1>
-  </hgroup>
+  <h1>Image Downloader</h1>
+</hgroup>
 
-<ul>
-  <li><a href="/tooling/archidekt-parser/">Archidekt Parser</a></li> 
-</ul>      </main>
+<p>
+  This tools is for me to pull down images
+  to use while I'm working on update. You
+  probably don't need it unless you want
+  to grab copies of images for your cards
+  for something else. 
+</p>
+
+<bitty-8-0 data-connect="/image-downloader/image-downloader.js ImageDownloader">
+  <label>Deck URL
+    <input type="text" class="xsmall-width" data-send="deckURL" autocomplete="off"/>
+  </label>
+    <div>
+      Example: <span>https://archidekt.com/decks/19248781/yurikoninjas_base_cards</span>
+    </div>
+  <div class="default-border default-padding default-border-radius default-flow">
+    <p>JSON to get:</p>
+    <div data-receive="deckURL" class="default-flow">waiting</div>
+  </div>
+  <div>
+    <label>Paste JSON here: 
+      <div>
+        <textarea class="text-box" data-send="jsonPayload" autocomplete="off"></textarea>
+      </div>
+    </label>
+  </div>
+  <div>
+      <label>The Downloader Script
+      <div>
+        <textarea class="text-box" data-receive="jsonPayload" autocomplete="off"></textarea>
+      </div>
+    </label>
+  </div>
+</bitty-8-0>
+
+<script type="text/html" id="deckURL">
+  <p><a href="HREF" target="_blank">HREF</a></p>
+</script>
+
+<script type="text/plain" id="commands">
+#!/bin/bash
+
+COMMANDS
+</script>      </main>
 <footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
   <div class="small-font-size">
     <div class="text-align-center">

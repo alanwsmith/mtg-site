@@ -1,0 +1,56 @@
+[!- extends "_wrappers/main.html" -!]
+
+[!- block main -!]
+<hgroup>
+  <h1>Image Downloader</h1>
+</hgroup>
+
+<p>
+  This tools is for me to pull down images
+  to use while I'm working on update. You
+  probably don't need it unless you want
+  to grab copies of images for your cards
+  for something else. 
+</p>
+
+<bitty-8-0 data-connect="/image-downloader/image-downloader.js ImageDownloader">
+  <label>Deck URL
+    <input type="text" class="xsmall-width" data-send="deckURL" autocomplete="off"/>
+  </label>
+    <div>
+      Example: <span>https://archidekt.com/decks/19248781/yurikoninjas_base_cards</span>
+    </div>
+  <div class="default-border default-padding default-border-radius default-flow">
+    <p>JSON to get:</p>
+    <div data-receive="deckURL" class="default-flow">waiting</div>
+  </div>
+  <div>
+    <label>Paste JSON here: 
+      <div>
+        <textarea class="text-box" data-send="jsonPayload" autocomplete="off"></textarea>
+      </div>
+    </label>
+  </div>
+  <div>
+      <label>The Downloader Script
+      <div>
+        <textarea class="text-box" data-receive="jsonPayload" autocomplete="off"></textarea>
+      </div>
+    </label>
+  </div>
+</bitty-8-0>
+
+<script type="text/html" id="deckURL">
+  <p><a href="HREF" target="_blank">HREF</a></p>
+</script>
+
+<script type="text/plain" id="commands">
+#!/bin/bash
+
+COMMANDS
+</script>
+
+
+[!- endblock -!]
+
+

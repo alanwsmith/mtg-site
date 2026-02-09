@@ -175,9 +175,7 @@ body {
       browser/app. Some things won't work as a result.
     </noscript>
 
-    <bitty-8-0
-      data-connect="/bits/default.js Main" 
-      class="load-hider">
+    <bitty-8-0 data-connect="/bits/default.js Main" class="load-hider">
       <bitty-8-0 data-connect="/bits/default.js CodeBlockControls">
         <bitty-8-0 data-connect="/bits/default.js ImageUpdater">
           <bitty-8-0 data-connect="/bits/default.js DetailsOpener">
@@ -190,10 +188,9 @@ body {
 </noscript><header class="default-wrapper xxlarge-bottom-margin xxlarge-bottom-padding">
   <div class="top-nav">
     <a href="/">Home</a>
-    <bitty-8-0 
-      data-connect="/bits/default.js ThemeSwitcher"
-      data-location="top"
-      data-init="themeSwitcher"></bitty-8-0>
+    <bitty-8-0 data-connect="/bits/default.js ThemeSwitcher" data-location="top">
+    <div data-receive="themeSwitcher"></div>
+    </bitty-8-0>
   </div>
 </header>      <main class="default-wrapper default-flow">
 <style>
@@ -209,7 +206,7 @@ body {
 }
 </style>
 
-<bitty-7-0 data-connect="/bits/example-styles.js" class="default-flow">
+<bitty-8-0 data-connect="/bits/example-styles.js" class="default-flow">
 <h1>Style Check - h1</h1>
 <p>The quick brown fox jumps over the lazy dog</p>
   <p>This is an <code>inline code</code> string</p>
@@ -234,9 +231,7 @@ body {
 <h6>Style Check - h6</h6>
 <p>The quick brown fox jumps over the lazy dog</p>
 
-<div 
-    class="xxlarge-margin"
-    data-init="colorLines"></div>
+<div class="xxlarge-margin" data-receive="colorLines"></div>
 
   <h2>Code Sample</h2>
 <pre class="code-block"><code><span class="line-marker"></span><span class="source js"><span class="meta export js"><span class="keyword control import-export js">export</span> <span class="keyword control import-export js">default</span> <span class="meta class js"><span class="storage type class js">class</span> <span class="meta class js"><span class="meta block js"><span class="punctuation section block js">{</span></span></span></span><span class="meta class js"><span class="meta block js">
@@ -364,7 +359,7 @@ body {
 <span class="line-marker"></span>    </span><span class="meta block js"><span class="punctuation section block js">}</span></span></span>
 <span class="line-marker"></span>  <span class="punctuation section block js">}</span></span>
 <span class="line-marker"></span><span class="punctuation section block js">}</span></span></span></span></span></code></pre>
-</bitty-7-0>
+</bitty-8-0>
 
       </main>
 <footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
