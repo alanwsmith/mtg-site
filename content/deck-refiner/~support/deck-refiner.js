@@ -31,12 +31,16 @@ export class DeckRefiner {
     el.setProp("cardfilter", Deck.card_filter(el.prop("id")));
   }
 
-  cardInOutMaybe(_, el) {
-    el.innerHTML = Deck.card_in_out_maybe(this.idFor(el));
+  cardFilterDisplay(_, el) {
+    el.innerHTML = Deck.card_filter_display(el.prop("id"));
   }
 
+  // cardInOutMaybe(_, el) {
+  //   el.innerHTML = Deck.card_in_out_maybe(el.prop("id"));
+  // }
+
   cardQuantity(_, el) {
-    el.innerHTML = Deck.card_quantity(this.idFor(el));
+    el.innerHTML = Deck.card_quantity(el.prop("id"));
   }
 
   cardState(_, el) {
@@ -116,10 +120,6 @@ export class DeckRefiner {
     }
   }
 
-  idFor(el) {
-    return el.closest(".card-wrapper").dataset.id;
-  }
-
   incrementQuantity(ev, _) {
     if (ev.type === "click") {
       Deck.increment_quantity(ev.prop("id"));
@@ -131,7 +131,7 @@ export class DeckRefiner {
     await init();
     const t0 = performance.now();
     debug("Checking for a deck in storage.");
-    const storage = localStorage.getItem("refinerDeck2");
+    const storage = localStorage.getItem("refinerDeck");
     if (storage !== null) {
       debug("Found a deck in storage.");
       Deck.load_json(storage);
@@ -172,7 +172,7 @@ export class DeckRefiner {
 
   setCardFilter(ev, _) {
     if (ev.type === "click") {
-      Deck.set_card_filter(this.idFor(ev.target), ev.prop("cardfilter"));
+      Deck.set_card_filter(ev.prop("id"), ev.prop("cardfilter"));
       this.updateCards();
       //   const df = this.#deck.deckFilter();
       //   const card = ev.prop("id");
@@ -233,7 +233,7 @@ export class DeckRefiner {
 
   updateCards() {
     this.api.trigger(
-      "cardInOutMaybe cardQuantity cardState cardVisibility cardFilter",
+      "cardInOutMaybe cardQuantity cardState cardVisibility cardFilter cardFilterDisplay",
     );
   }
 

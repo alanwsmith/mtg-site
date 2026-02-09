@@ -246,7 +246,9 @@ impl Deck {
     }
   }
 
-  pub fn card_in_out_maybe(uid: String) -> Result<String, JsValue> {
+  pub fn card_filter_display(
+    uid: String
+  ) -> Result<String, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
@@ -263,6 +265,8 @@ impl Deck {
           "✪✪".to_string()
         } else if card.filter == 1 {
           "✪".to_string()
+        } else if card.filter == 0 {
+          "-".to_string()
         } else {
           "".to_string()
         }

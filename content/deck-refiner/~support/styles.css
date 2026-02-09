@@ -23,8 +23,12 @@
   border-radius: var(--large-border-radius);
 }
 
-.card-quantity {
-  padding-left: 0.3rem;
+
+[data-receive=cardFilterDisplay] {
+  height: 3.4ch;
+}
+
+[data-receive=cardQuantity] {
   padding-block: 0.25rem;
   text-align: center;
 }
@@ -43,7 +47,7 @@
   background-color: black;
   color: var(--faded-white-color);
   display: grid;
-  grid-template-columns: var(--card-count-width) var(--card-image-width) var(--card-controls-width);
+  grid-template-columns: var(--card-image-width) var(--card-controls-width);
   overflow-y: hidden;
   border-radius: var(--large-border-radius);
 }

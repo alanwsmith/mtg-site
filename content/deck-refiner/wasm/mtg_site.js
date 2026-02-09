@@ -126,13 +126,13 @@ export class Deck {
      * @param {string} uid
      * @returns {string}
      */
-    static card_in_out_maybe(uid) {
+    static card_filter_display(uid) {
         let deferred3_0;
         let deferred3_1;
         try {
             const ptr0 = passStringToWasm0(uid, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
             const len0 = WASM_VECTOR_LEN;
-            const ret = wasm.deck_card_in_out_maybe(ptr0, len0);
+            const ret = wasm.deck_card_filter_display(ptr0, len0);
             var ptr2 = ret[0];
             var len2 = ret[1];
             if (ret[3]) {
