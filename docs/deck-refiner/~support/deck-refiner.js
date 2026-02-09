@@ -78,6 +78,13 @@ export class DeckRefiner {
     );
   }
 
+  decrementQuantity(ev, _) {
+    if (ev.type === "click") {
+      Deck.decrement_quantity(ev.prop("id"));
+      this.api.trigger("cardQuantity");
+    }
+  }
+
   /*
     el.replaceChildren(
       ...this.#deck.categories()
@@ -113,7 +120,7 @@ export class DeckRefiner {
     return el.closest(".card-wrapper").dataset.id;
   }
 
-  increaseQuantity(ev, _) {
+  incrementQuantity(ev, _) {
     if (ev.type === "click") {
       Deck.increment_quantity(ev.prop("id"));
       this.api.trigger("cardQuantity");
@@ -124,12 +131,12 @@ export class DeckRefiner {
     await init();
     const t0 = performance.now();
     debug("Checking for a deck in storage.");
-    const storage = localStorage.getItem("refinerDec");
+    const storage = localStorage.getItem("refinerDeck2");
     if (storage !== null) {
       debug("Found a deck in storage.");
       Deck.load_json(storage);
     } else {
-      const resp = await this.api.getTXT(
+      const resp = await this.api.getTEXT(
         // `/deck-refiner/~support/example.json`,
         // `/deck-refiner/~support/big-deck.json`,
         `/deck-refiner/base-decks/yuriko-ninjas.json`,
@@ -143,6 +150,10 @@ export class DeckRefiner {
     const t1 = performance.now();
     const time = t1 - t0;
     console.log(`Load time: ${time}`);
+  }
+
+  saveDeck() {
+    // localStorage("re)
   }
 
   //   const storage = localStorage.getItem("refinerDeck");

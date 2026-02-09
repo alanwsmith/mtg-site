@@ -304,6 +304,24 @@ impl Deck {
     )
   }
 
+  pub fn decrement_quantity(uid: String) -> Result<(), JsValue> {
+    let mut known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    if let Some(card) = known
+      .data
+      .as_mut()
+      .unwrap()
+      .cards
+      .iter_mut()
+      .find(|mut card| card.card.uid == uid)
+      && card.quantity > 1
+    {
+      card.quantity -= 1;
+    }
+    Ok(())
+  }
+
   pub fn load_json(content: String) -> Result<(), JsValue> {
     console::log_1(&"Loading JSON data".into());
     GLOBAL_KNOWLEDGE
@@ -314,11 +332,9 @@ impl Deck {
   }
 
   pub fn increment_quantity(uid: String) -> Result<(), JsValue> {
-    // console::log_1(&"Incrementing card quantity".into());
     let mut known = GLOBAL_KNOWLEDGE
       .lock()
       .map_err(|_| JsValue::from_str("could not get data lock"))?;
-
     if let Some(card) = known
       .data
       .as_mut()
@@ -330,31 +346,6 @@ impl Deck {
       card.quantity += 1;
     }
     Ok(())
-
-    // let current_quantity = known
-    //   .data
-    //   .as_ref()
-    //   .unwrap()
-    //   .cards
-    //   .iter()
-    //   .find(|card| card.card.uid == uid)
-    //   .map(|card| card.quantity)
-    //   .unwrap();
-    // console::log_1(
-    //   &format!("Incrementing card quantity: {}", current_quantity)
-    //     .into(),
-    // );
-
-    //    card.quantity += 1;
-
-    //known.data.as_mut().unwrap().active_card = Some(uid);
-    // Ok(())
-
-    // GLOBAL_KNOWLEDGE
-    //   .lock()
-    //   .map_err(|_| JsValue::from_str("could not get data lock"))?
-    //   .load_json(uid);
-    // Ok(())
   }
 
   pub fn is_last_card_in_category(
