@@ -113,6 +113,13 @@ export class DeckRefiner {
     return el.closest(".card-wrapper").dataset.id;
   }
 
+  increaseQuantity(ev, _) {
+    if (ev.type === "click") {
+      Deck.increment_quantity(ev.prop("id"));
+      this.api.trigger("cardQuantity");
+    }
+  }
+
   async loadDeck() {
     await init();
     const t0 = performance.now();
