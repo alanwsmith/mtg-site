@@ -36,7 +36,7 @@ pub struct Card {
 }
 
 fn filter_default() -> usize {
-  2
+  0
 }
 
 #[allow(non_snake_case)]
@@ -260,14 +260,14 @@ impl Deck {
         .find(|card| card.card.uid == uid)
       {
         if card.filter == 2 {
-          "in".to_string()
+          "✪✪".to_string()
         } else if card.filter == 1 {
-          "maybe".to_string()
+          "✪".to_string()
         } else {
-          "out".to_string()
+          "".to_string()
         }
       } else {
-        "out".to_string()
+        "".to_string()
       },
     )
   }

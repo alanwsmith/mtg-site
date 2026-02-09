@@ -226,9 +226,10 @@ body {
     <div class="filter-wrapper faded-accent-block-border">
       <div>
           Filter:
-        <button data-send="setActiveFilter" data-deckfilter="0">out</button>
-        <button data-send="setActiveFilter" data-deckfilter="1">in+maybe</button>
-        <button data-send="setActiveFilter" data-deckfilter="2">in</button>
+        <button data-send="setActiveFilter" data-deckfilter="-1">x</button>
+        <button data-send="setActiveFilter" data-deckfilter="0">base</button>
+        <button data-send="setActiveFilter" data-deckfilter="1">✪</button>
+        <button data-send="setActiveFilter" data-deckfilter="2">✪✪</button>
           Deck Size: <span class="deck-size" data-receive="deckSize">-</span>
       </div>
     </div>
@@ -262,9 +263,10 @@ body {
     <div class="card-right-sidebar">
       <div class="card-in-out-maybe" data-receive="cardInOutMaybe"></div>
       <div class="card-controls">
-        <button data-send="setCardFilter" data-cardfilter="2">i</button>
-        <button data-send="setCardFilter" data-cardfilter="1">m</button>
-        <button data-send="setCardFilter" data-cardfilter="0">o</button>
+        <button data-send="setCardFilter" data-cardfilter="2">✪✪</button>
+        <button data-send="setCardFilter" data-cardfilter="1">✪</button>
+        <button data-send="setCardFilter" data-cardfilter="0">b</button>
+        <button data-send="setCardFilter" data-cardfilter="-1">x</button>
       </div>
     </div>
   </div>
