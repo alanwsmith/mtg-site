@@ -25,7 +25,12 @@ export class ImageDownloader {
             "COMMANDS",
             data.cards.map((card) => {
               const uid = card.card.uid;
-              return `[ -f "../images/large-cards/${uid}.jpg" ] && echo "skipping ${uid}" || echo "getting ${uid}"`;
+              const char1 = card.card.uid.substring(0, 1);
+              const char2 = card.card.uid.substring(1, 2);
+              const url =
+                `https://cards.scryfall.io/large/front/${char1}/${char2}/${uid}.jpg`;
+              const path = `../images/large-cards/${uid}.jpg`;
+              return `[ -f "${path}" ] && echo "skipping ${uid}" || (wget "${url}" -O "${path}" && sleep 1)`;
             }).join("\n"),
           ],
         ];
