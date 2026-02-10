@@ -31,7 +31,13 @@ export class DeckRefiner {
   }
 
   categoryEls() {
-    return this.categories((category) => this.api.template("category"));
+    const subs = [];
+    return this.categories().map(
+      (category) => {
+        console.log(category);
+        return this.api.template("category");
+      },
+    );
   }
 
   deckFilter(_, el) {
@@ -92,7 +98,6 @@ export class DeckRefiner {
   }
 
   async renderView(_, el) {
-    console.log(this.categories());
     const subs = [
       ["CATEGORIES", this.categoryEls()],
     ];
