@@ -206,6 +206,42 @@ impl Deck {
     )
   }
 
+  pub fn card_ids() -> Result<Vec<String>, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    Ok(
+      known
+        .data
+        .as_ref()
+        .unwrap()
+        .cards
+        .iter()
+        .map(|card| card.card.uid.clone())
+        .collect(),
+    )
+  }
+
+  pub fn card_name(uid: String) -> Result<String, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    Ok(
+      known
+        .data
+        .as_ref()
+        .unwrap()
+        .cards
+        .iter()
+        .find(|card| card.card.uid == uid)
+        .unwrap()
+        .card
+        .oracleCard
+        .name
+        .clone(),
+    )
+  }
+
   pub fn card_quantity(uid: String) -> Result<usize, JsValue> {
     let known = GLOBAL_KNOWLEDGE
       .lock()
@@ -433,6 +469,10 @@ impl Deck {
       card.filter = filter;
     }
     Ok(())
+  }
+
+  pub fn view() -> Result<String, JsValue> {
+    Ok("categories".to_string())
   }
 
   // pub fn change_item() -> Result<(), JsValue> {

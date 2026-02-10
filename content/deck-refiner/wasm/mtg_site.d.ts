@@ -23,6 +23,8 @@ export class Deck {
     static card_category(uid: string): string;
     static card_filter(uid: string): number;
     static card_filter_display(uid: string): string;
+    static card_ids(): string[];
+    static card_name(uid: string): string;
     static card_quantity(uid: string): number;
     static card_visibility(uid: string): string;
     static cards_in_category(category: string): string[];
@@ -35,6 +37,7 @@ export class Deck {
     static set_active_card(uid: string): void;
     static set_active_filter(filter: number): void;
     static set_card_filter(uid: string, filter: number): void;
+    static view(): string;
 }
 
 export class OracleCard {
@@ -57,6 +60,8 @@ export interface InitOutput {
     readonly deck_card_category: (a: number, b: number) => [number, number, number, number];
     readonly deck_card_filter: (a: number, b: number) => [number, number, number];
     readonly deck_card_filter_display: (a: number, b: number) => [number, number, number, number];
+    readonly deck_card_ids: () => [number, number, number, number];
+    readonly deck_card_name: (a: number, b: number) => [number, number, number, number];
     readonly deck_card_quantity: (a: number, b: number) => [number, number, number];
     readonly deck_card_visibility: (a: number, b: number) => [number, number, number, number];
     readonly deck_cards_in_category: (a: number, b: number) => [number, number, number, number];
@@ -69,6 +74,7 @@ export interface InitOutput {
     readonly deck_set_active_card: (a: number, b: number) => [number, number];
     readonly deck_set_active_filter: (a: number) => [number, number];
     readonly deck_set_card_filter: (a: number, b: number, c: number) => [number, number];
+    readonly deck_view: () => [number, number, number, number];
     readonly __wbindgen_externrefs: WebAssembly.Table;
     readonly __externref_table_dealloc: (a: number) => void;
     readonly __wbindgen_free: (a: number, b: number, c: number) => void;
