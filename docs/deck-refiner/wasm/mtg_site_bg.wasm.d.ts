@@ -19,6 +19,7 @@ export const deck_decrement_quantity: (a: number, b: number) => [number, number]
 export const deck_increment_quantity: (a: number, b: number) => [number, number];
 export const deck_is_last_card_in_category: (a: number, b: number) => [number, number, number];
 export const deck_load_json: (a: number, b: number) => [number, number];
+export const deck_output_json_storage: () => [number, number, number, number];
 export const deck_set_active_card: (a: number, b: number) => [number, number];
 export const deck_set_active_filter: (a: number) => [number, number];
 export const deck_set_card_filter: (a: number, b: number, c: number) => [number, number];

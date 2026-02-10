@@ -76,6 +76,7 @@ export class DeckRefiner {
           return this.api.makeHTML(this.api.template("category"), subs);
         }),
     );
+    this.api.trigger("updateCards");
   }
 
   decrementQuantity(ev, _) {
@@ -149,7 +150,8 @@ export class DeckRefiner {
   }
 
   saveDeck() {
-    // localStorage("re)
+    console.log("Saving Deck");
+    localStorage.setItem("refinerDeck", Deck.output_json_storage());
   }
 
   //   const storage = localStorage.getItem("refinerDeck");
@@ -168,7 +170,9 @@ export class DeckRefiner {
 
   setCardFilter(ev, _) {
     if (ev.type === "click") {
+      console.log("here1");
       Deck.set_card_filter(ev.prop("id"), ev.prop("cardfilter"));
+      this.saveDeck();
       this.updateCards();
       //   const df = this.#deck.deckFilter();
       //   const card = ev.prop("id");
@@ -189,8 +193,9 @@ export class DeckRefiner {
 
   setActiveFilter(ev, el) {
     if (ev.type === "click") {
-      Deck.set_active_filter(ev.propToInt("deckfilter"));
-      this.api.trigger("activeFilter");
+      Deck.set_active_filter(ev.propToInt("filter"));
+      this.api.trigger("deck");
+      this.saveDeck();
     }
   }
 

@@ -31,6 +31,7 @@ export class Deck {
     static increment_quantity(uid: string): void;
     static is_last_card_in_category(uid: string): boolean;
     static load_json(content: string): void;
+    static output_json_storage(): string;
     static set_active_card(uid: string): void;
     static set_active_filter(filter: number): void;
     static set_card_filter(uid: string, filter: number): void;
@@ -64,6 +65,7 @@ export interface InitOutput {
     readonly deck_increment_quantity: (a: number, b: number) => [number, number];
     readonly deck_is_last_card_in_category: (a: number, b: number) => [number, number, number];
     readonly deck_load_json: (a: number, b: number) => [number, number];
+    readonly deck_output_json_storage: () => [number, number, number, number];
     readonly deck_set_active_card: (a: number, b: number) => [number, number];
     readonly deck_set_active_filter: (a: number) => [number, number];
     readonly deck_set_card_filter: (a: number, b: number, c: number) => [number, number];

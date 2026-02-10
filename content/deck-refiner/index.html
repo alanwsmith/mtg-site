@@ -9,8 +9,6 @@
 [!- endblock -!]
 
 [!- block main -!]
-
-
   <hgroup>
     <h1>Deck Refiner</h1>
   </hgroup>
@@ -44,21 +42,18 @@
     <div class="filter-wrapper faded-accent-block-border">
       <div>
           Filter:
-        <button data-send="setActiveFilter" data-deckfilter="-1">x</button>
-        <button data-send="setActiveFilter" data-deckfilter="0">base</button>
-        <button data-send="setActiveFilter" data-deckfilter="1">✪</button>
-        <button data-send="setActiveFilter" data-deckfilter="2">✪✪</button>
+        <button data-send="setActiveFilter" data-filter="-1">x</button>
+        <button data-send="setActiveFilter" data-filter="0">base</button>
+        <button data-send="setActiveFilter" data-filter="1">✪</button>
+        <button data-send="setActiveFilter" data-filter="2">✪✪</button>
           Deck Size: <span class="deck-size" data-receive="deckSize">-</span>
+          <div data-receive="setActiveFilter"></div>
       </div>
     </div>
     <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
   </div>
 </bitty-8-0>
 
-
-<script type="application/json" id="exampleData">
-{ "items": ["alfa", "bravo", "charlie"] }
-</script>
 
 <script type="text/html" id="category">
   <div class="category-wrapper">
@@ -85,10 +80,12 @@
         <button data-send="setCardFilter" data-cardfilter="0">b</button>
         <button data-send="setCardFilter" data-cardfilter="-1">x</button>
       </div>
-      <div data-receive="cardQuantity"></div>
-      <div class="card-controls card-quantity-buttons">
-        <button data-send="incrementQuantity">+</button>
-        <button data-send="decrementQuantity">-</button>
+      <div class="card-quantity-wrapper">
+        <div data-receive="cardQuantity"></div>
+        <div class="card-controls card-quantity-buttons">
+          <button data-send="incrementQuantity">+</button>
+          <button data-send="decrementQuantity">-</button>
+        </div>
       </div>
     </div>
   </div>

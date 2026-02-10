@@ -386,6 +386,13 @@ impl Deck {
     }
   }
 
+  pub fn output_json_storage() -> Result<String, JsValue> {
+    let known = GLOBAL_KNOWLEDGE
+      .lock()
+      .map_err(|_| JsValue::from_str("could not get data lock"))?;
+    Ok(serde_json::to_string(&known.data).unwrap().to_string())
+  }
+
   pub fn set_active_card(uid: String) -> Result<(), JsValue> {
     // console::log_1(
     //    &format!("Setting active card to {}", uid).into(),

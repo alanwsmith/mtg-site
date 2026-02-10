@@ -41,6 +41,7 @@
   margin-bottom: 0.36rem;
 }
 
+
 .card-wrapper {
   background-color: black;
   color: var(--faded-white-color);
@@ -82,11 +83,19 @@
   visibility: hidden;
 }
 
+[data-state=closed] .card-quantity-wrapper {
+  visibility: hidden;
+}
+
 [data-state=opened] {
   height: var(--opened-card-height);
 }
 
 [data-state=opened] .card-controls-wrapper {
+  visibility: hidden;
+}
+
+[data-state=opened] .card-quantity-wrapper {
   visibility: hidden;
 }
 
