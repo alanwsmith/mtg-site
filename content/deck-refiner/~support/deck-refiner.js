@@ -45,18 +45,14 @@ export class DeckRefiner {
 
   cardState(_, el) {
     if (el.prop("id") === Deck.active_card()) {
-      el.setProp("cardstate", "active");
+      el.setProp("state", "active");
     } else if (Deck.card_category(el.prop("id")) === Deck.active_category()) {
-      el.setProp("cardstate", "closed");
+      el.setProp("state", "closed");
     } else if (Deck.is_last_card_in_category(el.prop("id"))) {
-      el.setProp("cardstate", "opened");
+      el.setProp("state", "opened");
     } else {
-      el.setProp("cardstate", "closed");
+      el.setProp("state", "closed");
     }
-  }
-
-  cardVisibility(_, el) {
-    // el.dataset.cardvisibility = Deck.card_visibility(el.prop("id"));
   }
 
   cardsInCategory(category) {
@@ -233,7 +229,7 @@ export class DeckRefiner {
 
   updateCards() {
     this.api.trigger(
-      "cardInOutMaybe cardQuantity cardState cardVisibility cardFilter cardFilterDisplay",
+      "cardInOutMaybe cardQuantity cardState cardFilter cardFilterDisplay",
     );
   }
 

@@ -250,11 +250,18 @@ body {
 </script>
 
 <script type="text/html" id="card">
-  <div class="card-wrapper" data-id="CARD_ID" data-send="hitCard" data-receive="cardState cardVisibility cardFilter" >
+  <div 
+    class="card-wrapper" 
+    data-filter=""
+    data-id="CARD_ID" 
+    data-send="hitCard" 
+    data-state=""
+    data-receive="cardState cardFilter" 
+  >
     <div class="card-image-wrapper"><img src="CARD_IMAGE_SRC" class="card-image" alt="The CARD_NAME card from Magic: The Gathering" /></div>
     <div class="card-right-sidebar">
       <div data-receive="cardFilterDisplay"></div>
-      <div class="card-controls">
+      <div class="card-controls-wrapper">
         <button data-send="setCardFilter" data-cardfilter="2">✪✪</button>
         <button data-send="setCardFilter" data-cardfilter="1">✪</button>
         <button data-send="setCardFilter" data-cardfilter="0">b</button>

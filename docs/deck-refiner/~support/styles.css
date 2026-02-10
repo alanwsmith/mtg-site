@@ -2,17 +2,15 @@
   --card-count-width: 1.6rem;
   --card-image-width: 10.8rem;
   --card-controls-width: 2rem;
-  --open-card-height: 14.6rem;
+  --opened-card-height: 14.6rem;
   --filter-row-height: 2.7rem;
 }
 
-.card-controls {
-  background-color: black;
-}
 
-.card-controls button {
+.card-controls-wrapper button {
   min-width: 80%;
-  margin-bottom: var(--xxsmall-margin);
+  font-size: var(--xxsmall-font-size);
+  margin-bottom: var(--xxxsmall-margin);
 }
 
 .card-image-wrapper {
@@ -52,30 +50,6 @@
   border-radius: var(--large-border-radius);
 }
 
-.card-wrapper[data-controls=hidden] {
-  border: 1px solid rgb(0 0 0 / 0);
-}
-
-.card-wrapper[data-controls=visible] {
-  border: var(--accent-border);
-}
-
-.card-wrapper[data-cardfilter="-1"] button[data-cardfilter="-1"] {
-  background: var(--accent-color);
-}
-
-.card-wrapper[data-cardfilter="0"] button[data-cardfilter="0"] {
-  background: var(--accent-color);
-}
-
-.card-wrapper[data-cardfilter="1"] button[data-cardfilter="1"] {
-  background: var(--accent-color);
-}
-
-.card-wrapper[data-cardfilter="2"] button[data-cardfilter="2"] {
-  background: var(--accent-color);
-}
-
 .categories {
   display: flex;
   flex-wrap: wrap;
@@ -95,29 +69,44 @@
   background-color: var(--background-color);
 }
 
-[data-cardstate=open] {
-  height: var(--open-card-height);
+[data-state=active] {
+  outline: var(--default-border);
+  height: var(--opened-card-height);
 }
 
-[data-cardstate=closed] {
+[data-state=closed] {
   height: 1.9rem;
 }
 
-[data-cardvisibility=hidden] {
-  display: none;
+[data-state=closed] .card-contorls-wrapper {
+  visibility: hidden;
+}
+
+[data-state=opened] {
+  height: var(--opened-card-height);
+}
+
+[data-state=opened] .card-controls-wrapper {
+  visibility: hidden;
 }
 
 
 .deck-wrapper[data-activefilter="0"] button[data-deckfilter="0"] {
+  /*
   background: var(--accent-color);
+  */
 }
 
 .deck-wrapper[data-activefilter="1"] button[data-deckfilter="1"] {
+  /*
   background: var(--accent-color);
+  */
 }
 
 .deck-wrapper[data-activefilter="2"] button[data-deckfilter="2"] {
+  /*
   background: var(--accent-color);
+  */
 }
 
 
