@@ -1,30 +1,51 @@
-import init, { Deck } from "/deck-refiner/wasm/mtg_site.js";
-
 function debug(msg) {
   console.log(msg);
 }
-function sleep(sec) {
-  return new Promise((resolve) => setTimeout(resolve, sec * 1000));
-}
 
 export class DeckRefiner {
-  // #deck;
-  // TODO: Deprecate tmpHoldingURL when
-  // you're calling the API directly.
-  #tmpHoldingURL;
-
   #cardEls = {};
+  #data;
 
   async bittyReady() {
     this.api.trigger("await:loadData loadCardEls renderView");
   }
 
+  categories() {
+    return [
+      ...new Set(
+        this.#data.cards.filter((card) => {
+          if (this.#data.deckFilter === -1) {
+            return card.filter === this.#data.deckFilter;
+          } else {
+            return card.filter >= this.#data.deckFilter;
+          }
+        }).map((card) => card.categories[0]),
+      ),
+    ].sort((a, b) => {
+      if (a > b) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  }
+
+  categoryEls() {
+    return this.categories((category) => this.api.template("category"));
+  }
+
+  deckFilter(_, el) {
+    el.setProp("deckFilter", this.#data.deckFilter);
+  }
+
   loadCardEls() {
     console.log("Loading Card Elements");
-    Deck.card_ids().forEach((id) => {
+    this.#data.cards.forEach((card) => {
+      const id = card.card.uid;
       const subs = [
         ["CARD_ID", id],
-        ["CARD_NAME", Deck.card_name(id)],
+        ["CARD_NAME", card.card.oracleCard.name],
+        ["CARD_IMG_SRC", id],
       ];
       this.#cardEls[id] = this.api.makeElement(this.api.template("card"), subs);
     });
@@ -32,31 +53,66 @@ export class DeckRefiner {
 
   async loadData() {
     debug("Loading Data");
-    await init();
     const t0 = performance.now();
     debug("Checking for a deck in storage.");
     const storage = localStorage.getItem("refinerDeck");
     if (storage !== null) {
       debug("Found a deck in storage.");
-      Deck.load_json(storage);
+      this.#data = JSON.parse(storage);
     } else {
-      const resp = await this.api.getTEXT(
+      const resp = await this.api.getJSON(
         // `/deck-refiner/~support/example.json`,
         // `/deck-refiner/~support/big-deck.json`,
         `/deck-refiner/base-decks/yuriko-ninjas.json`,
       );
       if (resp.value) {
         debug("No deck in storage. Making a new one.");
-        Deck.load_json(resp.value);
+        this.#data = resp.value;
       }
     }
+    this.prepData();
+    this.saveDeck();
     const t1 = performance.now();
     const time = t1 - t0;
     console.log(`Load time: ${time}`);
   }
 
+  prepData() {
+    if (this.#data.deckFilter === undefined) {
+      this.#data.deckFilter = 0;
+    }
+    if (this.#data.view !== undefined) {
+      this.#data.view = "categoriesView";
+    }
+    this.#data.cards.forEach((card) => {
+      if (card.filter === undefined) {
+        card.filter = 0;
+      }
+    });
+  }
+
   async renderView(_, el) {
-    el.replaceChildren(this.api.makeHTML(this.api.template(Deck.view())));
+    console.log(this.categories());
+    const subs = [
+      ["CATEGORIES", this.categoryEls()],
+    ];
+    el.replaceChildren(
+      this.api.makeHTML(
+        this.api.template("categoriesView"),
+        subs,
+      ),
+    );
+    this.api.trigger("deckFilter");
+  }
+
+  saveDeck() {
+    localStorage.setItem("refinerDeck", JSON.stringify(this.#data));
+  }
+
+  setDeckFilter(ev, el) {
+    this.#data.deckFilter = ev.propAsInt("deckFilter");
+    this.saveDeck();
+    this.api.trigger("renderView");
   }
 
   // activeFilter(_, el) {

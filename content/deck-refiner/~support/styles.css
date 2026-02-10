@@ -1,12 +1,15 @@
+.viewport[data-deck-filter="0"] {
+  background-color: blue;
+}
+
+/*
 :root {
   --card-count-width: 1.6rem;
   --card-image-width: 10.8rem;
   --card-controls-width: 2rem;
   --opened-card-height: 14.6rem;
   --filter-row-height: 2.7rem;
-}
-
-
+}*
 .card-controls-wrapper button {
   min-width: 80%;
   font-size: var(--xxsmall-font-size);
@@ -101,21 +104,15 @@
 
 
 .deck-wrapper[data-activefilter="0"] button[data-deckfilter="0"] {
-  /*
   background: var(--accent-color);
-  */
 }
 
 .deck-wrapper[data-activefilter="1"] button[data-deckfilter="1"] {
-  /*
   background: var(--accent-color);
-  */
 }
 
 .deck-wrapper[data-activefilter="2"] button[data-deckfilter="2"] {
-  /*
   background: var(--accent-color);
-  */
 }
 
 
@@ -128,3 +125,4 @@
   top: 0;
   z-index: 1;
 }
+*/

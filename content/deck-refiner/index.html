@@ -20,30 +20,17 @@
   </div>
 <bitty-8-0 
   data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
-  data-listeners="click input mouseover"
 >
-    <div data-receive="renderView"></div>
-
-
-
-      <!--
-  <details>
-    <summary>Change Deck</summary>
-    <div class="faded-default-border default-border-radius default-padding default-flow">
-      <p>Follow these prompts to start refining a new deck:</p>
-      <div class="default-padding info-border default-border-radius default-flow" data-receive="changeDeckStep2 changeDeckStep3 changeDeckComplete">
-        Copy the address of an  
-        <a href="https://archidekt.com/">Archidekt</a> deck 
-        you want to refine and paste it here:
-        <input type="text" data-send="changeDeckURL" autocomplete="off" />
-        <div class="faded-accent-border default-border-radius default-padding">
-          <div>It'll look something like:</div>
-          <pre>https://archidekt.com/decks/19207437/giada_angels</pre>
-        </div>
-      </div>
+    <div class="filter-buttons-wrapper">
+      <button data-send="setDeckFilter" data-deck-filter="-1">x</button>
+      <button data-send="setDeckFilter" data-deck-filter="0">base</button>
+      <button data-send="setDeckFilter" data-deck-filter="1">✪</button>
+      <button data-send="setDeckFilter" data-deck-filter="2">✪✪</button>
     </div>
-  </details>
--->
+    <div class="viewport" data-receive="renderView deckFilter"></div>
+
+
+
 
 <!--
   <div class="deck-wrapper" data-receive="activeFilter">
@@ -63,22 +50,8 @@
 -->
 </bitty-8-0>
 
-<script type="text/html" id="category">
-  <div class="category-wrapper">
-    <div class="category-title">CATEGORY_NAME</div>
-    <div class="category-cards">CARDS_IN_CATEGORY</div>
-  </div>
-</script>
 
-<script type="text/html" id="categories">
-  <h3>Categories</h3>
-  <div class="categories-wrapper">CATEGORIES</div>
-</script>
-
-
-
-
-<script type="text/html" id="card">
+<script id="card" type="text/html">
   <div 
     class="card-wrapper" 
     data-filter=""
@@ -107,39 +80,18 @@
   </div>
 </script>
 
-
-  <!-- note: the change-deck-... templates
-will be removed when the data is being queried 
-directly from the api -->
-<script type="text/html" id="change-deck-step-2">
-  <p>
-    The next step is to copy data from the Archidekt site.
-  </p>
-  <p>
-    Use the button below to open a new tab with the data. 
-    Copy it, then come back here. 
-  </p>
-  <p><a 
-    class="link-button" 
-    target="_blank" 
-    href="https://archidekt.com/api/decks/ID/" 
-    data-send="changeDeckStep3"
-  >Open Archidekt Data Page</a></p>
-</script>
-
-<script type="text/html" id="change-deck-step-3">
-  <p>Paste the data you copied here:</p>
-  <div>
-    <textarea class="text-box" data-send="changeDeckStep4"></textarea>
+<script id="category" type="text/html">
+  <div class="category-wrapper">
+    <div class="category-title">CATEGORY_NAME</div>
+    <div class="category-cards">CARDS_IN_CATEGORY</div>
   </div>
 </script>
 
-<script type="text/html" id="change-deck-complete">
-  <p>Deck switch complete. </p>
-  <p>You can close the Archidekt data tab now.</p>
-  <p>Refresh the page if you'd like to switch to another one.</p>
+<script id="categoriesView" type="text/html">
+  <h3>Categories</h3>
+  <div class="categories-wrapper">CATEGORIES</div>
 </script>
-
 [!- endblock -!]
+
 
 
