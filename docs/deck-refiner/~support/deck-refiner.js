@@ -10,6 +10,10 @@ export class DeckRefiner {
     this.api.trigger("await:loadData loadCardEls renderView");
   }
 
+  cardsInCategory(category) {
+    return "asdf";
+  }
+
   categories() {
     return [
       ...new Set(
@@ -31,11 +35,13 @@ export class DeckRefiner {
   }
 
   categoryEls() {
-    const subs = [];
     return this.categories().map(
       (category) => {
-        console.log(category);
-        return this.api.template("category");
+        const subs = [
+          ["CATEGORY_NAME", category],
+          ["CARDS_IN_CATEGORY", this.cardsInCategory(category)],
+        ];
+        return this.api.makeHTML(this.api.template("category"), subs);
       },
     );
   }
