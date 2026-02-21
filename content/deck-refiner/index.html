@@ -1,65 +1,15 @@
 [!- extends "_wrappers/main.html" -!]
 
-[! block head !]
-<link rel="stylesheet" href="/deck-refiner/~support/styles.css" />
-[! endblock !]
-
-[! block main_tag !]
-<main class="default-flow xxxlarge-wrapper">
-[!- endblock -!]
-
-[!- block main -!]
-  <hgroup>
-    <h1>Deck Refiner</h1>
-  </hgroup>
-  <div class="large-bottom-margin info-border default-padding default-border-radius accent-background-color info-color">
-    Head's Up: This is a work in progress. It doesn't
-    doesn't export decks yet. It also falls over if
-    when you send it more than 150 cards or so.
-    I'm working on all that. 
-  </div>
-<bitty-8-0 
-  data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
->
-    <div class="filter-buttons-wrapper">
-      <button data-send="setDeckFilter" data-deck-filter="-1">x</button>
-      <button data-send="setDeckFilter" data-deck-filter="0">base</button>
-      <button data-send="setDeckFilter" data-deck-filter="1">✪</button>
-      <button data-send="setDeckFilter" data-deck-filter="2">✪✪</button>
-    </div>
-    <div class="viewport" data-receive="renderView deckFilter"></div>
-
-
-
-
-<!--
-  <div class="deck-wrapper" data-receive="activeFilter">
-    <div class="filter-wrapper faded-accent-block-border">
-      <div>
-          Filter:
-        <button data-send="setActiveFilter" data-filter="-1">x</button>
-        <button data-send="setActiveFilter" data-filter="0">base</button>
-        <button data-send="setActiveFilter" data-filter="1">✪</button>
-        <button data-send="setActiveFilter" data-filter="2">✪✪</button>
-          Deck Size: <span class="deck-size" data-receive="deckSize">-</span>
-          <div data-receive="setActiveFilter"></div>
-      </div>
-    </div>
-    <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
-  </div>
--->
-</bitty-8-0>
-
-
+[!- block templates -!]
 <script id="card" type="text/html">
   <div 
     class="card-wrapper" 
     data-filter=""
     data-id="CARD_ID" 
-    data-send="highlightCard" 
-    data-state=""
     data-receive="cardState cardFilter" 
   >
+    <img src="CARD_IMAGE_SRC" alt="The CARD_NAME card from Magic: The Gathering" />
+    <!--
     <div class="card-image-wrapper"><img src="CARD_IMAGE_SRC" class="card-image" alt="The CARD_NAME card from Magic: The Gathering" /></div>
     <div class="card-right-sidebar">
       <div data-receive="cardFilterDisplay"></div>
@@ -77,8 +27,15 @@
         </div>
       </div>
     </div>
+-->
   </div>
 </script>
+
+
+<script id="categoriesView" type="text/html">
+  <div class="categories-wrapper">CATEGORIES</div>
+</script>
+
 
 <script id="category" type="text/html">
   <div class="category-wrapper">
@@ -87,10 +44,68 @@
   </div>
 </script>
 
-<script id="categoriesView" type="text/html">
-  <h3>Categories</h3>
-  <div class="categories-wrapper">CATEGORIES</div>
+<script id="content" type="text/html">
+  <div class="filter-buttons-wrapper">
+    <button data-send="deckFilterUpdate" data-deck-filter="-1">x</button>
+    <button data-send="deckFilterUpdate" data-deck-filter="0">base</button>
+    <button data-send="deckFilterUpdate" data-deck-filter="1">✪</button>
+    <button data-send="deckFilterUpdate" data-deck-filter="2">✪✪</button>
+  </div>
+  <div class="viewport" data-receive="renderView deckFilter"></div>
 </script>
+
+[!- endblock -!]
+
+
+[! block head !]
+<link rel="stylesheet" href="/deck-refiner/~support/styles.css" />
+[! endblock !]
+
+[! block main_tag !]
+<main class="default-flow xxxlarge-wrapper">
+[!- endblock -!]
+
+
+
+
+[!- block main -!]
+  <hgroup>
+    <h1>Deck Refiner</h1>
+  </hgroup>
+  <div class="large-bottom-margin info-border default-padding default-border-radius accent-background-color info-color">
+    Head's Up: This is a work in progress. It doesn't
+    doesn't export decks yet. It also falls over if
+    when you send it more than 150 cards or so.
+    I'm working on all that. 
+  </div>
+
+<bitty-8-0 
+  data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
+  data-receive="renderContent"
+></bitty-8-0>
+
+<!--
+  <div class="deck-wrapper" data-receive="activeFilter">
+    <div class="filter-wrapper faded-accent-block-border">
+      <div>
+          Filter:
+        <button data-send="setActiveFilter" data-filter="-1">x</button>
+        <button data-send="setActiveFilter" data-filter="0">base</button>
+        <button data-send="setActiveFilter" data-filter="1">✪</button>
+        <button data-send="setActiveFilter" data-filter="2">✪✪</button>
+          Deck Size: <span class="deck-size" data-receive="deckSize">-</span>
+          <div data-receive="setActiveFilter"></div>
+      </div>
+    </div>
+    <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
+  </div>
+-->
+
+
+
+
+
+
 [!- endblock -!]
 
 

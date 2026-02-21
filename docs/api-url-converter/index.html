@@ -167,59 +167,7 @@ body {
 <link rel="mask-icon" href="&#x2f;favicons/safari-pinned-tab.svg" color="#5bbad5" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mtg.al9000.com&#x2f;images&#x2f;og-image.jpg">
-<link rel="stylesheet" href="/deck-refiner/~support/styles.css" />
-<script id="card" type="text/html">
-  <div 
-    class="card-wrapper" 
-    data-filter=""
-    data-id="CARD_ID" 
-    data-receive="cardState cardFilter" 
-  >
-    <img src="CARD_IMAGE_SRC" alt="The CARD_NAME card from Magic: The Gathering" />
-    <!--
-    <div class="card-image-wrapper"><img src="CARD_IMAGE_SRC" class="card-image" alt="The CARD_NAME card from Magic: The Gathering" /></div>
-    <div class="card-right-sidebar">
-      <div data-receive="cardFilterDisplay"></div>
-      <div class="card-controls-wrapper">
-        <button data-send="setCardFilter" data-cardfilter="2">✪✪</button>
-        <button data-send="setCardFilter" data-cardfilter="1">✪</button>
-        <button data-send="setCardFilter" data-cardfilter="0">b</button>
-        <button data-send="setCardFilter" data-cardfilter="-1">x</button>
-      </div>
-      <div class="card-quantity-wrapper">
-        <div data-receive="cardQuantity"></div>
-        <div class="card-controls card-quantity-buttons">
-          <button data-send="incrementQuantity">+</button>
-          <button data-send="decrementQuantity">-</button>
-        </div>
-      </div>
-    </div>
--->
-  </div>
-</script>
-
-
-<script id="categoriesView" type="text/html">
-  <div class="categories-wrapper">CATEGORIES</div>
-</script>
-
-
-<script id="category" type="text/html">
-  <div class="category-wrapper">
-    <div class="category-title">CATEGORY_NAME</div>
-    <div class="category-cards">CARDS_IN_CATEGORY</div>
-  </div>
-</script>
-
-<script id="content" type="text/html">
-  <div class="filter-buttons-wrapper">
-    <button data-send="deckFilterUpdate" data-deck-filter="-1">x</button>
-    <button data-send="deckFilterUpdate" data-deck-filter="0">base</button>
-    <button data-send="deckFilterUpdate" data-deck-filter="1">✪</button>
-    <button data-send="deckFilterUpdate" data-deck-filter="2">✪✪</button>
-  </div>
-  <div class="viewport" data-receive="renderView deckFilter"></div>
-</script>  </head>
+  </head>
   <body>
     <noscript>
       Pages on this site use JavaScript. It's currently either
@@ -245,36 +193,14 @@ body {
     </bitty-8-0>
   </div>
 </header><main class="default-flow xxxlarge-wrapper"><hgroup>
-    <h1>Deck Refiner</h1>
+    <h1>Archidekt API URL Converter</h1>
   </hgroup>
-  <div class="large-bottom-margin info-border default-padding default-border-radius accent-background-color info-color">
-    Head's Up: This is a work in progress. It doesn't
-    doesn't export decks yet. It also falls over if
-    when you send it more than 150 cards or so.
-    I'm working on all that. 
-  </div>
 
-<bitty-8-0 
-  data-connect="/deck-refiner/~support/deck-refiner.js DeckRefiner"
-  data-receive="renderContent"
-></bitty-8-0>
-
-<!--
-  <div class="deck-wrapper" data-receive="activeFilter">
-    <div class="filter-wrapper faded-accent-block-border">
-      <div>
-          Filter:
-        <button data-send="setActiveFilter" data-filter="-1">x</button>
-        <button data-send="setActiveFilter" data-filter="0">base</button>
-        <button data-send="setActiveFilter" data-filter="1">✪</button>
-        <button data-send="setActiveFilter" data-filter="2">✪✪</button>
-          Deck Size: <span class="deck-size" data-receive="deckSize">-</span>
-          <div data-receive="setActiveFilter"></div>
-      </div>
-    </div>
-    <div class="categories" data-receive="deck" data-send="closeHighlight"></div>
-  </div>
--->      </main>
+  <p>This is the format of the URL</p>
+  <p>
+    https://archidekt.com/api/decks/19951911/
+  </p>
+  <p>TODO: Build converter tool when bitty-8-0 is done</p>      </main>
 <footer class="default-wrapper xxlarge-block-padding accent-top-border xxxlarge-top-margin">
   <div class="small-font-size">
     <div class="text-align-center">

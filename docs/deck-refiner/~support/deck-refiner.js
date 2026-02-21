@@ -3,27 +3,24 @@ function debug(msg) {
 }
 
 export class DeckRefiner {
-  #cardEls = {};
+  #cardEls = [];
   #data;
 
   async bittyReady() {
-    this.api.trigger("await:loadData loadCardEls renderView");
+    this.api.trigger("await:loadData loadCardEls renderContent");
   }
 
   cardsInCategory(category) {
-    return "asdf";
+    return this.#cardEls.filter((card) => {
+      return card.dataset.filter >= this.#data.deckFilter;
+    });
   }
 
   categories() {
     return [
       ...new Set(
-        this.#data.cards.filter((card) => {
-          if (this.#data.deckFilter === -1) {
-            return card.filter === this.#data.deckFilter;
-          } else {
-            return card.filter >= this.#data.deckFilter;
-          }
-        }).map((card) => card.categories[0]),
+        this.#data.cards
+          .map((card) => card.categories[0]),
       ),
     ].sort((a, b) => {
       if (a > b) {
@@ -50,16 +47,23 @@ export class DeckRefiner {
     el.setProp("deckFilter", this.#data.deckFilter);
   }
 
+  deckFilterUpdate(ev, el) {
+    this.#data.deckFilter = ev.propAsInt("deckFilter");
+    this.saveDeck();
+    this.api.trigger("deckFilter");
+  }
+
   loadCardEls() {
     console.log("Loading Card Elements");
-    this.#data.cards.forEach((card) => {
-      const id = card.card.uid;
+    this.#cardEls = this.#data.cards.map((card) => {
+      const uid = card.card.uid;
       const subs = [
-        ["CARD_ID", id],
+        ["CARD_ID", uid],
         ["CARD_NAME", card.card.oracleCard.name],
-        ["CARD_IMG_SRC", id],
+        ["CARD_IMG_SRC", uid],
+        ["CARD_IMAGE_SRC", `/images/large-cards/${uid}.jpg`],
       ];
-      this.#cardEls[id] = this.api.makeElement(this.api.template("card"), subs);
+      return this.api.makeElement(this.api.template("card"), subs);
     });
   }
 
@@ -72,9 +76,9 @@ export class DeckRefiner {
       debug("Found a deck in storage.");
       this.#data = JSON.parse(storage);
     } else {
+      // `/deck-refiner/~support/example.json`,
+      // `/deck-refiner/~support/big-deck.json`,
       const resp = await this.api.getJSON(
-        // `/deck-refiner/~support/example.json`,
-        // `/deck-refiner/~support/big-deck.json`,
         `/deck-refiner/base-decks/yuriko-ninjas.json`,
       );
       if (resp.value) {
@@ -94,13 +98,17 @@ export class DeckRefiner {
       this.#data.deckFilter = 0;
     }
     if (this.#data.view !== undefined) {
-      this.#data.view = "categoriesView";
+      this.#data.view = "bucketsView";
     }
     this.#data.cards.forEach((card) => {
       if (card.filter === undefined) {
         card.filter = 0;
       }
     });
+  }
+
+  renderContent(_, el) {
+    el.replaceChildren(this.api.template("content"));
   }
 
   async renderView(_, el) {
@@ -118,12 +126,6 @@ export class DeckRefiner {
 
   saveDeck() {
     localStorage.setItem("refinerDeck", JSON.stringify(this.#data));
-  }
-
-  setDeckFilter(ev, el) {
-    this.#data.deckFilter = ev.propAsInt("deckFilter");
-    this.saveDeck();
-    this.api.trigger("renderView");
   }
 
   // activeFilter(_, el) {

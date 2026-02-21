@@ -2,6 +2,19 @@
   background-color: blue;
 }
 
+.card-wrapper {
+  width: 100px;
+}
+
+.category-cards {
+  /*
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+*/
+}
+
+
 /*
 :root {
   --card-count-width: 1.6rem;
